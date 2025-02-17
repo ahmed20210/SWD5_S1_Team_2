@@ -50,6 +50,7 @@ CREATE TABLE Product (
     Quantity INT,
     Status NVARCHAR(50),
     Price DECIMAL(18, 2),
+      Price DECIMAL(18, 2),
     ViewsCount INT,
     PurchaseCount INT,
     ReviewsCount INT,
@@ -64,6 +65,20 @@ CREATE Table FavouriteList (
     FOREIGN KEY (UserId) REFERENCES [User](UserId),
     FOREIGN KEY (ProductId) REFERENCES Product(ProductId)
 );
+
+CREATE TABLE Reviews(
+    ReviewId INT PRIMARY KEY,
+    UserId INT,
+    ProductId INT,
+    Rating INT,
+    Review NVARCHAR(50),
+    Review NVARCHAR(50),
+
+    Date DATETIME,
+    VerifiedPurchase BIT,
+    FOREIGN KEY (UserId) REFERENCES [User](UserId),
+    FOREIGN KEY (ProductId) REFERENCES Product(ProductId)
+)
 
 CREATE TABLE Reviews(
     ReviewId INT PRIMARY KEY,
