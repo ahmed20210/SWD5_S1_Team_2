@@ -42,6 +42,7 @@ CREATE TABLE Category (
     ImagePath NVARCHAR(50)
 );
 
+
 CREATE TABLE Product (
     ProductId INT PRIMARY KEY,
     CategoryId INT,
