@@ -11,6 +11,10 @@
       </PackageReference>
     </ItemGroup>
 
+    <ItemGroup>
+      <None Include="appsettings.json" />
+    </ItemGroup>
+
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
         <Nullable>enable</Nullable>

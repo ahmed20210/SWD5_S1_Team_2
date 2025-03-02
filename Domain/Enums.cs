@@ -25,4 +25,12 @@ public enum RefundStatus
     Canceled,
     Rejected
 }
+public enum OrderStatus  
+{
+    Pending,
+    Processing,
+    Shipped,
+    Delivered,
+    Cancelled
+}
 
