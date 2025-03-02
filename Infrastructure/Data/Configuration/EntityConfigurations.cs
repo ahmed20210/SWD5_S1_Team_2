@@ -11,6 +11,9 @@ public static class EntityConfigurations
         modelBuilder.ApplyConfiguration(new NotificationConfiguration());
         modelBuilder.ApplyConfiguration(new PaymentConfiguration());
         modelBuilder.ApplyConfiguration(new ReturnedOrderConfiguration());
+        modelBuilder.ApplyConfiguration(new DiscountConfigurations());
+        modelBuilder.ApplyConfiguration(new OrderConfigurations());
+        modelBuilder.ApplyConfiguration(new OrderItemConfigurations());
     }
 
 }

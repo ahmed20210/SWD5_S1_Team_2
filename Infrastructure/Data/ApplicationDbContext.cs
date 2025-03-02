@@ -10,9 +10,6 @@ public partial class ApplicationDbContext : DbContext
 {
     
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) {}
-    public DbSet<Discount> Discounts { get; set; }
-    public DbSet<OrderItem> OrderItems { get; set; }
-    public DbSet<Order> Orders { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     { 
    
