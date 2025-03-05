@@ -34,3 +34,10 @@ public enum OrderStatus
     Cancelled
 }
 
+public enum ProductStatus
+{
+    Available,
+    Out_Of_Stock,
+    Discontinued
+}
+
