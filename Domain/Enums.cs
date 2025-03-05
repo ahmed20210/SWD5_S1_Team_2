@@ -34,6 +34,37 @@ public enum OrderStatus
     Cancelled
 }
 
+public enum LogStatus
+{
+    Success,
+    Failed,
+    Pending
+}
+public enum logmethods
+{
+    GET,
+    POST,
+    PUT,
+    DELETE,
+    PATCH
+}
+public enum CouponType
+{
+    Percentage,   
+    FixedAmount  
+}
+public enum CouponStatus
+{
+    Active,   
+    Expired,  
+    Inactive  
+}
+public enum TokenType
+{
+    Access,     
+    Refresh,      
+    Verification  
+}
 public enum ProductStatus
 {
     Available,

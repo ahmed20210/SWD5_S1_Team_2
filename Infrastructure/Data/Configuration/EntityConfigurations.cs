@@ -14,6 +14,10 @@ public static class EntityConfigurations
         modelBuilder.ApplyConfiguration(new DiscountConfigurations());
         modelBuilder.ApplyConfiguration(new OrderConfigurations());
         modelBuilder.ApplyConfiguration(new OrderItemConfigurations());
+        modelBuilder.ApplyConfiguration(new LogConfiguration());
+        modelBuilder.ApplyConfiguration(new CouponConfiguration());
+        modelBuilder.ApplyConfiguration(new TokenConfiguration());
+
         modelBuilder.ApplyConfiguration(new ProductConfigurations());
         modelBuilder.ApplyConfiguration(new ProductImageConfigurations());
         modelBuilder.ApplyConfiguration(new ReviewConfigurations());
