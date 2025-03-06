@@ -71,4 +71,9 @@ public enum ProductStatus
     Out_Of_Stock,
     Discontinued
 }
+public enum UserRole
+{
+    Admin,
+    Client
+}
 

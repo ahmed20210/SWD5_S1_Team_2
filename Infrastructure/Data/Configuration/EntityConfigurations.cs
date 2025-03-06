@@ -21,6 +21,9 @@ public static class EntityConfigurations
         modelBuilder.ApplyConfiguration(new ProductConfigurations());
         modelBuilder.ApplyConfiguration(new ProductImageConfigurations());
         modelBuilder.ApplyConfiguration(new ReviewConfigurations());
+        modelBuilder.ApplyConfiguration(new UserConfigurations());
+        modelBuilder.ApplyConfiguration(new AddressConfigurations());
+        modelBuilder.ApplyConfiguration(new CategoryConfigurations());
 
     }
 
