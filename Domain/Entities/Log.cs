@@ -4,12 +4,13 @@ namespace Domain.Entities
     public class Log
     {
 
-        public int id { get; set; }
+        public int Id { get; set; }
 
-        public int userid { get; set; }
-        public logmethods  methods { get; set; }
+        public int UserId { get; set; }
+        
+        public LogMethods  Method { get; set; }
 
-        public string route { get; set; }
+        public string Route { get; set; }
 
 
         public string? Body { get; set; }

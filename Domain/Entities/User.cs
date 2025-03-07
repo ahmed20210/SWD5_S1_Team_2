@@ -16,14 +16,16 @@ public class User
     public string Email { get; set; }
     public string Phone { get; set; }
     public UserRole Role { get; set; }
+    public bool IsVerified { get; set; }
+    public int VerificationCode { get; set; }
+    
     public ICollection<Address> Addresses { get; set; }
-
-    [ForeignKey("MainAddressID")]
-    public int MainAddressID { get; set; }
+    [ForeignKey("MainAddressId")]
+    public int MainAddressId { get; set; }
     public Address Address { get; set; }
 
     public ICollection<Review> Reviews { get; set; }
-    public ICollection<FavouriteList> favouritelists { get; set; }
+    public ICollection<FavouriteList> FavouriteList { get; set; }
 
 
 }

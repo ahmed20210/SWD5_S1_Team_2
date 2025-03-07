@@ -6,29 +6,24 @@ public class Booster
 {
 
 
-    public int ID { get; set; }
-
-
+    public int Id { get; set; }
+    
     public string ImagePath { get; set; }
     public string Title { get; set; }
     public string Description { get; set; }
     public BoosterTypes BoosterType { get; set; }
     public string BoosterURL { get; set; }
-
-    [ForeignKey("couponId")]
-    public int? couponId { get; set; }
-    public Coupon coupon { get; set; }
-
+    [ForeignKey("CouponId")] 
+    public int? CouponId { get; set; }
+    public Coupon Coupon { get; set; }
 
 
-    [ForeignKey("DiscoutID")]
-    public int? DiscoutID { get; set; }
+    [ForeignKey("DiscoutId")]
+    public int? DiscoutId { get; set; }
     public Discount discount { get; set; }
-
-    // Not clear
-    [ForeignKey("OrderID")]
-    public int? OrderID { get; set; }
-    public Order order { get; set; }
+    [ForeignKey("OrderId")]
+    public int? OrderId { get; set; }
+    public Order Order { get; set; }
 
 
 }

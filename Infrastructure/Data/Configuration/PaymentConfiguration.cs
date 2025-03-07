@@ -12,10 +12,10 @@ public class PaymentConfiguration : IEntityTypeConfiguration<Payment>
         
         builder.HasKey(p => p.Id);
 
-        builder.Property(p => p.TransactionID)
+        builder.Property(p => p.TransactionId)
             .HasMaxLength(255);
 
-        builder.Property(p => p.OrderID)
+        builder.Property(p => p.OrderId)
             .IsRequired();
 
         builder.Property(p => p.CreatedAt)

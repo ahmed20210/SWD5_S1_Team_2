@@ -13,9 +13,7 @@ public enum BoosterTypes
     Discount,
     Shipping,
     Reward,
-    Coupon,
-    Subscription
-
+    Coupon
 }
 
 public enum PaymentMethods
@@ -49,7 +47,7 @@ public enum LogStatus
     Failed,
     Pending
 }
-public enum logmethods
+public enum LogMethods
 {
     GET,
     POST,
@@ -60,7 +58,7 @@ public enum logmethods
 public enum CouponType
 {
     Percentage,   
-    FixedAmount  
+    FixedAmount
 }
 public enum CouponStatus
 {
@@ -68,16 +66,11 @@ public enum CouponStatus
     Expired,  
     Inactive  
 }
-public enum TokenType
-{
-    Access,     
-    Refresh,      
-    Verification  
-}
+
 public enum ProductStatus
 {
     Available,
-    Out_Of_Stock,
+    OutOfStock,
     Discontinued
 }
 public enum UserRole

@@ -1,4 +1,6 @@
-﻿namespace Domain.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Domain.Entities;
 
 public class Address
 {
@@ -11,5 +13,5 @@ public class Address
     public string Country { get; set; }
     [ForeignKey("user")]
     public int UserId { get; set; }
-    public User user { get; set; }
+    public User User { get; set; }
 }

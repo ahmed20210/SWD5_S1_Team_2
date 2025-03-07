@@ -9,10 +9,10 @@ public class ProductImage
     public string Data { get; set; }
     public bool IsMain { get; set; }
     public DateTime CreatedAt { get; set; }
-
-    [ForeignKey("category")]
+    
     public int ProductId { get; set; }
-    public Product product { get; set; }
+    [ForeignKey("Product")]
+    public Product Product { get; set; }
 
 
 }

@@ -15,7 +15,7 @@ public class UserConfigurations : IEntityTypeConfiguration<User>
         builder.Property(i => i.FName)
             .IsRequired().HasMaxLength(15);
 
-        builder.Property(i => i.MainAddressID)
+        builder.Property(i => i.MainAddressId)
             .IsRequired();
 
         builder.Property(i => i.LName)
@@ -32,15 +32,5 @@ public class UserConfigurations : IEntityTypeConfiguration<User>
 
         builder.Property(i => i.Password)
             .IsRequired().HasMaxLength(20);
-
-
-
-
-
-
-
-
-
-
     }
 }

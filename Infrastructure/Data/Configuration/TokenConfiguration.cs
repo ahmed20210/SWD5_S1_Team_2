@@ -13,7 +13,11 @@ public class TokenConfiguration : IEntityTypeConfiguration<Token>
 
        
         builder.HasKey(t => t.Id);
-
+        
+        builder.Property(t => t.Role)
+               .IsRequired()
+                     .HasMaxLength(50);
+        
         builder.Property(l => l.UserId)
                  .IsRequired();
 
@@ -29,34 +33,6 @@ public class TokenConfiguration : IEntityTypeConfiguration<Token>
       
         builder.Property(t => t.ExpiryDate)
                .IsRequired();
-
-      
-        builder.Property(t => t.TokenType)
-               .HasConversion<string>()
-               .IsRequired();
-
-      
-        builder.HasCheckConstraint("CHK_TokenType", "TokenType IN ('Access', 'Refresh', 'Verification')");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }
 

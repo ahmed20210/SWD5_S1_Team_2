@@ -10,7 +10,7 @@ public class BoosterConfigurations : IEntityTypeConfiguration<Booster>
     {
         builder.ToTable("Boosters");
 
-        builder.HasKey(i => i.ID);
+        builder.HasKey(i => i.Id);
 
         builder.Property(i => i.Title)
             .IsRequired().HasMaxLength(50);
