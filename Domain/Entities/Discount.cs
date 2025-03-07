@@ -13,5 +13,6 @@ public class Discount
     public DateTime StartDate { get; set; }
     
     public DateTime EndDate { get; set; }
-    
+    public int BoosterId { get; set; }
+
 }

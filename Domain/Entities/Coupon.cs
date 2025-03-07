@@ -31,7 +31,8 @@ namespace Domain.Entities
        
         public DateTime ExpiryDate { get; set; }  
 
-        public CouponStatus Status { get; set; } 
+        public CouponStatus Status { get; set; }
+        public Booster Booster { get; set; }
     }
 
 

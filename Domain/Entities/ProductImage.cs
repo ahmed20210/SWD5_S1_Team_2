@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Domain.Entities;
 
 public class ProductImage
@@ -8,7 +10,7 @@ public class ProductImage
     public bool IsMain { get; set; }
     public DateTime CreatedAt { get; set; }
 
-    [ForeignKey("product")]
+    [ForeignKey("category")]
     public int ProductId { get; set; }
     public Product product { get; set; }
 

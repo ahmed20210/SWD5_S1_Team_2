@@ -1,4 +1,6 @@
-﻿namespace Domain.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Domain.Entities;
 
 
 
@@ -12,10 +14,10 @@ public class Product
     public ProductStatus Status { get; set; }
     public int CountOfViews { get; set; }
     public int CountOfPurchase { get; set; }
-    public int CountOfReviews { get; set;}
+    public int CountOfReviews { get; set; }
 
-   
-   
+
+
 
     [ForeignKey("category")]
     public int CategoryId { get; set; }
@@ -25,6 +27,7 @@ public class Product
     public ICollection<Review> Reviews { get; set; }
 
     public ICollection<FavouriteList> favouritelists { get; set; }
+
 
 
 }

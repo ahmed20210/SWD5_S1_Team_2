@@ -23,5 +23,7 @@ public partial  class ApplicationDbContext
     public DbSet<User> Users { get; set; }
     public DbSet<Address> Addresses { get; set; }
     public DbSet<Category> Categories { get; set; }
-
+    public DbSet<OrderTimeLine> OrderTimeLine { get; set; }
+    public DbSet<Booster> BoosterS { get; set; }
+    public DbSet<FavouriteList> FavouriteListS { get; set; }
 }

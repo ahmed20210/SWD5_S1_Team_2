@@ -8,6 +8,15 @@ public enum PaymentStatus
     Success,
     Canceled
 }
+public enum BoosterTypes
+{
+    Discount,
+    Shipping,
+    Reward,
+    Coupon,
+    Subscription
+
+}
 
 public enum PaymentMethods
 {

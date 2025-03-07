@@ -24,6 +24,9 @@ public static class EntityConfigurations
         modelBuilder.ApplyConfiguration(new UserConfigurations());
         modelBuilder.ApplyConfiguration(new AddressConfigurations());
         modelBuilder.ApplyConfiguration(new CategoryConfigurations());
+        modelBuilder.ApplyConfiguration(new OrderTimeLineConfigurations());
+        modelBuilder.ApplyConfiguration(new FavouriteListConfigurations());
+        modelBuilder.ApplyConfiguration(new BoosterConfigurations());
 
     }
 
