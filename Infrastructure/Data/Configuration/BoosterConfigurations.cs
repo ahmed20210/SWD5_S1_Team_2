@@ -24,8 +24,8 @@ public class BoosterConfigurations : IEntityTypeConfiguration<Booster>
         builder.Property(i => i.BoosterURL)
            .IsRequired().HasMaxLength(300);
 
-         builder.Property(i => i.BoosterType)
-           .IsRequired().HasMaxLength(20);
+        builder.Property(i => i.BoosterType)
+          .IsRequired().HasMaxLength(20);
 
 
 
