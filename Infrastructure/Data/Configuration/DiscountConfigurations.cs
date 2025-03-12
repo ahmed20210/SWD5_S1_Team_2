@@ -32,5 +32,19 @@ public class DiscountConfigurations : IEntityTypeConfiguration<Discount>
 
         builder.Property(d => d.EndDate)
             .IsRequired();
+        
+        builder.HasMany(d => d.Orders) 
+            .WithOne(o => o.Discount) 
+            .HasForeignKey(o => o.DiscountId) 
+            .IsRequired(false); 
+        builder.HasMany(d => d.Products)
+            .WithOne(p => p.Discount)
+            .HasForeignKey(p => p.DiscountId)
+            .IsRequired(false);
+        builder
+            .HasOne(d => d.Booster)
+            .WithOne(b => b.Discount)
+            .HasForeignKey<Discount>(d => d.BoosterId)
+            .IsRequired(false);
     }
 }

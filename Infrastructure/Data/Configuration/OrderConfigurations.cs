@@ -38,5 +38,7 @@ public class OrderConfigurations : IEntityTypeConfiguration<Order>
             .IsRequired()
             .HasConversion<string>() 
             .HasMaxLength(20); 
+        
+
     }
 }

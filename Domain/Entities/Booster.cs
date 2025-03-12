@@ -18,9 +18,7 @@ public class Booster
     public Coupon Coupon { get; set; }
 
 
-    [ForeignKey("DiscoutId")]
-    public int? DiscoutId { get; set; }
-    public Discount discount { get; set; }
+    public Discount Discount { get; set; } = null!;
     [ForeignKey("OrderId")]
     public int? OrderId { get; set; }
     public Order Order { get; set; }

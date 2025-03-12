@@ -27,6 +27,10 @@ public class Product
     public ICollection<Review> Reviews { get; set; }
 
     public ICollection<FavouriteList> favouritelists { get; set; }
+    
+    public int? DiscountId { get; set; }  
+
+    public Discount? Discount { get; set; }
 
 
 

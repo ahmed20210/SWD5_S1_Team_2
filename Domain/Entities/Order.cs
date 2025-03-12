@@ -7,7 +7,7 @@ public class Order
     public int CustomerId { get; set; }
 
     public int? CouponId { get; set; }
-
+    
     public int AddressId { get; set; }
 
     public string? PhoneNumber { get; set; }
@@ -21,5 +21,10 @@ public class Order
     public OrderStatus Status { get; set; }
 
     public ICollection<OrderTimeLine> ordertimelines { get; set; }
+    public int? DiscountId { get; set; } 
+    public Discount? Discount { get; set; }
+    
+    public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+
 
 }

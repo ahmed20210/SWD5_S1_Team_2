@@ -25,5 +25,15 @@ public class OrderItemConfigurations : IEntityTypeConfiguration<OrderItem>
         builder.Property(oi => oi.TotalAmount)
             .IsRequired()
             .HasPrecision(18, 2); 
+        
+        builder.HasOne(oi => oi.Order)
+            .WithMany(o => o.OrderItems) 
+            .HasForeignKey(oi => oi.OrderId)
+            .IsRequired();
+        
+        builder.HasOne(oi => oi.Product)
+            .WithMany() 
+            .HasForeignKey(oi => oi.ProductId)
+            .IsRequired(false);
     }
 }
