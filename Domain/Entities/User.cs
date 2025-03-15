@@ -27,5 +27,7 @@ public class User
     public ICollection<Review> Reviews { get; set; }
     public ICollection<FavouriteList> FavouriteList { get; set; }
 
+    public ICollection<Log> Logs { get; set; } = new List<Log>();
 
+    public ICollection<Token> Tokens { get; set; } = new List<Token>();
 }

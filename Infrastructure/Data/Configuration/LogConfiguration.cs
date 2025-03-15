@@ -36,6 +36,10 @@ public class LogConfiguration : IEntityTypeConfiguration<Log>
                .IsRequired()
                .HasMaxLength(20);
 
+        builder.HasOne(l => l.User) 
+             .WithMany(i => i.Logs) 
+             .HasForeignKey(l => l.UserId) 
+             .OnDelete(DeleteBehavior.Cascade); 
 
 
     }

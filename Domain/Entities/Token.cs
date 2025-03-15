@@ -7,8 +7,10 @@ namespace Domain.Entities
        
         public int Id { get; set; }  
       
-        public int UserId { get; set; }  
-        
+        public int UserId { get; set; }
+
+        public User User { get; set; }
+
         public string DeviceDetails { get; set; }  
 
        public UserRole Role { get; set; }

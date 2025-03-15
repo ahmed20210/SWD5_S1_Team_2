@@ -16,10 +16,10 @@ public class TokenConfiguration : IEntityTypeConfiguration<Token>
         
         builder.Property(t => t.Role)
                .IsRequired()
-                     .HasMaxLength(50);
+               .HasMaxLength(50);
         
-        builder.Property(l => l.UserId)
-                 .IsRequired();
+        builder.Property(t => t.UserId)
+                .IsRequired();
 
     
         builder.Property(t => t.DeviceDetails)
@@ -33,6 +33,11 @@ public class TokenConfiguration : IEntityTypeConfiguration<Token>
       
         builder.Property(t => t.ExpiryDate)
                .IsRequired();
+
+        builder.HasOne(t => t.User) 
+             .WithMany(i => i.Tokens) 
+             .HasForeignKey(t => t.UserId) 
+             .OnDelete(DeleteBehavior.Cascade); 
     }
 }
 
