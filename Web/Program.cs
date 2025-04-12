@@ -1,3 +1,4 @@
+using Business.Services;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,6 +8,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IJwtService, JwtService>();
 
 
 var app = builder.Build();
