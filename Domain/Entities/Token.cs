@@ -1,5 +1,7 @@
 ﻿
 
+using System.ComponentModel.DataAnnotations;
+
 namespace Domain.Entities
 {
   public class Token
@@ -11,10 +13,10 @@ namespace Domain.Entities
 
         public User User { get; set; }
 
-        public string DeviceDetails { get; set; }  
+        public string? DeviceDetails { get; set; }  
 
        public UserRole Role { get; set; }
-       
+       [MaxLength(20)]
         public string SecretKey { get; set; } 
         
         public DateTime ExpiryDate { get; set; }  

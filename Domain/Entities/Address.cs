@@ -1,17 +1,32 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Entities;
 
 public class Address
 {
     
-    public int Id { get; set; }
-    public string City { get; set; }
-    public string ZipCode { get; set; }
-    public string State { get; set; }
-    public string Street { get; set; }
-    public string Country { get; set; }
-    [ForeignKey("user")]
+ public int Id { get; set; }
+
+[Required]
+[MaxLength(100)]
+public string City { get; set; }
+
+[Required]
+[MaxLength(10)]
+public string ZipCode { get; set; }
+
+[Required]
+[MaxLength(100)]
+public string State { get; set; }
+
+
+[MaxLength(200)]
+public string? Street { get; set; }
+
+[Required]
+[MaxLength(100)]
+public string Country { get; set; }
+  
     public int UserId { get; set; }
-    public User User { get; set; }
+    
 }

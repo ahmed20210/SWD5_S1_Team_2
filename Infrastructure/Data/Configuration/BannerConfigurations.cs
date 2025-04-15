@@ -4,33 +4,10 @@ using Domain.Entities;
 
 namespace Infrastructure.Data.Configuration;
 
-public class BoosterConfigurations : IEntityTypeConfiguration<Banner>
+public class BannerConfigurations : IEntityTypeConfiguration<Banner>
 {
     public void Configure(EntityTypeBuilder<Banner> builder)
     {
-        builder.ToTable("Boosters");
-
-        builder.HasKey(i => i.Id);
-
-        builder.Property(i => i.Title)
-            .IsRequired().HasMaxLength(50);
-
-        builder.Property(i => i.Description)
-            .HasMaxLength(200).HasDefaultValue("No Description Available.");
-
-        builder.Property(i => i.ImagePath)
-            .IsRequired().HasMaxLength(300);
-
-        builder.Property(i => i.BoosterURL)
-           .IsRequired().HasMaxLength(300);
-
-        builder.Property(i => i.BoosterType)
-          .IsRequired().HasMaxLength(20);
-
-
-
-
-
-
+        builder.ToTable("Banners");
     }
 }

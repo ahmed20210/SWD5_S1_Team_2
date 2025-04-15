@@ -1,4 +1,5 @@
 ﻿
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities
@@ -9,10 +10,10 @@ namespace Domain.Entities
         public int Id { get; set; }
         
         public LogMethods  Method { get; set; }
-
+       [MaxLength(100)]
         public string Route { get; set; }
 
-
+        [MaxLength(500)]
         public string? Body { get; set; }
 
 

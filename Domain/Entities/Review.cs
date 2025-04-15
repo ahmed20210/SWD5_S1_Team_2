@@ -9,16 +9,16 @@ public class Review
 
     [Range(1, 5)]
     public int Rating { get; set; }
+    [MaxLength(500)]
     public string Comment { get; set; }
+    
+    public bool IsVerified { get; set; } = false;
     public DateTime ReviewDate { get; set; }
 
-    [ForeignKey("UserId")]
     public int UserId { get; set; }
     public User User { get; set; }
 
-    [ForeignKey("ProductId")]
     public int ProductId { get; set; }
-    public Product Product { get; set; }
 
 
 }

@@ -8,17 +8,11 @@ public class FavouriteListConfigurations : IEntityTypeConfiguration<FavouriteLis
 {
     public void Configure(EntityTypeBuilder<FavouriteList> builder)
     {
-        builder.ToTable("Favourite List");
-
-        builder.HasKey(i => i.Id);
-
-
-
-        builder.Property(i => i.CreatedAt)
-             .IsRequired().HasDefaultValueSql("GETDATE()");
-
-
-
-
+        builder.HasKey(f => new { f.UserId, f.ProductId });
+        builder.HasOne(f => f.Product)
+            .WithMany()
+            .HasForeignKey(f => f.ProductId)
+            .OnDelete(DeleteBehavior.Cascade);
+        
     }
 }

@@ -8,24 +8,9 @@ public class ReviewConfigurations : IEntityTypeConfiguration<Review>
 {
     public void Configure(EntityTypeBuilder<Review> builder)
     {
-        builder.ToTable("Reviews");
-
-        builder.HasKey(i => i.Id);
-
-        
-        builder.Property(i => i.Comment)
-            .HasMaxLength(100).HasDefaultValue("No Comment Available.");
-
-        builder.Property(i => i.ReviewDate)
-            .IsRequired().HasDefaultValueSql("GETDATE()");
-
-
-       
-
-
-
-
-
-
+        builder.HasOne(r => r.User)
+            .WithMany()
+            .HasForeignKey(r => r.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

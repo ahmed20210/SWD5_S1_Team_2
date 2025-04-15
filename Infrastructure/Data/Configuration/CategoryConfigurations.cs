@@ -8,24 +8,9 @@ public class CategoryConfigurations : IEntityTypeConfiguration<Category>
 {
     public void Configure(EntityTypeBuilder<Category> builder)
     {
-        builder.ToTable("Categories");
-
-        builder.HasKey(i => i.Id);
-
-        builder.Property(i => i.Name)
-            .IsRequired().HasMaxLength(50);
-
-
-       
-        builder.Property(i => i.Description)
-            .HasMaxLength(100).HasDefaultValue("No Description Available.");
-
-        builder.Property(i => i.ImagePath)
-            .IsRequired().HasMaxLength(300);
-
-        
-
-       
-       
+      builder.HasMany( c => c.Products)
+             .WithOne(p => p.Category)
+             .HasForeignKey(p => p.CategoryId)
+             .OnDelete(DeleteBehavior.Restrict);
     }
 }

@@ -8,37 +8,29 @@ public class ProductConfigurations : IEntityTypeConfiguration<Product>
 {
     public void Configure(EntityTypeBuilder<Product> builder)
     {
-        builder.ToTable("Products");
-
-        builder.HasKey(i => i.Id);
-
-        builder.Property(i => i.Name)
-            .IsRequired().HasMaxLength(30);
         
-        builder.Property(i => i.Description)
-            .IsRequired().HasMaxLength(200);
+        builder.Property(p => p.Status)
+            .HasConversion<string>();
+        
+        
+        builder.HasMany(p => p.Reviews)
+            .WithOne()
+            .HasForeignKey(r => r.ProductId)
+            .OnDelete(DeleteBehavior.Cascade);
 
-        builder.Property(i => i.Quantity)
-            .IsRequired();
+        builder.HasMany(p => p.Images)
+            .WithOne()
+            .HasForeignKey(p => p.ProductId)
+            .OnDelete(DeleteBehavior.Cascade);
 
-
-        builder.Property(i => i.Price)
-            .IsRequired()
-            .HasPrecision(8, 2);
-
-        builder.Property(i => i.Status)
-            .IsRequired();
-
-        builder.Property(i => i.CountOfViews)
-            .IsRequired().HasDefaultValue(0);
-
-        builder.Property(i => i.CountOfPurchase)
-            .IsRequired().HasDefaultValue(0);
-
-        builder.Property(i => i.CountOfReviews)
-            .IsRequired().HasDefaultValue(0);
-
-
-
+        builder.HasOne(p => p.Discount)
+            .WithOne()
+            .HasForeignKey<Product>(p => p.DiscountId)
+            .OnDelete(DeleteBehavior.Restrict);
+        
+        builder.HasMany(p => p.PastDiscountList)
+            .WithOne(d => d.Product)
+            .HasForeignKey(p => p.ProductId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

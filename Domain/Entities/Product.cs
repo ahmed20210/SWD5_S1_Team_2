@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Entities;
 
@@ -6,31 +6,47 @@ namespace Domain.Entities;
 
 public class Product
 {
+    [Key]
     public int Id { get; set; }
+
+    [Required]
+    [MaxLength(200)]
     public string Name { get; set; }
-    public string Description { get; set; }
-    public int Quantity { get; set; }
+
+    [Required]
     public decimal Price { get; set; }
+
+    [MaxLength(1000)]
+    public string Description { get; set; }
+    
+    public int Stock { get; set; }
+  
+    public double AverageReviewScore { get; set; }
+    
     public ProductStatus Status { get; set; }
-    public int CountOfViews { get; set; }
-    public int CountOfPurchase { get; set; }
-    public int CountOfReviews { get; set; }
-
-
-
-
-    [ForeignKey("category")]
+    public int NoOfViews { get; set; }
+    public int NoOfPurchase { get; set; }
+    public int NoOfReviews { get; set; }
+    public DateTime CreatedAt { get; set; }
+    
     public int CategoryId { get; set; }
-    public Category category { get; set; }
+    public Category Category { get; set; }
 
-    public ICollection<ProductImage> ProductImages { get; set; }
+    public ICollection<ProductImage> Images { get; set; }
+    
     public ICollection<Review> Reviews { get; set; }
-
-    public ICollection<FavouriteList> favouritelists { get; set; }
+    
+    // feature For Admin
+    public ICollection<OrderItem> OrderItems { get; set; }
+    
     
     public int? DiscountId { get; set; }  
 
     public Discount? Discount { get; set; }
+    
+    public ICollection<Discount>? PastDiscountList { get; set; }
+    
+    
 
 
 
