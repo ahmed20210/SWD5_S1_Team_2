@@ -4,9 +4,9 @@ using Domain.Entities;
 
 namespace Infrastructure.Data.Configuration;
 
-public class BoosterConfigurations : IEntityTypeConfiguration<Booster>
+public class BoosterConfigurations : IEntityTypeConfiguration<Banner>
 {
-    public void Configure(EntityTypeBuilder<Booster> builder)
+    public void Configure(EntityTypeBuilder<Banner> builder)
     {
         builder.ToTable("Boosters");
 
