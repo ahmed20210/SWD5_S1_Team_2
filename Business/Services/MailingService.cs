@@ -10,9 +10,9 @@ using Microsoft.Extensions.Options;
 
 namespace Business.Services;
 
-public class MailingService(IOptions<MailSettings> mailSettings) : IMailingService
+public class MailingService(IOptions<EmailSettings> mailSettings) : IMailingService
 {
-    private readonly MailSettings _mailSettings = mailSettings.Value;
+    private readonly EmailSettings _mailSettings = mailSettings.Value;
 
     public async Task SendMailAsync(string to, string subject, string body, IList<IFormFile>? attachments = null)
     {
