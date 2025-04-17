@@ -488,3 +488,5 @@ Web/appsettings.json
 Web/appsettings.*.json
 Admin/appsettings.json
 Admin/appsettings.*.json
+/Test/
+

@@ -1,0 +1,10 @@
+﻿
+@{
+    @model VerifyOtpViewModel
+
+    <form asp-action="VerifyOtp" method="post">
+        <input type="hidden" name="Email" value="@Model.Email" />
+        <input type="text" name="OtpCode" placeholder="Enter the Code">
+        <button type="submit">Confirm</button>
+    </form>
+}

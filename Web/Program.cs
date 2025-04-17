@@ -9,6 +9,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IJwtService, JwtService>();
+builder.Services.AddScoped<IOtpService, OtpService>();
 
 
 var app = builder.Build();
