@@ -1,6 +1,7 @@
 using System.Net.Http.Headers;
-using Business.Services;
 using Microsoft.Extensions.Configuration;
+
+namespace Business.Services;
 
 public class StorageService : IStorageService
 {
@@ -10,12 +11,9 @@ public class StorageService : IStorageService
 
     public StorageService(IConfiguration configuration)
     {
-        _supabaseUrl = configuration["Supabase:Url"] ?? 
-                       throw new ArgumentNullException("Supabase:Url is missing in configuration");
-        _supabaseKey = configuration["Supabase:Key"] ?? 
-                       throw new ArgumentNullException("Supabase:Key is missing in configuration");
-        _bucketName = configuration["Supabase:BucketName"] ?? 
-                      throw new ArgumentNullException("Supabase:BucketName is missing in configuration");
+        _supabaseUrl = configuration["Supabase:Url"] ?? throw new ArgumentNullException(nameof(configuration));
+        _supabaseKey = configuration["Supabase:Key"] ?? throw new ArgumentNullException(nameof(configuration));
+        _bucketName = configuration["Supabase:BucketName"] ?? throw new ArgumentNullException(nameof(configuration));
     }
 
     public async Task<(bool success, string message, string fileUrl)> UploadPhotoAsync(
@@ -41,7 +39,7 @@ public class StorageService : IStorageService
                 return (true, "Upload successful", fileUrl);
             }
             
-            return (false, response.ReasonPhrase ?? "Upload failed", null);
+            return (false, response.ReasonPhrase ?? "Upload fail", null);
         }
     }
 }
