@@ -8,7 +8,7 @@ using System.IO;
 using MailKit.Security;
 using Microsoft.Extensions.Options;
 
-namespace Business.Services;
+namespace Business.Services.MailingService;
 
 public class MailingService(IOptions<EmailSettings> mailSettings) : IMailingService
 {

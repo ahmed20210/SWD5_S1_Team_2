@@ -1,4 +1,8 @@
-using Business.Services;
+using Business.Services.JwtService;
+using Business.Services.OtpService;
+using Business.Services.StorageService;
+using Business.Services.MailingService;
+
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +15,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<IOtpService, OtpService>();
 builder.Services.AddScoped<IStorageService, StorageService>();
+builder.Services.AddScoped<IMailingService, MailingService>();
 
 var app = builder.Build();
 

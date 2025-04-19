@@ -1,4 +1,4 @@
-namespace Business.Services;
+namespace Business.Services.MailingService;
 using Microsoft.AspNetCore.Http;
 
 public interface IMailingService

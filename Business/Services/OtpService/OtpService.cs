@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Services
+using Business.Services.MailingService;
+namespace Business.Services.OtpService
 {
     public class OtpService : IOtpService
     {

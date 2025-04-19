@@ -1,4 +1,4 @@
-﻿using Business.Services;
+﻿using Business.Services.OtpService;
 using Microsoft.AspNetCore.Mvc;
 using Web.Models;
 

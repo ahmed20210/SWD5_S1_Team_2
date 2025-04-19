@@ -1,4 +1,4 @@
-namespace Business.Services;
+namespace Business.Services.StorageService;
 
 public interface IStorageService
 {
