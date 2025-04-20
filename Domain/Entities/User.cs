@@ -1,12 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
+
+using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities;
 
-public class User
+public class User : IdentityUser
 {
 
-    public int Id { get; set; }
+   
      [Required][MaxLength(20)]
     public string FName { get; set; }
     [Required][MaxLength(20)]
@@ -14,16 +17,9 @@ public class User
 
     [NotMapped]
     public string FullName => FName + " " + LName;
-    
-    [Required][MaxLength(50)]
-    public string Password { get; set; }
-    
-    [Required][MaxLength(50)]
-    public string Email { get; set; }
-    [MaxLength(20)]
-    public string Phone { get; set; }
-    
     public UserRole Role { get; set; }
+
+    public bool IsAgree { get; set; }
     public bool IsVerified { get; set; }
     public int VerificationCode { get; set; }
     
