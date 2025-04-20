@@ -3,10 +3,12 @@ using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 using Infrastructure.Data.Configuration;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
 
 namespace Infrastructure.Data;
 
-public partial class ApplicationDbContext : DbContext
+public partial class ApplicationDbContext : IdentityDbContext<User>
 {
     
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) {}

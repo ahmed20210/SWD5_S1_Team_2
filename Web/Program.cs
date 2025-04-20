@@ -5,11 +5,14 @@ using Business.Services.MailingService;
 
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IJwtService, JwtService>();
