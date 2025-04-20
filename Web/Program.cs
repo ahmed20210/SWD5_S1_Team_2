@@ -2,6 +2,7 @@ using Business.Services.JwtService;
 using Business.Services.OtpService;
 using Business.Services.StorageService;
 using Business.Services.MailingService;
+using Business.Services.DiscountService;
 
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -15,10 +16,12 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<IOtpService, OtpService>();
 builder.Services.AddScoped<IStorageService, StorageService>();
 builder.Services.AddScoped<IMailingService, MailingService>();
+builder.Services.AddScoped<IDiscountService, DiscountService>();
 
 var app = builder.Build();
 
