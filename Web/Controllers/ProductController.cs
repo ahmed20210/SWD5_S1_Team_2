@@ -1,168 +1,78 @@
-using Domain.Entities;
-using Infrastructure.Data;
+using Business.Services.ProductService;
+using Domain.DTOs.ProductDTOs;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Web.Models;
 
 namespace Web.Controllers;
 
-public class ProductController : Controller
+[ApiController]
+[Route("api/[controller]")]
+public class ProductController : ControllerBase
 {
-    private readonly ApplicationDbContext _db;
-    private const int DefaultPageSize = 10;
-    private const int MaxPageSize = 50;
+    private readonly IProductService _productService;
 
-    public ProductController(ApplicationDbContext db)
+    public ProductController(IProductService productService)
     {
-        _db = db ?? throw new ArgumentNullException(nameof(db));
+        _productService = productService;
     }
 
-    public async Task<IActionResult> Index(
-        string searchTerm = "",
-        int? categoryId = null,
-        string orderBy = "name",
-        decimal? minPrice = null,
-        decimal? maxPrice = null,
-        int pageNumber = 1,
-        int pageSize = DefaultPageSize)
-    {
-        // Validate and adjust page size
-        pageSize = Math.Clamp(pageSize, 1, MaxPageSize);
-
-        // Base query with include for Category
-        var query = _db.Products.Include(p => p.Category).AsQueryable();
-
-        // Apply search filter
-        if (!string.IsNullOrWhiteSpace(searchTerm))
-        {
-            searchTerm = searchTerm.ToLower();
-            query = query.Where(p => 
-                p.Name.ToLower().Contains(searchTerm) || 
-                (p.Description != null && p.Description.ToLower().Contains(searchTerm)));
-        }
-
-        // Apply category filter
-        if (categoryId.HasValue)
-        {
-            query = query.Where(p => p.Category.Id == categoryId.Value);
-        }
-
-        // Apply price range filter
-        if (minPrice.HasValue)
-        {
-            query = query.Where(p => p.Price >= minPrice.Value);
-        }
-
-        if (maxPrice.HasValue)
-        {
-            query = query.Where(p => p.Price <= maxPrice.Value);
-        }
-
-        // Apply sorting
-        query = orderBy.ToLower() switch
-        {
-            "price_desc" => query.OrderByDescending(p => p.Price),
-            "price" => query.OrderBy(p => p.Price),
-            "created_desc" => query.OrderByDescending(p => p.CreatedAt),
-            "created" => query.OrderBy(p => p.CreatedAt),
-            "popularity_desc" => query.OrderByDescending(p => p.NoOfViews),
-            "popularity" => query.OrderBy(p => p.NoOfViews),
-            "category" => query.OrderBy(p => p.Category.Name),
-            "category_desc" => query.OrderByDescending(p => p.Category.Name),
-            _ => query.OrderBy(p => p.Name)
-        };
-
-        // Get total count before pagination
-        int totalRecords = await query.CountAsync();
-        int totalPages = (int)Math.Ceiling(totalRecords / (double)pageSize);
-
-        // Apply pagination
-        var products = await query
-            .Skip((pageNumber - 1) * pageSize)
-            .Take(pageSize)
-            .Select(p => new Product
-            {
-                Id = p.Id,
-                Name = p.Name,
-                Description = p.Description,
-                Price = p.Price,
-                Category = p.Category,
-                CreatedAt = p.CreatedAt,
-                NoOfViews = p.NoOfViews
-            })
-            .ToListAsync();
-
-        // Get available categories for filter dropdown
-        var availableCategories = await _db.Categories
-            .OrderBy(c => c.Name)
-            .ToListAsync();
-
-        // Prepare view model
-        var model = new ProductViewModel
-        {
-            Products = products,
-            CurrentPage = pageNumber,
-            TotalPages = totalPages,
-            PageSize = pageSize,
-            SearchTerm = searchTerm,
-            CategoryId = categoryId,
-            OrderBy = orderBy,
-            MinPrice = minPrice,
-            MaxPrice = maxPrice,
-            AvailableCategories = availableCategories,
-            TotalCount = totalRecords
-        };
-
-        return View(model);
-    }
-
-    [HttpGet]
-    public async Task<IActionResult> Create()
-    {
-        var model = new ProductCreateViewModel
-        {
-            AvailableCategories = await _db.Categories
-                .OrderBy(c => c.Name)
-                .ToListAsync()
-        };
-        return View(model);
-    }
-
+   
     [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create(ProductCreateViewModel model)
+    public async Task<IActionResult> CreateProduct([FromBody] CreateProductDTO productDto)
     {
-        if (!ModelState.IsValid)
-        {
-            model.AvailableCategories = await _db.Categories
-                .OrderBy(c => c.Name)
-                .ToListAsync();
-            return View(model);
-        }
+        var result = await _productService.CreateProductAsync(productDto);
+        return result.Success ? Ok(result) : BadRequest(result);
+    }
+   
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateProduct(int id, [FromBody] UpdateProductDTO productDto)
+    {
+        var result = await _productService.UpdateProductAsync(id, productDto);
+        return result.Success ? Ok(result) : BadRequest(result);
+    }
 
-        var category = await _db.Categories.FindAsync(model.CategoryId);
-        if (category == null)
-        {
-            ModelState.AddModelError(nameof(model.CategoryId), "Invalid category selected");
-            model.AvailableCategories = await _db.Categories
-                .OrderBy(c => c.Name)
-                .ToListAsync();
-            return View(model);
-        }
+    
+    [HttpPatch("{id}/status")]
+    public async Task<IActionResult> UpdateProductStatus(int id, [FromBody] UpdateProductStatusDTO statusDto)
+    {
+        var result = await _productService.UpdateProductStatusAsync(id, statusDto);
+        return result.Success ? Ok(result) : BadRequest(result);
+    }
 
-        var product = new Product
-        {
-            Name = model.Name,
-            Description = model.Description,
-            Price = model.Price,
-            Category = category,
-            CreatedAt = DateTime.UtcNow,
-            NoOfViews = 0
-        };
+   
+    [HttpGet("category/{categoryId}")]
+    public async Task<IActionResult> GetProductsByCategory(int categoryId, [FromQuery] int pageNumber, [FromQuery] int pageSize)
+    {
+        var result = await _productService.GetProductsByCategoryAsync(categoryId, pageNumber, pageSize);
+        return result.Success ? Ok(result) : NotFound(result);
+    }
 
-        _db.Products.Add(product);
-        await _db.SaveChangesAsync();
+    
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetProductById(int id)
+    {
+        var result = await _productService.GetProductByIdAsync(id);
+        return result.Success ? Ok(result) : NotFound(result);
+    }
 
-        return RedirectToAction(nameof(Index));
+   
+    [HttpGet("search")]
+    public async Task<IActionResult> SearchProducts([FromQuery] string query, [FromQuery] int pageNumber, [FromQuery] int pageSize)
+    {
+        var result = await _productService.SearchProductsAsync(query, pageNumber, pageSize);
+        return result.Success ? Ok(result) : BadRequest(result);
+    }
+
+    
+    [HttpGet("filter")]
+    public async Task<IActionResult> FilterProducts(
+        [FromQuery] int? categoryId,
+        [FromQuery] decimal? minPrice,
+        [FromQuery] decimal? maxPrice,
+        [FromQuery] string sortBy = "price",  
+        [FromQuery] bool ascending = true,    
+        [FromQuery] int pageSize = 10)
+    {
+        var result = await _productService.FilterProductsAsync(categoryId, minPrice, maxPrice, sortBy, ascending, pageNumber, pageSize);
+        return result.Success ? Ok(result) : BadRequest(result);
     }
 }
