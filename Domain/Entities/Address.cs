@@ -27,6 +27,6 @@ public string? Street { get; set; }
 [MaxLength(100)]
 public string Country { get; set; }
   
-    public int UserId { get; set; }
+    public string UserId { get; set; }
     
 }

@@ -15,7 +15,7 @@ public class Review
     public bool IsVerified { get; set; } = false;
     public DateTime ReviewDate { get; set; }
 
-    public int UserId { get; set; }
+    public string UserId { get; set; }
     public User User { get; set; }
 
     public int ProductId { get; set; }

@@ -13,7 +13,7 @@ public class CreateDiscountDTO : DiscountBaseDto
     public ProductBaseDto? Product { get; set; } 
 }
 
-public class UpdateDiscountDTO : DiscountBaseDto
+public class UpdateDiscountDTO  
 {
     public int Id { get; set; }
     public ProductBaseDto? Product { get; set; }
@@ -27,6 +27,7 @@ public class GetAllDiscountsDTO : DiscountBaseDto
 {
     public int Id { get; set; }
     public ProductBaseDto? Product { get; set; }
+
 }
 
 public class GetDiscountDTO : DiscountBaseDto

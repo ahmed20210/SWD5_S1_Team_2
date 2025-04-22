@@ -23,7 +23,7 @@ public class Order
     public OrderStatus Status { get; set; }
     [Required] 
     
-    public int CustomerId { get; set; }
+    public string CustomerId { get; set; }
     public User Customer { get; set; }
     
     public int? PaymentId { get; set; }
