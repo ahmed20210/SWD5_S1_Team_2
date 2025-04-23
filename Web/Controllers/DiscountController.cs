@@ -38,9 +38,9 @@ public class DiscountController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAllDiscounts([FromQuery] int pageNumber, [FromQuery] int pageSize, [FromQuery] int? productId, [FromQuery] bool? isExpired, [FromQuery] List<DateTime>? betweenDates)
+    public async Task<IActionResult> GetAllDiscounts([FromQuery] int? productId, [FromQuery] bool? isExpired, [FromQuery] List<DateTime>? betweenDates, [FromQuery] int pageNumber=1, [FromQuery] int pageSize=10 )
     {
-        var result = await _discountService.GetAllDiscountsAsync(pageNumber, pageSize, productId, isExpired, betweenDates);
+        var result = await _discountService.GetAllDiscountsAsync( productId, isExpired, betweenDates, pageNumber, pageSize);
         return result.Success ? Ok(result) : BadRequest(result);
     }
 

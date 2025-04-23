@@ -159,12 +159,17 @@ public class DiscountService: IDiscountService
         throw new NotImplementedException();
     }
 
-    public async Task<GenericResponse<List<GetAllDiscountsDTO>>> GetAllDiscountsAsync(int pageNumber, int pageSize, int? productId, bool? isExpired, List<DateTime>? betweenDates)
+    public async Task<GenericResponse<List<GetAllDiscountsDTO>>> GetAllDiscountsAsync(
+     int? productId, bool? isExpired, List<DateTime>? betweenDates, int pageNumber,
+     int pageSize)
     {
         try
         {
+            if (pageNumber <= 0)
+            {
+                pageNumber = 1;
+            }
             var query = _context.Discounts.AsQueryable();
-
             if (productId.HasValue)
             {
                 query = query.Where(d => d.ProductId == productId.Value);
@@ -180,28 +185,41 @@ public class DiscountService: IDiscountService
             {
                 query = query.Where(d => d.StartDate >= betweenDates[0] && d.EndDate <= betweenDates[1]);
             }
+            Console.WriteLine($"PageNumber: {pageNumber}, PageSize: {pageSize}, ProductId: {productId}, IsExpired: {isExpired}, BetweenDates: {betweenDates}");
 
             var totalRecords = await query.CountAsync();
 
             var discounts = await query
+                .Include(d => d.Product) // Include the related Product entity
+                .OrderByDescending(d => d.StartDate)
+                .ThenBy(d => d.EndDate)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
+                .Select(d => new GetAllDiscountsDTO
+                {
+                    Id = d.Id,
+                    Amount = d.Amount,
+                    StartDate = d.StartDate,
+                    EndDate = d.EndDate,
+                    ProductId = d.ProductId,
+                    Product = new ProductBaseDto
+                    {
+                        Id = d.Product.Id,
+                        Name = d.Product.Name,
+                        Price = d.Product.Price,
+                        Description = d.Product.Description
+                    }
+                })
                 .ToListAsync();
+              
 
-            var discountDtos = discounts.Select(d => new GetAllDiscountsDTO
-            {
-                Id = d.Id,
-                Amount = d.Amount,
-                StartDate = d.StartDate,
-                EndDate = d.EndDate,
-                ProductId = d.ProductId
-            }).ToList();
+            
 
             return new GenericResponse<List<GetAllDiscountsDTO>>
             {
                 Success = true,
                 Message = "Discounts retrieved successfully.",
-                Data = discountDtos,
+                Data = discounts,
                 TotalCount = totalRecords
             };
         }

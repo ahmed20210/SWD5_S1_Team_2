@@ -14,11 +14,12 @@ public interface IDiscountService
     Task<GenericResponse<GetDiscountDTO>> GetDiscountByIdAsync(int id);
 
     Task<GenericResponse<List<GetAllDiscountsDTO>>> GetAllDiscountsAsync(
-        int pageNumber,
-         int pageSize,
+      
          int? productId,
          bool? isExpired,
-         List<DateTime>? betweenDates
+         List<DateTime>? betweenDates,
+           int pageNumber,
+         int pageSize
          );
 
     Task<BaseResponse> DeleteDiscountAsync(int id);
