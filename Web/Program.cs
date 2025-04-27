@@ -1,13 +1,10 @@
-using Business.Services.JwtService;
-using Business.Services.OtpService;
-using Business.Services.StorageService;
-using Business.Services.MailingService;
-using Business.Services.DiscountService;
+
 
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
+using Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,12 +14,7 @@ builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<Appl
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-builder.Services.AddScoped<IJwtService, JwtService>();
-builder.Services.AddScoped<IOtpService, OtpService>();
-builder.Services.AddScoped<IStorageService, StorageService>();
-builder.Services.AddScoped<IMailingService, MailingService>();
-builder.Services.AddScoped<IDiscountService, DiscountService>();
-
+ServicesDI.AddServices(builder.Services);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
