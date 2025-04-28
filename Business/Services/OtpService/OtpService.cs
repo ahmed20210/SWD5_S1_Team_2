@@ -26,12 +26,12 @@ namespace Business.Services.OtpService
             return otp;
         }
 
-        public bool VerifyOtp(string email, string otp)
+        public bool VerifyOtp(string email, int otp)
         {
-            if (_otpStore.TryGetValue(email, out var entry))
-            {
-                return entry.Code == otp && entry.Expiry > DateTime.UtcNow;
-            }
+            // if (_otpStore.TryGetValue(email, out var entry))
+            // {
+            //     return entry.Code == otp && entry.Expiry > DateTime.UtcNow;
+            // }
             return false;
         }
     }

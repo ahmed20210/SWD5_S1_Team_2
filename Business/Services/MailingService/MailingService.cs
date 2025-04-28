@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using MailKit.Security;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Logging;
 
 namespace Business.Services.MailingService;
 
@@ -20,7 +21,7 @@ public class MailingService(IOptions<EmailSettings> mailSettings) : IMailingServ
         {
             Subject = subject
         };
-
+        Console.WriteLine($"Sender Email: {_mailSettings}");
         email.Sender = MailboxAddress.Parse(_mailSettings.SenderEmail);
         email.To.Add(MailboxAddress.Parse(to));
 

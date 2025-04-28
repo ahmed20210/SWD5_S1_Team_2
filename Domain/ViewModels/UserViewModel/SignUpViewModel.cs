@@ -1,13 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
-namespace Web.Models
+namespace Domain.ViewModels.UserViewModel
 {
     public class SignUpViewModel
     {
         [Required(ErrorMessage = "UserName is required")]
-        public string UserName { get; set; }
-        [Required(ErrorMessage = "First Name is required")]
-        public string FName { get; set; }
+            public string FName { get; set; }
         [Required(ErrorMessage = "Last Name is required")]
         public string LName { get; set; }
 

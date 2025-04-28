@@ -9,6 +9,6 @@ namespace Business.Services.OtpService
     public interface IOtpService
     {
         string GenerateAndSendOtp(string email);
-        bool VerifyOtp(string email, string otp);
+        bool VerifyOtp(string email, int otp);
     }
 }

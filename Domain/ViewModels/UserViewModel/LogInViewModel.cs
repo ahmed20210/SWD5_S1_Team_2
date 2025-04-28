@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
-namespace Web.Models
+namespace Domain.ViewModels.UserViewModel
 {
     public class LogInViewModel
     {

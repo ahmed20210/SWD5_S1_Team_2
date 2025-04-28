@@ -1,93 +1,122 @@
-﻿using Domain.Entities;
+﻿using Business.Services.AccountService;
+using Domain.Entities;
+using Domain.ViewModels.UserViewModel;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Identity.Client;
 using Web.Models;
 
 namespace Web.Controllers
 {
-
     [Authorize]
     public class AccountController : Controller
     {
-        private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _signInManager;
+        private readonly IAccountService _accountService;
 
-        public AccountController(UserManager<User>  userManager ,SignInManager<User> signInManager)
+        public AccountController(IAccountService accountService)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
+            _accountService = accountService;
         }
+
+        [AllowAnonymous]
         public IActionResult SignUp()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> SignUp(SignUpViewModel model)
         {
-            
             if (ModelState.IsValid)
             {
-                var user = await _userManager.FindByNameAsync(model.UserName);
-                if (user is null)
+                var result = await _accountService.SignUpAsync(model);
+                // log the result
+                Console.WriteLine(result.Message);
+            
+                if (result.Success)
                 {
-                    user = new User()
-                    {
-                        UserName = model.UserName,
-                        Email = model.Email,
-                        PhoneNumber = model.PhoneNumber,
-                        IsAgree = model.IsAgree,
-                        FName = model.FName,
-                        LName = model.LName
-
-                    };
-
-                    var result = await _userManager.CreateAsync(user, model.Password);
-                    if (result.Succeeded)
-                        return RedirectToAction(nameof(LogIn));
-                    foreach (var error in result.Errors)
-                        ModelState.AddModelError(string.Empty, error.Description);
-
+                    return RedirectToAction(nameof(Verify), new { email = model.Email });
                 }
-                ModelState.AddModelError(string.Empty, "Username is already exists");
 
+                ModelState.AddModelError(string.Empty, result.Message);
             }
+
             return View(model);
-           
         }
 
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult Verify(string email)
+        {
+            var model = new VerifyOtpViewModel
+            {
+                Email = email
+            };
+            return View(model);
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> Verify(string email, int verificationCode)
+        {
+
+
+            if (ModelState.IsValid)
+            {
+                var result = await _accountService.VerifyUserAsync(email, verificationCode);
+
+                if (result.Success)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                ModelState.AddModelError(string.Empty, result.Message);
+            }
+            var model = new VerifyOtpViewModel
+            {
+                Email = email,
+                OtpCode = verificationCode
+            };
+            return View(model);
+
+        }
+
+
+        [AllowAnonymous]
         public IActionResult LogIn()
         {
             return View();
         }
 
-
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> LogIn(LogInViewModel model)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View(model);
+                var result = await _accountService.LogInAsync(model);
+
+                if (result.Success)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                ModelState.AddModelError(string.Empty, result.Message);
             }
 
-            var user = await _userManager.FindByEmailAsync(model.Email);
-            if (user == null)
-            {
-                ModelState.AddModelError(string.Empty, "Invalid Login");
-                return View(model);
-            }
+            return View(model);
+        }
 
-            var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);
-
-            if (result.Succeeded)
+        [HttpPost]
+        public async Task<IActionResult> LogOut()
+        {
+            var result = await _accountService.LogOutAsync();
+            if (result.Success)
             {
                 return RedirectToAction("Index", "Home");
             }
-
-            ModelState.AddModelError(string.Empty, "Invalid Login");
-            return View(model);
+            ModelState.AddModelError(string.Empty, result.Message);
+            return RedirectToAction("Index", "Home");
         }
     }
 }

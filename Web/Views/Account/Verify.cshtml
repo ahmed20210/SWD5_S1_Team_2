@@ -1,0 +1,31 @@
+@model Web.Models.VerifyOtpViewModel
+@{
+    ViewData["Title"] = "Verify Account";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h3>Verify Your Account</h3>
+            </div>
+            <div class="card-body">
+                <p>A verification code has been sent to your email address. Please enter it below.</p>
+                
+                <form asp-action="Verify" method="post">
+                    <input type="hidden" asp-for="Email" />
+                    <div>
+                        <label asp-for="OtpCode">Verification Code</label>
+                        <input asp-for="OtpCode" />
+                        <span asp-validation-for="OtpCode"></span>
+                    </div>
+                    <button type="submit">Verify</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

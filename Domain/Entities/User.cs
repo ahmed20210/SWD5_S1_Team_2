@@ -20,7 +20,7 @@ public class User : IdentityUser
     public UserRole Role { get; set; }
 
     public bool IsAgree { get; set; }
-    public bool IsVerified { get; set; }
+    public bool IsVerified { get; set; } = false;
     public int VerificationCode { get; set; }
     
     

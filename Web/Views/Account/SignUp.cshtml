@@ -1,0 +1,43 @@
+@model Domain.ViewModels.UserViewModel.SignUpViewModel
+
+<h2>Sign Up</h2>
+
+<form asp-action="SignUp" method="post">
+    <div>
+        <label asp-for="Email"></label>
+        <input asp-for="Email" />
+        <span asp-validation-for="Email"></span>
+    </div>
+    <div>
+        <label asp-for="Password"></label>
+        <input asp-for="Password" type="password" />
+        <span asp-validation-for="Password"></span>
+    </div>
+
+    <div>
+        <label asp-for="ConfirmPassword"></label>
+        <input asp-for="ConfirmPassword" type="password" />
+        <span asp-validation-for="ConfirmPassword"></span>
+    </div>
+    <div>
+        <label asp-for="PhoneNumber"></label>
+        <input asp-for="PhoneNumber" />
+        <span asp-validation-for="PhoneNumber"></span>
+    </div>
+    <div>
+        <label asp-for="FName"></label>
+        <input asp-for="FName" />
+        <span asp-validation-for="FName"></span>
+    </div>
+    <div>
+        <label asp-for="LName"></label>
+        <input asp-for="LName" />
+        <span asp-validation-for="LName"></span>
+    </div>
+    <div>
+        <label asp-for="IsAgree"></label>
+        <input asp-for="IsAgree" type="checkbox" />
+        <span asp-validation-for="IsAgree"></span>
+    </div>
+    <button type="submit">Sign Up</button>
+</form>
