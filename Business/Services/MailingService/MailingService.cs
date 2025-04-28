@@ -44,7 +44,10 @@ public class MailingService(IOptions<EmailSettings> mailSettings) : IMailingServ
         email.From.Add(new MailboxAddress(_mailSettings.SenderName, _mailSettings.SenderEmail));
 
         using var smtp = new SmtpClient();
-        await smtp.ConnectAsync(_mailSettings.SmtpServer, _mailSettings.SmtpPort, SecureSocketOptions.StartTls);
+        var secureSocketOptions = _mailSettings.UseSsl 
+            ? SecureSocketOptions.SslOnConnect 
+            : SecureSocketOptions.StartTlsWhenAvailable;
+        await smtp.ConnectAsync(_mailSettings.SmtpServer, _mailSettings.SmtpPort, secureSocketOptions);
         await smtp.AuthenticateAsync(_mailSettings.SenderEmail, _mailSettings.SenderPassword);
         await smtp.SendAsync(email);
         await smtp.DisconnectAsync(true);
