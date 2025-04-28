@@ -13,22 +13,33 @@ namespace Business.Services.AccountService
     public class AccountService : IAccountService
     {
         private readonly UserManager<User> _userManager;
-
         private readonly IMapper _mapper;
         private readonly SignInManager<User> _signInManager;
         private readonly IMailingService _mailingService;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-    
-
-        public AccountService(UserManager<User> userManager, SignInManager<User> signInManager, IMailingService mailingService)
+        public AccountService(UserManager<User> userManager, SignInManager<User> signInManager, IMailingService mailingService, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _mailingService = mailingService;
+            _roleManager = roleManager;
         }
 
         public async Task<BaseResponse> SignUpAsync(SignUpViewModel userModel, UserRole role)
         {
+            Console.WriteLine("SignUpAsync method called", role);
+
+            // Ensure the role exists
+            if (!await _roleManager.RoleExistsAsync(role.ToString()))
+            {
+                var roleResult = await _roleManager.CreateAsync(new IdentityRole(role.ToString()));
+                if (!roleResult.Succeeded)
+                {
+                    return BaseResponse.FailureResponse("Failed to create role");
+                }
+            }
+
             var user = await _userManager.FindByEmailAsync(userModel.Email);
 
             if (user != null)
@@ -42,10 +53,10 @@ namespace Business.Services.AccountService
                 return BaseResponse.FailureResponse("Phone number already exists");
             }
 
-            
             int VerificationCode = new Random().Next(100000, 999999);
             user = new User()
             {
+                UserName = userModel.Email,
                 Email = userModel.Email,
                 PhoneNumber = userModel.PhoneNumber,
                 IsAgree = userModel.IsAgree,
@@ -53,7 +64,7 @@ namespace Business.Services.AccountService
                 LName = userModel.LName,
                 IsVerified = false,
                 VerificationCode = VerificationCode,
-                Role= role,
+                Role = role,
             };
 
             await _mailingService.SendMailAsync(
@@ -63,6 +74,7 @@ namespace Business.Services.AccountService
             );
 
             var result = await _userManager.CreateAsync(user, userModel.Password);
+
             if (result.Succeeded)
             {
                 await _userManager.AddToRoleAsync(user, role.ToString());
@@ -70,10 +82,7 @@ namespace Business.Services.AccountService
                 return BaseResponse.SuccessResponse("User created successfully");
             }
 
-
-            return BaseResponse.FailureResponse("User creation failed", result.Errors.Select(e => e.Description).ToList());
-            
-            
+            return BaseResponse.FailureResponse("User creation failed", result.Errors);
         }
 
         public async Task<BaseResponse> VerifyUserAsync(string email, int verificationCode)
@@ -93,15 +102,13 @@ namespace Business.Services.AccountService
             user.IsVerified = true;
             await _userManager.UpdateAsync(user);
 
-        
             await _signInManager.SignInAsync(user, isPersistent: true);
 
             return BaseResponse.SuccessResponse("User verified successfully");
         }
 
-
-        public async Task<BaseResponse>LogInAsync(LogInViewModel userModel)
-        {   
+        public async Task<BaseResponse> LogInAsync(LogInViewModel userModel)
+        {
             var user = await _userManager.FindByEmailAsync(userModel.Email);
 
             if (user == null)
@@ -124,7 +131,5 @@ namespace Business.Services.AccountService
             await _signInManager.SignOutAsync();
             return BaseResponse.SuccessResponse("Logout successful");
         }
-
-        
     }
 }

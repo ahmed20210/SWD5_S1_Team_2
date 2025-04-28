@@ -9,47 +9,52 @@ using MailKit.Security;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Logging;
 
-namespace Business.Services.MailingService;
-
-public class MailingService(IOptions<EmailSettings> mailSettings) : IMailingService
+namespace Business.Services.MailingService
 {
-    private readonly EmailSettings _mailSettings = mailSettings.Value;
-
-    public async Task SendMailAsync(string to, string subject, string body, IList<IFormFile>? attachments = null)
+    public class MailingService : IMailingService
     {
-        var email = new MimeMessage
-        {
-            Subject = subject
-        };
-        Console.WriteLine($"Sender Email: {_mailSettings}");
-        email.Sender = MailboxAddress.Parse(_mailSettings.SenderEmail);
-        email.To.Add(MailboxAddress.Parse(to));
+        private readonly EmailSettings _mailSettings;
 
-        var bodyBuilder = new BodyBuilder { HtmlBody = body };
-
-        if (attachments is not null)
+        public MailingService(IOptions<EmailSettings> mailSettings)
         {
-            foreach (var file in attachments)
-            {
-                if (file.Length > 0)
-                {
-                    using var ms = new MemoryStream();
-                    await file.CopyToAsync(ms);
-                    bodyBuilder.Attachments.Add(file.FileName, ms.ToArray(), ContentType.Parse(file.ContentType));
-                }
-            }
+            _mailSettings = mailSettings.Value;
         }
 
-        email.Body = bodyBuilder.ToMessageBody();
-        email.From.Add(new MailboxAddress(_mailSettings.SenderName, _mailSettings.SenderEmail));
+        public async Task SendMailAsync(string to, string subject, string body, IList<IFormFile>? attachments = null)
+        {
+            var email = new MimeMessage
+            {
+                Subject = subject
+            };
+            email.Sender = MailboxAddress.Parse(_mailSettings.SenderEmail);
+            email.To.Add(MailboxAddress.Parse(to));
 
-        using var smtp = new SmtpClient();
-        var secureSocketOptions = _mailSettings.UseSsl 
-            ? SecureSocketOptions.SslOnConnect 
-            : SecureSocketOptions.StartTlsWhenAvailable;
-        await smtp.ConnectAsync(_mailSettings.SmtpServer, _mailSettings.SmtpPort, secureSocketOptions);
-        await smtp.AuthenticateAsync(_mailSettings.SenderEmail, _mailSettings.SenderPassword);
-        await smtp.SendAsync(email);
-        await smtp.DisconnectAsync(true);
+            var bodyBuilder = new BodyBuilder { HtmlBody = body };
+
+            if (attachments is not null)
+            {
+                foreach (var file in attachments)
+                {
+                    if (file.Length > 0)
+                    {
+                        using var ms = new MemoryStream();
+                        await file.CopyToAsync(ms);
+                        bodyBuilder.Attachments.Add(file.FileName, ms.ToArray(), ContentType.Parse(file.ContentType));
+                    }
+                }
+            }
+
+            email.Body = bodyBuilder.ToMessageBody();
+            email.From.Add(new MailboxAddress(_mailSettings.SenderName, _mailSettings.SenderEmail));
+
+            using var smtp = new SmtpClient();
+            var secureSocketOptions = _mailSettings.UseSsl
+                ? SecureSocketOptions.SslOnConnect
+                : SecureSocketOptions.StartTlsWhenAvailable;
+            await smtp.ConnectAsync(_mailSettings.SmtpServer, _mailSettings.SmtpPort, secureSocketOptions);
+            await smtp.AuthenticateAsync(_mailSettings.SenderEmail, _mailSettings.SenderPassword);
+            await smtp.SendAsync(email);
+            await smtp.DisconnectAsync(true);
+        }
     }
 }

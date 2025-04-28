@@ -1,4 +1,5 @@
 ﻿using Business.Services.AccountService;
+using Domain;
 using Domain.Entities;
 using Domain.ViewModels.UserViewModel;
 using Microsoft.AspNetCore.Authorization;
@@ -29,16 +30,25 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _accountService.SignUpAsync(model);
-                // log the result
-                Console.WriteLine(result.Message);
-            
-                if (result.Success)
+                try
                 {
-                    return RedirectToAction(nameof(Verify), new { email = model.Email });
-                }
+                    var result = await _accountService.SignUpAsync(model, UserRole.Client);
+                   
+                   
 
-                ModelState.AddModelError(string.Empty, result.Message);
+                    if (result.Success)
+                    {
+                        return RedirectToAction(nameof(Verify), new { email = model.Email });
+                    }
+
+                    ModelState.AddModelError(string.Empty, result.Message);
+                }
+                catch (Exception ex)
+                {
+                    // Log the exception
+                    Console.WriteLine($"Error during SignUp: {ex.Message}");
+                    ModelState.AddModelError(string.Empty, "An unexpected error occurred. Please try again later.");
+                }
             }
 
             return View(model);
@@ -57,30 +67,37 @@ namespace Web.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> Verify(string email, int verificationCode)
+        public async Task<IActionResult> Verify(string email, int OtpCode)
         {
-
-
             if (ModelState.IsValid)
             {
-                var result = await _accountService.VerifyUserAsync(email, verificationCode);
-
-                if (result.Success)
+                try
                 {
-                    return RedirectToAction("Index", "Home");
-                }
+                  
+                    var result = await _accountService.VerifyUserAsync(email, OtpCode);
 
-                ModelState.AddModelError(string.Empty, result.Message);
+                    if (result.Success)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+
+                    ModelState.AddModelError(string.Empty, result.Message);
+                }
+                catch (Exception ex)
+                {
+                    // Log the exception
+                    Console.WriteLine($"Error during Verify: {ex.Message}");
+                    ModelState.AddModelError(string.Empty, "An unexpected error occurred. Please try again later.");
+                }
             }
+
             var model = new VerifyOtpViewModel
             {
                 Email = email,
-                OtpCode = verificationCode
+                OtpCode = OtpCode
             };
             return View(model);
-
         }
-
 
         [AllowAnonymous]
         public IActionResult LogIn()
@@ -94,14 +111,23 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _accountService.LogInAsync(model);
-
-                if (result.Success)
+                try
                 {
-                    return RedirectToAction("Index", "Home");
-                }
+                    var result = await _accountService.LogInAsync(model);
 
-                ModelState.AddModelError(string.Empty, result.Message);
+                    if (result.Success)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+
+                    ModelState.AddModelError(string.Empty, result.Message);
+                }
+                catch (Exception ex)
+                {
+                    // Log the exception
+                    Console.WriteLine($"Error during LogIn: {ex.Message}");
+                    ModelState.AddModelError(string.Empty, "An unexpected error occurred. Please try again later.");
+                }
             }
 
             return View(model);
@@ -110,12 +136,22 @@ namespace Web.Controllers
         [HttpPost]
         public async Task<IActionResult> LogOut()
         {
-            var result = await _accountService.LogOutAsync();
-            if (result.Success)
+            try
             {
-                return RedirectToAction("Index", "Home");
+                var result = await _accountService.LogOutAsync();
+                if (result.Success)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                ModelState.AddModelError(string.Empty, result.Message);
             }
-            ModelState.AddModelError(string.Empty, result.Message);
+            catch (Exception ex)
+            {
+                // Log the exception
+                Console.WriteLine($"Error during LogOut: {ex.Message}");
+                ModelState.AddModelError(string.Empty, "An unexpected error occurred. Please try again later.");
+            }
+
             return RedirectToAction("Index", "Home");
         }
     }
