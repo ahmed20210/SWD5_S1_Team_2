@@ -1,8 +1,418 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    
+    // Create dummy product data
+    var products = new List<Domain.ViewModels.ProductViewModels.ProductViewModel>
+    {
+        new Domain.ViewModels.ProductViewModels.ProductViewModel {
+            Id = 1,
+            Name = "iPhone 12 Pro Max",
+            Description = "Latest Apple smartphone with advanced features",
+            Price = 1099.00M,
+            Stock = 15,
+            AverageReviewScore = 4.8,
+            Status = Domain.ProductStatus.Available,
+            NoOfViews = 3450,
+            NoOfPurchase = 723,
+            NoOfReviews = 142,
+            ImageUrl = "img/product-1.jpg",
+            Rating = 5,
+            ReviewCount = 99
+        },
+        new Domain.ViewModels.ProductViewModels.ProductViewModel {
+            Id = 2,
+            Name = "Samsung Galaxy S21",
+            Description = "Flagship Android smartphone with high-end specs",
+            Price = 899.00M,
+            
+            Stock = 23,
+            AverageReviewScore = 4.5,
+            Status = Domain.ProductStatus.Available,
+            NoOfViews = 2890,
+            NoOfPurchase = 534,
+            NoOfReviews = 98,
+            ImageUrl = "img/product-2.jpg",
+            Rating = 4,
+            ReviewCount = 78
+        },
+        new Domain.ViewModels.ProductViewModels.ProductViewModel {
+            Id = 3,
+            Name = "Dell XPS 13",
+            Description = "Premium ultrabook with InfinityEdge display",
+            Price = 1299.00M,
+            
+            Stock = 7,
+            AverageReviewScore = 4.6,
+            Status = Domain.ProductStatus.Available,
+            NoOfViews = 1678,
+            NoOfPurchase = 345,
+            NoOfReviews = 65,
+            ImageUrl = "img/product-3.jpg",
+            Rating = 3,
+            ReviewCount = 54
+        },
+        new Domain.ViewModels.ProductViewModels.ProductViewModel {
+            Id = 4,
+            Name = "Sony WH-1000XM4",
+            Description = "Wireless noise-cancelling headphones",
+            Price = 349.00M,
+            Stock = 32,
+            AverageReviewScore = 4.9,
+            Status = Domain.ProductStatus.Available,
+            NoOfViews = 2345,
+            NoOfPurchase = 678,
+            NoOfReviews = 132,
+            ImageUrl = "img/product-4.jpg",
+            Rating = 3,
+            ReviewCount = 67
+        },
+        new Domain.ViewModels.ProductViewModels.ProductViewModel {
+            Id = 5,
+            Name = "MacBook Pro 16-inch",
+            Description = "Powerful laptop for creative professionals",
+            Price = 2399.00M,
+            Stock = 5,
+            AverageReviewScore = 4.7,
+            Status = Domain.ProductStatus.Available,
+            NoOfViews = 1923,
+            NoOfPurchase = 289,
+            NoOfReviews = 56,
+            ImageUrl = "img/product-5.jpg",
+            Rating = 5,
+            ReviewCount = 45
+        },
+        new Domain.ViewModels.ProductViewModels.ProductViewModel {
+            Id = 6,
+            Name = "iPad Pro 12.9",
+            Description = "High-performance tablet with Liquid Retina display",
+            Price = 999.00M,
+            Stock = 18,
+            AverageReviewScore = 4.8,
+            Status = Domain.ProductStatus.Available,
+            NoOfViews = 1567,
+            NoOfPurchase = 432,
+            NoOfReviews = 87,
+            ImageUrl = "img/product-6.jpg",
+            Rating = 4,
+            ReviewCount = 91
+        },
+        new Domain.ViewModels.ProductViewModels.ProductViewModel {
+            Id = 7,
+            Name = "Logitech MX Master 3",
+            Description = "Advanced wireless mouse for productivity",
+            Price = 99.99M,
+            Stock = 42,
+            AverageReviewScore = 4.6,
+            Status = Domain.ProductStatus.Available,
+            NoOfViews = 3210,
+            NoOfPurchase = 876,
+            NoOfReviews = 176,
+            ImageUrl = "img/product-6.jpg",
+            Rating = 3,
+            ReviewCount = 72
+        },
+        new Domain.ViewModels.ProductViewModels.ProductViewModel {
+            Id = 8,
+            Name = "Amazon Echo Dot",
+            Description = "Smart speaker with Alexa",
+            Price = 49.99M,
+            Stock = 65,
+            AverageReviewScore = 4.5,
+            Status = Domain.ProductStatus.Available,
+            NoOfViews = 4568,
+            NoOfPurchase = 2134,
+            NoOfReviews = 435,
+            ImageUrl = "img/product-8.jpg",
+            Rating = 2,
+            ReviewCount = 83
+        }
+    };
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- Carousel Start -->
+<div class="container-fluid mb-3">
+    <div class="row px-xl-5">
+        <div class="col-lg-8">
+            <div id="header-carousel" class="carousel slide carousel-fade mb-30 mb-lg-0" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#header-carousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#header-carousel" data-slide-to="1"></li>
+                    <li data-target="#header-carousel" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item position-relative active" style="height: 430px;">
+                        <img class="position-absolute w-100 h-100" src="img/carousel-1.jpg" style="object-fit: cover;">
+                        <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                            <div class="p-3" style="max-width: 700px;">
+                                <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Men Fashion
+                                </h1>
+                                <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Lorem rebum magna amet lorem
+                                    magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam</p>
+                                <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp"
+                                    href="#">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item position-relative" style="height: 430px;">
+                        <img class="position-absolute w-100 h-100" src="img/carousel-2.jpg" style="object-fit: cover;">
+                        <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                            <div class="p-3" style="max-width: 700px;">
+                                <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Women
+                                    Fashion</h1>
+                                <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Lorem rebum magna amet lorem
+                                    magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam</p>
+                                <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp"
+                                    href="#">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item position-relative" style="height: 430px;">
+                        <img class="position-absolute w-100 h-100" src="img/carousel-3.jpg" style="object-fit: cover;">
+                        <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                            <div class="p-3" style="max-width: 700px;">
+                                <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Kids Fashion
+                                </h1>
+                                <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Lorem rebum magna amet lorem
+                                    magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam</p>
+                                <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp"
+                                    href="#">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="product-offer mb-30" style="height: 200px;">
+                <img class="img-fluid" src="img/carousel-1.jpg" alt="">
+                <div class="offer-text">
+                    <h6 class="text-white text-uppercase">Save 20%</h6>
+                    <h3 class="text-white mb-3">Special Offer</h3>
+                    <a href="" class="btn btn-primary">Shop Now</a>
+                </div>
+            </div>
+            <div class="product-offer mb-30" style="height: 200px;">
+                <img class="img-fluid" src="img/carousel-3.jpg" alt="">
+                <div class="offer-text">
+                    <h6 class="text-white text-uppercase">Save 20%</h6>
+                    <h3 class="text-white mb-3">Special Offer</h3>
+                    <a href="" class="btn btn-primary">Shop Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<!-- Carousel End -->
+
+
+<!-- Featured Start -->
+<div class="container-fluid pt-5">
+    <div class="row px-xl-5 pb-3">
+        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+            <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
+                <h1 class="fa fa-check text-primary m-0 mr-3"></h1>
+                <h5 class="font-weight-semi-bold m-0">Quality Product</h5>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+            <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
+                <h1 class="fa fa-shipping-fast text-primary m-0 mr-2"></h1>
+                <h5 class="font-weight-semi-bold m-0">Free Shipping</h5>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+            <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
+                <h1 class="fas fa-exchange-alt text-primary m-0 mr-3"></h1>
+                <h5 class="font-weight-semi-bold m-0">14-Day Return</h5>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+            <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
+                <h1 class="fa fa-phone-volume text-primary m-0 mr-3"></h1>
+                <h5 class="font-weight-semi-bold m-0">24/7 Support</h5>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Featured End -->
+
+
+
+<!-- Categories Start -->
+<div class="container-fluid pt-5">
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span
+            class="bg-secondary pr-3">Categories</span></h2>
+    <div class="row px-xl-5 pb-3">
+        <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+            <a class="text-decoration-none" href="">
+                <div class="cat-item d-flex align-items-center mb-4">
+                    <div class="overflow-hidden" style="width: 100px; height: 100px;">
+                        <img class="img-fluid" src="img/cat-3.jpg" alt="">
+                    </div>
+                    <div class="flex-fill pl-3">
+                        <h6>Category Name</h6>
+                        <small class="text-body">100 Products</small>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+            <a class="text-decoration-none" href="">
+                <div class="cat-item img-zoom d-flex align-items-center mb-4">
+                    <div class="overflow-hidden" style="width: 100px; height: 100px;">
+                        <img class="img-fluid" src="img/cat-2.jpg" alt="">
+                    </div>
+                    <div class="flex-fill pl-3">
+                        <h6>Category Name</h6>
+                        <small class="text-body">100 Products</small>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+            <a class="text-decoration-none" href="">
+                <div class="cat-item img-zoom d-flex align-items-center mb-4">
+                    <div class="overflow-hidden" style="width: 100px; height: 100px;">
+                        <img class="img-fluid" src="img/cat-3.jpg" alt="">
+                    </div>
+                    <div class="flex-fill pl-3">
+                        <h6>Category Name</h6>
+                        <small class="text-body">100 Products</small>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+            <a class="text-decoration-none" href="">
+                <div class="cat-item img-zoom d-flex align-items-center mb-4">
+                    <div class="overflow-hidden" style="width: 100px; height: 100px;">
+                        <img class="img-fluid" src="img/cat-4.jpg" alt="">
+                    </div>
+                    <div class="flex-fill pl-3">
+                        <h6>Category Name</h6>
+                        <small class="text-body">100 Products</small>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+            <a class="text-decoration-none" href="">
+                <div class="cat-item img-zoom d-flex align-items-center mb-4">
+                    <div class="overflow-hidden" style="width: 100px; height: 100px;">
+                        <img class="img-fluid" src="img/cat-4.jpg" alt="">
+                    </div>
+                    <div class="flex-fill pl-3">
+                        <h6>Category Name</h6>
+                        <small class="text-body">100 Products</small>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+            <a class="text-decoration-none" href="">
+                <div class="cat-item img-zoom d-flex align-items-center mb-4">
+                    <div class="overflow-hidden" style="width: 100px; height: 100px;">
+                        <img class="img-fluid" src="img/cat-3.jpg" alt="">
+                    </div>
+                    <div class="flex-fill pl-3">
+                        <h6>Category Name</h6>
+                        <small class="text-body">100 Products</small>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+            <a class="text-decoration-none" href="">
+                <div class="cat-item img-zoom d-flex align-items-center mb-4">
+                    <div class="overflow-hidden" style="width: 100px; height: 100px;">
+                        <img class="img-fluid" src="img/cat-2.jpg" alt="">
+                    </div>
+                    <div class="flex-fill pl-3">
+                        <h6>Category Name</h6>
+                        <small class="text-body">100 Products</small>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+            <a class="text-decoration-none" href="">
+                <div class="cat-item img-zoom d-flex align-items-center mb-4">
+                    <div class="overflow-hidden" style="width: 100px; height: 100px;">
+                        <img class="img-fluid" src="img/cat-2.jpg" alt="">
+                    </div>
+                    <div class="flex-fill pl-3">
+                        <h6>Category Name</h6>
+                        <small class="text-body">100 Products</small>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+            <a class="text-decoration-none" href="">
+                <div class="cat-item img-zoom d-flex align-items-center mb-4">
+                    <div class="overflow-hidden" style="width: 100px; height: 100px;">
+                        <img class="img-fluid" src="img/cat-2.jpg" alt="">
+                    </div>
+                    <div class="flex-fill pl-3">
+                        <h6>Category Name</h6>
+                        <small class="text-body">100 Products</small>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+            <a class="text-decoration-none" href="">
+                <div class="cat-item img-zoom d-flex align-items-center mb-4">
+                    <div class="overflow-hidden" style="width: 100px; height: 100px;">
+                        <img class="img-fluid" src="img/cat-5.jpg" alt="">
+                    </div>
+                    <div class="flex-fill pl-3">
+                        <h6>Category Name</h6>
+                        <small class="text-body">100 Products</small>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+            <a class="text-decoration-none" href="">
+                <div class="cat-item img-zoom d-flex align-items-center mb-4">
+                    <div class="overflow-hidden" style="width: 100px; height: 100px;">
+                        <img class="img-fluid" src="img/cat-4.jpg" alt="">
+                    </div>
+                    <div class="flex-fill pl-3">
+                        <h6>Category Name</h6>
+                        <small class="text-body">100 Products</small>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+            <a class="text-decoration-none" href="">
+                <div class="cat-item img-zoom d-flex align-items-center mb-4">
+                    <div class="overflow-hidden" style="width: 100px; height: 100px;">
+                        <img class="img-fluid" src="img/cat-3.jpg" alt="">
+                    </div>
+                    <div class="flex-fill pl-3">
+                        <h6>Category Name</h6>
+                        <small class="text-body">100 Products</small>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- Categories End -->
+
+
+<!-- Products Start -->
+<div class="container-fluid pt-5 pb-3">
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Recent
+            Products</span></h2>
+    <div class="row px-xl-5">
+        @foreach (var product in products)
+        {
+            @await Html.PartialAsync("_ProductCard", product)
+        }
+    </div>
+</div>
+<!-- Products End -->
