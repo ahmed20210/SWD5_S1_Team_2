@@ -18,9 +18,7 @@ ServicesDI.AddServices(builder.Services);
 
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 
-// Configure logging to log errors
-builder.Logging.AddFilter("Microsoft", LogLevel.Error);
-builder.Logging.AddFilter("System", LogLevel.Error);
+
 
 var logger = builder.Logging.AddConsole();
 

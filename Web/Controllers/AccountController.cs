@@ -147,8 +147,7 @@ namespace Web.Controllers
             }
             catch (Exception ex)
             {
-                // Log the exception
-                Console.WriteLine($"Error during LogOut: {ex.Message}");
+                
                 ModelState.AddModelError(string.Empty, "An unexpected error occurred. Please try again later.");
             }
 
