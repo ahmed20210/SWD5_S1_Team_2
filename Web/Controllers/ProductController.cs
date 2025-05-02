@@ -163,4 +163,9 @@ public class ProductController : Controller
 
         return RedirectToAction(nameof(Index));
     }
+
+    public async Task<IActionResult> HotDeals()
+    {
+        return View();
+    }
 }

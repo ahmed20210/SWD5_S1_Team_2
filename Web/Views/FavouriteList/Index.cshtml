@@ -1,0 +1,226 @@
+@{
+    ViewData["Title"] = "My Favourite Products";
+}
+
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30">
+                <a class="breadcrumb-item text-dark" href="/">Home</a>
+                <a class="breadcrumb-item text-dark" href="/Products">Products</a>
+                <span class="breadcrumb-item active">My Favourites</span>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <div class="bg-light p-30 mb-5">
+                <div class="d-flex justify-content-between align-items-center ">
+                    <h2 class="font-weight-semi-bold">My Favourite Products</h2>
+                    <span class="badge bg-primary rounded-pill d-flex justify-content-center align-items-center">3
+                </div>
+                
+                <!-- Favourite Products List -->
+                <div class="row favourite-items">
+                    <!-- Favourite Item 1 -->
+                    <div class="col-md-4 col-sm-6 mb-4">
+                        <div class="card product-item border-0 mb-4">
+                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                <img class="img-fluid w-100" src="https://placeholder.pics/svg/300x300/DEDEDE/555555/Laptop" alt="Laptop">
+                                <div class="position-absolute top-0 end-0 p-2">
+                                    <button class="btn btn-sm btn-danger rounded-circle" title="Remove from favourites">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                <h6 class="text-truncate mb-3">Premium Gaming Laptop</h6>
+                                <div class="d-flex justify-content-center">
+                                    <h6>$1299.00</h6><h6 class="text-muted ml-2"><del>$1499.00</del></h6>
+                                </div>
+                                <div class="d-flex justify-content-center mb-1">
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star-half-alt text-primary mr-1"></small>
+                                    <small>(152)</small>
+                                </div>
+                            </div>
+                            <div class="card-footer d-flex justify-content-between bg-light border">
+                                <a href="/Products/Details/1" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Favourite Item 2 -->
+                    <div class="col-md-4 col-sm-6 mb-4">
+                        <div class="card product-item border-0 mb-4">
+                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                <img class="img-fluid w-100" src="https://placeholder.pics/svg/300x300/DEDEDE/555555/Smartphone" alt="Smartphone">
+                                <div class="position-absolute top-0 end-0 p-2">
+                                    <button class="btn btn-sm btn-danger rounded-circle" title="Remove from favourites">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                <h6 class="text-truncate mb-3">Latest Android Smartphone</h6>
+                                <div class="d-flex justify-content-center">
+                                    <h6>$899.00</h6><h6 class="text-muted ml-2"><del>$999.00</del></h6>
+                                </div>
+                                <div class="d-flex justify-content-center mb-1">
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small>(204)</small>
+                                </div>
+                            </div>
+                            <div class="card-footer d-flex justify-content-between bg-light border">
+                                <a href="/Products/Details/2" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Favourite Item 3 -->
+                    <div class="col-md-4 col-sm-6 mb-4">
+                        <div class="card product-item border-0 mb-4">
+                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                <img class="img-fluid w-100" src="https://placeholder.pics/svg/300x300/DEDEDE/555555/Headphones" alt="Headphones">
+                                <div class="position-absolute top-0 end-0 p-2">
+                                    <button class="btn btn-sm btn-danger rounded-circle" title="Remove from favourites">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                <h6 class="text-truncate mb-3">Premium Wireless Headphones</h6>
+                                <div class="d-flex justify-content-center">
+                                    <h6>$249.00</h6><h6 class="text-muted ml-2"><del>$299.00</del></h6>
+                                </div>
+                                <div class="d-flex justify-content-center mb-1">
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="far fa-star text-primary mr-1"></small>
+                                    <small>(98)</small>
+                                </div>
+                            </div>
+                            <div class="card-footer d-flex justify-content-between bg-light border">
+                                <a href="/Products/Details/3" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Empty State (Hidden by default) -->
+                <div class="text-center py-5 d-none">
+                    <i class="fas fa-heart text-primary mb-4" style="font-size: 5rem;"></i>
+                    <h3 class="text-muted">Your favourites list is empty</h3>
+                    <p class="text-muted mb-4">Products you save to your favourites list will appear here</p>
+                    <a href="/Products" class="btn btn-primary rounded py-2 px-4">Browse Products</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Related Products -->
+<div class="container-fluid py-5">
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">You May Also Like</span></h2>
+    <div class="row px-xl-5">
+        <div class="col">
+            <div class="owl-carousel related-carousel">
+                <!-- Related Item 1 -->
+                <div class="product-item bg-light">
+                    <div class="product-img position-relative overflow-hidden">
+                        <img class="img-fluid w-100" src="https://placeholder.pics/svg/300x300/DEDEDE/555555/Watch" alt="Smart Watch">
+                        <div class="product-action">
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                        </div>
+                    </div>
+                    <div class="text-center py-4">
+                        <a class="h6 text-decoration-none text-truncate" href="">Smart Watch Series 5</a>
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <h5>$299.00</h5><h6 class="text-muted ml-2"><del>$359.00</del></h6>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small>(125)</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Related Item 2 -->
+                <div class="product-item bg-light">
+                    <div class="product-img position-relative overflow-hidden">
+                        <img class="img-fluid w-100" src="https://placeholder.pics/svg/300x300/DEDEDE/555555/Camera" alt="Digital Camera">
+                        <div class="product-action">
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                        </div>
+                    </div>
+                    <div class="text-center py-4">
+                        <a class="h6 text-decoration-none text-truncate" href="">Professional Digital Camera</a>
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <h5>$549.00</h5><h6 class="text-muted ml-2"><del>$649.00</del></h6>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star-half-alt text-primary mr-1"></small>
+                            <small>(87)</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Related Item 3 -->
+                <div class="product-item bg-light">
+                    <div class="product-img position-relative overflow-hidden">
+                        <img class="img-fluid w-100" src="https://placeholder.pics/svg/300x300/DEDEDE/555555/Speaker" alt="Bluetooth Speaker">
+                        <div class="product-action">
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                        </div>
+                    </div>
+                    <div class="text-center py-4">
+                        <a class="h6 text-decoration-none text-truncate" href="">Portable Bluetooth Speaker</a>
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <h5>$129.00</h5><h6 class="text-muted ml-2"><del>$159.00</del></h6>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small>(112)</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

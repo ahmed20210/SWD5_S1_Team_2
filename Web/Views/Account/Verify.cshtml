@@ -3,24 +3,28 @@
     ViewData["Title"] = "Verify Account";
 }
 
-<div class="row justify-content-center">
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-header">
-                <h3>Verify Your Account</h3>
-            </div>
-            <div class="card-body">
-                <p>A verification code has been sent to your email address. Please enter it below.</p>
-                
-                <form asp-action="Verify" method="post">
-                    <input type="hidden" asp-for="Email" />
-                    <div>
-                        <label asp-for="OtpCode">Verification Code</label>
-                        <input asp-for="OtpCode" />
-                        <span asp-validation-for="OtpCode"></span>
-                    </div>
-                    <button type="submit">Verify</button>
-                </form>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="text-center mb-0">Verify Your Account</h2>
+                </div>
+                <div class="card-body p-4">
+                    <p class="text-center mb-4">A verification code has been sent to your email address. Please enter it below.</p>
+                    
+                    <form asp-action="Verify" method="post">
+                        <input type="hidden" asp-for="Email" />
+                        <div class="form-group mb-3">
+                            <label asp-for="OtpCode" class="form-label">Verification Code</label>
+                            <input asp-for="OtpCode" class="form-control" placeholder="Enter verification code" />
+                            <span asp-validation-for="OtpCode" class="text-danger"></span>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">Verify</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

@@ -13,6 +13,17 @@ namespace Web.Controllers
             _otpService = otpService;
         }
 
+        [HttpGet]
+        public IActionResult EnterOtp(string email)
+        {
+            if (string.IsNullOrEmpty(email))
+            {
+                return RedirectToAction("SignUp", "Account");
+            }
+            
+            return View(new VerifyOtpViewModel { Email = email });
+        }
+
         [HttpPost]
         public IActionResult SendOtp(string email)
         {
@@ -30,6 +41,12 @@ namespace Web.Controllers
 
             ModelState.AddModelError("", "Invalid or expired OTP");
             return View("EnterOtp", model);
+        }
+
+        [HttpGet]
+        public IActionResult Success()
+        {
+            return View();
         }
     }
 }

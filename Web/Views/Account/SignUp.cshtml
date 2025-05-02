@@ -1,47 +1,71 @@
 @model Domain.ViewModels.UserViewModel.SignUpViewModel
 
-<h2>Sign Up</h2>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="text-center mb-0">Sign Up</h2>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="SignUp" method="post">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label asp-for="FName" class="form-label">First Name</label>
+                                    <input asp-for="FName" class="form-control" placeholder="Enter your first name" />
+                                    <span asp-validation-for="FName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label asp-for="LName" class="form-label">Last Name</label>
+                                    <input asp-for="LName" class="form-control" placeholder="Enter your last name" />
+                                    <span asp-validation-for="LName" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
 
-<form asp-action="SignUp" method="post">
-    <div>
-        <label asp-for="Email"></label>
-        <input asp-for="Email" />
-        <span asp-validation-for="Email"></span>
-    </div>
-    <div>
-        <label asp-for="Password"></label>
-        <input asp-for="Password" type="password" />
-        <span asp-validation-for="Password"></span>
-    </div>
+                        <div class="form-group mb-3">
+                            <label asp-for="Email" class="form-label"></label>
+                            <input asp-for="Email" class="form-control" placeholder="Enter your email" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            <label asp-for="PhoneNumber" class="form-label"></label>
+                            <input asp-for="PhoneNumber" class="form-control" placeholder="Enter your phone number" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            <label asp-for="Password" class="form-label"></label>
+                            <input asp-for="Password" type="password" class="form-control" placeholder="Enter your password" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
 
-    <div>
-        <label asp-for="ConfirmPassword"></label>
-        <input asp-for="ConfirmPassword" type="password" />
-        <span asp-validation-for="ConfirmPassword"></span>
+                        <div class="form-group mb-3">
+                            <label asp-for="ConfirmPassword" class="form-label"></label>
+                            <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Confirm your password" />
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="form-check mb-3">
+                            <input asp-for="IsAgree" type="checkbox" class="form-check-input" />
+                            <label asp-for="IsAgree" class="form-check-label">I agree to the terms and conditions</label>
+                            <span asp-validation-for="IsAgree" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="d-grid mb-3">
+                            <button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
+                        </div>
+                        
+                        <div class="text-center">
+                            <a asp-action="LogIn" class="text-decoration-none">Already have an account? Log in</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <div>
-        <label asp-for="PhoneNumber"></label>
-        <input asp-for="PhoneNumber" />
-        <span asp-validation-for="PhoneNumber"></span>
-    </div>
-    <div>
-        <label asp-for="FName"></label>
-        <input asp-for="FName" />
-        <span asp-validation-for="FName"></span>
-    </div>
-    <div>
-        <label asp-for="LName"></label>
-        <input asp-for="LName" />
-        <span asp-validation-for="LName"></span>
-    </div>
-    <div>
-        <label asp-for="IsAgree"></label>
-        <input asp-for="IsAgree" type="checkbox" />
-        <span asp-validation-for="IsAgree"></span>
-    </div>
-    <button type="submit">Sign Up</button>
-
-    <div>
-        <a asp-action="Login">Already have an account? Log in</a>
-    </div>
-</form>
+</div>
