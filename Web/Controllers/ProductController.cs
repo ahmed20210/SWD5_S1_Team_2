@@ -1,6 +1,7 @@
 using Domain.Entities;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Web.Models;
 
@@ -72,7 +73,17 @@ public class ProductController : Controller
         };
 
         // Get total count before pagination
-        int totalRecords = await query.CountAsync();
+        int totalRecords;
+        try
+        {
+            totalRecords = await query.CountAsync();
+        }
+        catch (SqlException ex)
+        {
+            Console.WriteLine("SQL Error: " + ex.Message);
+            throw; // rethrow or handle appropriately
+        }
+
         int totalPages = (int)Math.Ceiling(totalRecords / (double)pageSize);
 
         // Apply pagination

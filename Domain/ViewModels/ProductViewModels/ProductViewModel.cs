@@ -11,7 +11,7 @@ public class ProductViewModel : ProductBaseViewModel
     public decimal? Price { get; set; }
     public int? Stock { get; set; }
     public double? AverageReviewScore { get; set; }
-    public Domain.ProductStatus? Status { get; set; }
+    public ProductStatus? Status { get; set; }
     public int? NoOfViews { get; set; }
     public int? NoOfPurchase { get; set; }
     public int? NoOfReviews { get; set; }
