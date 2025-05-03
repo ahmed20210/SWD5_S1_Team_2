@@ -4,6 +4,7 @@ using AutoMapper;
 using System.Threading.Tasks;
 using Business.Services.CategoryService;
 using Domain.DTOs.CategoryDTOs;
+using Business.ViewModels.CategoryViewModel;
 
 namespace Web.Controllers 
 {
@@ -35,60 +36,59 @@ namespace Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CreateCategoryDto createCategoryDto)
+        public async Task<IActionResult> Create(CreateCategoryViewModel createCategoryForm)
         {
+
             if (ModelState.IsValid)
             {
-                await _categoryService.CreateCategoryAsync(createCategoryDto);
+                await _categoryService.CreateCategoryAsync(createCategoryForm);
                 return RedirectToAction(nameof(Index));
             }
-            return View(createCategoryDto);
+            return View(createCategoryForm);
         }
 
        
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Update(int id)
         {
-            var category = await _context.Categories.FindAsync(id);
+            var category = await _categoryService.GetCategoryByIdAsync(id);
             if (category == null)
                 return NotFound();
-
-            var updateCategoryDto = _mapper.Map<UpdateCategoryDto>(category);
-            return View(updateCategoryDto);
+                
+            var updateCategoryViewModel = _mapper.Map<UpdateCategoryViewModel>(category);
+            return View(updateCategoryViewModel);
         }
 
        
-        [HttpPost]
+        [HttpPut]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(UpdateCategoryDto updateCategoryDto)
+        public async Task<IActionResult> Edit(UpdateCategoryViewModel updateCategoryViewModel)
         {
             if (ModelState.IsValid)
             {
-                var result = await _categoryService.UpdateCategoryAsync(updateCategoryDto);
+                var result = await _categoryService.UpdateCategoryAsync(updateCategoryViewModel);
                 if (result == null)
                     return NotFound();
                 return RedirectToAction(nameof(Index));
             }
-            return View(updateCategoryDto);
+            return View(updateCategoryViewModel);
         }
 
        
         public async Task<IActionResult> Delete(int id)
         {
-            var category = await _context.Categories.FindAsync(id);
+            var category = await _categoryService.GetCategoryByIdAsync(id);
             if (category == null)
                 return NotFound();
 
-            var deleteCategoryDto = new DeleteCategoryDto { Id = id };
-            ViewBag.CategoryName = category.Name;
-            return View(deleteCategoryDto);
+            return View(id);
         }
 
       
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(DeleteCategoryDto deleteCategoryDto)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var result = await _categoryService.DeleteCategoryAsync(deleteCategoryDto);
+            var result = await _categoryService.DeleteCategoryAsync(id);
             if (!result)
             {
                 TempData["Error"] = "Cannot delete category because it has associated products.";

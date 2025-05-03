@@ -180,3 +180,94 @@ public class ProductController : Controller
         return View();
     }
 }
+/*
+using Domain.Entities;
+using Domain.Response;
+using Business.Services.ProductService;
+using Microsoft.AspNetCore.Mvc;
+using Web.Models;
+
+namespace Web.Controllers;
+
+public class ProductController : Controller
+{
+    private readonly IProductService _productService;
+    private const int DefaultPageSize = 10;
+    private const int MaxPageSize = 50;
+
+    public ProductController(IProductService productService)
+    {
+        _productService = productService ?? throw new ArgumentNullException(nameof(productService));
+    }
+
+    public async Task<IActionResult> Index(
+        string searchTerm = "",
+        int? categoryId = null,
+        string orderBy = "name",
+        decimal? minPrice = null,
+        decimal? maxPrice = null,
+        int pageNumber = 1,
+        int pageSize = DefaultPageSize)
+    {
+        var result = await _productService.GetProductsAsync(
+            searchTerm, categoryId, orderBy, minPrice, maxPrice, pageNumber, pageSize);
+
+        if (!result.IsSuccess)
+        {
+            // Handle error - you might want to log this or show an error message
+            TempData["Error"] = result.ErrorMessage;
+            return View(new ProductViewModel());
+        }
+
+        return View(result.Data);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Create()
+    {
+        var categoriesResult = await _productService.GetCategoriesAsync();
+
+        if (!categoriesResult.IsSuccess)
+        {
+            TempData["Error"] = categoriesResult.ErrorMessage;
+            return View(new ProductCreateViewModel());
+        }
+
+        var model = new ProductCreateViewModel
+        {
+            AvailableCategories = categoriesResult.Data
+        };
+        return View(model);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Create(ProductCreateViewModel model)
+    {
+        if (!ModelState.IsValid)
+        {
+            var categoriesResult = await _productService.GetCategoriesAsync();
+            model.AvailableCategories = categoriesResult.IsSuccess ? categoriesResult.Data : new List<Category>();
+            return View(model);
+        }
+
+        var result = await _productService.CreateProductAsync(model);
+
+        if (!result.IsSuccess)
+        {
+            TempData["Error"] = result.ErrorMessage;
+            var categoriesResult = await _productService.GetCategoriesAsync();
+            model.AvailableCategories = categoriesResult.IsSuccess ? categoriesResult.Data : new List<Category>();
+            return View(model);
+        }
+
+        return RedirectToAction(nameof(Index));
+    }
+
+    public async Task<IActionResult> HotDeals()
+    {
+        return View();
+    }
+}
+
+*/

@@ -1,7 +1,6 @@
 using Domain;
-using Domain.Entities;
 using Domain.Response;
-using Domain.ViewModels.UserViewModel;
+using Business.ViewModels.UserViewModel;
 
 namespace Business.Services.AccountService
 {

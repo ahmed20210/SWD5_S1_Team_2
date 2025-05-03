@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Domain.DTOs.ProductDTOs;
 
-namespace Domain.ViewModels.DiscountViewModels;
+namespace Business.ViewModels.DiscountViewModels;
 
 public class DiscountViewModel 
 {

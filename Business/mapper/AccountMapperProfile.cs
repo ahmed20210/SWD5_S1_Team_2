@@ -1,6 +1,6 @@
 using AutoMapper;
 using Domain.Entities;
-using Domain.ViewModels.UserViewModel;
+using Business.ViewModels.UserViewModel;
 
 namespace Business.mapper;
 

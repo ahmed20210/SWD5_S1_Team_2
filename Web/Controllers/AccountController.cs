@@ -1,7 +1,7 @@
 ﻿using Business.Services.AccountService;
 using Domain;
 using Domain.Entities;
-using Domain.ViewModels.UserViewModel;
+using Business.ViewModels.UserViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Web.Models;

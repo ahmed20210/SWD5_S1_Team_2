@@ -3,7 +3,7 @@ using Business.Services.MailingService;
 using Domain;
 using Domain.Entities;
 using Domain.Response;
-using Domain.ViewModels.UserViewModel;
+using Business.ViewModels.UserViewModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,9 +28,7 @@ namespace Business.Services.AccountService
 
         public async Task<BaseResponse> SignUpAsync(SignUpViewModel userModel, UserRole role)
         {
-            Console.WriteLine("SignUpAsync method called", role);
 
-            // Ensure the role exists
             if (!await _roleManager.RoleExistsAsync(role.ToString()))
             {
                 var roleResult = await _roleManager.CreateAsync(new IdentityRole(role.ToString()));

@@ -1,6 +1,7 @@
+using Domain;
 using Domain.DTOs.ProductDTOs;
 
-namespace Domain.ViewModels.ProductViewModels;
+namespace Business.ViewModels.ProductViewModels;
 
 
 public class ProductViewModel : ProductBaseViewModel

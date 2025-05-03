@@ -1,4 +1,4 @@
-namespace Domain.ViewModels.DiscountViewModels;
+namespace Business.ViewModels.DiscountViewModels;
 
 public abstract class DiscountBaseViewModel
 {

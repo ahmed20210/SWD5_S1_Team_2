@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Domain.ViewModels.UserViewModel
+namespace Business.ViewModels.UserViewModel
 {
     public class SignUpViewModel
     {
