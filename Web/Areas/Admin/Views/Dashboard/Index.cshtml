@@ -1,2 +1,225 @@
 @* Areas/Admin/Views/Dashboard/Index.cshtml *@
-<h2>Admin Dashboard</h2>
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "_AdminLayout";
+}
+
+<div class="row">
+    <div class="col-12 mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+        <p class="mb-4">Welcome to TechXpress Admin Panel</p>
+    </div>
+</div>
+
+<!-- Dashboard Cards -->
+<div class="row">
+    <!-- Total Sales Card -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Total Sales (Monthly)</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="bi bi-currency-dollar fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Orders Card -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Orders (Today)</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">12</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="bi bi-cart fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Products Card -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                            Total Products</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">154</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="bi bi-box-seam fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customers Card -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            Total Customers</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">256</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="bi bi-people fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Content Row -->
+<div class="row">
+    <!-- Recent Orders -->
+    <div class="col-xl-8 col-lg-7">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Recent Orders</h6>
+                <a href="#" class="btn btn-sm btn-primary">View All</a>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#ORD-2023-001</td>
+                                <td>John Smith</td>
+                                <td>May 4, 2025</td>
+                                <td>$120.00</td>
+                                <td><span class="badge bg-warning">Pending</span></td>
+                            </tr>
+                            <tr>
+                                <td>#ORD-2023-002</td>
+                                <td>Emily Johnson</td>
+                                <td>May 4, 2025</td>
+                                <td>$280.50</td>
+                                <td><span class="badge bg-success">Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>#ORD-2023-003</td>
+                                <td>Michael Brown</td>
+                                <td>May 3, 2025</td>
+                                <td>$95.20</td>
+                                <td><span class="badge bg-info">Shipped</span></td>
+                            </tr>
+                            <tr>
+                                <td>#ORD-2023-004</td>
+                                <td>Sarah Wilson</td>
+                                <td>May 3, 2025</td>
+                                <td>$345.00</td>
+                                <td><span class="badge bg-danger">Cancelled</span></td>
+                            </tr>
+                            <tr>
+                                <td>#ORD-2023-005</td>
+                                <td>David Lee</td>
+                                <td>May 2, 2025</td>
+                                <td>$75.50</td>
+                                <td><span class="badge bg-success">Completed</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Low Stock Products -->
+    <div class="col-xl-4 col-lg-5">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Low Stock Products</h6>
+                <a href="#" class="btn btn-sm btn-primary">View All</a>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Stock</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Wireless Headphones</td>
+                                <td><span class="badge bg-danger">2</span></td>
+                                <td><a href="#" class="btn btn-sm btn-primary">Restock</a></td>
+                            </tr>
+                            <tr>
+                                <td>Gaming Mouse</td>
+                                <td><span class="badge bg-warning">5</span></td>
+                                <td><a href="#" class="btn btn-sm btn-primary">Restock</a></td>
+                            </tr>
+                            <tr>
+                                <td>External SSD</td>
+                                <td><span class="badge bg-danger">3</span></td>
+                                <td><a href="#" class="btn btn-sm btn-primary">Restock</a></td>
+                            </tr>
+                            <tr>
+                                <td>Mechanical Keyboard</td>
+                                <td><span class="badge bg-warning">8</span></td>
+                                <td><a href="#" class="btn btn-sm btn-primary">Restock</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Additional styling for the dashboard -->
+<style>
+    .border-left-primary {
+        border-left: 4px solid #4e73df;
+    }
+    .border-left-success {
+        border-left: 4px solid #1cc88a;
+    }
+    .border-left-info {
+        border-left: 4px solid #36b9cc;
+    }
+    .border-left-warning {
+        border-left: 4px solid #f6c23e;
+    }
+    .text-primary {
+        color: #4e73df !important;
+    }
+    .text-success {
+        color: #1cc88a !important;
+    }
+    .text-info {
+        color: #36b9cc !important;
+    }
+    .text-warning {
+        color: #f6c23e !important;
+    }
+</style>

@@ -12,9 +12,6 @@ namespace Business.mapper
         public AutoMapperProfile()
         {
         
-            CreateMap<Category, GetAllCategoriesDto>();
-            CreateMap<CreateCategoryDto, Category>();
-            CreateMap<UpdateCategoryDto, Category>();
         }
         
     }

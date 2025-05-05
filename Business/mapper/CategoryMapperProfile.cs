@@ -12,6 +12,10 @@ public class CategoryMapperProfile: Profile
     public CategoryMapperProfile()
     {
         CreateMap<Category, CategoryViewModel>();
+        CreateMap<CreateCategoryViewModel, Category>();
+        CreateMap<UpdateCategoryViewModel, Category>()
+        .ReverseMap();
+        CreateMap<CategoryViewModel, UpdateCategoryViewModel>();
        
     }
 }

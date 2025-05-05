@@ -5,6 +5,8 @@ using Business.Services.StorageService;
 using Business.Services.MailingService;
 using Business.Services.DiscountService;
 using Business.Services.AccountService;
+using Business.Services.CategoryService;
+
 // using Business.Services.ProductService;
 
 public static class ServicesDI
@@ -17,6 +19,7 @@ public static class ServicesDI
         services.AddScoped<IMailingService, MailingService>();
         services.AddScoped<IDiscountService, DiscountService>();
         services.AddScoped<IAccountService, AccountService>();
+        services.AddScoped<ICategoryService, CategoryService>();
         // services.AddScoped<IProductService, ProductService>();
     }
 }

@@ -26,6 +26,7 @@ namespace Business.Services.CategoryService
         public async Task<IEnumerable<CategoryViewModel>> GetAllCategoriesAsync()
         {
             var categories = await _context.Categories.ToListAsync();
+            
             return _mapper.Map<IEnumerable<CategoryViewModel>>(categories);
         }
 
@@ -66,6 +67,7 @@ namespace Business.Services.CategoryService
 
         public async Task<CategoryViewModel> UpdateCategoryAsync(UpdateCategoryViewModel categoryViewModelForm)
         {
+            
             var category = await _context.Categories.FindAsync(categoryViewModelForm.Id);
             if (category == null)
                 return null;

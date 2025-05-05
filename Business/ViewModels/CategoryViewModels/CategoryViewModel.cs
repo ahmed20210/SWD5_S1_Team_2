@@ -23,13 +23,13 @@ namespace Business.ViewModels.CategoryViewModel
         public string Name { get; set; }
 
         [MaxLength(200, ErrorMessage = "Description cannot exceed 200 characters")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         [Required(ErrorMessage = "Category image is required")]
         [Display(Name = "Category Image")]
         [DataType(DataType.Upload)]
-        [FileExtensions(Extensions = "jpg,jpeg,png", ErrorMessage = "Please upload a valid image file (jpg, jpeg, png)")]
-        public IFormFile Image { get; set; }
+        // [FileExtensions(Extensions = "jpg,jpeg,png", ErrorMessage = "Please upload a valid image file (jpg, jpeg, png)")]
+        public IFormFile? Image { get; set; }
 
         public string? ImagePath { get; set; }
     }
@@ -40,7 +40,7 @@ namespace Business.ViewModels.CategoryViewModel
 
         [Display(Name = "Category Image")]
         [DataType(DataType.Upload)]
-        [FileExtensions(Extensions = "jpg,jpeg,png", ErrorMessage = "Please upload a valid image file (jpg, jpeg, png)")]
+        // [FileExtensions(Extensions = "jpg,jpeg,png", ErrorMessage = "Please upload a valid image file (jpg, jpeg, png)")]
         public new IFormFile? Image { get; set; } // make image optional
 
 
