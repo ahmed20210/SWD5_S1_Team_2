@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Identity;
 using Web;
 using Infrastructure.Settings;
 using Microsoft.Extensions.Logging;
+using Business.Services.PaymentService;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +22,7 @@ builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<Appl
 builder.Services.AddControllersWithViews();
 builder.Services.AddAutoMapper(typeof(Business.mapper.AccountMapperProfile).Assembly);
 ServicesDI.AddServices(builder.Services);
-
+builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 
 
@@ -47,6 +49,7 @@ app.MapControllerRoute(
 app.UseAuthorization();
 
 app.MapStaticAssets();
+
 
 app.MapControllerRoute(
         name: "default",
