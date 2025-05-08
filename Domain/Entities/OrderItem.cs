@@ -3,8 +3,8 @@ namespace Domain.Entities;
 
 public class OrderItem
 {
-    
-   [ Required]
+   
+    [ Required]
     public int Quantity { get; set; }
     
     [Required]

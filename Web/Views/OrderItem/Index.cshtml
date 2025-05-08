@@ -1,0 +1,42 @@
+﻿@using Business.ViewModels.OrderItemViewModel
+@model IEnumerable<OrderItemViewModel>
+
+@{
+    ViewData["Title"] = "Order Items";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    <a href="@Url.Action("Create", "OrderItem", new { area = "Admin" })" class="btn btn-primary">Add New Order Item</a>
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Total Amount</th>
+            <th>Discount</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.OrderId</td>
+                <td>@item.ProductName</td>
+                <td>@item.Quantity</td>
+                <td>@item.TotalAmount</td>
+                <td>@item.DiscountAmount</td>
+                <td>
+                    <a class="btn btn-info btn-sm" href="@Url.Action("Details", "OrderItem", new { area = "Admin", orderId = item.OrderId, productId = item.ProductId })">Details</a>
+                    <a class="btn btn-warning btn-sm" href="@Url.Action("Edit", "OrderItem", new { area = "Admin", orderId = item.OrderId, productId = item.ProductId })">Edit</a>
+                    <a class="btn btn-danger btn-sm" href="@Url.Action("Delete", "OrderItem", new { area = "Admin", orderId = item.OrderId, productId = item.ProductId })">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

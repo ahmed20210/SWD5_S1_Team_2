@@ -29,6 +29,7 @@ builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("Emai
 
 
 
+
 var logger = builder.Logging.AddConsole();
 
 var app = builder.Build();
@@ -59,3 +60,7 @@ app.MapControllerRoute(
     .WithStaticAssets();
 
 app.Run();
+
+app.MapControllerRoute(
+    name: "admin_area",
+    pattern: "{area=Admin}/{controller=User}/{action=Edit}/{id?}");
