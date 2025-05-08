@@ -2,7 +2,7 @@
 
 using AutoMapper;
 using Business.Services.StorageService;
-using Business.ViewModels.CategoryViewModel;
+using Business.ViewModels.CategoryViewModels;
 using Domain.Entities;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;

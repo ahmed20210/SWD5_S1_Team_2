@@ -1,6 +1,7 @@
 namespace Domain.Response;
 
 public class GenericResponse<T> : IResponse
+
 {
     public bool Success { get; set; }
     public string? Message { get; set; }

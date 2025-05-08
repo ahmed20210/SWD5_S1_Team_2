@@ -1,7 +1,6 @@
 using Domain.Entities;
-using Domain.DTOs.CategoryDTOs;
 using AutoMapper;
-using Business.ViewModels.CategoryViewModel;
+using Business.ViewModels.CategoryViewModels;
 
 
 namespace Business.mapper;

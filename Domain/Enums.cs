@@ -32,7 +32,7 @@ public enum RefundStatus
     Canceled,
     Rejected
 }
-public enum OrderStatus  
+public enum OrderStatus
 {
     Pending,
     Processing,
@@ -57,20 +57,22 @@ public enum LogMethods
 }
 public enum CouponType
 {
-    Percentage,   
+    Percentage,
     FixedAmount
 }
 public enum CouponStatus
 {
-    Active,   
-    Expired,  
-    Inactive  
+    Active,
+    Expired,
+    Inactive
 }
 
 public enum ProductStatus
 {
     Available,
     OutOfStock,
+
+    Suspended,
     Discontinued
 }
 public enum UserRole

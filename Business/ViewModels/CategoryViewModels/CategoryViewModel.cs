@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
-namespace Business.ViewModels.CategoryViewModel
+namespace Business.ViewModels.CategoryViewModels
 {
     public class CategoryViewModel
     {

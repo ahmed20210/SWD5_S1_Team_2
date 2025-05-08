@@ -12,7 +12,7 @@
 *.user
 *.userosscache
 *.sln.docstates
-
+.vscode/*
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
@@ -490,3 +490,7 @@ Admin/appsettings.json
 Admin/appsettings.*.json
 /Test/
 
+.vscode/settings.json
+.vscode/settings.json
+.vscode/settings.json
+.vscode/settings.json

@@ -1,10 +1,11 @@
+using Business.ViewModels.CategoryViewModels;
 using Domain;
 using Domain.DTOs.ProductDTOs;
 
 namespace Business.ViewModels.ProductViewModels;
 
 
-public class ProductViewModel : ProductBaseViewModel
+public class ProductViewModel  
 {
     public int Id { get; set; }
     public string? Name { get; set; }
@@ -13,12 +14,17 @@ public class ProductViewModel : ProductBaseViewModel
     public int? Stock { get; set; }
     public double? AverageReviewScore { get; set; }
     public ProductStatus? Status { get; set; }
+    
+    public CategoryViewModel? Category { get; set; }
     public int? NoOfViews { get; set; }
     public int? NoOfPurchase { get; set; }
-    public int? NoOfReviews { get; set; }
+    
     public string? ImageUrl { get; set; }
-    public int? Rating { get; set; }
-    public int? ReviewCount { get; set; }
+    // public int? Rating { get; set; }
+    // public int? ReviewCount { get; set; }
+    // public int? NoOfReviews { get; set; }
+
+
 
 }
 

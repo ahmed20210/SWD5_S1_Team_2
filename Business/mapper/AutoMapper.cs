@@ -1,8 +1,7 @@
 ﻿
 
 using AutoMapper;
-using Domain.Entities;
-using Domain.DTOs.CategoryDTOs;
+
 namespace Business.mapper
 {
     

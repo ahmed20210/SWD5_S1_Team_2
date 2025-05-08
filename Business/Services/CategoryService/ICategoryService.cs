@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Business.ViewModels.CategoryViewModel;
+using Business.ViewModels.CategoryViewModels;
 using Domain.DTOs.CategoryDTOs;
 namespace Business.Services.CategoryService
 {

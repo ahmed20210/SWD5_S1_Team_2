@@ -1,132 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
-    
+
     // Create dummy product data
-    var products = new List<Business.ViewModels.ProductViewModels.ProductViewModel>
-    {
-        new Business.ViewModels.ProductViewModels.ProductViewModel {
-            Id = 1,
-            Name = "iPhone 12 Pro Max",
-            Description = "Latest Apple smartphone with advanced features",
-            Price = 1099.00M,
-            Stock = 15,
-            AverageReviewScore = 4.8,
-            Status = Domain.ProductStatus.Available,
-            NoOfViews = 3450,
-            NoOfPurchase = 723,
-            NoOfReviews = 142,
-            ImageUrl = "img/product-1.jpg",
-            Rating = 5,
-            ReviewCount = 99
-        },
-        new Business.ViewModels.ProductViewModels.ProductViewModel {
-            Id = 2,
-            Name = "Samsung Galaxy S21",
-            Description = "Flagship Android smartphone with high-end specs",
-            Price = 899.00M,
-            
-            Stock = 23,
-            AverageReviewScore = 4.5,
-            Status = Domain.ProductStatus.Available,
-            NoOfViews = 2890,
-            NoOfPurchase = 534,
-            NoOfReviews = 98,
-            ImageUrl = "img/product-2.jpg",
-            Rating = 4,
-            ReviewCount = 78
-        },
-        new Business.ViewModels.ProductViewModels.ProductViewModel {
-            Id = 3,
-            Name = "Dell XPS 13",
-            Description = "Premium ultrabook with InfinityEdge display",
-            Price = 1299.00M,
-            
-            Stock = 7,
-            AverageReviewScore = 4.6,
-            Status = Domain.ProductStatus.Available,
-            NoOfViews = 1678,
-            NoOfPurchase = 345,
-            NoOfReviews = 65,
-            ImageUrl = "img/product-3.jpg",
-            Rating = 3,
-            ReviewCount = 54
-        },
-        new Business.ViewModels.ProductViewModels.ProductViewModel {
-            Id = 4,
-            Name = "Sony WH-1000XM4",
-            Description = "Wireless noise-cancelling headphones",
-            Price = 349.00M,
-            Stock = 32,
-            AverageReviewScore = 4.9,
-            Status = Domain.ProductStatus.Available,
-            NoOfViews = 2345,
-            NoOfPurchase = 678,
-            NoOfReviews = 132,
-            ImageUrl = "img/product-4.jpg",
-            Rating = 3,
-            ReviewCount = 67
-        },
-        new Business.ViewModels.ProductViewModels.ProductViewModel {
-            Id = 5,
-            Name = "MacBook Pro 16-inch",
-            Description = "Powerful laptop for creative professionals",
-            Price = 2399.00M,
-            Stock = 5,
-            AverageReviewScore = 4.7,
-            Status = Domain.ProductStatus.Available,
-            NoOfViews = 1923,
-            NoOfPurchase = 289,
-            NoOfReviews = 56,
-            ImageUrl = "img/product-5.jpg",
-            Rating = 5,
-            ReviewCount = 45
-        },
-        new Business.ViewModels.ProductViewModels.ProductViewModel {
-            Id = 6,
-            Name = "iPad Pro 12.9",
-            Description = "High-performance tablet with Liquid Retina display",
-            Price = 999.00M,
-            Stock = 18,
-            AverageReviewScore = 4.8,
-            Status = Domain.ProductStatus.Available,
-            NoOfViews = 1567,
-            NoOfPurchase = 432,
-            NoOfReviews = 87,
-            ImageUrl = "img/product-6.jpg",
-            Rating = 4,
-            ReviewCount = 91
-        },
-        new Business.ViewModels.ProductViewModels.ProductViewModel {
-            Id = 7,
-            Name = "Logitech MX Master 3",
-            Description = "Advanced wireless mouse for productivity",
-            Price = 99.99M,
-            Stock = 42,
-            AverageReviewScore = 4.6,
-            Status = Domain.ProductStatus.Available,
-            NoOfViews = 3210,
-            NoOfPurchase = 876,
-            NoOfReviews = 176,
-            ImageUrl = "img/product-6.jpg",
-            Rating = 3,
-            ReviewCount = 72
-        },
-        new Business.ViewModels.ProductViewModels.ProductViewModel {
-            Id = 8,
-            Name = "Amazon Echo Dot",
-            Description = "Smart speaker with Alexa",
-            Price = 49.99M,
-            Stock = 65,
-            AverageReviewScore = 4.5,
-            Status = Domain.ProductStatus.Available,
-            NoOfViews = 4568,
-            NoOfPurchase = 2134,
-            NoOfReviews = 435,
-            ImageUrl = "img/product-8.jpg",
-            Rating = 2,
-            ReviewCount = 83
-        }
-    };
+
 }
 
 
@@ -140,7 +16,7 @@
 <partial name="_Categories" />
 
 <!-- Products Start -->
-<div class="container-fluid pt-5 pb-3">
+@* <div class="container-fluid pt-5 pb-3">
     <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Recent
             Products</span></h2>
     <div class="row px-xl-5">
@@ -149,5 +25,5 @@
             @await Html.PartialAsync("_ProductCard", product)
         }
     </div>
-</div>
+</div> *@
 <!-- Products End -->

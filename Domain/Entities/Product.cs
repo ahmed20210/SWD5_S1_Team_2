@@ -28,7 +28,9 @@ public class Product
     public int NoOfPurchase { get; set; }
     public int NoOfReviews { get; set; }
     public DateTime CreatedAt { get; set; }
-    
+
+    [MaxLength(500)]
+   public string? ImageUrl { get; set; } 
     public int CategoryId { get; set; }
     public Category Category { get; set; }
 

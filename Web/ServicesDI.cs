@@ -7,7 +7,7 @@ using Business.Services.DiscountService;
 using Business.Services.AccountService;
 using Business.Services.CategoryService;
 
-// using Business.Services.ProductService;
+using Business.Services.ProductService;
 
 public static class ServicesDI
 {
@@ -20,6 +20,6 @@ public static class ServicesDI
         services.AddScoped<IDiscountService, DiscountService>();
         services.AddScoped<IAccountService, AccountService>();
         services.AddScoped<ICategoryService, CategoryService>();
-        // services.AddScoped<IProductService, ProductService>();
+        services.AddScoped<IProductService, ProductService>();
     }
 }

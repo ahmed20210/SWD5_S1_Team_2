@@ -4,9 +4,7 @@ using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Web;
 using Infrastructure.Settings;
-using Microsoft.Extensions.Logging;
 using Business.Services.PaymentService;
-using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,10 +15,14 @@ builder.Logging.SetMinimumLevel(LogLevel.Warning);
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    
 builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
 builder.Services.AddAutoMapper(typeof(Business.mapper.AccountMapperProfile).Assembly);
+
+
 ServicesDI.AddServices(builder.Services);
 builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));

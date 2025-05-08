@@ -2,12 +2,9 @@ using Infrastructure.Settings;
 using Microsoft.AspNetCore.Http;
 using MimeKit;
 using MailKit.Net.Smtp;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using System.IO;
+
 using MailKit.Security;
 using Microsoft.Extensions.Options;
-using Microsoft.Extensions.Logging;
 
 namespace Business.Services.MailingService
 {

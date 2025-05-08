@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Infrastructure.Data; 
 using AutoMapper; 
 using Business.Services.CategoryService;
-using Business.ViewModels.CategoryViewModel;
+using Business.ViewModels.CategoryViewModels;
 
 namespace Web.Areas.Admin.Controllers 
 {
@@ -31,7 +31,7 @@ namespace Web.Areas.Admin.Controllers
             catch (Exception ex)
             {
                 TempData["Error"] = $"An error occurred while retrieving categories: {ex.Message}";
-                return View(new List<Business.ViewModels.CategoryViewModel.CategoryViewModel>());
+                return View(new List<CategoryViewModel>());
             }
         }
 
