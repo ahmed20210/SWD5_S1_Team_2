@@ -7,6 +7,7 @@ using Infrastructure.Settings;
 using Microsoft.Extensions.Logging;
 using Business.Services.PaymentService;
 using System;
+using Business.Services.OrderItemService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,8 @@ builder.Services.AddAutoMapper(typeof(Business.mapper.AccountMapperProfile).Asse
 ServicesDI.AddServices(builder.Services);
 builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+builder.Services.AddScoped<IOrderItemService, OrderItemService>();
+
 
 
 
