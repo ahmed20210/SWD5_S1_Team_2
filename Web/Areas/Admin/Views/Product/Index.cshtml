@@ -94,16 +94,16 @@
                         <label for="orderBy">Sort By</label>
                         <select class="form-control" id="orderBy" name="orderBy">
                            @foreach (OrderBy order in Enum.GetValues(typeof(OrderBy)))
+                            {
+                                if (ViewBag.OrderBy == order)
                                 {
-                                    if (Enum.TryParse<OrderBy>(ViewBag.OrderBy?.ToString(), out OrderBy selectedOrder) && order == selectedOrder)
-                                    {
-                                        <option value="@order" selected>@order</option>
-                                    }
-                                    else
-                                    {
-                                        <option value="@order">@order</option>
-                                    }
+                                    <option value="@order" selected>@order</option>
                                 }
+                                else
+                                {
+                                    <option value="@order">@order</option>
+                                }
+                            } 
                         </select>
                     </div>
                 </div>
