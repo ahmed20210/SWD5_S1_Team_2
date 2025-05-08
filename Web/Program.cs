@@ -57,3 +57,7 @@ app.MapControllerRoute(
     .WithStaticAssets();
 
 app.Run();
+
+app.MapControllerRoute(
+    name: "admin_area",
+    pattern: "{area=Admin}/{controller=User}/{action=Edit}/{id?}");

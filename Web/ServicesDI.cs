@@ -1,3 +1,4 @@
+
 namespace Web;
 using Business.Services.JwtService;
 // using Business.Services.OtpService;
@@ -6,6 +7,7 @@ using Business.Services.MailingService;
 using Business.Services.DiscountService;
 using Business.Services.AccountService;
 using Business.Services.CategoryService;
+using Business.Services.UserService;
 
 // using Business.Services.ProductService;
 
@@ -20,6 +22,8 @@ public static class ServicesDI
         services.AddScoped<IDiscountService, DiscountService>();
         services.AddScoped<IAccountService, AccountService>();
         services.AddScoped<ICategoryService, CategoryService>();
+        services.AddScoped<IUserService, UserService>();
+
         // services.AddScoped<IProductService, ProductService>();
     }
 }

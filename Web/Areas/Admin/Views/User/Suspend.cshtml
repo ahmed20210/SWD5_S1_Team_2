@@ -1,0 +1,17 @@
+﻿@model Domain.Entities.User
+
+@{
+    ViewData["Title"] = "Suspend User";
+}
+
+<h1>Suspend User</h1>
+
+<div class="alert alert-warning">
+    Are you sure you want to suspend the user <strong>@Model.FullName</strong>?
+</div>
+
+<form asp-action="Suspend" method="post">
+    <input type="hidden" name="id" value="@Model.Id" />
+    <button type="submit" class="btn btn-danger">Yes, Suspend</button>
+    <a href="@Url.Action("Index", "User")" class="btn btn-secondary">No, Back</a>
+</form>
