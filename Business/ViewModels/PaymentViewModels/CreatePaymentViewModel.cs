@@ -7,14 +7,12 @@ using System.Threading.Tasks;
 
 namespace Business.ViewModels.PaymentViewModels
 {
-    public class PaymentViewModel
+    public class CreatePaymentViewModel
     {
-        public int Id { get; set; }
         public string TransactionId { get; set; }
         public int OrderId { get; set; }
+        public int Amount { get; set; }
         public PaymentStatus Status { get; set; }
-        public DateTime Date { get; set; } = DateTime.UtcNow;
-        public decimal Amount { get; set; }
         public PaymentMethods Method { get; set; }
     }
 }
