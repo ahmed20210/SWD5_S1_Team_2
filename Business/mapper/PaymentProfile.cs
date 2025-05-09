@@ -14,8 +14,8 @@ namespace Business.mapper
         public PaymentProfile()
         {
             CreateMap<Payment, PaymentViewModel>().ReverseMap();
-           
+
         }
-    
+
     }
 }

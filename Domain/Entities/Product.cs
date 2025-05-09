@@ -24,10 +24,10 @@ public class Product
     public double AverageReviewScore { get; set; }
     
     public ProductStatus Status { get; set; }
-    public int NoOfViews { get; set; }
-    public int NoOfPurchase { get; set; }
-    public int NoOfReviews { get; set; }
-    public DateTime CreatedAt { get; set; }
+    public int NoOfViews { get; set; } = 0;
+    public int NoOfPurchase { get; set; } = 0;
+    public int NoOfReviews { get; set; } = 0;
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
     [MaxLength(500)]
    public string? ImageUrl { get; set; } 

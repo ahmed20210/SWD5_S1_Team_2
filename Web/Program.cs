@@ -4,7 +4,7 @@ using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Web;
 using Infrastructure.Settings;
-using Business.Services.PaymentService;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,11 +20,10 @@ builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<Appl
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddAutoMapper(typeof(Business.mapper.AccountMapperProfile).Assembly);
 
+MapperDi.AddMapper(builder.Services);
 
 ServicesDI.AddServices(builder.Services);
-builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 
 

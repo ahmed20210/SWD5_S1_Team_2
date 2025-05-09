@@ -9,7 +9,8 @@ public class ProductMapperProfile : Profile
     public ProductMapperProfile()
     {
         CreateMap<Product, ProductViewModel>();
-
+        CreateMap<CreateProductViewModel, Product>();
+        CreateMap<UpdateProductViewModel, Product>();
 
     }
 }

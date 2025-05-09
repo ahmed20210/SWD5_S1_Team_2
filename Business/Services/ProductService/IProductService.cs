@@ -17,6 +17,13 @@ namespace Business.Services.ProductService
             string? status = null
             );
             
+        Task<GenericResponse<ProductViewModel>> GetProductByIdAsync(int id);
+
+        Task<GenericResponse<ProductViewModel>> CreateProductAsync(CreateProductViewModel model);
+
+        Task<GenericResponse<ProductViewModel>> UpdateProductAsync(UpdateProductViewModel model);
+
+        Task<bool> DeleteProductAsync(int id);
         // Task<BaseResponse<Product>> GetProductByIdAsync(int id);
         
         // Task<BaseResponse> CreateProductAsync(ProductCreateViewModel model);

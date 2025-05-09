@@ -1,18 +1,18 @@
-
 using Business.Services.ProductService;
 using Microsoft.AspNetCore.Mvc;
-using Web.Models;
+using Business.ViewModels.ProductViewModels;
 using Domain;
 using Business.Services.CategoryService;
 
 namespace Web.Areas.Admin.Controllers;
 
 [Area("Admin")]
-
 public class ProductController : Controller
 {
     private readonly IProductService _productService;
     private readonly ICategoryService _categoryService;
+
+
     private const int DefaultPageSize = 10;
     private const int MaxPageSize = 50;
 
@@ -36,23 +36,19 @@ public class ProductController : Controller
         {
             var result = await _productService.GetProductsAsync(
             searchTerm, categoryId, orderBy, minPrice, maxPrice, pageNumber, pageSize, status);
+            
             ViewBag.SearchTerm = searchTerm;
             ViewBag.CategoryId = categoryId;
             ViewBag.OrderBy = orderBy;
             ViewBag.MinPrice = minPrice;
             ViewBag.MaxPrice = maxPrice;
-            ViewBag.PageNumber = pageNumber;
-            ViewBag.PageSize = pageSize;
             ViewBag.Status = status;
             ViewBag.Categories = await _categoryService.GetAllCategoriesAsync();
             ViewBag.TotalCount = result.TotalCount;
-            ViewBag.TotalPages = (int)Math.Ceiling((double)result.TotalCount / pageSize);
+            ViewBag.TotalPages = result.TotalPages;
             ViewBag.CurrentPage = pageNumber;
-            ViewBag.products = result.Data;
-
 
             return View(result.Data);
-
         }
         catch (Exception ex)
         {
@@ -60,56 +56,113 @@ public class ProductController : Controller
             TempData["Error"] = ex.Message;
             return View(new List<ProductViewModel>());
         }
-
-
-
-
     }
 
-    // [HttpGet]
-    // public async Task<IActionResult> Create()
-    // {
-    //     var categoriesResult = await _productService.GetCategoriesAsync();
+    [HttpGet]
+    public async Task<IActionResult> Create()
+    {
+        var categories = await _categoryService.GetAllCategoriesAsync();
+        ViewBag.Categories = categories;
+        return View();
+    }
 
-    //     if (!categoriesResult.IsSuccess)
-    //     {
-    //         TempData["Error"] = categoriesResult.ErrorMessage;
-    //         return View(new ProductCreateViewModel());
-    //     }
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Create(CreateProductViewModel model)
+    {
+       
 
-    //     var model = new ProductCreateViewModel
-    //     {
-    //         AvailableCategories = categoriesResult.Data
-    //     };
-    //     return View(model);
-    // }
+        var result = await _productService.CreateProductAsync(model);
 
-    // [HttpPost]
-    // [ValidateAntiForgeryToken]
-    // public async Task<IActionResult> Create(ProductCreateViewModel model)
-    //     {
-    //         if (!ModelState.IsValid)
-    //         {
-    //             var categoriesResult = await _productService.GetCategoriesAsync();
-    //     model.AvailableCategories = categoriesResult.IsSuccess? categoriesResult.Data : new List<Category>();
-    //             return View(model);
-    //         }
+        if (!result.Success)
+        {
+            TempData["Error"] = result.Message;
+           ViewBag.Categories = await _categoryService.GetAllCategoriesAsync(); 
+            return View(model);
+        }
 
-    //         var result = await _productService.CreateProductAsync(model);
+        return RedirectToAction(nameof(Index));
+    }
 
-    //         if (!result.IsSuccess)
-    //         {
-    //             TempData["Error"] = result.ErrorMessage;
-    //             var categoriesResult = await _productService.GetCategoriesAsync();
-    // model.AvailableCategories = categoriesResult.IsSuccess? categoriesResult.Data : new List<Category>();
-    //             return View(model);
-    //         }
+    [HttpGet]
+    public async Task<IActionResult> Edit(int id)
+    {
+        var result = await _productService.GetProductByIdAsync(id);
+        if (!result.Success)
+        {
+            TempData["Error"] = result.Message;
+            ViewBag.Categories = await _categoryService.GetAllCategoriesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        
 
-    //         return RedirectToAction(nameof(Index));
-    //     }
+       
 
+        return View(result.Data);
+    }
 
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Edit(UpdateProductViewModel model)
+    {
+        if (!ModelState.IsValid)
+        {
+            TempData["Error"] = "Invalid data";
+            ViewBag.Categories = await _categoryService.GetAllCategoriesAsync();
+            return View(model);
+        }
+
+        var result = await _productService.UpdateProductAsync(model);
+
+        if (!result.Success)
+        {
+            TempData["Error"] = result.Message;
+            ViewBag.Categories = await _categoryService.GetAllCategoriesAsync();
+            return View(model);
+        }
+
+        TempData["Success"] = "Product updated successfully";
+        return RedirectToAction(nameof(Index));
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Details(int id)
+    {
+        var result = await _productService.GetProductByIdAsync(id);
+        if (!result.Success)
+        {
+            TempData["Error"] = result.Message;
+            return RedirectToAction(nameof(Index));
+        }
+
+        return View(result.Data);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var result = await _productService.GetProductByIdAsync(id);
+        if (!result.Success)
+        {
+            TempData["Error"] = result.Message;
+            return RedirectToAction(nameof(Index));
+        }
+
+        return View(result.Data);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DeleteConfirmed(int id)
+    {
+        var result = await _productService.DeleteProductAsync(id);
+        if (!result)
+        {
+            TempData["Error"] = "Failed to delete the product";
+            return RedirectToAction(nameof(Index));
+        }
+
+        TempData["Success"] = "Product deleted successfully";
+        return RedirectToAction(nameof(Index));
+    }
 }
-/*
-
-*/

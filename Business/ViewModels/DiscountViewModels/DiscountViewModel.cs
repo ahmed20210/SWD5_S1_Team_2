@@ -1,12 +1,12 @@
 using System.ComponentModel.DataAnnotations;
-using Domain.DTOs.ProductDTOs;
+using Business.ViewModels.ProductViewModels;
 
 namespace Business.ViewModels.DiscountViewModels;
 
 public class DiscountViewModel 
 {
     public int Id { get; set; }
-    public ProductBaseViewModel? Product { get; set; }
+    public ProductViewModel? Product { get; set; }
     public int? ProductId { get; set; }
 
     public decimal Amount { get; set; }
