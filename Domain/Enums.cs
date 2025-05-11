@@ -69,6 +69,7 @@ public enum CouponStatus
 
 public enum ProductStatus
 {
+    Active,
     Available,
     OutOfStock,
 
