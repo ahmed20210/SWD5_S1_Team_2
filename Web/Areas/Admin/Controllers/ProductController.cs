@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Business.ViewModels.ProductViewModels;
 using Domain;
 using Business.Services.CategoryService;
+using AutoMapper;
 
 namespace Web.Areas.Admin.Controllers;
 
@@ -11,13 +12,16 @@ public class ProductController : Controller
 {
     private readonly IProductService _productService;
     private readonly ICategoryService _categoryService;
+    private readonly IMapper _mapper;
 
 
     private const int DefaultPageSize = 10;
     private const int MaxPageSize = 50;
 
-    public ProductController(IProductService productService, ICategoryService categoryService)
+    public ProductController(IProductService productService, ICategoryService categoryService, IMapper mapper)
     {
+        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+
         _productService = productService ?? throw new ArgumentNullException(nameof(productService));
         _categoryService = categoryService ?? throw new ArgumentNullException(nameof(categoryService));
     }
@@ -36,7 +40,7 @@ public class ProductController : Controller
         {
             var result = await _productService.GetProductsAsync(
             searchTerm, categoryId, orderBy, minPrice, maxPrice, pageNumber, pageSize, status);
-            
+
             ViewBag.SearchTerm = searchTerm;
             ViewBag.CategoryId = categoryId;
             ViewBag.OrderBy = orderBy;
@@ -70,14 +74,14 @@ public class ProductController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(CreateProductViewModel model)
     {
-       
+
 
         var result = await _productService.CreateProductAsync(model);
 
         if (!result.Success)
         {
             TempData["Error"] = result.Message;
-           ViewBag.Categories = await _categoryService.GetAllCategoriesAsync(); 
+            ViewBag.Categories = await _categoryService.GetAllCategoriesAsync();
             return View(model);
         }
 
@@ -87,42 +91,57 @@ public class ProductController : Controller
     [HttpGet]
     public async Task<IActionResult> Edit(int id)
     {
-        var result = await _productService.GetProductByIdAsync(id);
-        if (!result.Success)
+        try
         {
-            TempData["Error"] = result.Message;
+            var result = await _productService.GetProductByIdAsync(id);
+            if (!result.Success)
+            {
+                TempData["Error"] = result.Message;
+                return RedirectToAction(nameof(Index));
+            }
             ViewBag.Categories = await _categoryService.GetAllCategoriesAsync();
+
+            var updateProductViewModel = _mapper.Map<UpdateProductViewModel>(result.Data);
+
+            return View(updateProductViewModel);
+        }
+        catch (Exception ex)
+        {
+            TempData["Error"] = ex.Message;
             return RedirectToAction(nameof(Index));
         }
-        
-
-       
-
-        return View(result.Data);
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(UpdateProductViewModel model)
     {
-        if (!ModelState.IsValid)
+        try
         {
-            TempData["Error"] = "Invalid data";
-            ViewBag.Categories = await _categoryService.GetAllCategoriesAsync();
-            return View(model);
+            if (!ModelState.IsValid)
+            {
+                TempData["Error"] = "Invalid data";
+                ViewBag.Categories = await _categoryService.GetAllCategoriesAsync();
+                return View(model);
+            }
+
+            var result = await _productService.UpdateProductAsync(model);
+
+            if (!result.Success)
+            {
+                TempData["Error"] = result.Message;
+                ViewBag.Categories = await _categoryService.GetAllCategoriesAsync();
+                return View(model);
+            }
+
+            TempData["Success"] = "Product updated successfully";
+            return RedirectToAction(nameof(Index));
         }
-
-        var result = await _productService.UpdateProductAsync(model);
-
-        if (!result.Success)
+        catch (Exception ex)
         {
-            TempData["Error"] = result.Message;
-            ViewBag.Categories = await _categoryService.GetAllCategoriesAsync();
-            return View(model);
+            TempData["Error"] = ex.Message;
+            return RedirectToAction(nameof(Index));
         }
-
-        TempData["Success"] = "Product updated successfully";
-        return RedirectToAction(nameof(Index));
     }
 
     [HttpGet]

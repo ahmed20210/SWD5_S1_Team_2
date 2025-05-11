@@ -13,3 +13,15 @@ public enum OrderBy
     NewestAsc,
     NewestDesc
 }
+
+public enum FilterBy
+{
+    New,
+    Sale,
+    BestSeller,
+    Featured,
+    TopRated,
+
+    MostPopular,
+    MostReviewed,
+}

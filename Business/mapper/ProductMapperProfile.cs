@@ -11,6 +11,7 @@ public class ProductMapperProfile : Profile
         CreateMap<Product, ProductViewModel>();
         CreateMap<CreateProductViewModel, Product>();
         CreateMap<UpdateProductViewModel, Product>();
+        CreateMap<ProductViewModel, UpdateProductViewModel>();
 
     }
 }

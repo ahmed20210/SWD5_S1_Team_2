@@ -14,7 +14,9 @@ namespace Business.Services.ProductService
             decimal? maxPrice = null,
             int pageNumber = 1,
             int pageSize = 10,
-            string? status = null
+            string? status = null,
+            bool includeOutOfStock = false,
+            FilterBy filterBy = FilterBy.Featured
             );
             
         Task<GenericResponse<ProductViewModel>> GetProductByIdAsync(int id);

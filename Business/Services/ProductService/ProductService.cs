@@ -18,6 +18,8 @@ public class ProductService : IProductService
     private const int DefaultPageSize = 10;
     private const int MaxPageSize = 50;
 
+    private const int NewProductsDays = 30;
+
     public ProductService(ApplicationDbContext db, IMapper mapper, IStorageService storageService)
     {
         _db = db ?? throw new ArgumentNullException(nameof(db));
@@ -33,7 +35,9 @@ public class ProductService : IProductService
         decimal? maxPrice = null,
         int pageNumber = 1,
         int pageSize = DefaultPageSize,
-        string? status = null
+        string? status = null,
+        bool inluceOutOfStock = false,
+        FilterBy filterBy = FilterBy.Featured
         )
     {
 
@@ -43,7 +47,35 @@ public class ProductService : IProductService
         }
         pageSize = Math.Clamp(pageSize, 1, MaxPageSize);
 
-        var query = _db.Products.Include(p => p.Category).AsQueryable();
+        var query = _db.Products.Include(p => p.Category)
+            .Include(p => p.Discount)
+            .AsQueryable();
+
+        // Apply filters
+        switch (filterBy)
+        {
+            case FilterBy.New:
+                query =  FilterByNewProducts(query);
+                break;
+            case FilterBy.Sale:
+                query =  FilterByDiscountedProducts(query);
+                break;
+            case FilterBy.BestSeller:
+                query =  FilterByBestSellingProducts(query);
+                break;
+            case FilterBy.MostReviewed:
+                query =  FilterByMostReviewedProducts(query);
+                break;
+            case FilterBy.MostPopular:
+                query =  FilterByMostPopularProducts(query);
+                break;
+            case FilterBy.TopRated:
+                query =  FilterByTopRatedProducts(query);
+                break;
+            case FilterBy.Featured:
+                // No additional filtering needed for featured products
+                break;
+        }
 
         if (!string.IsNullOrWhiteSpace(searchTerm))
         {
@@ -81,13 +113,22 @@ public class ProductService : IProductService
             OrderBy.PopularityDesc => query.OrderByDescending(p => p.NoOfViews),
             _ => query.OrderBy(p => p.Name)
         };
+
+        // Apply filtering
+        if (status != null)
+        {
+            query = query.Where(p => p.Status.ToString().ToLower() == status.ToLower());
+        }
+        if (inluceOutOfStock)
+        {
+            query = query.Where(p => p.Stock > 0);
+        }
         int totalRecords = await query.CountAsync();
         int totalPages = (int)Math.Ceiling(totalRecords / (double)pageSize);
 
         var products = await query
             .Skip((pageNumber - 1) * pageSize)
             .Take(pageSize)
-            .Include(p => p.Category)
             .ProjectTo<ProductViewModel>(_mapper.ConfigurationProvider)
             .ToListAsync();
 
@@ -211,7 +252,45 @@ public class ProductService : IProductService
         await _db.SaveChangesAsync();
         return true;
     }
+    // ReturnedOrder query
+    private  IQueryable<Product> FilterByNewProducts(IQueryable<Product> query)
+    {
+        query = query.Where(p => p.CreatedAt >= DateTime.UtcNow.AddDays(-NewProductsDays));
+        return query;
+    }
 
+    private  IQueryable<Product> FilterByDiscountedProducts(IQueryable<Product> query)
+    {
+        query = query.Where(p => p.Discount != null && p.Discount.StartDate <= DateTime.UtcNow && p.Discount.EndDate >= DateTime.UtcNow)
+            .OrderByDescending(p =>  p.Discount.Amount);
+        return query;
+    }
+
+    private  IQueryable<Product> FilterByBestSellingProducts(IQueryable<Product> query)
+    {
+        query = query.OrderByDescending(p => p.NoOfPurchase);
+        return query;
+    }
+
+    private  IQueryable<Product> FilterByMostReviewedProducts(IQueryable<Product> query)
+    {
+        query = query.OrderByDescending(p => p.NoOfReviews);
+        return query;
+    }
+
+    private  IQueryable<Product> FilterByMostPopularProducts(IQueryable<Product> query)
+    {
+        query = query.OrderByDescending(p => p.NoOfViews);
+        return query;
+    }
+
+    private  IQueryable<Product> FilterByTopRatedProducts(IQueryable<Product> query)
+    {
+        query = query.
+            Where(p => p.AverageReviewScore > 2).
+            OrderByDescending(p => p.AverageReviewScore);
+        return query;
+    }
 
     //     public async Task<BaseResponse<List<Category>>> GetCategoriesAsync()
     //     {

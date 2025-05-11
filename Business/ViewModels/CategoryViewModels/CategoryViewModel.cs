@@ -7,12 +7,6 @@ namespace Business.ViewModels.CategoryViewModels
         public string Description { get; set; }
         public string ImagePath { get; set; }
     }
-
-   
-  
-
-
-
     public class DeleteCategoryViewModel
     {
         public int Id { get; set; }
