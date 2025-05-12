@@ -10,6 +10,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
     <PackageReference Include="MimeKit" Version="4.11.0" />
+    <PackageReference Include="Stripe.net" Version="48.1.0" />
     <PackageReference Include="supabase" Version="1.1.1" />
     <PackageReference Include="Supabase.Postgrest" Version="4.1.0" />
     <PackageReference Include="Supabase.Storage" Version="2.0.2" />

@@ -13,7 +13,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
+using Business.Services.OrderService;
+using Domain;
+using Microsoft.Extensions.Logging;
 
 namespace Business.Services.PaymentService
 {
@@ -21,12 +25,44 @@ namespace Business.Services.PaymentService
     {
         private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;
-        public PaymentService(ApplicationDbContext context, IMapper mapper)
+        private readonly IPaymentGatewayService _gateway;
+        private readonly ILogger<PaymentService> _logger;
+        private readonly IOrderService _orderService;
+        public PaymentService(ApplicationDbContext context, IMapper mapper ,  IOrderService orderService, ILogger<PaymentService>  logger , IPaymentGatewayService  gatway)
         {
             _context = context;
             _mapper = mapper;
+            _gateway = gatway;
+            _logger = logger;   
+            _orderService = orderService;
         }
+        public async Task<RefundResult> RefundPaymentAsync(string transactionId, decimal amount)
+        {
+            // 1. Validate payment exists
+            var payment = await _context.Payments
+                .FirstOrDefaultAsync(p => p.TransactionId == transactionId);
 
+            if (payment == null || payment.Status != PaymentStatus.Success)
+                return RefundResult.Failed("Invalid payment for refund");
+
+            // 2. Process refund
+            var refundResponse = await _gateway.RefundPaymentAsync(transactionId, amount);
+
+            if (!refundResponse.Success)
+                return RefundResult.Failed(refundResponse.ErrorMessage);
+
+            // 3. Update payment record (with null check)
+            payment.Status = PaymentStatus.Refunded;
+            payment.Amount = refundResponse.AmountRefunded ?? amount; // Fallback to original amount
+            payment.CreatedAt= DateTime.UtcNow;
+    
+            await _context.SaveChangesAsync();
+
+            return RefundResult.Success(
+                refundId: refundResponse.RefundId,
+                amountRefunded: refundResponse.AmountRefunded ?? amount
+            );
+        }
         public async Task<IEnumerable<PaymentViewModel>> GetAllAsync()
         {
             var payments = await _context.Payments.ToListAsync();
@@ -88,6 +124,58 @@ namespace Business.Services.PaymentService
             };
         }
 
+    public async Task<PaymentResult> ProcessAndVerifyPaymentAsync(CreatePaymentViewModel model)
+    {
+        try
+        {
+            // 1. Verify with payment gateway
+            var verification = await _gateway.VerifyPaymentAsync(model.TransactionId);
+            
+            if (!verification.IsValid)
+                return PaymentResult.Failed("Payment verification failed");
+            
+            if (verification.Amount != model.Amount)
+                return PaymentResult.Failed("Amount mismatch");
+            
+            // 2. Check for duplicate payment
+            var existingPayment = await _context.Payments
+                .FirstOrDefaultAsync(p => p.TransactionId == model.TransactionId);
+            
+            if (existingPayment != null)
+                return PaymentResult.Failed("Duplicate payment detected");
+            
+            // 3. Create payment record
+            var payment = new Payment
+            {
+                TransactionId = model.TransactionId,
+                OrderId = model.OrderId,
+                Amount = model.Amount,
+                Status = PaymentStatus.Success,
+                Method = model.Method,
+                CreatedAt = DateTime.UtcNow
+            };
+            
+            _context.Payments.Add(payment);
+            await _context.SaveChangesAsync();
+            
+            // 4. Complete the order
+            var orderResult = await _orderService.CompleteOrderAsync(model.OrderId);
+            if (!orderResult.Success)
+            {
+                // Compensating transaction
+                payment.Status = PaymentStatus.Failed;
+                await _context.SaveChangesAsync();
+                return PaymentResult.Failed($"Order processing failed");
+            }
+            
+            return PaymentResult.Success(payment.Id);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Payment processing failed");
+            return PaymentResult.Failed("System error during payment processing");
+        }
+    }
 
 
 

@@ -12,7 +12,7 @@ namespace Business.ViewModels.PaymentViewModels
         public int Id { get; set; }
         public string TransactionId { get; set; }
         public int OrderId { get; set; }
-        public int Amount { get; set; }
+        public decimal Amount { get; set; }
         public PaymentStatus Status { get; set; }
         public PaymentMethods Method { get; set; }
     }
