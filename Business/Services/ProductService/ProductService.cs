@@ -54,23 +54,23 @@ public class ProductService : IProductService
         // Apply filters
         switch (filterBy)
         {
-            case FilterBy.New:
-                query =  FilterByNewProducts(query);
+            case FilterBy.NewArrivals:
+                query = FilterByNewProducts(query);
                 break;
-            case FilterBy.Sale:
-                query =  FilterByDiscountedProducts(query);
+            case FilterBy.Discounted:
+                query = FilterByDiscountedProducts(query);
                 break;
-            case FilterBy.BestSeller:
-                query =  FilterByBestSellingProducts(query);
+            case FilterBy.BestSelling:
+                query = FilterByBestSellingProducts(query);
                 break;
             case FilterBy.MostReviewed:
-                query =  FilterByMostReviewedProducts(query);
+                query = FilterByMostReviewedProducts(query);
                 break;
             case FilterBy.MostPopular:
-                query =  FilterByMostPopularProducts(query);
+                query = FilterByMostPopularProducts(query);
                 break;
             case FilterBy.TopRated:
-                query =  FilterByTopRatedProducts(query);
+                query = FilterByTopRatedProducts(query);
                 break;
             case FilterBy.Featured:
                 // No additional filtering needed for featured products

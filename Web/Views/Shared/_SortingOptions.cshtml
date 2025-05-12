@@ -1,0 +1,55 @@
+<!-- Sorting Options Start -->
+<div class="d-flex align-items-center justify-content-between mb-4">
+    <div>
+        <button class="btn btn-sm btn-light"><i class="fa fa-th-large"></i></button>
+        <button class="btn btn-sm btn-light ml-2"><i class="fa fa-bars"></i></button>
+    </div>
+    <div class="ml-2">
+        <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-light dropdown-toggle"
+                data-toggle="dropdown">Sort By</button>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item @(ViewBag.OrderBy == Domain.OrderBy.NameAsc ? "active" : "")" 
+                   href="@Url.Action(ViewContext.RouteData.Values["action"].ToString(), new { orderBy = Domain.OrderBy.NameAsc, pageNumber = 1 })">
+                    Name (A-Z)
+                </a>
+                <a class="dropdown-item @(ViewBag.OrderBy == Domain.OrderBy.NameDesc ? "active" : "")" 
+                   href="@Url.Action(ViewContext.RouteData.Values["action"].ToString(), new { orderBy = Domain.OrderBy.NameDesc, pageNumber = 1 })">
+                    Name (Z-A)
+                </a>
+                <a class="dropdown-item @(ViewBag.OrderBy == Domain.OrderBy.PriceAsc ? "active" : "")" 
+                   href="@Url.Action(ViewContext.RouteData.Values["action"].ToString(), new { orderBy = Domain.OrderBy.PriceAsc, pageNumber = 1 })">
+                    Price (Low to High)
+                </a>
+                <a class="dropdown-item @(ViewBag.OrderBy == Domain.OrderBy.PriceDesc ? "active" : "")" 
+                   href="@Url.Action(ViewContext.RouteData.Values["action"].ToString(), new { orderBy = Domain.OrderBy.PriceDesc, pageNumber = 1 })">
+                    Price (High to Low)
+                </a>
+                <a class="dropdown-item @(ViewBag.OrderBy == Domain.OrderBy.NewestDesc ? "active" : "")" 
+                   href="@Url.Action(ViewContext.RouteData.Values["action"].ToString(), new { orderBy = Domain.OrderBy.NewestDesc, pageNumber = 1 })">
+                    Newest First
+                </a>
+                <a class="dropdown-item @(ViewBag.OrderBy == Domain.OrderBy.PopularityDesc ? "active" : "")" 
+                   href="@Url.Action(ViewContext.RouteData.Values["action"].ToString(), new { orderBy = Domain.OrderBy.PopularityDesc, pageNumber = 1 })">
+                    Most Popular
+                </a>
+            </div>
+        </div>
+        <div class="btn-group ml-2">
+            <button type="button" class="btn btn-sm btn-light dropdown-toggle"
+                data-toggle="dropdown">Show</button>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="@Url.Action(ViewContext.RouteData.Values["action"].ToString(), new { pageSize = 10, pageNumber = 1 })">
+                    10
+                </a>
+                <a class="dropdown-item" href="@Url.Action(ViewContext.RouteData.Values["action"].ToString(), new { pageSize = 20, pageNumber = 1 })">
+                    20
+                </a>
+                <a class="dropdown-item" href="@Url.Action(ViewContext.RouteData.Values["action"].ToString(), new { pageSize = 30, pageNumber = 1 })">
+                    30
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Sorting Options End -->

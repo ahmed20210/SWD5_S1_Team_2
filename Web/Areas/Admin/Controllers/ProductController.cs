@@ -4,6 +4,7 @@ using Business.ViewModels.ProductViewModels;
 using Domain;
 using Business.Services.CategoryService;
 using AutoMapper;
+using Web.Helpers;
 
 namespace Web.Areas.Admin.Controllers;
 
@@ -41,16 +42,20 @@ public class ProductController : Controller
             var result = await _productService.GetProductsAsync(
             searchTerm, categoryId, orderBy, minPrice, maxPrice, pageNumber, pageSize, status);
 
-            ViewBag.SearchTerm = searchTerm;
-            ViewBag.CategoryId = categoryId;
-            ViewBag.OrderBy = orderBy;
-            ViewBag.MinPrice = minPrice;
-            ViewBag.MaxPrice = maxPrice;
-            ViewBag.Status = status;
+            SetViewBag.SetViewBagData(
+                this,
+                searchTerm,
+                categoryId,
+                orderBy,
+                minPrice,
+                maxPrice,
+                status,
+                result.TotalCount,
+                result.TotalPages,
+                pageNumber
+            );
+
             ViewBag.Categories = await _categoryService.GetAllCategoriesAsync();
-            ViewBag.TotalCount = result.TotalCount;
-            ViewBag.TotalPages = result.TotalPages;
-            ViewBag.CurrentPage = pageNumber;
 
             return View(result.Data);
         }

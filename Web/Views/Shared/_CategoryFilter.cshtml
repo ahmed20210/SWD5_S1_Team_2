@@ -1,0 +1,75 @@
+<!-- Category Start -->
+<h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by category</span></h5>
+<div class="bg-light p-4 mb-30">
+    <form id="categoryFilterForm">
+        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+            <input type="checkbox" class="custom-control-input" id="category-all" checked 
+                onclick="clearCategoryFilter()">
+            <label class="custom-control-label" for="category-all">All Categories</label>
+        </div>
+        
+        @if (ViewBag.Categories != null)
+        {
+            foreach (var category in ViewBag.Categories)
+            {
+                <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                    <input type="checkbox" class="custom-control-input" id="category-@category.Id" name="category-filter"
+                           @(ViewBag.CategoryId == category.Id ? "checked" : "") 
+                           onclick="setCategoryFilter(@category.Id)">
+                    <label class="custom-control-label" for="category-@category.Id">@category.Name</label>
+                </div>
+            }
+        }
+        
+        <button type="button" class="btn btn-primary btn-sm mt-2" onclick="applyCategoryFilter()">Apply Filter</button>
+    </form>
+</div>
+<!-- Category End -->
+
+<script>
+    function clearCategoryFilter() {
+        // Uncheck all category checkboxes
+        document.querySelectorAll('input[name="category-filter"]').forEach(function(checkbox) {
+            checkbox.checked = false;
+        });
+    }
+    
+    function setCategoryFilter(categoryId) {
+        // Uncheck the "All" checkbox
+        document.getElementById('category-all').checked = false;
+        
+        // Make sure only one category is selected at a time (radio button behavior)
+        document.querySelectorAll('input[name="category-filter"]').forEach(function(checkbox) {
+            if (checkbox.id !== 'category-' + categoryId) {
+                checkbox.checked = false;
+            }
+        });
+    }
+    
+    function applyCategoryFilter() {
+        let categoryId = null;
+        
+        // Find the selected category
+        document.querySelectorAll('input[name="category-filter"]:checked').forEach(function(checkbox) {
+            categoryId = checkbox.id.replace('category-', '');
+        });
+        
+        // Get the current URL and parse its parameters
+        let url = new URL(window.location.href);
+        let params = new URLSearchParams(url.search);
+        
+        // Update or remove the categoryId parameter
+        if (categoryId && !document.getElementById('category-all').checked) {
+            params.set('categoryId', categoryId);
+        } else {
+            params.delete('categoryId');
+        }
+        
+        // Reset to page 1 when filtering
+        params.set('pageNumber', '1');
+        
+        // Construct the new URL with updated parameters
+        url.search = params.toString();
+        window.location.href = url.toString();
+    }
+</script>

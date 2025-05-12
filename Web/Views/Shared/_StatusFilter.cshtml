@@ -1,0 +1,85 @@
+<!-- Status Start -->
+<h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by status</span></h5>
+<div class="bg-light p-4 mb-30">
+    <form id="statusFilterForm">
+        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+            <input type="checkbox" class="custom-control-input" id="status-all" 
+                   @(string.IsNullOrEmpty(ViewBag.Status) ? "checked" : "")
+                   onclick="clearStatusFilter()">
+            <label class="custom-control-label" for="status-all">All Statuses</label>
+        </div>
+        
+        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+            <input type="checkbox" class="custom-control-input" id="status-available" name="status-filter" 
+                   @(ViewBag.Status == "Available" ? "checked" : "")
+                   onclick="setStatusFilter('Available')">
+            <label class="custom-control-label" for="status-available">Available</label>
+        </div>
+        
+        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+            <input type="checkbox" class="custom-control-input" id="status-featured" name="status-filter"
+                   @(ViewBag.Status == "Featured" ? "checked" : "")
+                   onclick="setStatusFilter('Featured')">
+            <label class="custom-control-label" for="status-featured">Featured</label>
+        </div>
+        
+        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+            <input type="checkbox" class="custom-control-input" id="status-bestseller" name="status-filter"
+                   @(ViewBag.Status == "BestSeller" ? "checked" : "")
+                   onclick="setStatusFilter('BestSeller')">
+            <label class="custom-control-label" for="status-bestseller">Best Seller</label>
+        </div>
+        
+        <button type="button" class="btn btn-primary btn-sm mt-2" onclick="applyStatusFilter()">Apply Filter</button>
+    </form>
+</div>
+<!-- Status End -->
+
+<script>
+    function clearStatusFilter() {
+        // Uncheck all status filter checkboxes
+        document.querySelectorAll('input[name="status-filter"]').forEach(function(checkbox) {
+            checkbox.checked = false;
+        });
+    }
+    
+    function setStatusFilter(status) {
+        // Uncheck the "All" checkbox
+        document.getElementById('status-all').checked = false;
+        
+        // Make sure only one status is selected at a time (radio button behavior)
+        document.querySelectorAll('input[name="status-filter"]').forEach(function(checkbox) {
+            if (checkbox.id !== 'status-' + status.toLowerCase()) {
+                checkbox.checked = false;
+            }
+        });
+    }
+    
+    function applyStatusFilter() {
+        let status = null;
+        
+        // Find the selected status
+        document.querySelectorAll('input[name="status-filter"]:checked').forEach(function(checkbox) {
+            const statusId = checkbox.id.replace('status-', '');
+            status = statusId.charAt(0).toUpperCase() + statusId.slice(1); // Capitalize first letter
+        });
+        
+        // Get the current URL and parse its parameters
+        let url = new URL(window.location.href);
+        let params = new URLSearchParams(url.search);
+        
+        // Update or remove the status parameter
+        if (status && !document.getElementById('status-all').checked) {
+            params.set('status', status);
+        } else {
+            params.delete('status');
+        }
+        
+        // Reset to page 1 when filtering
+        params.set('pageNumber', '1');
+        
+        // Construct the new URL with updated parameters
+        url.search = params.toString();
+        window.location.href = url.toString();
+    }
+</script>

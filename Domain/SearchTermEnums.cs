@@ -16,12 +16,11 @@ public enum OrderBy
 
 public enum FilterBy
 {
-    New,
-    Sale,
-    BestSeller,
     Featured,
-    TopRated,
-
+    NewArrivals,
+    BestSelling,
+    Discounted,
     MostPopular,
     MostReviewed,
+    TopRated
 }

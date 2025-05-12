@@ -1,0 +1,109 @@
+<!-- Price Start -->
+<h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by price</span></h5>
+<div class="bg-light p-4 mb-30">
+    <form id="priceFilterForm">
+        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+            <input type="checkbox" class="custom-control-input" id="price-all" checked 
+                onclick="clearPriceRange()">
+            <label class="custom-control-label" for="price-all">All Price</label>
+        </div>
+        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+            <input type="checkbox" class="custom-control-input" id="price-1" name="price-range" 
+                onclick="setPriceRange(0, 100)">
+            <label class="custom-control-label" for="price-1">$0 - $100</label>
+        </div>
+        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+            <input type="checkbox" class="custom-control-input" id="price-2" name="price-range"
+                onclick="setPriceRange(100, 200)">
+            <label class="custom-control-label" for="price-2">$100 - $200</label>
+        </div>
+        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+            <input type="checkbox" class="custom-control-input" id="price-3" name="price-range"
+                onclick="setPriceRange(200, 300)">
+            <label class="custom-control-label" for="price-3">$200 - $300</label>
+        </div>
+        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+            <input type="checkbox" class="custom-control-input" id="price-4" name="price-range"
+                onclick="setPriceRange(300, 400)">
+            <label class="custom-control-label" for="price-4">$300 - $400</label>
+        </div>
+        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
+            <input type="checkbox" class="custom-control-input" id="price-5" name="price-range"
+                onclick="setPriceRange(400, 99999)">
+            <label class="custom-control-label" for="price-5">$400 - Above</label>
+        </div>
+        
+        <hr />
+        
+        <div class="form-group mt-4">
+            <label for="minPrice">Min Price:</label>
+            <input type="number" class="form-control" id="minPrice" name="minPrice" 
+                value="@ViewBag.MinPrice">
+        </div>
+        <div class="form-group">
+            <label for="maxPrice">Max Price:</label>
+            <input type="number" class="form-control" id="maxPrice" name="maxPrice" 
+                value="@ViewBag.MaxPrice">
+        </div>
+        <button type="button" class="btn btn-primary btn-sm" onclick="applyPriceFilter()">Apply Filter</button>
+    </form>
+</div>
+<!-- Price End -->
+
+<script>
+    function clearPriceRange() {
+        // Uncheck all other price range checkboxes
+        document.querySelectorAll('input[name="price-range"]').forEach(function(checkbox) {
+            checkbox.checked = false;
+        });
+        
+        // Clear the input fields
+        document.getElementById('minPrice').value = '';
+        document.getElementById('maxPrice').value = '';
+    }
+    
+    function setPriceRange(min, max) {
+        // Uncheck the "All" checkbox
+        document.getElementById('price-all').checked = false;
+        
+        // Set min and max price
+        document.getElementById('minPrice').value = min;
+        document.getElementById('maxPrice').value = max === 99999 ? '' : max;
+    }
+    
+    function applyPriceFilter() {
+        const minPrice = document.getElementById('minPrice').value;
+        const maxPrice = document.getElementById('maxPrice').value;
+        
+        // Get the current URL and parse its parameters
+        let url = new URL(window.location.href);
+        let params = new URLSearchParams(url.search);
+        
+        // Update or add the minPrice parameter
+        if (minPrice) {
+            params.set('minPrice', minPrice);
+        } else {
+            params.delete('minPrice');
+        }
+        
+        // Update or add the maxPrice parameter
+        if (maxPrice) {
+            params.set('maxPrice', maxPrice);
+        } else {
+            params.delete('maxPrice');
+        }
+        
+        // Reset to page 1 when filtering
+        params.set('pageNumber', '1');
+        
+        // Construct the new URL with updated parameters
+        url.search = params.toString();
+        window.location.href = url.toString();
+    }
+    
+    // Handle form submission
+    document.getElementById('priceFilterForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        applyPriceFilter();
+    });
+</script>

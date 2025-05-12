@@ -11,13 +11,20 @@
         {
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <a class="text-decoration-none" href="">
-                    <div class="cat-item d-flex align-items-center mb-4">
-                        <div class="overflow-hidden" style="width: 100px; height: 100px;">
-                            <img class="img-fluid" src="@category.ImagePath" alt="@category.Name" />
+                    <div class="cat-item d-flex align-items-center mb-4 py-1 px-2"
+                    >
+                        <div class="overflow-hidden d-flex justify-content-center align-items-center"
+                        style="width:150px;height:100px;max-height: 100px;">
+                            <img  class="img-fluid "
+                            style="object-position: center;"
+                             src="@category.ImagePath" alt="@category.Name" />
                         </div>
                         <div class="flex-fill pl-3">
                             <h6>@category.Name</h6>
-                            <small class="text-body">@category.Description</small>
+                            <small class="text-body">
+                                @category.Description.Substring(0, Math.Min(20, category.Description.Length))...
+
+                            </small>
                         </div>
                     </div>
                 </a>

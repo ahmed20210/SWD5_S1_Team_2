@@ -28,19 +28,19 @@ public class HomeController : Controller
         try
         {
             var NewArrivals = await _productService.GetProductsAsync(
-               filterBy: FilterBy.New,
+               filterBy: FilterBy.NewArrivals,
                pageNumber: 1,
                pageSize: 12
            );
 
             var HotDeals = await _productService.GetProductsAsync(
-                filterBy: FilterBy.Sale,
+                filterBy: FilterBy.Discounted,
                 pageNumber: 1,
                 pageSize: 12
             );
 
             var BestSelling = await _productService.GetProductsAsync(
-                filterBy: FilterBy.BestSeller,
+                filterBy: FilterBy.BestSelling,
                 pageNumber: 1,
                 pageSize: 12
             );
