@@ -7,7 +7,7 @@ public enum PaymentStatus
     Refunded,
     Success,
     Canceled
-}
+} 
 public enum BoosterTypes
 {
     Discount,
