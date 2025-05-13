@@ -9,6 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using Business.ViewModels.PaymentViewModels;
+using Business.Services.PaymentService;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Business.Services.OrderService
 {
@@ -16,40 +19,89 @@ namespace Business.Services.OrderService
     {
         private readonly ApplicationDbContext _context;
         private readonly ILogger<OrderService> _logger;
-
-        public OrderService(ApplicationDbContext context)
+        private readonly IServiceProvider _serviceProvider;
+        private readonly IPaymentService _paymentService;
+        public OrderService(ApplicationDbContext context, IServiceProvider serviceProvider)
         {
             _context = context;
+            _serviceProvider = serviceProvider;
         }
 
-        public async Task CreateAsync(CreateOrderViewModel model)
+
+
+        public async Task<bool> CreateOrderAsync(CreateOrderViewModel model)
         {
-            var order = new Order
+            using var transaction = await _context.Database.BeginTransactionAsync();
+
+            try
             {
-                CustomerId = model.CustomerId,
-                TotalAmount = model.TotalAmount,
-                Date = DateTime.UtcNow,
-                OrderItems = model.Items.Select(i => new OrderItem
-                {
-                    ProductId = i.ProductId,
-                    Quantity = i.Quantity,
-                    TotalAmount = i.UnitPrice
-                }).ToList(),
+                // Validate Products
+                var productIds = model.Items.Select(i => i.ProductId).ToList();
+                var products = await _context.Products
+                    .Where(p => productIds.Contains(p.Id))
+                    .ToListAsync();
 
-                Payment = new Payment
+                if (products.Count != model.Items.Count)
+                    return false;
+
+                decimal total = 0;
+                var orderItems = new List<OrderItem>();
+
+                foreach (var item in model.Items)
                 {
-                    Amount = model.TotalAmount,
-                    Method = model.PaymentMethod,
-                    Status = PaymentStatus.Success,
-                    TransactionId = Guid.NewGuid().ToString(),
-                    CreatedAt = DateTime.UtcNow
+                    if (item.Quantity <= 0) return false;
+
+                    var product = products.First(p => p.Id == item.ProductId);
+                    var unitPrice = product.Price;
+
+                    var orderItem = new OrderItem
+                    {
+                        ProductId = product.Id,
+                        Quantity = item.Quantity,
+                        UnitPrice = unitPrice,
+                        TotalAmount = unitPrice * item.Quantity
+                    };
+
+                    total += orderItem.TotalAmount;
+                    orderItems.Add(orderItem);
                 }
-            };
 
-            _context.Orders.Add(order);
-            await _context.SaveChangesAsync();
+                // Create Order
+                var order = new Order
+                {
+                    CustomerId = model.CustomerId,
+                    Date = DateTime.UtcNow,
+                    TotalAmount = total,
+                    OrderItems = orderItems
+                };
+
+                _context.Orders.Add(order);
+                await _context.SaveChangesAsync();
+
+                // Create Payment
+                var payment = new CreatePaymentViewModel
+                {
+                    OrderId = order.Id,
+                    Amount = total,
+                    Method = model.PaymentMethod,
+                    Status = PaymentStatus.Pending
+                };
+
+                await _paymentService.CreateAsync(payment);
+
+                await transaction.CommitAsync();
+                return true;
+            }
+            catch
+            {
+                await transaction.RollbackAsync();
+                return false;
+            }
         }
-        public async Task<OrderCompletionResult> CompleteOrderAsync(int orderId)
+    
+
+
+public async Task<OrderCompletionResult> CompleteOrderAsync(int orderId)
         {
             await using var transaction = await _context.Database.BeginTransactionAsync();
         

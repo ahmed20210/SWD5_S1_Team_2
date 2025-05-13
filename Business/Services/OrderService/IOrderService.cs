@@ -9,7 +9,7 @@ namespace Business.Services.OrderService
 {
     public interface IOrderService
     {
-        Task CreateAsync(CreateOrderViewModel model);
+        Task<bool> CreateOrderAsync(CreateOrderViewModel model);
         Task<OrderCompletionResult> CompleteOrderAsync(int orderId);
     }
 

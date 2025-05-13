@@ -6,6 +6,7 @@ using Web;
 using Infrastructure.Settings;
 using Business.Services.StorageService;
 using Business.Services.OrderService;
+using Business.Services.PaymentService;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,7 +22,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
+
 
 
 MapperDi.AddMapper(builder.Services);

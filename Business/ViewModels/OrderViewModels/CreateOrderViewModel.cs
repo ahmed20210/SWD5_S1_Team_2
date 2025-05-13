@@ -11,13 +11,19 @@ namespace Business.ViewModels.CreateOrderViewModels
 {
     public class CreateOrderViewModel
     {
+        [Required]
         public string CustomerId { get; set; }
 
         [Required]
+        [MinLength(1)]
         public List<CreateOrderItemViewModel> Items { get; set; }
 
-        public PaymentMethods PaymentMethod { get; set; }
+        [Required]
+        [Range(1, double.MaxValue)]
+        public decimal TotalAmount { get; set; }
 
-        public int TotalAmount => Items.Sum(i => i.Quantity * i.UnitPrice);
+        [Required]
+        public PaymentMethods PaymentMethod { get; set; }
+        
     }
 }

@@ -9,6 +9,8 @@ public class OrderItem
     
     [Required]
     public decimal TotalAmount { get; set; }
+    [Required]
+    public decimal UnitPrice { get; set; }
 
     public int? DiscountId { get; set; }
     public Discount? Discount { get; set; }

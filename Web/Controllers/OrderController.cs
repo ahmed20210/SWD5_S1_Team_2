@@ -22,12 +22,15 @@ namespace Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateOrderViewModel model)
         {
-            if (!ModelState.IsValid)
-                return View(model);
+            if (!ModelState.IsValid) return View(model);
 
-            await _orderService.CreateAsync(model);
-            return RedirectToAction("Success"); 
+            var result = await _orderService.CreateOrderAsync(model);
+            if (!result)
+                return BadRequest("Not Valid");
+
+            return RedirectToAction("Index");
         }
+
     }
 
 }
