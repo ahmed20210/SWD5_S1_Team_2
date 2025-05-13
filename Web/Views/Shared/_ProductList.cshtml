@@ -24,7 +24,7 @@
                         
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <form id="favForm-@product.Id" method="post" style="display:inline;">
+                            <form class="fav btn" id="favForm-@product.Id" method="post" style="display:inline;">
                                 @Html.AntiForgeryToken()
                                 <input type="hidden" name="productId" value="@product.Id" />
                                 <input type="hidden" name="returnUrl" value="@Context.Request.Path@Context.Request.QueryString" />
