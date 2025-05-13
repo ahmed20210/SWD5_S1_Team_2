@@ -1,0 +1,250 @@
+@model Web.Models.FilterConfigViewModel
+
+<div class="mb-5">
+    <h5 class="font-weight-semi-bold mb-4">Filters</h5>
+    <div id="filterContainer">
+        @if (Model.ShowPriceFilter)
+        {
+            <!-- Include price filter without its form tag -->
+            <div id="price-filter-container">
+                <!-- Price Start -->
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by price</span></h5>
+                <div class="bg-light p-4 mb-30">
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" id="price-all" checked 
+                            onclick="clearPriceRange()">
+                        <label class="custom-control-label" for="price-all">All Price</label>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" id="price-1" name="price-range" 
+                            onclick="setPriceRange(0, 100)">
+                        <label class="custom-control-label" for="price-1">$0 - $100</label>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" id="price-2" name="price-range"
+                            onclick="setPriceRange(100, 200)">
+                        <label class="custom-control-label" for="price-2">$100 - $200</label>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" id="price-3" name="price-range"
+                            onclick="setPriceRange(200, 300)">
+                        <label class="custom-control-label" for="price-3">$200 - $300</label>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" id="price-4" name="price-range"
+                            onclick="setPriceRange(300, 400)">
+                        <label class="custom-control-label" for="price-4">$300 - $400</label>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
+                        <input type="checkbox" class="custom-control-input" id="price-5" name="price-range"
+                            onclick="setPriceRange(400, 99999)">
+                        <label class="custom-control-label" for="price-5">$400 - Above</label>
+                    </div>
+                    
+                    <hr />
+                    
+                    <div class="form-group mt-4">
+                        <label for="minPrice">Min Price:</label>
+                        <input type="number" class="form-control" id="minPrice" name="minPrice" 
+                            value="@ViewBag.MinPrice">
+                    </div>
+                    <div class="form-group">
+                        <label for="maxPrice">Max Price:</label>
+                        <input type="number" class="form-control" id="maxPrice" name="maxPrice" 
+                            value="@ViewBag.MaxPrice">
+                    </div>
+                </div>
+                <!-- Price End -->
+            </div>
+        }
+        
+        @if (Model.ShowCategoryFilter)
+        {
+            <!-- Include category filter without its form tag -->
+            <div id="category-filter-container">
+                <!-- Category Start -->
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by category</span></h5>
+                <div class="bg-light p-4 mb-30">
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" id="category-all" checked 
+                            onclick="clearCategoryFilter()">
+                        <label class="custom-control-label" for="category-all">All Categories</label>
+                    </div>
+                    
+                    @if (ViewBag.Categories != null)
+                    {
+                        foreach (var category in ViewBag.Categories)
+                        {
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" id="category-@category.Id" name="category-filter"
+                                       @(ViewBag.CategoryId == category.Id ? "checked" : "") 
+                                       onclick="setCategoryFilter(@category.Id)">
+                                <label class="custom-control-label" for="category-@category.Id">@category.Name</label>
+                            </div>
+                        }
+                    }
+                </div>
+                <!-- Category End -->
+            </div>
+        }
+        
+        @if (Model.ShowStatusFilter)
+        {
+            <!-- Include status filter without its form tag -->
+            <div id="status-filter-container">
+                <!-- Status Start -->
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by status</span></h5>
+                <div class="bg-light p-4 mb-30">
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" id="status-all" checked 
+                            onclick="clearStatusFilter()">
+                        <label class="custom-control-label" for="status-all">All Status</label>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" id="status-active" name="status-filter"
+                            @(ViewBag.Status == "Active" ? "checked" : "")
+                            onclick="setStatusFilter('Active')">
+                        <label class="custom-control-label" for="status-active">Active</label>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" id="status-inactive" name="status-filter"
+                            @(ViewBag.Status == "Inactive" ? "checked" : "")
+                            onclick="setStatusFilter('Inactive')">
+                        <label class="custom-control-label" for="status-inactive">Inactive</label>
+                    </div>
+                </div>
+                <!-- Status End -->
+            </div>
+        }
+        
+        <div class="d-flex justify-content-between mt-4">
+            <button type="button" onclick="applyAllFilters()" class="btn btn-primary">Apply All Filters</button>
+            <a href="@Url.Action(ViewContext.RouteData.Values["action"].ToString())" class="btn btn-secondary">Reset</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Price filter functions
+    function clearPriceRange() {
+        // Uncheck all other price range checkboxes
+        document.querySelectorAll('input[name="price-range"]').forEach(function(checkbox) {
+            checkbox.checked = false;
+        });
+        
+        // Clear the input fields
+        document.getElementById('minPrice').value = '';
+        document.getElementById('maxPrice').value = '';
+    }
+    
+    function setPriceRange(min, max) {
+        // Uncheck the "All" checkbox
+        document.getElementById('price-all').checked = false;
+        
+        // Set min and max price
+        document.getElementById('minPrice').value = min;
+        document.getElementById('maxPrice').value = max === 99999 ? '' : max;
+    }
+    
+    // Category filter functions
+    function clearCategoryFilter() {
+        // Uncheck all category checkboxes
+        document.querySelectorAll('input[name="category-filter"]').forEach(function(checkbox) {
+            checkbox.checked = false;
+        });
+    }
+    
+    function setCategoryFilter(categoryId) {
+        // Uncheck the "All" checkbox
+        document.getElementById('category-all').checked = false;
+        
+        // Make sure only one category is selected at a time (radio button behavior)
+        document.querySelectorAll('input[name="category-filter"]').forEach(function(checkbox) {
+            if (checkbox.id !== 'category-' + categoryId) {
+                checkbox.checked = false;
+            }
+        });
+    }
+    
+    // Status filter functions
+    function clearStatusFilter() {
+        // Uncheck all status checkboxes
+        document.querySelectorAll('input[name="status-filter"]').forEach(function(checkbox) {
+            checkbox.checked = false;
+        });
+    }
+    
+    function setStatusFilter(status) {
+        // Uncheck the "All" checkbox
+        document.getElementById('status-all').checked = false;
+        
+        // Make sure only one status is selected at a time (radio button behavior)
+        document.querySelectorAll('input[name="status-filter"]').forEach(function(checkbox) {
+            if (checkbox.id !== 'status-' + status.toLowerCase()) {
+                checkbox.checked = false;
+            }
+        });
+    }
+    
+    // Combined filter application function
+    function applyAllFilters() {
+        // Get the current URL and parse its parameters
+        let url = new URL(window.location.href);
+        let params = new URLSearchParams(url.search);
+        
+        // Apply price filter
+        if (document.getElementById('price-filter-container')) {
+            const minPrice = document.getElementById('minPrice').value;
+            const maxPrice = document.getElementById('maxPrice').value;
+            
+            if (minPrice && !document.getElementById('price-all').checked) {
+                params.set('minPrice', minPrice);
+            } else {
+                params.delete('minPrice');
+            }
+            
+            if (maxPrice && !document.getElementById('price-all').checked) {
+                params.set('maxPrice', maxPrice);
+            } else {
+                params.delete('maxPrice');
+            }
+        }
+        
+        // Apply category filter
+        if (document.getElementById('category-filter-container')) {
+            let categoryId = null;
+            
+            document.querySelectorAll('input[name="category-filter"]:checked').forEach(function(checkbox) {
+                categoryId = checkbox.id.replace('category-', '');
+            });
+            
+            if (categoryId && !document.getElementById('category-all').checked) {
+                params.set('categoryId', categoryId);
+            } else {
+                params.delete('categoryId');
+            }
+        }
+        
+        // Apply status filter
+        if (document.getElementById('status-filter-container')) {
+            let status = null;
+            
+            document.querySelectorAll('input[name="status-filter"]:checked').forEach(function(checkbox) {
+                status = checkbox.id.replace('status-', '');
+            });
+            
+            if (status && !document.getElementById('status-all').checked) {
+                params.set('status', status);
+            } else {
+                params.delete('status');
+            }
+        }
+        
+        // Reset to page 1 when filtering
+        params.set('pageNumber', '1');
+        
+        // Construct the new URL with updated parameters
+        url.search = params.toString();
+        window.location.href = url.toString();
+    }
+</script>

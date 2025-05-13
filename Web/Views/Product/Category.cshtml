@@ -1,6 +1,7 @@
 @model IEnumerable<Business.ViewModels.ProductViewModels.ProductViewModel>
 @{
-    var filterConfig = new Web.Models.FilterConfigViewModel(true, true, true);
+    var filterConfig = new Web.Models.FilterConfigViewModel(true, false, true);
+    var categoryName = ViewBag.CategoryName ?? "Category";
 }
 
 <!-- Breadcrumb Start -->
@@ -8,15 +9,14 @@
     <div class="row px-xl-5">
         <div class="col-12">
             <nav class="breadcrumb bg-light mb-30">
-                <a class="breadcrumb-item text-dark" href="/">Home</a> 
-                @* <a class="breadcrumb-item text-dark" href="#">Shop</a> *@
-                <span class="breadcrumb-item active">Shop Products</span>
+                <a class="breadcrumb-item text-dark" href="/">Home</a>
+                <a class="breadcrumb-item text-dark" href="/Product">Shop Products</a>
+                <span class="breadcrumb-item active">@categoryName</span>
             </nav>
         </div>
     </div>
 </div>
 <!-- Breadcrumb End -->
-
 
 <!-- Shop Start -->
 <div class="container-fluid">
@@ -26,7 +26,6 @@
             <partial name="_UnifiedFilter" model="filterConfig" />
         </div>
         <!-- Shop Sidebar End -->
-
 
         <!-- Shop Product Start -->
         <div class="col-lg-9 col-md-8">

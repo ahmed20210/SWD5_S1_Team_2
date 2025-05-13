@@ -35,9 +35,9 @@ public class ProductController : Controller
         string status = null)
     {
         var result = await _productService.GetProductsAsync(
-            searchTerm, categoryId, orderBy, minPrice, maxPrice, pageNumber, pageSize, status, 
+            searchTerm, categoryId, orderBy, minPrice, maxPrice, pageNumber, pageSize, status,
             filterBy: FilterBy.Featured);
-            
+
         if (!result.Success)
         {
             TempData["Error"] = result.Message;
@@ -75,7 +75,7 @@ public class ProductController : Controller
         var result = await _productService.GetProductsAsync(
             searchTerm, categoryId, orderBy, minPrice, maxPrice, pageNumber, pageSize, status,
             filterBy: FilterBy.Discounted);
-            
+
         if (!result.Success)
         {
             TempData["Error"] = result.Message;
@@ -99,7 +99,7 @@ public class ProductController : Controller
 
         return View(result.Data);
     }
-    
+
     public async Task<IActionResult> NewArrivals(
         string searchTerm = "",
         int? categoryId = null,
@@ -113,7 +113,7 @@ public class ProductController : Controller
         var result = await _productService.GetProductsAsync(
             searchTerm, categoryId, orderBy, minPrice, maxPrice, pageNumber, pageSize, status,
             filterBy: FilterBy.NewArrivals);
-            
+
         if (!result.Success)
         {
             TempData["Error"] = result.Message;
@@ -137,7 +137,7 @@ public class ProductController : Controller
 
         return View(result.Data);
     }
-    
+
     public async Task<IActionResult> BestSellers(
         string searchTerm = "",
         int? categoryId = null,
@@ -151,7 +151,7 @@ public class ProductController : Controller
         var result = await _productService.GetProductsAsync(
             searchTerm, categoryId, orderBy, minPrice, maxPrice, pageNumber, pageSize, status,
             filterBy: FilterBy.BestSelling);
-            
+
         if (!result.Success)
         {
             TempData["Error"] = result.Message;
@@ -162,6 +162,64 @@ public class ProductController : Controller
             this,
             searchTerm,
             categoryId,
+            orderBy,
+            minPrice,
+            maxPrice,
+            status,
+            result.TotalCount,
+            result.TotalPages,
+            pageNumber
+        );
+
+        ViewBag.Categories = await _categoryService.GetAllCategoriesAsync();
+
+        return View(result.Data);
+    }
+
+    public async Task<IActionResult> Detail(int id)
+    {
+        var result = await _productService.GetProductByIdAsync(id);
+        if (!result.Success)
+        {
+            TempData["Error"] = result.Message;
+            return RedirectToAction("Index");
+        }
+
+        var product = result.Data;
+
+        return View(product);
+    }
+
+    public async Task<IActionResult> Category(
+        int id,
+         string searchTerm = "",
+        OrderBy orderBy = OrderBy.NameAsc,
+        decimal? minPrice = null,
+        decimal? maxPrice = null,
+        int pageNumber = 1,
+        int pageSize = DefaultPageSize,
+        string status = null)
+    {
+        var result = await _productService.GetProductsAsync(
+            searchTerm, id, orderBy, minPrice, maxPrice, pageNumber, pageSize, status,
+            filterBy: FilterBy.NewArrivals);
+
+        if (!result.Success)
+        {
+            TempData["Error"] = result.Message;
+            return View(new List<ProductViewModel>());
+        }
+
+        // Get category name
+        var categoryResult = await _categoryService.GetCategoryByIdAsync(id);
+        
+            ViewBag.CategoryName = categoryResult?.Name;
+        
+
+        SetViewBag.SetViewBagData(
+            this,
+            searchTerm,
+            id,
             orderBy,
             minPrice,
             maxPrice,

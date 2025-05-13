@@ -12,10 +12,12 @@
                 <div class="product-img position-relative overflow-hidden">
                     <img class="img-fluid w-100" src="@product.ImageUrl" alt="@product.Name">
                     <div class="product-action">
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                        <a class="btn btn-outline-dark btn-square" href="javascript:void(0);" 
+                           onclick="addToCart('@product.Id', '@product.Name', @product.Price, '@product.ImageUrl')">
+                            <i class="fa fa-shopping-cart"></i>
+                        </a>
                         <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                        <a class="btn btn-outline-dark btn-square" href="/Product/Detail/@product.Id"><i class="fa fa-search"></i></a>
                     </div>
                 </div>
                 <div class="text-center py-4">
@@ -163,3 +165,12 @@
         </nav>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update cart count on page load
+            updateCartCount();
+        });
+    </script>
+}
