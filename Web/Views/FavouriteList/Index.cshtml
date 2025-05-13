@@ -1,3 +1,4 @@
+@model IEnumerable<Domain.Entities.Product>
 @{
     ViewData["Title"] = "My Favourite Products";
 }
@@ -20,207 +21,168 @@
             <div class="bg-light p-30 mb-5">
                 <div class="d-flex justify-content-between align-items-center ">
                     <h2 class="font-weight-semi-bold">My Favourite Products</h2>
-                    <span class="badge bg-primary rounded-pill d-flex justify-content-center align-items-center">3</span>
+                    <span class="badge bg-primary rounded-pill d-flex justify-content-center align-items-center">@Model?.Count() ?? 0</span>
                 </div>
                 
                 <!-- Favourite Products List -->
                 <div class="row favourite-items">
-                    <!-- Favourite Item 1 -->
-                    <div class="col-md-4 col-sm-6 mb-4">
-                        <div class="card product-item border-0 mb-4">
-                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <img class="img-fluid w-100" src="https://placeholder.pics/svg/300x300/DEDEDE/555555/Laptop" alt="Laptop">
-                                <div class="position-absolute top-0 end-0 p-2">
-                                    <button class="btn btn-sm btn-danger rounded-circle" title="Remove from favourites">
-                                        <i class="fa fa-times"></i>
-                                    </button>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var product in Model)
+                        {
+                            <div class="col-md-4 col-sm-6 mb-4">
+                                <div class="card product-item border-0 mb-4">
+                                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                        <img class="img-fluid w-100" src="@(string.IsNullOrEmpty(product.ImageUrl) ? $"https://placeholder.pics/svg/300x300/DEDEDE/555555/{product.Name}" : product.ImageUrl)" alt="@product.Name">
+                                        <div class="position-absolute top-0 end-0 p-2">
+                                            <form id="favForm-@product.Id" method="post">
+                                                @Html.AntiForgeryToken()
+                                                <input type="hidden" name="productId" value="@product.Id" />
+                                                <input type="hidden" name="returnUrl" value="@Context.Request.Path@Context.Request.QueryString" />
+                                                <button type="button" onclick="toggleFavorite('@product.Id', true)" class="btn btn-sm btn-danger rounded-circle" title="Remove from favourites">
+                                                    <i class="fa fa-times"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                        <h6 class="text-truncate mb-3">@product.Name</h6>
+                                        <div class="d-flex justify-content-center">
+                                            <h6>$@product.Price.ToString("0.00")</h6>
+                                            @if (product.Discount != null && product.Discount.Amount > 0)
+                                            {
+                                                var originalPrice = product.Price / (1 - product.Discount.Amount / 100);
+                                                <h6 class="text-muted ml-2"><del>$@originalPrice.ToString("0.00")</del></h6>
+                                            }
+                                        </div>
+                                        <div class="d-flex justify-content-center mb-1">
+                                            @{
+                                                var rating = product.AverageReviewScore;
+                                                for (int i = 1; i <= 5; i++)
+                                                {
+                                                    if (i <= Math.Floor(rating))
+                                                    {
+                                                        <small class="fa fa-star text-primary mr-1"></small>
+                                                    }
+                                                    else if (i <= Math.Ceiling(rating))
+                                                    {
+                                                        <small class="fa fa-star-half-alt text-primary mr-1"></small>
+                                                    }
+                                                    else
+                                                    {
+                                                        <small class="far fa-star text-primary mr-1"></small>
+                                                    }
+                                                }
+                                                <small>(@product.NoOfReviews)</small>
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="card-footer d-flex justify-content-between bg-light border">
+                                        <a href="/Product/Detail/@product.Id" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                                        <a href="javascript:void(0)" onclick="addToCart(@product.Id, 1)" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <h6 class="text-truncate mb-3">Premium Gaming Laptop</h6>
-                                <div class="d-flex justify-content-center">
-                                    <h6>$1299.00</h6><h6 class="text-muted ml-2"><del>$1499.00</del></h6>
-                                </div>
-                                <div class="d-flex justify-content-center mb-1">
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star-half-alt text-primary mr-1"></small>
-                                    <small>(152)</small>
-                                </div>
-                            </div>
-                            <div class="card-footer d-flex justify-content-between bg-light border">
-                                <a href="/Products/Details/1" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Favourite Item 2 -->
-                    <div class="col-md-4 col-sm-6 mb-4">
-                        <div class="card product-item border-0 mb-4">
-                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <img class="img-fluid w-100" src="https://placeholder.pics/svg/300x300/DEDEDE/555555/Smartphone" alt="Smartphone">
-                                <div class="position-absolute top-0 end-0 p-2">
-                                    <button class="btn btn-sm btn-danger rounded-circle" title="Remove from favourites">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <h6 class="text-truncate mb-3">Latest Android Smartphone</h6>
-                                <div class="d-flex justify-content-center">
-                                    <h6>$899.00</h6><h6 class="text-muted ml-2"><del>$999.00</del></h6>
-                                </div>
-                                <div class="d-flex justify-content-center mb-1">
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small>(204)</small>
-                                </div>
-                            </div>
-                            <div class="card-footer d-flex justify-content-between bg-light border">
-                                <a href="/Products/Details/2" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Favourite Item 3 -->
-                    <div class="col-md-4 col-sm-6 mb-4">
-                        <div class="card product-item border-0 mb-4">
-                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <img class="img-fluid w-100" src="https://placeholder.pics/svg/300x300/DEDEDE/555555/Headphones" alt="Headphones">
-                                <div class="position-absolute top-0 end-0 p-2">
-                                    <button class="btn btn-sm btn-danger rounded-circle" title="Remove from favourites">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <h6 class="text-truncate mb-3">Premium Wireless Headphones</h6>
-                                <div class="d-flex justify-content-center">
-                                    <h6>$249.00</h6><h6 class="text-muted ml-2"><del>$299.00</del></h6>
-                                </div>
-                                <div class="d-flex justify-content-center mb-1">
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="far fa-star text-primary mr-1"></small>
-                                    <small>(98)</small>
-                                </div>
-                            </div>
-                            <div class="card-footer d-flex justify-content-between bg-light border">
-                                <a href="/Products/Details/3" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                            </div>
-                        </div>
-                    </div>
+                        }
+                    }
                 </div>
 
-                <!-- Empty State (Hidden by default) -->
-                <div class="text-center py-5 d-none">
-                    <i class="fas fa-heart text-primary mb-4" style="font-size: 5rem;"></i>
-                    <h3 class="text-muted">Your favourites list is empty</h3>
-                    <p class="text-muted mb-4">Products you save to your favourites list will appear here</p>
-                    <a href="/Products" class="btn btn-primary rounded py-2 px-4">Browse Products</a>
-                </div>
+                <!-- Empty State (shows when no favorites) -->
+                @if (Model == null || !Model.Any())
+                {
+                    <div class="text-center py-5">
+                        <i class="fas fa-heart text-primary mb-4" style="font-size: 5rem;"></i>
+                        <h3 class="text-muted">Your favourites list is empty</h3>
+                        <p class="text-muted mb-4">Products you save to your favourites list will appear here</p>
+                        <a href="/Products" class="btn btn-primary rounded py-2 px-4">Browse Products</a>
+                    </div>
+                }
             </div>
         </div>
     </div>
 </div>
 
-<!-- Related Products -->
-<div class="container-fluid py-5">
-    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">You May Also Like</span></h2>
-    <div class="row px-xl-5">
-        <div class="col">
-            <div class="owl-carousel related-carousel">
-                <!-- Related Item 1 -->
-                <div class="product-item bg-light">
-                    <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="https://placeholder.pics/svg/300x300/DEDEDE/555555/Watch" alt="Smart Watch">
-                        <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="">Smart Watch Series 5</a>
-                        <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>$299.00</h5><h6 class="text-muted ml-2"><del>$359.00</del></h6>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-center mb-1">
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small>(125)</small>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Related Item 2 -->
-                <div class="product-item bg-light">
-                    <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="https://placeholder.pics/svg/300x300/DEDEDE/555555/Camera" alt="Digital Camera">
-                        <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="">Professional Digital Camera</a>
-                        <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>$549.00</h5><h6 class="text-muted ml-2"><del>$649.00</del></h6>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-center mb-1">
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star-half-alt text-primary mr-1"></small>
-                            <small>(87)</small>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Related Item 3 -->
-                <div class="product-item bg-light">
-                    <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="https://placeholder.pics/svg/300x300/DEDEDE/555555/Speaker" alt="Bluetooth Speaker">
-                        <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="">Portable Bluetooth Speaker</a>
-                        <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>$129.00</h5><h6 class="text-muted ml-2"><del>$159.00</del></h6>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-center mb-1">
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small>(112)</small>
-                        </div>
-                    </div>
+<!-- Related Products Section (only show if we have favorites) -->
+@if (Model != null && Model.Any())
+{
+    <div class="container-fluid py-5">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">You May Also Like</span></h2>
+        <div class="row px-xl-5">
+            <div class="col">
+                <div class="owl-carousel related-carousel">
+                    <!-- Related products will be loaded dynamically by JavaScript -->
                 </div>
             </div>
         </div>
     </div>
-</div>
+}
+
+@section Scripts {
+    <script>
+        // Function to add product to cart
+        function addToCart(productId, quantity) {
+            fetch('/Cart/AddToCart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                },
+                body: JSON.stringify({ productId: productId, quantity: quantity })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Update cart count or show notification
+                    updateCartCount();
+                    toastr.success('Product added to cart');
+                } else {
+                    toastr.error('Failed to add product to cart');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                toastr.error('An error occurred');
+            });
+        }
+
+        // Function to toggle favorites
+        function toggleFavorite(productId, isCurrentlyFavorite) {
+            const form = document.getElementById('favForm-' + productId);
+            const url = isCurrentlyFavorite ? '/FavouriteList/RemoveFromFavorites' : '/FavouriteList/AddToFavorites';
+            
+            form.action = url;
+            form.submit();
+        }
+
+        // Load related products - example of how you might fetch related products
+        document.addEventListener('DOMContentLoaded', function() {
+            if (document.querySelector('.owl-carousel')) {
+                // Initialize owl carousel if it exists
+                $(".owl-carousel").owlCarousel({
+                    loop: true,
+                    margin: 29,
+                    nav: true,
+                    autoplay: true,
+                    smartSpeed: 1000,
+                    responsive: {
+                        0: {
+                            items: 1
+                        },
+                        576: {
+                            items: 2
+                        },
+                        768: {
+                            items: 3
+                        },
+                        992: {
+                            items: 4
+                        }
+                    }
+                });
+
+                // You might want to load related products via AJAX
+                // This is just a placeholder for that functionality
+            }
+        });
+    </script>
+}

@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Infrastructure.Data;
 using Web.Helpers;
+using Business.Services.FavouriteListService;
+using System.Security.Claims;
 
 namespace Web.Controllers;
 
@@ -14,14 +16,16 @@ public class ProductController : Controller
     private readonly ApplicationDbContext _db;
     private readonly IProductService _productService;
     private readonly ICategoryService _categoryService;
+    private readonly IFavouriteListService _favouriteListService;
     private const int DefaultPageSize = 10;
     private const int MaxPageSize = 50;
 
-    public ProductController(ApplicationDbContext db, IProductService productService, ICategoryService categoryService)
+    public ProductController(ApplicationDbContext db, IProductService productService, ICategoryService categoryService, IFavouriteListService favouriteListService)
     {
         _db = db ?? throw new ArgumentNullException(nameof(db));
         _productService = productService ?? throw new ArgumentNullException(nameof(productService));
         _categoryService = categoryService ?? throw new ArgumentNullException(nameof(categoryService));
+        _favouriteListService = favouriteListService ?? throw new ArgumentNullException(nameof(favouriteListService));
     }
 
     public async Task<IActionResult> Index(
@@ -58,6 +62,14 @@ public class ProductController : Controller
         );
 
         ViewBag.Categories = await _categoryService.GetAllCategoriesAsync();
+
+        // Get user favorites if user is authenticated
+        if (User.Identity.IsAuthenticated)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var favorites = await _favouriteListService.GetUserFavouritesAsync(userId);
+            ViewBag.UserFavorites = favorites?.Select(p => p.Id).ToList();
+        }
 
         return View(result.Data);
     }
@@ -97,6 +109,14 @@ public class ProductController : Controller
 
         ViewBag.Categories = await _categoryService.GetAllCategoriesAsync();
 
+        // Get user favorites if user is authenticated
+        if (User.Identity.IsAuthenticated)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var favorites = await _favouriteListService.GetUserFavouritesAsync(userId);
+            ViewBag.UserFavorites = favorites?.Select(p => p.Id).ToList();
+        }
+
         return View(result.Data);
     }
 
@@ -134,6 +154,14 @@ public class ProductController : Controller
         );
 
         ViewBag.Categories = await _categoryService.GetAllCategoriesAsync();
+
+        // Get user favorites if user is authenticated
+        if (User.Identity.IsAuthenticated)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var favorites = await _favouriteListService.GetUserFavouritesAsync(userId);
+            ViewBag.UserFavorites = favorites?.Select(p => p.Id).ToList();
+        }
 
         return View(result.Data);
     }
@@ -173,6 +201,14 @@ public class ProductController : Controller
 
         ViewBag.Categories = await _categoryService.GetAllCategoriesAsync();
 
+        // Get user favorites if user is authenticated
+        if (User.Identity.IsAuthenticated)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var favorites = await _favouriteListService.GetUserFavouritesAsync(userId);
+            ViewBag.UserFavorites = favorites?.Select(p => p.Id).ToList();
+        }
+
         return View(result.Data);
     }
 
@@ -186,6 +222,14 @@ public class ProductController : Controller
         }
 
         var product = result.Data;
+
+        // Check if this product is in the user's favorites
+        if (User.Identity.IsAuthenticated)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var favorites = await _favouriteListService.GetUserFavouritesAsync(userId);
+            ViewBag.IsFavorite = favorites?.Any(p => p.Id == id) ?? false;
+        }
 
         return View(product);
     }
@@ -230,6 +274,14 @@ public class ProductController : Controller
         );
 
         ViewBag.Categories = await _categoryService.GetAllCategoriesAsync();
+
+        // Get user favorites if user is authenticated
+        if (User.Identity.IsAuthenticated)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var favorites = await _favouriteListService.GetUserFavouritesAsync(userId);
+            ViewBag.UserFavorites = favorites?.Select(p => p.Id).ToList();
+        }
 
         return View(result.Data);
     }

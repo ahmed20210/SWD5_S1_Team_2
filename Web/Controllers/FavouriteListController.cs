@@ -1,50 +1,50 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Domain.Entities;
-using Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
-using Web.Models;
 using System.Security.Claims;
+using Business.Services.FavouriteListService;
 
 namespace Web.Controllers
 {
     public class FavouriteListController : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IFavouriteListService _favouriteListService;
 
-        public FavouriteListController(ApplicationDbContext db)
+        public FavouriteListController(IFavouriteListService favouriteListService)
         {
-            _db = db ?? throw new ArgumentNullException(nameof(db));
+            _favouriteListService = favouriteListService ?? throw new ArgumentNullException(nameof(favouriteListService));
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetCount()
+        {
+            // If user is not logged in, return 0
+            if (!User.Identity.IsAuthenticated)
+            {
+                return Json(new { count = 0 });
+            }
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var favorites = await _favouriteListService.GetUserFavouritesAsync(userId);
+            
+            return Json(new { count = favorites?.Count() ?? 0 });
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddToFavorites(int productId)
+        public async Task<IActionResult> AddToFavorites(int productId, string returnUrl)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var product = await _db.Products.FindAsync(productId);
-            if (product == null)
+            var result = await _favouriteListService.AddToFavouritesAsync(userId, productId);
+            if (!result)
             {
                 return NotFound();
             }
 
-            var existingFavorite = await _db.FavouriteListS
-                .FirstOrDefaultAsync(f => f.UserId == userId && f.ProductId == productId);
-            if (existingFavorite != null)
+            if (!string.IsNullOrEmpty(returnUrl))
             {
-                return RedirectToAction(nameof(Index));
+                return Redirect(returnUrl);
             }
-
-            var favorite = new FavouriteList
-            {
-                UserId = userId,
-                ProductId = productId,
-                CreatedAt = DateTime.UtcNow
-            };
-
-            _db.FavouriteListS.Add(favorite);
-            await _db.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
         }
@@ -52,19 +52,20 @@ namespace Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RemoveFromFavorites(int productId)
+        public async Task<IActionResult> RemoveFromFavorites(int productId, string returnUrl)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var favorite = await _db.FavouriteListS
-                .FirstOrDefaultAsync(f => f.UserId == userId && f.ProductId == productId);
-            if (favorite == null)
+            var result = await _favouriteListService.RemoveFromFavouritesAsync(userId, productId);
+            if (!result)
             {
                 return NotFound();
             }
 
-            _db.FavouriteListS.Remove(favorite);
-            await _db.SaveChangesAsync();
+            if (!string.IsNullOrEmpty(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
 
             return RedirectToAction(nameof(Index));
         }
@@ -74,11 +75,7 @@ namespace Web.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var favorites = await _db.FavouriteListS
-                .Where(f => f.UserId == userId)
-                .Include(f => f.Product)
-                .Select(f => f.Product)
-                .ToListAsync();
+            var favorites = await _favouriteListService.GetUserFavouritesAsync(userId);
 
             return View(favorites);
         }

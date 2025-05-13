@@ -9,14 +9,48 @@
     {
         <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
             <div class="product-item bg-light mb-4">
-                <div class="product-img position-relative overflow-hidden">
-                    <img class="img-fluid w-100" src="@product.ImageUrl" alt="@product.Name">
+                <div
+                style="min-width: 100%; min-height: 300px;"
+                 class="product-img position-relative overflow-hidden">
+                    <img class="img-fluid w-100" 
+                   
+                    src="@product.ImageUrl != null ?? $"https://placeholder.pics/svg/300x300/DEDEDE/555555/{product.Name}"" 
+                    alt="@product.Name">
                     <div class="product-action">
                         <a class="btn btn-outline-dark btn-square" href="javascript:void(0);" 
                            onclick="addToCart('@product.Id', '@product.Name', @product.Price, '@product.ImageUrl')">
                             <i class="fa fa-shopping-cart"></i>
                         </a>
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                        
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <form id="favForm-@product.Id" method="post" style="display:inline;">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="productId" value="@product.Id" />
+                                <input type="hidden" name="returnUrl" value="@Context.Request.Path@Context.Request.QueryString" />
+                                @if (ViewBag.UserFavorites != null && ViewBag.UserFavorites.Contains(product.Id))
+                                {
+                                    <button type="button" onclick="toggleFavorite('@product.Id', true)" 
+                                            class="btn btn-outline-dark btn-square favorite-btn">
+                                        <i class="fas fa-heart text-danger"></i>
+                                    </button>
+                                }
+                                else
+                                {
+                                    <button type="button" onclick="toggleFavorite('@product.Id', false)" 
+                                            class="btn btn-outline-dark btn-square favorite-btn">
+                                        <i class="far fa-heart"></i>
+                                    </button>
+                                }
+                            </form>
+                        }
+                        else
+                        {
+                            <a class="btn btn-outline-dark btn-square" href="/Account/Login?returnUrl=@Context.Request.Path">
+                                <i class="far fa-heart"></i>
+                            </a>
+                        }
+                        
                         <a class="btn btn-outline-dark btn-square" href="/Product/Detail/@product.Id"><i class="fa fa-search"></i></a>
                     </div>
                 </div>
@@ -172,5 +206,14 @@
             // Update cart count on page load
             updateCartCount();
         });
+        
+        // Function to toggle favorites
+        function toggleFavorite(productId, isCurrentlyFavorite) {
+            const form = document.getElementById('favForm-' + productId);
+            const url = isCurrentlyFavorite ? '/FavouriteList/RemoveFromFavorites' : '/FavouriteList/AddToFavorites';
+            
+            form.action = url;
+            form.submit();
+        }
     </script>
 }

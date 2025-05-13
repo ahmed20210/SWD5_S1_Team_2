@@ -1,4 +1,3 @@
-
 namespace Web;
 using Business.Services.JwtService;
 using Business.Services.StorageService;
@@ -7,10 +6,10 @@ using Business.Services.DiscountService;
 using Business.Services.AccountService;
 using Business.Services.CategoryService;
 using Business.Services.UserService;
-
 using Business.Services.ProductService;
 using Business.Services.OrderItemService;
 using Business.Services.PaymentService;
+using Business.Services.FavouriteListService;
 
 public static class ServicesDI
 {
@@ -26,5 +25,6 @@ public static class ServicesDI
         services.AddScoped<IOrderItemService, OrderItemService>();
         services.AddScoped<IPaymentService, PaymentService>();
         services.AddScoped<IPaymentGatewayService, StripePaymentGatewayService>();
+        services.AddScoped<IFavouriteListService, FavouriteListService>();
     }
 }

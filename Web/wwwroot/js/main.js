@@ -105,6 +105,66 @@
 
 // Cart Management Functions
 
+// Function to update the favorites count in the navbar
+function updateFavoritesCount() {
+    fetch('/FavouriteList/GetCount', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Update the favorites count in the navbar
+        const favCountElements = document.querySelectorAll('.fav-count');
+        favCountElements.forEach(element => {
+            element.textContent = data.count;
+        });
+    })
+    .catch(error => console.error('Error fetching favorites count:', error));
+}
+
+// Function to toggle favorites
+function toggleFavorite(productId, isCurrentlyFavorite) {
+    const form = document.getElementById('favForm-' + productId);
+    const url = isCurrentlyFavorite ? '/FavouriteList/RemoveFromFavorites' : '/FavouriteList/AddToFavorites';
+    
+    form.action = url;
+    
+    // Submit form and update counts
+    fetch(url, {
+        method: 'POST',
+        body: new FormData(form)
+    })
+    .then(response => {
+        if (response.ok) {
+            // Update the favorites count
+            updateFavoritesCount();
+            
+            // Update UI for this specific button
+            const button = form.querySelector('button');
+            if (button) {
+                if (isCurrentlyFavorite) {
+                    button.innerHTML = '<i class="far fa-heart"></i>';
+                    button.onclick = function() { toggleFavorite(productId, false); };
+                } else {
+                    button.innerHTML = '<i class="fas fa-heart text-danger"></i>';
+                    button.onclick = function() { toggleFavorite(productId, true); };
+                }
+            }
+            
+            // If we're on the favorites page and removing items, consider refreshing
+            if (isCurrentlyFavorite && window.location.pathname.includes('/FavouriteList')) {
+                window.location.reload();
+            }
+        }
+    })
+    .catch(error => console.error('Error toggling favorite:', error));
+    
+    // Prevent default form submission
+    return false;
+}
+
 // Store product data in memory cache to avoid multiple API calls
 let productCache = {};
 
@@ -337,6 +397,9 @@ function updateCartSummary(subtotal) {
 document.addEventListener('DOMContentLoaded', function() {
     // Update cart count
     updateCartCount();
+    
+    // Update favorites count
+    updateFavoritesCount();
     
     // If we're on the cart page, load the cart items
     if (window.location.pathname.includes('/Cart')) {

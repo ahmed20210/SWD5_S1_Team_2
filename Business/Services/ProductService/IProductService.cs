@@ -18,7 +18,7 @@ namespace Business.Services.ProductService
             bool includeOutOfStock = false,
             FilterBy filterBy = FilterBy.Featured
             );
-            
+
         Task<GenericResponse<ProductViewModel>> GetProductByIdAsync(int id);
 
         Task<GenericResponse<ProductViewModel>> CreateProductAsync(CreateProductViewModel model);
@@ -26,10 +26,6 @@ namespace Business.Services.ProductService
         Task<GenericResponse<ProductViewModel>> UpdateProductAsync(UpdateProductViewModel model);
 
         Task<bool> DeleteProductAsync(int id);
-        // Task<BaseResponse<Product>> GetProductByIdAsync(int id);
-        
-        // Task<BaseResponse> CreateProductAsync(ProductCreateViewModel model);
-        
-        // Task<BaseResponse<List<Category>>> GetCategoriesAsync();
+
     }
 }
