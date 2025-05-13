@@ -7,7 +7,7 @@ public class Payment
     public string TransactionId { get; set; } 
     public int OrderId { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-    public int Amount { get; set; }  
+    public decimal Amount { get; set; }  
     public PaymentStatus Status { get; set; }
     public PaymentMethods Method { get; set; }
     
