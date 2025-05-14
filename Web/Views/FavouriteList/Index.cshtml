@@ -30,7 +30,7 @@
                     {
                         foreach (var product in Model)
                         {
-                            <div class="col-md-4 col-sm-6 mb-4">
+                            <div class="col-md-4 col-sm-6 mb-4" data-product-id="@product.Id">
                                 <div class="card product-item border-0 mb-4">
                                     <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                                         <img class="img-fluid w-100" src="@(string.IsNullOrEmpty(product.ImageUrl) ? $"https://placeholder.pics/svg/300x300/DEDEDE/555555/{product.Name}" : product.ImageUrl)" alt="@product.Name">
@@ -145,13 +145,61 @@
             });
         }
 
-        // Function to toggle favorites
+        // Function to toggle favorites using AJAX
         function toggleFavorite(productId, isCurrentlyFavorite) {
             const form = document.getElementById('favForm-' + productId);
             const url = isCurrentlyFavorite ? '/FavouriteList/RemoveFromFavorites' : '/FavouriteList/AddToFavorites';
             
-            form.action = url;
-            form.submit();
+            // Get form data for CSRF token
+            const formData = new FormData(form);
+            
+            // Submit form using AJAX instead of regular form submission
+            fetch(url, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Update the favorites count
+                    updateFavoritesCount();
+                    
+                    // If we're removing an item from favorites page, remove it from the DOM
+                    if (isCurrentlyFavorite) {
+                        const productCard = document.querySelector(`.col-md-4.col-sm-6[data-product-id="${productId}"]`);
+                        if (productCard) {
+                            // Animate the removal
+                            productCard.style.transition = 'opacity 0.3s ease';
+                            productCard.style.opacity = '0';
+                            
+                            // Remove after animation finishes
+                            setTimeout(() => {
+                                productCard.remove();
+                                
+                                // If no favorites left, show empty state
+                                const remainingFavs = document.querySelectorAll('.favourite-items .col-md-4');
+                                if (remainingFavs.length === 0) {
+                                    const emptyState = `
+                                        <div class="col-12 text-center py-5">
+                                            <i class="fas fa-heart text-primary mb-4" style="font-size: 5rem;"></i>
+                                            <h3 class="text-muted">Your favourites list is empty</h3>
+                                            <p class="text-muted mb-4">Products you save to your favourites list will appear here</p>
+                                            <a href="/Product" class="btn btn-primary rounded py-2 px-4">Browse Products</a>
+                                        </div>
+                                    `;
+                                    document.querySelector('.favourite-items').innerHTML = emptyState;
+                                }
+                            }, 300);
+                        }
+                    }
+                }
+            })
+            .catch(error => console.error('Error toggling favorite:', error));
+            
+            // Prevent default form submission
+            return false;
         }
 
         // Load related products - example of how you might fetch related products
@@ -179,9 +227,6 @@
                         }
                     }
                 });
-
-                // You might want to load related products via AJAX
-                // This is just a placeholder for that functionality
             }
         });
     </script>

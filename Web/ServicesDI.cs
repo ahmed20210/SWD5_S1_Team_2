@@ -22,6 +22,7 @@ public static class ServicesDI
         services.AddScoped<IAccountService, AccountService>();
         services.AddScoped<ICategoryService, CategoryService>();
         services.AddScoped<IProductService, ProductService>();
+        services.AddScoped<IProductImageUpdateService, ProductImageUpdateService>();
         services.AddScoped<IOrderItemService, OrderItemService>();
         services.AddScoped<IPaymentService, PaymentService>();
         services.AddScoped<IPaymentGatewayService, StripePaymentGatewayService>();

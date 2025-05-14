@@ -10,27 +10,27 @@
                 data-toggle="dropdown">Sort By</button>
             <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item @(ViewBag.OrderBy == Domain.OrderBy.NameAsc ? "active" : "")" 
-                   href="@Url.Action(ViewContext.RouteData.Values["action"].ToString(), new { orderBy = Domain.OrderBy.NameAsc, pageNumber = 1 })">
+                   href="javascript:void(0);" onclick="applySorting('@Domain.OrderBy.NameAsc')">
                     Name (A-Z)
                 </a>
                 <a class="dropdown-item @(ViewBag.OrderBy == Domain.OrderBy.NameDesc ? "active" : "")" 
-                   href="@Url.Action(ViewContext.RouteData.Values["action"].ToString(), new { orderBy = Domain.OrderBy.NameDesc, pageNumber = 1 })">
+                   href="javascript:void(0);" onclick="applySorting('@Domain.OrderBy.NameDesc')">
                     Name (Z-A)
                 </a>
                 <a class="dropdown-item @(ViewBag.OrderBy == Domain.OrderBy.PriceAsc ? "active" : "")" 
-                   href="@Url.Action(ViewContext.RouteData.Values["action"].ToString(), new { orderBy = Domain.OrderBy.PriceAsc, pageNumber = 1 })">
+                   href="javascript:void(0);" onclick="applySorting('@Domain.OrderBy.PriceAsc')">
                     Price (Low to High)
                 </a>
                 <a class="dropdown-item @(ViewBag.OrderBy == Domain.OrderBy.PriceDesc ? "active" : "")" 
-                   href="@Url.Action(ViewContext.RouteData.Values["action"].ToString(), new { orderBy = Domain.OrderBy.PriceDesc, pageNumber = 1 })">
+                   href="javascript:void(0);" onclick="applySorting('@Domain.OrderBy.PriceDesc')">
                     Price (High to Low)
                 </a>
                 <a class="dropdown-item @(ViewBag.OrderBy == Domain.OrderBy.NewestDesc ? "active" : "")" 
-                   href="@Url.Action(ViewContext.RouteData.Values["action"].ToString(), new { orderBy = Domain.OrderBy.NewestDesc, pageNumber = 1 })">
+                   href="javascript:void(0);" onclick="applySorting('@Domain.OrderBy.NewestDesc')">
                     Newest First
                 </a>
                 <a class="dropdown-item @(ViewBag.OrderBy == Domain.OrderBy.PopularityDesc ? "active" : "")" 
-                   href="@Url.Action(ViewContext.RouteData.Values["action"].ToString(), new { orderBy = Domain.OrderBy.PopularityDesc, pageNumber = 1 })">
+                   href="javascript:void(0);" onclick="applySorting('@Domain.OrderBy.PopularityDesc')">
                     Most Popular
                 </a>
             </div>
@@ -39,17 +39,45 @@
             <button type="button" class="btn btn-sm btn-light dropdown-toggle"
                 data-toggle="dropdown">Show</button>
             <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="@Url.Action(ViewContext.RouteData.Values["action"].ToString(), new { pageSize = 10, pageNumber = 1 })">
-                    10
-                </a>
-                <a class="dropdown-item" href="@Url.Action(ViewContext.RouteData.Values["action"].ToString(), new { pageSize = 30, pageNumber = 1 })">
-                    30
-                </a>
-                <a class="dropdown-item" href="@Url.Action(ViewContext.RouteData.Values["action"].ToString(), new { pageSize = 50, pageNumber = 1 })">
-                    50
-                </a>
+                <a class="dropdown-item" href="javascript:void(0);" onclick="changePageSize(10)">10</a>
+                <a class="dropdown-item" href="javascript:void(0);" onclick="changePageSize(30)">30</a>
+                <a class="dropdown-item" href="javascript:void(0);" onclick="changePageSize(50)">50</a>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    function applySorting(sortOrder) {
+        // Get the current URL and parse its parameters
+        let url = new URL(window.location.href);
+        let params = new URLSearchParams(url.search);
+        
+        // Update the orderBy parameter
+        params.set('orderBy', sortOrder);
+        
+        // Reset to page 1 when sorting
+        params.set('pageNumber', '1');
+        
+        // Construct the new URL with updated parameters
+        url.search = params.toString();
+        window.location.href = url.toString();
+    }
+    
+    function changePageSize(size) {
+        // Get the current URL and parse its parameters
+        let url = new URL(window.location.href);
+        let params = new URLSearchParams(url.search);
+        
+        // Update the pageSize parameter
+        params.set('pageSize', size);
+        
+        // Reset to page 1 when changing page size
+        params.set('pageNumber', '1');
+        
+        // Construct the new URL with updated parameters
+        url.search = params.toString();
+        window.location.href = url.toString();
+    }
+</script>
 <!-- Sorting Options End -->

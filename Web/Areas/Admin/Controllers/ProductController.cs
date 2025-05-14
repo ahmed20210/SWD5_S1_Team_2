@@ -5,6 +5,10 @@ using Domain;
 using Business.Services.CategoryService;
 using AutoMapper;
 using Web.Helpers;
+using Infrastructure.Data;
+using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+using System.IO;
 
 namespace Web.Areas.Admin.Controllers;
 
@@ -14,17 +18,17 @@ public class ProductController : Controller
     private readonly IProductService _productService;
     private readonly ICategoryService _categoryService;
     private readonly IMapper _mapper;
-
+    private readonly ApplicationDbContext _dbContext;
 
     private const int DefaultPageSize = 10;
     private const int MaxPageSize = 50;
 
-    public ProductController(IProductService productService, ICategoryService categoryService, IMapper mapper)
+    public ProductController(IProductService productService, ICategoryService categoryService, IMapper mapper, ApplicationDbContext dbContext)
     {
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-
         _productService = productService ?? throw new ArgumentNullException(nameof(productService));
         _categoryService = categoryService ?? throw new ArgumentNullException(nameof(categoryService));
+        _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
     }
 
     public async Task<IActionResult> Index(
@@ -79,8 +83,6 @@ public class ProductController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(CreateProductViewModel model)
     {
-
-
         var result = await _productService.CreateProductAsync(model);
 
         if (!result.Success)
@@ -189,4 +191,65 @@ public class ProductController : Controller
         TempData["Success"] = "Product deleted successfully";
         return RedirectToAction(nameof(Index));
     }
+
+    // [HttpGet]
+    // public async Task<IActionResult> UpdateEmptyProductImages()
+    // {
+    //     try
+    //     {
+    //         // Read all image URLs from the file
+    //         string filePath = Path.Combine(Directory.GetCurrentDirectory(), "ecommerce-photo-links.txt");
+    //         if (!System.IO.File.Exists(filePath))
+    //         {
+    //             TempData["Error"] = "Image URLs file not found.";
+    //             return RedirectToAction(nameof(Index));
+    //         }
+
+    //         string[] imageUrls = await System.IO.File.ReadAllLinesAsync(filePath);
+    //         if (imageUrls == null || imageUrls.Length == 0)
+    //         {
+    //             TempData["Error"] = "No image URLs found in the file.";
+    //             return RedirectToAction(nameof(Index));
+    //         }
+
+    //         // Get products with empty ImageUrl
+    //         var productsWithEmptyImages = await _dbContext.Products
+    //             .Where(p => p.ImageUrl == null || p.ImageUrl == string.Empty)
+    //             .ToListAsync();
+
+    //         if (productsWithEmptyImages.Count == 0)
+    //         {
+    //             TempData["Info"] = "No products found with empty image URLs.";
+    //             return RedirectToAction(nameof(Index));
+    //         }
+
+    //         int updatedCount = 0;
+    //         int urlIndex = 0;
+
+    //         // Update each product with an image URL in order
+    //         foreach (var product in productsWithEmptyImages)
+    //         {
+    //             if (urlIndex < imageUrls.Length)
+    //             {
+    //                 product.ImageUrl = imageUrls[urlIndex];
+    //                 urlIndex++;
+    //                 updatedCount++;
+    //             }
+    //             else
+    //             {
+    //                 break; // No more URLs available
+    //             }
+    //         }
+
+    //         await _dbContext.SaveChangesAsync();
+    //         TempData["Success"] = $"Successfully updated {updatedCount} products with image URLs.";
+    //         return RedirectToAction(nameof(Index));
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         TempData["Error"] = $"An error occurred: {ex.Message}";
+    //         return RedirectToAction(nameof(Index));
+    //     }
+    // }
+
 }

@@ -245,8 +245,7 @@ public class ProductController : Controller
         string status = null)
     {
         var result = await _productService.GetProductsAsync(
-            searchTerm, id, orderBy, minPrice, maxPrice, pageNumber, pageSize, status,
-            filterBy: FilterBy.NewArrivals);
+            searchTerm, id, orderBy, minPrice, maxPrice, pageNumber, pageSize, status);
 
         if (!result.Success)
         {

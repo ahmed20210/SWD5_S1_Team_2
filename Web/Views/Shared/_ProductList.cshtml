@@ -10,12 +10,16 @@
         <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
             <div class="product-item bg-light mb-4">
                 <div
-                style="min-width: 100%; min-height: 300px;"
-                 class="product-img position-relative overflow-hidden">
-                    <img class="img-fluid w-100" 
+                style="width: 100%; height: 250px;"
+                 class="product-img position-relative overflow-hidden d-flex align-items-start">
+                    <img 
+                    src="@product.ImageUrl"
+                    alt="@product.Name"
+                    class="d-block w-100" style="height: auto; object-fit:contain; object-position:center;">
+@* <img class="img-fluid w-100" 
                    
-                    src="@product.ImageUrl != null ?? $"https://placeholder.pics/svg/300x300/DEDEDE/555555/{product.Name}"" 
-                    alt="@product.Name">
+                    src="@product.ImageUrl ?? $"https://placeholder.pics/svg/300x300/DEDEDE/555555/{product.Name}"" 
+                    alt="@product.Name"> *@
                     <div class="product-action">
                         <a class="btn btn-outline-dark btn-square" href="javascript:void(0);" 
                            onclick="addToCart('@product.Id', '@product.Name', @product.Price, '@product.ImageUrl')">
@@ -24,25 +28,23 @@
                         
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <form class="fav btn" id="favForm-@product.Id" method="post" style="display:inline;">
+                            <div class="fav btn" id="favControl-@product.Id" style="display:inline;">
                                 @Html.AntiForgeryToken()
-                                <input type="hidden" name="productId" value="@product.Id" />
-                                <input type="hidden" name="returnUrl" value="@Context.Request.Path@Context.Request.QueryString" />
                                 @if (ViewBag.UserFavorites != null && ViewBag.UserFavorites.Contains(product.Id))
                                 {
-                                    <button type="button" onclick="toggleFavorite('@product.Id', true)" 
+                                    <button type="button" onclick="toggleFavoriteJS('@product.Id', true)" 
                                             class="btn btn-outline-dark btn-square favorite-btn">
                                         <i class="fas fa-heart text-danger"></i>
                                     </button>
                                 }
                                 else
                                 {
-                                    <button type="button" onclick="toggleFavorite('@product.Id', false)" 
+                                    <button type="button" onclick="toggleFavoriteJS('@product.Id', false)" 
                                             class="btn btn-outline-dark btn-square favorite-btn">
                                         <i class="far fa-heart"></i>
                                     </button>
                                 }
-                            </form>
+                            </div>
                         }
                         else
                         {
@@ -207,13 +209,52 @@
             updateCartCount();
         });
         
-        // Function to toggle favorites
-        function toggleFavorite(productId, isCurrentlyFavorite) {
-            const form = document.getElementById('favForm-' + productId);
+        // Function to toggle favorites using JavaScript/AJAX
+        function toggleFavoriteJS(productId, isCurrentlyFavorite) {
+            // Get the csrf token from any form on the page
+            const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
             const url = isCurrentlyFavorite ? '/FavouriteList/RemoveFromFavorites' : '/FavouriteList/AddToFavorites';
             
-            form.action = url;
-            form.submit();
+            // Create form data with the necessary information
+            const formData = new FormData();
+            formData.append('productId', productId);
+            formData.append('returnUrl', window.location.pathname + window.location.search);
+            formData.append('__RequestVerificationToken', token);
+            
+            // Submit form using fetch API
+            fetch(url, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Update the favorites count if function exists
+                    if (typeof updateFavoritesCount === 'function') {
+                        updateFavoritesCount();
+                    }
+                    
+                    // Update UI for this specific button
+                    const favControl = document.getElementById('favControl-' + productId);
+                    const button = favControl.querySelector('button');
+                    
+                    if (button) {
+                        if (isCurrentlyFavorite) {
+                            // Change to non-favorite state
+                            button.innerHTML = '<i class="far fa-heart"></i>';
+                            button.onclick = function() { toggleFavoriteJS(productId, false); return false; };
+                        } else {
+                            // Change to favorite state
+                            button.innerHTML = '<i class="fas fa-heart text-danger"></i>';
+                            button.onclick = function() { toggleFavoriteJS(productId, true); return false; };
+                        }
+                    }
+                }
+            })
+            .catch(error => console.error('Error toggling favorite:', error));
         }
     </script>
 }

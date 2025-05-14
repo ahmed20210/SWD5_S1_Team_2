@@ -1,0 +1,1438 @@
+Product Image URLs - Generated on 5/14/2025 6:29:55 PM
+
+
+== Category: Smartphones ==
+Product: Samsung Galaxy S24 (ID: 48)
+Image: download (9).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/e2f3cfa9-4c71-4931-95de-23a1032dc37b_download (9).jpeg
+
+Product: Samsung Galaxy S24 Plus (ID: 49)
+Image: obsidian-black-combo-1743508449331.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/6bd11dc9-2b30-4782-8db1-f6aebe7bbd33_obsidian-black-combo-1743508449331.png
+
+Product: Samsung Galaxy Z Fold 6 (ID: 50)
+Image: 20240619054335-61LVKXu1hOL._SX679_.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/6cd8279a-b124-4dd0-afc1-8c45b4b72041_20240619054335-61LVKXu1hOL._SX679_.jpg
+
+Product: Samsung Galaxy Z Flip 6 (ID: 51)
+Image: Best-Smartphones-for-photography-2024.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/2d65ca2a-0b5c-431d-b506-780f5fc841d3_Best-Smartphones-for-photography-2024.jpg
+
+Product: Samsung Galaxy A54 5G (ID: 52)
+Image: levanten-mobilephones-hero-2-m.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/fbe3d40c-dba2-45a7-8416-41ab1ffd0237_levanten-mobilephones-hero-2-m.jpg
+
+Product: Apple iPhone 16 (ID: 53)
+Image: download (7).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/37adb4d6-e870-4d93-9262-5a0acce9205a_download (7).jpeg
+
+Product: Apple iPhone 16 Pro (ID: 54)
+Image: Samsung-Galaxy-A36-7.jpg.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/2da471e0-aca5-42f3-8f07-e1939ab9236f_Samsung-Galaxy-A36-7.jpg.jpeg
+
+Product: Apple iPhone 16 Plus (ID: 55)
+Image: download (2).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/1a44b5b2-d080-4acb-9ed2-b104b0480cc0_download (2).jpeg
+
+Product: Apple iPhone 15 Pro Max (ID: 56)
+Image: Samsung-to-sell-Galaxy-A-series-smartphones-for-as-low-as-Rs-44-per-day-Know-how-deal-works.webp
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/cf4de19a-cd96-4dfb-8db2-39ac193fef73_Samsung-to-sell-Galaxy-A-series-smartphones-for-as
+
+Product: Google Pixel 9 (ID: 57)
+Image: Honor_X9C_Smart_XPRS.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/958bc0c0-c546-44df-8c52-bf18bb966e74_Honor_X9C_Smart_XPRS.png
+
+Product: Google Pixel 9 Pro (ID: 58)
+Image: Clearance-Smart-Home-Smart-Appliances-7-3-Inch-Android-13-Smart-Phone-16GB-Dual-SIM-Standby-7800mAh-5G-Network-Mobile-Phone_a18455b4-bb1a-4035-bd45-8a015890f94b.ce904cd67366593c04453350bd47c8c7.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/e67758b6-dcb4-4d28-9937-47660d526849_Clearance-Smart-Home-Smart-Appliances-7-3-Inch-And
+
+Product: Google Pixel 9 Pro XL (ID: 59)
+Image: 61cTi9MBqOL._AC_SL1500_.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/bdda8829-ae32-4f0c-bca6-72c50d01cf92_61cTi9MBqOL._AC_SL1500_.jpg
+
+Product: OnePlus 12 (ID: 60)
+Image: iPhone_11_Pro_Max_-_Black_-_Overlap_Trans-cropped_9f5a9ab5-8f9c-4d08-99f2-643f9c7caf24.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/820beae9-3407-4f4e-8922-9fb210cbb307_iPhone_11_Pro_Max_-_Black_-_Overlap_Trans-cropped_
+
+Product: OnePlus 12R (ID: 61)
+Image: OnePlus-13.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/8c7fcc1f-3052-49b5-b4b5-705888a089ab_OnePlus-13.png
+
+Product: Xiaomi 14 (ID: 62)
+Image: download (1).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/32bd0570-c733-4264-8dec-47d95825df6e_download (1).jpeg
+
+Product: Xiaomi 14 Ultra (ID: 63)
+Image: 645f90de29f5c012e57cc39e-unlocked-cellphone-6-52-inch-smart.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/fcae0d85-5f34-4f52-a8dc-a3c48d9cf507_645f90de29f5c012e57cc39e-unlocked-cellphone-6-52-i
+
+Product: Samsung Galaxy S24 (ID: 159)
+Image: download (6).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/7fa5266e-8d1b-444d-a4bd-41069fbce9ac_download (6).jpeg
+
+Product: Samsung Galaxy S24 Plus (ID: 160)
+Image: 645023_main.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/8c9fdfb8-6ae4-4ea8-993f-abfd4c554afe_645023_main.jpg
+
+Product: Samsung Galaxy Z Fold 6 (ID: 161)
+Image: download (3).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/23ef5e1a-da2c-4790-8b50-498ed54fe9c8_download (3).jpeg
+
+Product: Samsung Galaxy Z Flip 6 (ID: 162)
+Image: T-Mobile-Unlocked-Android-Phones-6-52-4G-Dual-Sim-Cell-Phone-Mobile-Smartphones-13MP-2MP-3GB-RAM-64GB-ROM-3250mAh-Type-C-Black_6d99811d-0a77-44cd-be76-d3719a033424.dbeca1559fe916121ca6dcea89cea9b2.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/8cc984b2-1a59-43b8-b9f5-4a2cbdf0aec3_T-Mobile-Unlocked-Android-Phones-6-52-4G-Dual-Sim-
+
+Product: Samsung Galaxy A54 5G (ID: 163)
+Image: 652451_main.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/3187b014-0ff0-43b9-8d34-aee54d061b42_652451_main.jpg
+
+Product: Apple iPhone 16 (ID: 164)
+Image: 6932169352970.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/eec16554-5ccf-433d-8e6b-4f7a56bdbbf4_6932169352970.jpg
+
+Product: Apple iPhone 16 Pro (ID: 165)
+Image: oppo-a3-white-1.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/db7f1d93-ee77-44c4-b50d-0f89eea42341_oppo-a3-white-1.jpg
+
+Product: Apple iPhone 16 Plus (ID: 166)
+Image: moto-g-stylus-5G_caramel_PRI.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/8edbd662-c8c4-40de-8c18-beb1fca7e30d_moto-g-stylus-5G_caramel_PRI.png
+
+Product: Apple iPhone 15 Pro Max (ID: 167)
+Image: 61qJX973fRL.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/6510b195-72ac-4dcb-9135-febef44e9a94_61qJX973fRL.jpg
+
+Product: Google Pixel 9 (ID: 168)
+Image: dark-blue-v1.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/3b646530-2bf0-4ef7-9f6e-3ece1d076b53_dark-blue-v1.png
+
+Product: Google Pixel 9 Pro (ID: 169)
+Image: download (8).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/9205bde1-5301-4842-80e5-a6098186e7fa_download (8).jpeg
+
+Product: Google Pixel 9 Pro XL (ID: 170)
+Image: Xiaomi-Poco-C75-6G_128GB-2410FPCC5G-Black-300x300.webp
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/abe9c7f8-a634-4a8f-8ff7-e621c53403cd_Xiaomi-Poco-C75-6G_128GB-2410FPCC5G-Black-300x300.
+
+Product: OnePlus 12 (ID: 171)
+Image: download (5).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/4c68e7a6-2544-4556-9f59-cbd97bd8a261_download (5).jpeg
+
+Product: OnePlus 12R (ID: 172)
+Image: apple-iphone-16-pro-desert-1_1.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/6c1adb32-10c9-4bbb-b7fc-4bd979682b34_apple-iphone-16-pro-desert-1_1.jpg
+
+Product: Xiaomi 14 (ID: 173)
+Image: 0004377_iphone-13_550.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/b5bf3e17-1189-4c4d-9806-784d7593beec_0004377_iphone-13_550.jpeg
+
+Product: Xiaomi 14 Ultra (ID: 174)
+Image: iPhone_13_-_Black_-_Overlap_Trans-cropped.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/bad0d3f0-ac41-4a04-9355-363a6d3fc932_iPhone_13_-_Black_-_Overlap_Trans-cropped.jpg
+
+Product: Galaxy Z Fold 6 (ID: 207)
+Image: pixel-8-pro.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/5d28078b-3ffd-4a83-a109-565f0e0bb8b1_pixel-8-pro.png
+
+Product: Samsung Galaxy S24 Ultra (ID: 217)
+Image: VivoY19sDualSIM_128GB6GBRam6.68Inch4GLTE_-Black_1.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/8897c589-3f11-4ce7-8ee5-8499d70f5313_VivoY19sDualSIM_128GB6GBRam6.68Inch4GLTE_-Black_1.
+
+Product: JBL Flip 6 (ID: 229)
+Image: d8289145-e25c-4a3a-9c75-d3321a415edd.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/f042b2fd-0930-4789-bd51-67e9a103f7da_d8289145-e25c-4a3a-9c75-d3321a415edd.jpg
+
+Product: Samsung Galaxy S24 Ultra (ID: 232)
+Image: XCM_CUTTLE_2169017_6508131_440x440_2X_en_AE._SS440_QL85_.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/bd9c2c37-8714-46f9-85bc-15cd162939f7_XCM_CUTTLE_2169017_6508131_440x440_2X_en_AE._SS440
+
+Product: iPhone 16 Pro Max (ID: 244)
+Image: Iphone-13-128GB-Midnight-MLPF3AAA-2.Years-Official-Warranty.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/dc84e9db-10bd-484e-a9c7-6ae9b7255f65_Iphone-13-128GB-Midnight-MLPF3AAA-2.Years-Official
+
+Product:   Elite44 (ID: 253)
+Image: white.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/7db77060-fcd6-46b5-9eb8-e9b1ecd9f708_white.png
+
+Product: Samsung  Air18 (ID: 282)
+Image: XCM_CUTTLE_2169017_6508130_440x440_2X_en_AE._SS440_QL85_.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/4f35cf8a-e8df-419f-a57c-be6cf1540acd_XCM_CUTTLE_2169017_6508130_440x440_2X_en_AE._SS440
+
+Product: Canon Smartphone Ultra5 (ID: 290)
+Image: i-phone14-pro-jpg-500x500.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/1cc97764-1680-4e6c-b6de-f3a77631e75b_i-phone14-pro-jpg-500x500.jpg
+
+Product: Sony  86 (ID: 293)
+Image: download (4).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/ef21a347-011d-4e4c-b072-1c1ef7a151a5_download (4).jpeg
+
+Product: Samsung Charger Plus29 (ID: 302)
+Image: 5a205312f1771e65169e726f58c93862.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/595d56c0-d034-447e-a43b-d640e8f778d4_5a205312f1771e65169e726f58c93862.jpg
+
+Product: Apple  78 (ID: 303)
+Image: pc1_2206bf5f-9380-445a-ba20-522ad39fef34.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/cdc0dc02-bc0e-4374-bf71-d8a7dc16a38e_pc1_2206bf5f-9380-445a-ba20-522ad39fef34.jpg
+
+Product:  Camera 20 (ID: 329)
+Image: download.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/1c16cb6f-062a-4c02-a6ca-f485ecc5b7a3_download.jpeg
+
+Product: Canon  98 (ID: 357)
+Image: VivoY19sDualSIM_128GB4GBRam6.68Inch4GLTE_-Black_4.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/40f442bd-c6e7-4293-9384-28a15d502877_VivoY19sDualSIM_128GB4GBRam6.68Inch4GLTE_-Black_4.
+
+Product: DJI Laptop Z9 (ID: 368)
+Image: iPhone_14_-_Black_-_Overlap_Trans-cropped_a3afa9da-f115-4a37-9ebc-6df335ac686f.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/ddfb3804-6c2d-47c9-9a07-c1a9bcdd54ab_iPhone_14_-_Black_-_Overlap_Trans-cropped_a3afa9da
+
+Product: Samsung Smartphone S87 (ID: 373)
+Image: 77611501-fdb0-4774-a6cc-2fd572125071.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/d0fc6aed-a251-433b-b117-8afdb7a54e5d_77611501-fdb0-4774-a6cc-2fd572125071.jpg
+
+Product: Logitech Smartwatch Max95 (ID: 376)
+Image: 2024-New-Smart-Phone-3GB-64GB-6-5-Inch-Original-Smart-Mobile-Phones-Android9-Cell-Phone-cellular-Low-Price-Mobile-Phone.webp
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/dde84ccf-7e5f-43df-a64f-ff577f0c2ff2_2024-New-Smart-Phone-3GB-64GB-6-5-Inch-Original-Sm
+
+Product: HP Charger Ultra14 (ID: 379)
+Image: 634d031dba8fe623b47893cc-smart-phone-android-8-1-smartphone-hd.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/c83f1a40-fbee-45b3-89a6-41ecd40d0472_634d031dba8fe623b47893cc-smart-phone-android-8-1-s
+
+Product: Canon Keyboard 98 (ID: 393)
+Image: Samsung_Galazy_Z_Fold_6_5G_silver_front1.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/53782f74-ffea-4e90-8d90-c04fd613fa06_Samsung_Galazy_Z_Fold_6_5G_silver_front1.png
+
+
+== Category: Laptops ==
+Product: Apple MacBook Air M2 15 (ID: 64)
+Image: cs2404g0018-700634-gl-cs-co-fy24q4-category-banner-aw-m16-r2-800x620-a.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/7e0d4854-37e1-4cf5-8144-ac9eb205fcea_cs2404g0018-700634-gl-cs-co-fy24q4-category-banner
+
+Product: Apple MacBook Pro 16 M3 Max (ID: 65)
+Image: images (9).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/02264418-1558-4e92-8c88-6e29e85b2d46_images (9).jpeg
+
+Product: Dell XPS 15 (ID: 66)
+Image: best-gaming-laptops-reddit-653965a256763.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/769c2173-d22e-41aa-bf64-aef5415efbcd_best-gaming-laptops-reddit-653965a256763.jpg
+
+Product: Dell Inspiron 16 (ID: 67)
+Image: Laptop.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/3b11fdd0-2e14-48f2-81fd-e015216a84c9_Laptop.jpg
+
+Product: Dell Alienware m18 (ID: 68)
+Image: 71OcNA-zY+L.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/5062d674-a2ee-4ab0-ae15-f40a18aed70f_71OcNA-zY+L.jpg
+
+Product: HP Spectre x360 14 (ID: 69)
+Image: UbMJMVGeKd2UvjMvkZZPX6.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/b89e3da5-7cb2-4fea-af3c-6f010cc0d448_UbMJMVGeKd2UvjMvkZZPX6.jpg
+
+Product: HP Envy 16 (ID: 70)
+Image: images (8).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/4c9edbd3-4db1-4e8a-8168-80ee720f1e94_images (8).jpeg
+
+Product: HP Omen 17 (ID: 71)
+Image: bestmobilelaptops.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/4a15f346-136c-4b5d-a015-f9cc5a6ff63d_bestmobilelaptops.jpg
+
+Product: Lenovo ThinkPad X1 Carbon Gen 12 (ID: 72)
+Image: download (1).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/645c4d18-9fd0-4ddd-97b1-9a25715ab377_download (1).jpeg
+
+Product: Lenovo Yoga 9i (ID: 73)
+Image: images (11).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/68608bb0-ae02-4480-810c-590b06a99ddd_images (11).jpeg
+
+Product: Asus ZenBook 14 OLED (ID: 74)
+Image: images (12).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/978b2357-5f5c-47cc-9b3a-8ec3459f4e1e_images (12).jpeg
+
+Product: Asus ROG Strix Scar 18 (ID: 75)
+Image: LekCjjpyVoWeFAJwZ79Tzc.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/e71b1ab6-5629-496f-96e5-6c83ac97a829_LekCjjpyVoWeFAJwZ79Tzc.jpg
+
+Product: Apple MacBook Air M2 15 (ID: 175)
+Image: download (3).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/b0519874-1d2a-4a17-a482-090c1cfe3075_download (3).jpeg
+
+Product: Apple MacBook Pro 16 M3 Max (ID: 176)
+Image: images (4).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/3ef69f92-1976-46dd-9b5e-5a93ba04eb46_images (4).jpeg
+
+Product: Dell XPS 15 (ID: 177)
+Image: images (1).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/442e0a9f-2288-49d0-9e2c-0eb0f0984753_images (1).jpeg
+
+Product: Dell Inspiron 16 (ID: 178)
+Image: powerful-graphics-laptops.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/f2350edb-8663-40d0-a4b7-90165d6f75ef_powerful-graphics-laptops.jpg
+
+Product: Dell Alienware m18 (ID: 179)
+Image: 9.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/04c8a959-d9b6-44f6-9dcf-936c8fb7a0dd_9.png
+
+Product: HP Spectre x360 14 (ID: 180)
+Image: 71XKLIqJe-L._AC_SL1500_.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/db448dec-8839-4b04-b21e-4b4afe5b431a_71XKLIqJe-L._AC_SL1500_.jpg
+
+Product: HP Envy 16 (ID: 181)
+Image: Used-Like-New-laptops-Elitebook-840-G1-140-Inch-High.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/48332dd3-eb0d-4f9b-a342-6ce65b16693f_Used-Like-New-laptops-Elitebook-840-G1-140-Inch-Hi
+
+Product: HP Omen 17 (ID: 182)
+Image: images (2).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/23fcf5e1-09fa-44e1-b1e3-e7f9f98ff4f8_images (2).jpeg
+
+Product: Lenovo ThinkPad X1 Carbon Gen 12 (ID: 183)
+Image: WL_PPH24_066_LenovoYoga_SnapdragonXElite_01-1.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/fdfd7e23-1454-44c1-945f-a02ccbe29bb5_WL_PPH24_066_LenovoYoga_SnapdragonXElite_01-1.jpg
+
+Product: Lenovo Yoga 9i (ID: 184)
+Image: images (10).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/51b41f81-7ba2-425b-9d4b-9e7f771e32fe_images (10).jpeg
+
+Product: Asus ZenBook 14 OLED (ID: 185)
+Image: 3kcgKLkfPRbskpsYzW239d.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/5bfc20bc-bb22-4d00-9d82-4a1323b48cc6_3kcgKLkfPRbskpsYzW239d.jpg
+
+Product: Asus ROG Strix Scar 18 (ID: 186)
+Image: hp-omnibook-ultra-flip-14 (1).png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/b6551414-4156-4115-9df0-9ccc30da8394_hp-omnibook-ultra-flip-14 (1).png
+
+Product: MacBook Pro 16 M3 (ID: 208)
+Image: c08192495_3_1_2 (1).png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/0ef5404c-ee88-4e5e-a76a-d63af622a3ed_c08192495_3_1_2 (1).png
+
+Product: Apple MacBook Air M2 13 (ID: 218)
+Image: h7RghmVhRSKgsqSpRCgiL.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/12cc1e58-a812-414d-a4b6-d1155145d1a4_h7RghmVhRSKgsqSpRCgiL.jpg
+
+Product: Nikon Z6 III (ID: 230)
+Image: 2in1-laptops-6761dc340fb22.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/3580f00a-4819-4e8b-b869-b2b296540c61_2in1-laptops-6761dc340fb22.jpg
+
+Product: Apple MacBook Pro 14 M3 (ID: 233)
+Image: xBest-laptops-in-2021-7-things-to-consider-when-buying-a-laptop.jpg.pagespeed.ic.9ZN_pp1y3L.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/bfc9585e-50a8-488c-a000-adf3428af2ab_xBest-laptops-in-2021-7-things-to-consider-when-bu
+
+Product: Dell XPS 13 Plus (ID: 245)
+Image: images.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/408fc15c-40bf-44f4-b43b-c9f167e0804e_images.jpeg
+
+Product: Lenovo ThinkPad 2501 (ID: 259)
+Image: laptop-min.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/de4c2bd8-9beb-41c2-a50e-df482672aa13_laptop-min.png
+
+Product: Samsung  Pro78 (ID: 260)
+Image: asus-zenbook-s16-275442374-16x9_0.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/0c1bcbc8-72cb-4f7f-8eb5-9ecbeecbd92e_asus-zenbook-s16-275442374-16x9_0.jpg
+
+Product: Logitech Charger Pro29 (ID: 270)
+Image: images (3).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/c2e5bd51-bbe8-4db4-81bb-ff62375c8e80_images (3).jpeg
+
+Product: Samsung Tablet 11 (ID: 274)
+Image: zm995-1_1 (1).jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/02688729-356e-4e0a-bd51-92bda596ddd8_zm995-1_1 (1).jpg
+
+Product: Apple Tablet Ultra48 (ID: 310)
+Image: cheapgaminglaptops-2048px-7981.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/a46813f9-4f41-4ff6-8354-b381dc3fcbff_cheapgaminglaptops-2048px-7981.jpg
+
+Product: Dell  Plus50 (ID: 316)
+Image: 1712114725000_1811272 (1).jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/af6320a3-4b9a-42e8-a7b8-def35b2716cf_1712114725000_1811272 (1).jpg
+
+Product: Apple  Elite64 (ID: 318)
+Image: 71TDkzdqOtL._AC_SL1500_.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/75e81964-06eb-4fd6-bda9-7ba80bd0c833_71TDkzdqOtL._AC_SL1500_.jpg
+
+Product: HP Console S59 (ID: 324)
+Image: images (6).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/56175188-d6dc-4cda-80de-648a8ec22f54_images (6).jpeg
+
+Product: Dell  S78 (ID: 327)
+Image: laptop.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/9b3ecdbe-a7eb-4bd8-8d08-d0d8c5f8200f_laptop.png
+
+Product: Logitech  Max38 (ID: 328)
+Image: 20200824120814.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/2b6376d9-7dcb-4011-b01e-f05f4bef0430_20200824120814.jpg
+
+Product: Apple  Air30 (ID: 330)
+Image: download (4).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/be794187-b75a-486f-a305-a3793367d93f_download (4).jpeg
+
+Product:  Camera Z74 (ID: 332)
+Image: 71iLL6Uek0L._AC_SL1500_.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/9378e79a-acc3-4414-a326-151d4d553def_71iLL6Uek0L._AC_SL1500_.jpg
+
+Product:  Laptop S82 (ID: 338)
+Image: download.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/2f5e9780-f6c1-45d0-9070-2db899f508ae_download.jpeg
+
+Product: Samsung Drone Air68 (ID: 344)
+Image: XPS17.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/ccf4ea72-19f1-4ba7-826d-295f8680d027_XPS17.jpg
+
+Product:  Laptop S85 (ID: 354)
+Image: 61gAULNPSKL._AC_SL1500_.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/e1c4ee8e-0309-4402-8184-3bbce7f36404_61gAULNPSKL._AC_SL1500_.jpg
+
+Product: Canon Camera 34 (ID: 356)
+Image: alienware-gaming-laptop.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/af8d7de7-ec6a-453d-be0b-a83e1bea18f7_alienware-gaming-laptop.jpg
+
+Product: Sony Laptop Air15 (ID: 361)
+Image: vkhrDjva6dxfQMn5sn3FKD.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/41021758-37f7-4fc3-ad39-2fbc6ee29e4b_vkhrDjva6dxfQMn5sn3FKD.jpg
+
+Product: Apple  Neo77 (ID: 388)
+Image: images (5).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/68505dcb-5640-445b-9a9c-49d9a7e4bd77_images (5).jpeg
+
+
+== Category: Televisions ==
+Product: LG G4 OLED 55 (ID: 76)
+Image: ba902359-5c70-49f8-81b4-44f8d116a34b.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/a89a2898-baff-4237-9ef5-4c75446d44d3_ba902359-5c70-49f8-81b4-44f8d116a34b.jpg
+
+Product: LG C4 OLED 77 (ID: 77)
+Image: tv494.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/b42ca8c5-44f0-4726-908c-4f5886da9c07_tv494.jpg
+
+Product: LG QNED85 65 (ID: 78)
+Image: PenjelasanSmartTVdanAndroidTV-845x455.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/736d8c7a-c128-4468-a45f-450d1ef17ba2_PenjelasanSmartTVdanAndroidTV-845x455.jpg
+
+Product: Samsung QN90C 55 (ID: 79)
+Image: 1-1680692961.webp
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/5a36ac3b-a650-4b8f-8dfa-27f678d62629_1-1680692961.webp
+
+Product: Samsung S95D OLED 65 (ID: 80)
+Image: SLE-55US800TCSB-2.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/1a64b644-19a0-46b8-8965-55ee375ecf64_SLE-55US800TCSB-2.jpg
+
+Product: Sony Bravia 8 55 (ID: 81)
+Image: SAMSUNG-32-Class-FHD-1080P-Smart-LED-TV-UN32N5300_2b2943fd-73d6-4d7b-9c54-e22db0c660f1_4.e79d68ec3a718064170de6cbd82e6030.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/cda67089-258c-44e6-beea-29e31dbe4641_SAMSUNG-32-Class-FHD-1080P-Smart-LED-TV-UN32N5300_
+
+Product: Sony XR A95L 65 (ID: 82)
+Image: f4a22705935a5501080736a4279370701f1bdb8273798bb4e8c106ed23ac13ed.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/e9dfd819-0536-4c3c-a527-01682471b362_f4a22705935a5501080736a4279370701f1bdb8273798bb4e8
+
+Product: TCL 6-Series 65R655 (ID: 83)
+Image: 2030600002775hh.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/dd8000b0-5cc0-4b47-a93e-1618dc68199b_2030600002775hh.jpg
+
+Product: TCL QM8 75 (ID: 84)
+Image: HT_2MDFTCLStreaming892X_DER-6cd22a15-2c68-47b3-94f3-25534e0c5c13.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/bce322ad-073c-44ec-aa33-ba19f90ea4ec_HT_2MDFTCLStreaming892X_DER-6cd22a15-2c68-47b3-94f
+
+Product: LG G4 OLED 55 (ID: 187)
+Image: Samsung-UHD-4K-Smart-TV-50-Inch-50DU7000-600x600.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/02321d56-9512-4363-b11c-3396de07e700_Samsung-UHD-4K-Smart-TV-50-Inch-50DU7000-600x600.p
+
+Product: LG C4 OLED 77 (ID: 188)
+Image: 6224002295064.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/0998cfab-7351-4ec6-855b-532fbd945e9a_6224002295064.png
+
+Product: LG QNED85 65 (ID: 189)
+Image: 0050247_wellsun-tv-43-inch-full-hd-smart-android_600.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/a43c9483-aea9-4101-ade5-f7df4ff0cf19_0050247_wellsun-tv-43-inch-full-hd-smart-android_6
+
+Product: Samsung QN90C 55 (ID: 190)
+Image: lg-65-inch-lg-oled-b4-4k-smart-tv-ai-magic-remote-dolby-vision-webos24-oled65b46la.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/c713eb74-a27b-4f1f-b482-8b62bfd88cce_lg-65-inch-lg-oled-b4-4k-smart-tv-ai-magic-remote-
+
+Product: Samsung S95D OLED 65 (ID: 191)
+Image: castle-tv-smart-43-inch-led-fhd-resolution-black_1.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/2660728c-efc1-474b-a1e5-468ef6c9ae45_castle-tv-smart-43-inch-led-fhd-resolution-black_1
+
+Product: Sony Bravia 8 55 (ID: 192)
+Image: gu43-du7179-uxzg-007-r-perspective2-black_i2th4jjfhimyezo1.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/b4e37d64-5fc4-4c77-a78f-cbe9088f4520_gu43-du7179-uxzg-007-r-perspective2-black_i2th4jjf
+
+Product: Sony XR A95L 65 (ID: 193)
+Image: 31720344-1.webp
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/65ee52cf-a764-4c50-ac8a-da3effca9ad4_31720344-1.webp
+
+Product: TCL 6-Series 65R655 (ID: 194)
+Image: 05e817c6bc030f333642c4368fd1a7abfc38573abe825b45f8e6c2ffdf308950.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/ef1240f8-8c60-488e-ab2c-3dc33b9aa3ab_05e817c6bc030f333642c4368fd1a7abfc38573abe825b45f8
+
+Product: TCL QM8 75 (ID: 195)
+Image: thum-1600x1062.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/1fc1431e-64fc-44d5-913f-b441a2a63423_thum-1600x1062.jpeg
+
+Product: Sony OLED 65A95K (ID: 209)
+Image: tornado-hd-smart-tv-32-inch-built-in-receiver-32es1500e.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/272d5466-1b90-40d0-b69b-0ec5c15d2aa0_tornado-hd-smart-tv-32-inch-built-in-receiver-32es
+
+Product: Sony Bravia XR 55A80L (ID: 219)
+Image: 2-1680692969.webp
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/019a3bc7-06b3-45d5-ac51-69440fd11fc9_2-1680692969.webp
+
+Product: Samsung Odyssey G9 (ID: 231)
+Image: 31720299.webp
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/81486fce-5905-4c91-8384-623e2a860d1d_31720299.webp
+
+Product: LG C4 OLED 65 (ID: 234)
+Image: pzkdv5o_rf9tkkt0xccipa1n.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/8d68fd91-5dcb-4d61-b209-d0e6968c2952_pzkdv5o_rf9tkkt0xccipa1n.jpeg
+
+Product: TCL 6-Series 55R655 (ID: 246)
+Image: SLE32S700TCS-2.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/9937cafc-ab0b-4120-ac35-10f48a401b81_SLE32S700TCS-2.jpg
+
+Product: HP  Max38 (ID: 257)
+Image: bae7bc14-dcc1-11ec-a0c8-f26ae8b7d411.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/564a18c1-f2c6-47ab-bec7-89731fa2df15_bae7bc14-dcc1-11ec-a0c8-f26ae8b7d411.jpg
+
+Product: HP  18 (ID: 286)
+Image: sharp-fhd-smart-frameless-tv-43-inch-built-in-receiver-2t-c43fg6ex.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/490e2ad3-797d-487c-ad63-00d54fa273a8_sharp-fhd-smart-frameless-tv-43-inch-built-in-rece
+
+Product: Apple Tablet 33 (ID: 294)
+Image: Samsung_65S90D_right_side.webp
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/08514e40-0d91-4849-9ead-d03cffbf1924_Samsung_65S90D_right_side.webp
+
+Product: Sony TV Pro55 (ID: 299)
+Image: castle-tv-smart-50-inch-led-4k-resolution-black.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/b2ee2e3a-9e5e-405b-90a1-cf8e88055ded_castle-tv-smart-50-inch-led-4k-resolution-black.jp
+
+Product: Anker  24 (ID: 335)
+Image: 3.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/91289d27-a29f-4b50-8fd7-8d5645c52c8e_3.jpg
+
+Product:   Max1 (ID: 341)
+Image: sharp-4k-smart-deep-chroma-frameless-tv-75-inch-built-in-receiver-4t-c75fn6ex.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/2888a633-11be-4b68-a00a-240e41ad8b27_sharp-4k-smart-deep-chroma-frameless-tv-75-inch-bu
+
+Product:  Laptop 18 (ID: 363)
+Image: 63-9749-1-700x700.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/47148ac2-b53c-4b77-ae64-263000c644c6_63-9749-1-700x700.jpeg
+
+Product: Wireless Device 4469 (ID: 369)
+Image: ua43du7000uxeg-main.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/14a6ee1a-e267-4a4f-afb7-f5b5e99acda2_ua43du7000uxeg-main.jpg
+
+Product:   Pro3 (ID: 371)
+Image: 6223007497725-_remove_3month_free_aplle_.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/6dd620e9-1677-46f6-a1a3-7d6eb2b6c9c0_6223007497725-_remove_3month_free_aplle_.jpg
+
+Product: HP  Plus45 (ID: 389)
+Image: 646380_main.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/f8fb2cd4-ff12-4fb6-81db-4e5ff68b3494_646380_main.jpg
+
+
+== Category: Audio Devices ==
+Product: Bose QuietComfort Ultra Earbuds (ID: 85)
+Image: A20-NexusGoFront.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/bc116c42-22f5-4200-b933-e597c2962b32_A20-NexusGoFront.png
+
+Product: Bose SoundLink Max (ID: 86)
+Image: Meteor_Mic_Front.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/7d01b120-252c-4838-b99f-3c55c7b6c59c_Meteor_Mic_Front.jpg
+
+Product: Sony WF-1000XM5 (ID: 87)
+Image: deity_microphones_dts0308d64_c20_1731373.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/8a879f39-8daf-443c-bd6d-dd411418716d_deity_microphones_dts0308d64_c20_1731373.jpg
+
+Product: Sony ULT Field 1 (ID: 88)
+Image: HH-Hand-Woman.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/7e618f46-abb1-4e8c-aeba-75fbe4919891_HH-Hand-Woman.jpg
+
+Product: JBL Live 3 Earbuds (ID: 89)
+Image: 888leftside.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/f035f32e-d7fa-4d06-b820-35228e73ed04_888leftside.png
+
+Product: JBL Boombox 3 (ID: 90)
+Image: a-phone-on-a-stand-being-used-as-a-microphone-with-some-sound-waves-coming-out-of-it-and-a-windows-11-laptop-blurred-in-the-background.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/e2ef5df0-cb30-4d9f-8e63-3066ff39835d_a-phone-on-a-stand-being-used-as-a-microphone-with
+
+Product: Sennheiser Accentum Plus (ID: 91)
+Image: mixpre3_ii_angle.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/343e81ce-7714-43ba-8740-20636533d1d1_mixpre3_ii_angle.jpeg
+
+Product: Sennheiser HD 660S2 (ID: 92)
+Image: 888stack.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/3e1f3871-d46d-46f7-89c1-c85db88dded0_888stack.png
+
+Product: Anker Soundcore Space Q45 (ID: 93)
+Image: Sound-Devices-888-Right-Side.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/77372a25-1506-41c1-816e-2e91a56c565c_Sound-Devices-888-Right-Side.jpg
+
+Product: Anker Soundcore Liberty 4 NC (ID: 94)
+Image: ph-packshot-roger-on-front-perspective1-056-3010-p5-ne.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/20cceacc-cc5a-491c-8ee2-28daac5179e9_ph-packshot-roger-on-front-perspective1-056-3010-p
+
+Product: Bose QuietComfort Ultra Earbuds (ID: 196)
+Image: A20-Nexus-Go-Front.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/92eafe04-6937-4cf5-9c96-723a3077653e_A20-Nexus-Go-Front.jpg
+
+Product: Bose SoundLink Max (ID: 197)
+Image: 93-533_01.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/bb236535-2051-42a2-8e65-2f325f7ab0c4_93-533_01.jpg
+
+Product: Sony WF-1000XM5 (ID: 198)
+Image: A20 Nexus Sound Devices.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/b34070ff-9df5-4b06-b493-d973b79c1abe_A20 Nexus Sound Devices.png
+
+Product: Sony ULT Field 1 (ID: 199)
+Image: stock-photo-this-audio-device-is-a-combination-of-two-devices-audio-output-devices-and-microphones-audio-2210647363.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/d93838ec-964d-4ae4-8a1a-d040802bccab_stock-photo-this-audio-device-is-a-combination-of-
+
+Product: JBL Live 3 Earbuds (ID: 200)
+Image: neewer-cm28-wireless-lavalier-lapel-microphone-charging-case-camerastuff-online-shop-2-787.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/cac69a6b-8108-412c-b919-68420e109546_neewer-cm28-wireless-lavalier-lapel-microphone-cha
+
+Product: JBL Boombox 3 (ID: 201)
+Image: ph-packshot-roger-family-p5.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/32482bb5-5db3-4bdb-bf9c-06fc424d7c93_ph-packshot-roger-family-p5.jpeg
+
+Product: Sennheiser Accentum Plus (ID: 202)
+Image: 307263f4-7a3a-475b-8d2c-8580a297da59.6fe73837a7dfe743685b698e0be1a973.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/e0c9b84e-7927-4ae0-80ec-491c5d84f0a7_307263f4-7a3a-475b-8d2c-8580a297da59.6fe73837a7dfe
+
+Product: Sennheiser HD 660S2 (ID: 203)
+Image: Shure_mikrofon_55S.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/9a0852fb-fecf-4194-8be5-309638cb30c7_Shure_mikrofon_55S.jpg
+
+Product: Anker Soundcore Space Q45 (ID: 204)
+Image: preview-2023-03-02T181859.450-1.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/810dd018-bc65-423d-a902-07d6085dd006_preview-2023-03-02T181859.450-1.jpg
+
+Product: Anker Soundcore Liberty 4 NC (ID: 205)
+Image: 273942030eOUNhmpsIT5oJIvRt26ho0uZAV9lwwv.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/2f679a00-0fbf-4a9d-9b90-9e7b18d9d502_273942030eOUNhmpsIT5oJIvRt26ho0uZAV9lwwv.jpg
+
+Product: Bose QuietComfort 45 (ID: 210)
+Image: 71vQTZ64wGL.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/8e02c36e-9596-49ad-b5fa-488f5bed7f57_71vQTZ64wGL.jpg
+
+Product: Bose QuietComfort Ultra (ID: 220)
+Image: usbmics-2048px-8769.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/28e0d49a-8ad8-498b-ab72-dbc2884b43fe_usbmics-2048px-8769.jpg
+
+Product: Sony WH-1000XM5 (ID: 235)
+Image: NEXUS-FRONT-ANGLE.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/0565056b-2970-4ddb-98e3-265b486d6bd6_NEXUS-FRONT-ANGLE.jpg
+
+Product: JBL Charge 5 (ID: 247)
+Image: usbaudiointerfaces-2048px-0334-3x2-1.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/b5701fd2-726b-4db8-b7a5-6f492d409ab9_usbaudiointerfaces-2048px-0334-3x2-1.jpg
+
+Product:  TV Ultra28 (ID: 277)
+Image: e69847c895Gx0EZTL7uHivnYGTYrMkfBEnbTAnDX.wm-lw.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/3fca7042-5cf6-4e58-8cdf-ea5cc58f96e0_e69847c895Gx0EZTL7uHivnYGTYrMkfBEnbTAnDX.wm-lw.jpg
+
+Product: HP  X27 (ID: 292)
+Image: 2777700501_pre_int_dtl_3_nr.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/e49e64f4-a747-4b57-a194-5c16ff99330f_2777700501_pre_int_dtl_3_nr.png
+
+Product: Bose Console 100 (ID: 301)
+Image: Gear-Podcast-Gear-1327244548.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/071b55fc-409f-4a49-afcb-16dfc0072a52_Gear-Podcast-Gear-1327244548.jpg
+
+Product: Samsung TV X77 (ID: 311)
+Image: mrhQa83uDwQNsC8YdFXwyU.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/7a4258bf-3ca5-4a7c-b347-3ea716a78ac8_mrhQa83uDwQNsC8YdFXwyU.jpg
+
+Product: Bose Monitor 61 (ID: 317)
+Image: new-table-mic-pro-hero.webp
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/069a6476-f858-4a55-9bbc-42652434a77c_new-table-mic-pro-hero.webp
+
+Product: Dell  95 (ID: 322)
+Image: audio_all_equipment.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/459221fa-4ef6-40f5-b10b-95250cb55350_audio_all_equipment.jpg
+
+Product: Bose  S64 (ID: 352)
+Image: 81GtQ3EEMXL._AC_SL1500_.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/b2cb66fe-90d2-45f0-8fa8-35bdab4621ab_81GtQ3EEMXL._AC_SL1500_.jpg
+
+Product: Dell Charger 40 (ID: 353)
+Image: Sound-Devices-A20-TX-Digital-Wireless-Transmitter-1.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/a7751dc4-8ae0-4973-8e1c-37302abd5249_Sound-Devices-A20-TX-Digital-Wireless-Transmitter-
+
+
+== Category: Cameras ==
+Product: Canon EOS R7 (ID: 95)
+Image: sized_nh20201031-073817.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/62a0b188-2f05-4b64-8a9b-2936503723a6_sized_nh20201031-073817.jpg
+
+Product: Canon R10 (ID: 96)
+Image: Digi-Camera-Product-2024.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/29a715a3-0c35-4823-bc41-140d8fb243da_Digi-Camera-Product-2024.jpg
+
+Product: Canon PowerShot G7 X Mark III (ID: 97)
+Image: download (2).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/d000cc96-c084-487f-b19f-fb7fc3cb68d0_download (2).jpeg
+
+Product: Sony Alpha 7C II (ID: 98)
+Image: a7s-Vintage.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/51ad42b5-542d-447a-85dc-f30c185a2237_a7s-Vintage.jpg
+
+Product: Sony ZV-E10 (ID: 99)
+Image: 230111-Instax-Mini-12-Lilac-Purple-Front-No-Photo_0053_Stack-2.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/72fcf602-ed3e-432d-8014-397fa3a4b3fd_230111-Instax-Mini-12-Lilac-Purple-Front-No-Photo_
+
+Product: Nikon Z6 III (ID: 100)
+Image: best-sony-cameras-2024-3.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/031a1e6d-dbbd-4dde-bdd9-a843c056101f_best-sony-cameras-2024-3.jpg
+
+Product: Nikon Z50 II (ID: 101)
+Image: 7-trvphoto-832-0043-reduced.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/5f4d1cbe-55c3-41f0-90f3-4ab4e5e3089d_7-trvphoto-832-0043-reduced.jpg
+
+Product: Fujifilm X-T50 (ID: 102)
+Image: GW41.0104-1-518x518.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/b40a2391-63c8-4cdb-ad2b-d6a5e41c0f9a_GW41.0104-1-518x518.jpg
+
+Product: Fujifilm X100VI (ID: 103)
+Image: 61UQJdled-L.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/9636e68a-b4fd-408a-bf20-40ca4c4e83c8_61UQJdled-L.jpg
+
+Product: Canon EOS R6 (ID: 211)
+Image: download (1).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/1e35694f-aeee-4d64-ae12-64ea87841324_download (1).jpeg
+
+Product: Canon EOS R5 (ID: 221)
+Image: Modern CCTV camera on a wall.jpg.webp
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/d90338d4-59b0-4a9b-b516-508c681586f0_Modern CCTV camera on a wall.jpg.webp
+
+Product: Canon EOS R6 Mark II (ID: 236)
+Image: 31725686226_85a1fcdaa6_o.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/9db4072c-02c8-49af-9b43-9c47865fb2f0_31725686226_85a1fcdaa6_o.jpg
+
+Product: Nikon Z8 (ID: 248)
+Image: download (3).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/c6a975b7-75f9-4ab3-bbee-976d6782b1f5_download (3).jpeg
+
+Product: HP Headphones Air92 (ID: 256)
+Image: w0kj7gz_lrtvxbec6sqxd0pg.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/f216412d-942b-411f-91c3-fbb8fde35d41_w0kj7gz_lrtvxbec6sqxd0pg.jpg
+
+Product:  Tablet X38 (ID: 271)
+Image: 202110Nikon-Z-7II-Image-3.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/e6ac6dba-6a2b-4be8-80ea-97bea724fb35_202110Nikon-Z-7II-Image-3.jpg
+
+Product: Fujifilm X 6436 (ID: 288)
+Image: instax-square-sq-1_10-scaled.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/c1d3797e-deef-4f00-8864-496639d123a3_instax-square-sq-1_10-scaled.jpg
+
+Product: Dell  Plus52 (ID: 296)
+Image: hdc5500_3q_190225_01-Large.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/401b27bc-b4fc-4442-a2d2-66e885a0565b_hdc5500_3q_190225_01-Large.jpg
+
+Product:   Plus18 (ID: 305)
+Image: Modern-Camera.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/6f6c809b-e4bb-467b-bffb-abd475dda124_Modern-Camera.jpg
+
+Product:   Ultra57 (ID: 307)
+Image: Canon_PowerShot_A95_-_front_and_back.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/1702496c-4399-4534-89e0-b2c81dcc3ccc_Canon_PowerShot_A95_-_front_and_back.jpg
+
+Product: Canon EOS 6033 (ID: 320)
+Image: Canon-EOS-R6-Mark-II-Mirrorless-Camera-Front-.webp
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/ac774b37-5123-44e4-b7c6-2fc0ca3db61e_Canon-EOS-R6-Mark-II-Mirrorless-Camera-Front-.webp
+
+Product:  Headphones Ultra38 (ID: 333)
+Image: 1675814425_1748812-1685961319-300x300.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/c5f3ef57-d48f-40f6-8c36-039ad3a34002_1675814425_1748812-1685961319-300x300.jpg
+
+Product: HP Drone 75 (ID: 347)
+Image: studio-product-shot-of-a-panavision-genesis-modern-digital-movie-camera-BGE6P5.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/a2866f54-6dee-446d-bb48-49afa1759fd9_studio-product-shot-of-a-panavision-genesis-modern
+
+Product: Logitech  X35 (ID: 349)
+Image: download (4).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/ce5c6625-a0ef-4faa-b956-75261e463672_download (4).jpeg
+
+Product: Fujifilm X 7995 (ID: 372)
+Image: Nikonlensoff.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/355ed208-71cd-41e2-b432-5b2ad5129ff3_Nikonlensoff.jpg
+
+Product: DJI Keyboard 34 (ID: 390)
+Image: download.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/607f5d04-920a-4abf-9203-9f2ab293f760_download.jpeg
+
+Product: Canon  Air42 (ID: 395)
+Image: OPG-Blog-Best-Professional-Canon-Cameras-That-Should-Be-On-Every-Photographers-List-10-12-2023-scaled.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/ca5f2e6e-43e7-4b2a-8469-a61455152173_OPG-Blog-Best-Professional-Canon-Cameras-That-Shou
+
+Product: DJI Osmo 5840 (ID: 401)
+Image: 6-cameras-for-new-photographers_0942096857216f4144e5624dc2d78b8b.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/597646b6-5c5e-47cf-90ca-72e3a5eba7ab_6-cameras-for-new-photographers_0942096857216f4144
+
+
+== Category: Accessories ==
+Product: Anker 622 Magnetic Battery (ID: 104)
+Image: images (13).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/c139b259-07c6-48ff-b66d-d7a7a8430842_images (13).jpeg
+
+Product: Anker 511 Charger (ID: 105)
+Image: images (9).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/74164aba-3471-45ac-b0c7-7158ca8ea62a_images (9).jpeg
+
+Product: Belkin 3-in-1 Wireless Charger (ID: 106)
+Image: Dx-03-Electronic-Products-From-China-Telephone-Headsets-Other-Accessories-Wireless-Tws-Earbuds-Earphones-Power-Bank-Charger-Box.webp
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/29594718-f84a-412d-9985-7ab409963163_Dx-03-Electronic-Products-From-China-Telephone-Hea
+
+Product: Belkin USB-C Hub (ID: 107)
+Image: electronic-accessories-design.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/f05d6fc4-02b6-4287-98c3-2fc893d868dc_electronic-accessories-design.jpg
+
+Product: SanDisk Extreme Pro 2TB SSD (ID: 108)
+Image: 8715946684338.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/5bcebfa6-a917-4e55-9283-5b49cd564ff0_8715946684338.jpg
+
+Product: SanDisk Ultra 128GB USB (ID: 109)
+Image: images (8).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/f407957f-0ae5-4921-8dc8-76d05b554e4b_images (8).jpeg
+
+Product: Spigen ArcField Wireless Charger (ID: 110)
+Image: mobile-phone-and-accessories.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/d79fa168-b228-455d-aaa6-b6d58b372825_mobile-phone-and-accessories.jpg
+
+Product: Spigen Ultra Hybrid Case (ID: 111)
+Image: Mobile-Phone-Accessories-A9-PRO-Bluetooth-Products-Earpod-Wireless-Headphone-for-Apple-with-Display.webp
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/0ccbbd14-9a91-4168-8908-5f0930e35f15_Mobile-Phone-Accessories-A9-PRO-Bluetooth-Products
+
+Product: Logitech Blue Yeti Nano (ID: 112)
+Image: Computer_Accessories.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/93e1a69f-2d17-4268-a807-5026d6533ee8_Computer_Accessories.jpg
+
+Product: Logitech StreamCam (ID: 113)
+Image: images (11).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/311ee57e-d4f3-498f-9cba-3eb6dadc0ce5_images (11).jpeg
+
+Product: Anker PowerBank 20000 (ID: 212)
+Image: images (12).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/351d3e01-d8af-4c97-89b8-8d6c20d40f26_images (12).jpeg
+
+Product: Anker 737 Power Bank (ID: 222)
+Image: ME7047-web.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/7001e03d-daf0-4c72-a3dc-6481f7775821_ME7047-web.png
+
+Product: Anker 737 Power Bank (ID: 237)
+Image: images (4).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/555dc3f9-a678-4f79-b43a-e086a482c1bb_images (4).jpeg
+
+Product: Belkin BoostCharge Pro (ID: 249)
+Image: images (1).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/fa4f8e11-3348-4bfe-aeac-a08db37a3862_images (1).jpeg
+
+Product: DJI TV 76 (ID: 254)
+Image: images (2).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/5ad4ed32-18dd-4c39-85bc-1e61f66fca59_images (2).jpeg
+
+Product:  Console Pro50 (ID: 258)
+Image: UGREEN-25356-Nexode-Pro-65W-3-Port-GaN-Ultra-Slim-Iphone-Charger-by-otc.lk-in-srilanka-54-300x300.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/de39fccf-52f9-4c11-9da4-33ee8b772001_UGREEN-25356-Nexode-Pro-65W-3-Port-GaN-Ultra-Slim-
+
+Product: Apple Monitor 96 (ID: 268)
+Image: images (10).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/c94286c2-621e-4f88-bf78-b384e25ffc55_images (10).jpeg
+
+Product: Logitech Camera 64 (ID: 289)
+Image: electronic-items-and-accessories.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/27900930-e888-4386-bcd5-0da2bfc7242f_electronic-items-and-accessories.jpeg
+
+Product:   Max58 (ID: 314)
+Image: cat-384-electronics-690x550.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/7616a090-0971-4827-9c9a-6bea240554a4_cat-384-electronics-690x550.jpg
+
+Product: Logitech  58 (ID: 321)
+Image: Collage-of-WEXAM-Portable-Projector-Sony-Linkbuds-Echo-Show-8-Smart-Wifi-Light-Bulbs-Amazon-Alexa-compatible-products.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/ad23e6b2-d6e5-4ceb-b656-f33a72dbd680_Collage-of-WEXAM-Portable-Projector-Sony-Linkbuds-
+
+Product: Sony  Z94 (ID: 339)
+Image: 1000007751.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/79c442ea-57a7-4b7f-b5bd-4724d0547e0e_1000007751.jpg
+
+Product: Canon  Air64 (ID: 340)
+Image: images.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/23f6c50f-af72-4f93-afc6-e6d1f2c46235_images.jpeg
+
+Product:  TV 74 (ID: 348)
+Image: 2_252Fe_252F8_252F6_252F2e860da79ece047720f78f509cd8d49e75e2cf04_tdTCw_uXEJub_3_86_4f432af0-4239-43df-82c6-feae3af2c9a8_420x420.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/1108d6c3-9966-4f30-9bab-3b9decb8ec13_2_252Fe_252F8_252F6_252F2e860da79ece047720f78f509c
+
+Product: Anker Smartphone 38 (ID: 365)
+Image: RES35-UNB.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/ca247963-4a67-423d-9157-95670f11ac5a_RES35-UNB.jpg
+
+Product: Logitech Console Neo23 (ID: 383)
+Image: images (3).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/fc88eec8-1326-42e7-b817-cc91644e5b1f_images (3).jpeg
+
+Product:  Smartphone 97 (ID: 387)
+Image: images (14).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/4a5fb2d7-2650-45d8-981b-e7c7536f834f_images (14).jpeg
+
+Product: Samsung Smartphone 61 (ID: 394)
+Image: images (6).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/24511825-c12e-4db9-a767-9013d21bb20b_images (6).jpeg
+
+
+== Category: Gaming Consoles ==
+Product: Sony PS5 Digital Edition (ID: 114)
+Image: sega-genesis-gfcc4979c8_1280.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/edee60ac-250c-4cc0-a8a0-5c1755f87389_sega-genesis-gfcc4979c8_1280.jpg
+
+Product: Sony PS5 Pro (ID: 115)
+Image: download (2).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/4999902b-9767-472e-aeb8-e7676a4e0490_download (2).jpeg
+
+Product: Microsoft Xbox Series S 1TB (ID: 116)
+Image: 71Yv2-7vKfL.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/b71cb05c-6d72-4923-9528-9820e1d14b18_71Yv2-7vKfL.jpg
+
+Product: Microsoft Xbox Series X Halo Edition (ID: 117)
+Image: gamingconsoles-2048px-00651-3x2-1.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/028fdac5-4cf7-4beb-bd6f-b2d1de6e39c4_gamingconsoles-2048px-00651-3x2-1.jpg
+
+Product: Nintendo Switch OLED (ID: 118)
+Image: Best-Gaming-Consoles-Hero-Image.webp
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/4221c284-8db2-432a-8358-df738270564b_Best-Gaming-Consoles-Hero-Image.webp
+
+Product: Nintendo Switch Lite (ID: 119)
+Image: db8c9e50-2cc3-4fe1-bc0f-554df5ce99eb.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/32a1c1d6-0a25-4b06-ae36-853834969f5e_db8c9e50-2cc3-4fe1-bc0f-554df5ce99eb.jpg
+
+Product: Valve Steam Deck 512GB (ID: 120)
+Image: N40635116A_1.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/7342937e-a6a3-48d7-8f50-6386ce2dfe0b_N40635116A_1.jpg
+
+Product: PlayStation 5 Pro (ID: 213)
+Image: Screenshot-2024-03-05-123751.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/67d64113-8222-456d-a4ac-f9b9c3dc2ed8_Screenshot-2024-03-05-123751.jpg
+
+Product: Sony PlayStation 5 Slim (ID: 223)
+Image: 2023_rog_ally_rc71l_product_photos_01.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/81ac1141-7805-46a9-87ed-33b569c028f0_2023_rog_ally_rc71l_product_photos_01.jpg
+
+Product: Sony PlayStation 5 Slim (ID: 238)
+Image: 61krvrYS99L.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/85a1ad3e-7ced-40e7-84cc-97c7619914b7_61krvrYS99L.jpg
+
+Product: Xbox Series X (ID: 250)
+Image: download (1).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/63504955-ed8e-40f5-8d1e-1f28779e35e0_download (1).jpeg
+
+Product: Logitech Charger Plus25 (ID: 255)
+Image: frwj1d8k1vnep7ouiuwd.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/f56d98ec-e52e-44e0-a02e-132c6ec79de1_frwj1d8k1vnep7ouiuwd.jpeg
+
+Product: Apple TV Pro59 (ID: 267)
+Image: gaming-consoles-2024-6-1.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/ba9e7099-bb80-4158-8f54-87d2fca658d4_gaming-consoles-2024-6-1.jpeg
+
+Product:   Ultra14 (ID: 278)
+Image: gamingconsoles-2048px-00730-3x2-1.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/0193521b-72c4-498a-8443-4c828f1b1b61_gamingconsoles-2048px-00730-3x2-1.jpg
+
+Product: Wireless Device 7015 (ID: 280)
+Image: download (3).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/d810b7b0-b54d-4902-889e-b3d4828c7db9_download (3).jpeg
+
+Product: HP TV Max58 (ID: 281)
+Image: 1605133788-playstation-5-1605133771.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/0a289111-e9e1-4d64-a4b4-f48f89994add_1605133788-playstation-5-1605133771.jpg
+
+Product: Apple  Ultra58 (ID: 300)
+Image: BEST-HANDHELD-GAMING-CONSOLES-2048px-09704.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/f3fd767f-75ab-41c5-9ffc-bf815a6206f7_BEST-HANDHELD-GAMING-CONSOLES-2048px-09704.jpg
+
+Product: Electronic Tool 7060 (ID: 342)
+Image: Sega-Genesis-Retro-Gaming-Console.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/91902fac-8879-4358-ab30-35d9748388da_Sega-Genesis-Retro-Gaming-Console.jpg
+
+Product: Sony  Ultra44 (ID: 346)
+Image: R36S_Handheld_Game_Console_Linux_System_Gray_1_800x.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/57cb7937-aef1-4ae5-bf0c-c12c0744e811_R36S_Handheld_Game_Console_Linux_System_Gray_1_800
+
+Product: Sony Drone Neo71 (ID: 351)
+Image: Best-Gaming-Console-Playstation-5.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/810b894a-41a3-4f5b-a60f-f681ba9845e4_Best-Gaming-Console-Playstation-5.jpg
+
+Product: Samsung  Plus96 (ID: 364)
+Image: playstation-5-pro-gaming-console-digital-edition-2tb-1-techarc.pk_.webp
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/8f8eb46f-01eb-4a61-b491-fda867c976a1_playstation-5-pro-gaming-console-digital-edition-2
+
+Product:  Keyboard X83 (ID: 375)
+Image: 61y+lRLay7L.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/01fd5e0e-bd0a-463a-8c6c-b32e8960fe1f_61y+lRLay7L.jpg
+
+Product: Apple  S21 (ID: 380)
+Image: bd803bf4-7f5c-41a1-b05a-bf141b0488ef.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/48863790-11d5-478d-8cd4-82b7e177a91d_bd803bf4-7f5c-41a1-b05a-bf141b0488ef.jpg
+
+Product: HP  Elite12 (ID: 384)
+Image: 71eni7_c18l._ac_sl1500_.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/11ead4be-1577-48a8-aa8d-acb1deaca197_71eni7_c18l._ac_sl1500_.jpg
+
+Product: Dell TV 76 (ID: 398)
+Image: download.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/0f878f36-9741-482f-b2bc-437f77654b6c_download.jpeg
+
+
+== Category: Smart Watches ==
+Product: Apple Watch Series 10 46mm (ID: 121)
+Image: Mibro-Smart-Watch-Lite-3-6.jpg.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/cfc56392-8703-4b7c-8dd1-0de2ff387419_Mibro-Smart-Watch-Lite-3-6.jpg.jpeg
+
+Product: Apple Watch SE 2 (ID: 122)
+Image: 203344453_max.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/518173fd-7cc2-4b27-a61a-07e474ff8ea6_203344453_max.jpg
+
+Product: Samsung Galaxy Watch 7 (ID: 123)
+Image: Apple-Watch-ultra2-4-600x600.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/99bf1312-28b9-43b2-be00-8af7db3214c1_Apple-Watch-ultra2-4-600x600.png
+
+Product: Samsung Galaxy Watch Ultra (ID: 124)
+Image: 61s734tDFyL.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/2ef0f24a-197e-471b-bf08-3c1b99fd3c49_61s734tDFyL.jpg
+
+Product: Garmin Forerunner 965 (ID: 125)
+Image: FkGweMeB7hdPgaSFQdgsfj.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/41fb4d4d-d240-4196-8e85-8748c53e4bad_FkGweMeB7hdPgaSFQdgsfj.jpg
+
+Product: Garmin Instinct 2 (ID: 126)
+Image: pv8pegw_1nzrtbux4uji5sk1.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/25a677a6-685f-4ca0-ac6c-6dfba4a568ab_pv8pegw_1nzrtbux4uji5sk1.jpeg
+
+Product: Fitbit Versa 4 (ID: 127)
+Image: Mibro-Lite.webp
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/23f992b3-f693-4961-9db2-d5b216a3fada_Mibro-Lite.webp
+
+Product: Fitbit Charge 6 (ID: 128)
+Image: AOMXGD-Smart-Watch-Stainless-Steel-Strap-with-Bluetooth-5-0-for-Making-Phone-Calls-Smart-Watch-for-Women-Men-Kids-Birthday-Gifts-Silver_71cad027-316a-489c-b0ce-253d459da99b.0fffd95e93ef9f48ebc3a856b4db931e.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/5820e161-9b86-4dfc-ad97-3551bcaa7b5d_AOMXGD-Smart-Watch-Stainless-Steel-Strap-with-Blue
+
+Product: Apple Watch Ultra 2 (ID: 214)
+Image: 5f96e9bf-21ba-46e5-9909-939e94e25232.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/8152d96b-b6aa-4f4e-9924-af66d311c88d_5f96e9bf-21ba-46e5-9909-939e94e25232.jpg
+
+Product: Apple Watch Series 10 (ID: 224)
+Image: 2b8ff36BLEONWATCH-BLUE_1.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/2181f83f-fde7-43c5-8dda-25ccd96b229f_2b8ff36BLEONWATCH-BLUE_1.jpg
+
+Product: Apple Watch Ultra 2 (ID: 239)
+Image: 61kQFWqEyDL._AC_SL1500_.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/ade1bb11-5589-45c2-8b9c-d5ca1db4497a_61kQFWqEyDL._AC_SL1500_.jpg
+
+Product: Garmin Venu 3 (ID: 251)
+Image: 0008910_apple-watch-series-9_550.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/70ae80d2-a5e6-455e-85c2-edaa847cc180_0008910_apple-watch-series-9_550.jpeg
+
+Product: Samsung TV Air95 (ID: 263)
+Image: 81aSNKlJJLL.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/3db417f6-1a26-4dac-8e40-d554350c1249_81aSNKlJJLL.jpg
+
+Product: Dell  Plus13 (ID: 264)
+Image: pLvOkj4i95ySnL8EoHvrd11v7pZnRtBLaaE2kQeD.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/2c2296bb-a95f-4367-8084-1b0e9ee146d5_pLvOkj4i95ySnL8EoHvrd11v7pZnRtBLaaE2kQeD.jpeg
+
+Product: Samsung Console Elite29 (ID: 272)
+Image: 664305ae40270f65800cf9ed-smart-watch-answer-make-call-1-85.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/78a86bed-a880-475e-932d-f3e88c068503_664305ae40270f65800cf9ed-smart-watch-answer-make-c
+
+Product:   Plus84 (ID: 273)
+Image: 662a9fa7dbdfa21b692fb5de-smart-watches-for-women-1-32-hd-fitness.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/2131fba1-68b0-4cef-b167-fcaeca4a0543_662a9fa7dbdfa21b692fb5de-smart-watches-for-women-1
+
+Product:  Drone Elite29 (ID: 279)
+Image: 39565750dfd464af20f3379d480e7e8b1a075687e097fef3d56984600af00eea.webp
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/fab939d9-b044-448f-a794-ec404afe8849_39565750dfd464af20f3379d480e7e8b1a075687e097fef3d5
+
+Product: DJI  42 (ID: 334)
+Image: wt571-1-min.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/8ae0250b-6be7-40b8-b209-140ef141a627_wt571-1-min.jpg
+
+Product:  Charger 60 (ID: 359)
+Image: -473Wx593H-4933504650-multi-MODEL4.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/eab90598-20de-4bd6-add1-4492d3bd0ce2_-473Wx593H-4933504650-multi-MODEL4.jpg
+
+Product: Samsung Laptop 30 (ID: 360)
+Image: qDiWC728ZbsZJuP34meocG-1200-80.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/a3bdbb74-e9d9-41c9-9812-8715e8b150eb_qDiWC728ZbsZJuP34meocG-1200-80.jpg
+
+Product:  Tablet Air36 (ID: 396)
+Image: best-smartwatches-673c8a73c3455.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/b32aa008-201a-4a73-9846-c05df332f3a0_best-smartwatches-673c8a73c3455.jpg
+
+Product: Dell Drone 54 (ID: 397)
+Image: Main_hero_revised.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/da638717-f851-4d84-bdd3-3ae55fe18e7f_Main_hero_revised.png
+
+Product: Apple Charger Ultra8 (ID: 399)
+Image: C60-1-1-inch-Waterproof-Smart-Watch-Heart-Rate-Blood-Oxygen-Monitor-Body-Temperature-Detection-Fitness-Tracker-Sports-Smart-Wristband-PinkNone-22112023-00-p.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/639959bb-f53e-4a20-941d-d308b57f76cc_C60-1-1-inch-Waterproof-Smart-Watch-Heart-Rate-Blo
+
+Product: Tech Gadget 3583 (ID: 400)
+Image: FOqXqjxGzGoRL5El91EQpqtg77ou3qfk8ass4qQU.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/c986a396-61e2-436e-995a-63e6b779dbce_FOqXqjxGzGoRL5El91EQpqtg77ou3qfk8ass4qQU.jpeg
+
+
+== Category: Tablets ==
+Product: Apple iPad Pro 13 M4 (ID: 129)
+Image: BEST-TABLETS-2048px-2x1-1.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/1e107d41-d79d-40c1-8448-d9cea1b13c8d_BEST-TABLETS-2048px-2x1-1.jpg
+
+Product: Apple iPad Mini 7 (ID: 130)
+Image: protablets-2048px-232431.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/4bb34519-4ede-4d61-8974-a4bf50db65e4_protablets-2048px-232431.jpg
+
+Product: Samsung Galaxy Tab S9 FE (ID: 131)
+Image: download (2).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/3c7f1b4f-f55a-4fa0-8b4e-a608d5b8963e_download (2).jpeg
+
+Product: Samsung Galaxy Tab A9+ (ID: 132)
+Image: Fx8DinujXdfCqpFYNUH9y6-1200-80.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/c17b4e00-b0b7-47b5-843b-a42836b59562_Fx8DinujXdfCqpFYNUH9y6-1200-80.jpg
+
+Product: Microsoft Surface Pro 9 (ID: 133)
+Image: Lenovo-110530506--context-bWFzdGVyfHJvb3R8NTU3MDEwfGltYWdlL3BuZ3xoZmIvaDhmLzEzNzMyMjM5MDE1OTY.webp
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/3276617b-d3de-4035-90af-0819d39a0d4a_Lenovo-110530506--context-bWFzdGVyfHJvb3R8NTU3MDEw
+
+Product: Microsoft Surface Go 4 (ID: 134)
+Image: 715hmbUxsUL._AC_SL1500_.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/f910f098-7086-4e44-b351-8557a38d7410_715hmbUxsUL._AC_SL1500_.jpg
+
+Product: Lenovo Tab P12 (ID: 135)
+Image: H40f7676160394995b6e82e971a3eaf59X.jpg_720x720q50.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/81dd08cc-d53e-408a-9ce0-1008233270ee_H40f7676160394995b6e82e971a3eaf59X.jpg_720x720q50.
+
+Product: Lenovo Tab M11 (ID: 136)
+Image: download (1).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/e599c424-9687-42b1-bd60-0e35a8da9645_download (1).jpeg
+
+Product: iPad Pro 12.9 M2 (ID: 215)
+Image: 1.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/b4cbed09-7f15-4ad6-ae34-86f0cb9a5533_1.png
+
+Product: iPad Air 11 M2 (ID: 225)
+Image: samsung-tab-s10-FE-main.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/5e19e115-73ef-4425-8558-4282a0b463d4_samsung-tab-s10-FE-main.png
+
+Product: Samsung Galaxy Tab S9 (ID: 240)
+Image: Samsung-GalaxyTablets_ec3qtp_BHsqtaH.original.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/be7cc321-e3dc-4602-8bc6-8a503a777136_Samsung-GalaxyTablets_ec3qtp_BHsqtaH.original.jpg
+
+Product: Sony  Max20 (ID: 261)
+Image: zr339-1.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/ba1ab6a5-7358-48ed-b229-b43bd1423362_zr339-1.jpg
+
+Product: Apple  Air32 (ID: 262)
+Image: qppp_1d4c0bb3-e367-4955-ad06-3870976a427e_1024x.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/92bef081-a42a-4a49-9493-f66801d41d8f_qppp_1d4c0bb3-e367-4955-ad06-3870976a427e_1024x.pn
+
+Product: Apple Monitor 100 (ID: 295)
+Image: PCD_TS10-Ultra_Whats-New_mo_264x264.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/faa9652a-a902-498a-94d1-8430d5e8ab61_PCD_TS10-Ultra_Whats-New_mo_264x264.png
+
+Product: HP  Z69 (ID: 297)
+Image: 249821_large.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/7d60c0f0-e32f-44e8-b155-be1997d84931_249821_large.png
+
+Product: Dell  Max69 (ID: 298)
+Image: 633b51122af1ce605a57ae50-10-1.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/21f37682-b72a-4fc9-b1c7-3c0d11f4795c_633b51122af1ce605a57ae50-10-1.jpg
+
+Product: Lenovo Tab 3129 (ID: 304)
+Image: 01LIrUDcuoBX08JLdnlJooW.fit_lim.size_919x518.v1716920959.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/61de8e1a-eefc-4cca-93c4-9772001930a2_01LIrUDcuoBX08JLdnlJooW.fit_lim.size_919x518.v1716
+
+Product: Apple  9 (ID: 306)
+Image: Apple-iPad-A16-Blue-thumbnail.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/f0b966fe-d104-440a-87e9-56762c187b7c_Apple-iPad-A16-Blue-thumbnail.png
+
+Product: Sony  Max25 (ID: 312)
+Image: gh-082521-best-tablets-1629991483.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/9f266891-16bb-4389-827b-e2cbf6461a5f_gh-082521-best-tablets-1629991483.png
+
+Product: DJI  Plus92 (ID: 319)
+Image: tablet_928.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/d98c95b7-c400-4f6f-9f6b-efae19a16ea9_tablet_928.png
+
+Product: HP Console 30 (ID: 325)
+Image: ApnjTn3odhvCf7dB3VMpeL.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/814327a5-f214-4b44-9161-2b53a00fe2a2_ApnjTn3odhvCf7dB3VMpeL.jpg
+
+Product:  Tablet S13 (ID: 337)
+Image: lenovo-k11-1.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/cd3172e8-12c1-4f5a-9298-f2b9d3731cba_lenovo-k11-1.jpg
+
+Product:   Pro84 (ID: 350)
+Image: huawei-matepad-11-5-s.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/285d3b60-8f95-4be0-8ae5-35385aea5830_huawei-matepad-11-5-s.jpg
+
+Product:  Smartphone Z84 (ID: 358)
+Image: 3Y5PQVLsQTK6K5n2Q3mdWS-1200-80.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/0b67a1c9-9966-434d-8ec2-a20f66511dc2_3Y5PQVLsQTK6K5n2Q3mdWS-1200-80.jpg
+
+Product: HP  Air36 (ID: 366)
+Image: mediapad-t3-10-home.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/c9d54b3f-adce-4b37-903e-41120bb42bad_mediapad-t3-10-home.jpg
+
+Product: Amazon Fire HD 7073 (ID: 377)
+Image: TabletsEN.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/7e5c5dae-a8ed-47a4-8032-d36b13dea83c_TabletsEN.png
+
+Product: Apple  Ultra47 (ID: 391)
+Image: download.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/c22e2332-edbf-4709-a60b-bfbd2fb3d9c6_download.jpeg
+
+
+== Category: Home Appliances ==
+Product: DJI Air 3 (ID: 137)
+Image: images (13).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/c6dd639e-2f98-4139-8c94-701f191d06ec_images (13).jpeg
+
+Product: DJI Mini 3 Pro (ID: 138)
+Image: images (9).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/4704b6f9-e569-4591-afe7-93b16dabd8a8_images (9).jpeg
+
+Product: DJI Avata 2 (ID: 139)
+Image: 0011301_fresh-electric-water-heater-relax-50-liters.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/9231143a-ba94-46f6-98aa-11b86cb242c1_0011301_fresh-electric-water-heater-relax-50-liter
+
+Product: Autel Evo Nano+ (ID: 140)
+Image: DV1542-q2vgh3fiwazulwhlwkaypec9g3q8y6o7vciipspvxs.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/f06db0b4-7cc0-43d3-a0be-f72fc9b7eb62_DV1542-q2vgh3fiwazulwhlwkaypec9g3q8y6o7vciipspvxs.
+
+Product: Autel Evo Lite+ (ID: 141)
+Image: 71nLabMnxwL._AC_SX679-108319_600x.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/8484b812-d001-43c2-9c66-4659466bf972_71nLabMnxwL._AC_SX679-108319_600x.jpg
+
+Product: Holy Stone HS720R (ID: 142)
+Image: images (8).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/84e27150-6e66-4948-825e-be70925bb86e_images (8).jpeg
+
+Product: Holy Stone HS360S (ID: 143)
+Image: 0011336_fresh-chef-blender-with-mill-500014316.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/7e11406c-a1d3-43b1-a596-442b4ebdf85c_0011336_fresh-chef-blender-with-mill-500014316.jpe
+
+Product: DJI Mavic 3 Drone (ID: 216)
+Image: images (11).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/bb86ee45-6be2-4216-ae4d-5c5cba62f17f_images (11).jpeg
+
+Product: DJI Mini 4 Pro (ID: 226)
+Image: images (12).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/a1dba6a0-47c7-4d57-9a1d-6ddc332ccb54_images (12).jpeg
+
+Product: DJI Mavic 3 Classic (ID: 241)
+Image: 317202362.webp
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/0ed583a6-2597-411d-b005-f0be57e404eb_317202362.webp
+
+Product: Sony Laptop Air45 (ID: 269)
+Image: images (4).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/d1898246-2e65-404b-9f12-7646c933f870_images (4).jpeg
+
+Product: Apple Keyboard Z4 (ID: 275)
+Image: images (1).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/f305e2ee-5530-4bf2-8df5-0786f331c9fd_images (1).jpeg
+
+Product: Digital Assistant 1806 (ID: 285)
+Image: 6221103015805.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/7d928abb-4612-44f6-af48-0aaa88af2db4_6221103015805.jpg
+
+Product: Apple Camera 3 (ID: 287)
+Image: images (2).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/6cf763b1-6c46-4de8-bea3-13a8ec2655e6_images (2).jpeg
+
+Product: Dell  X84 (ID: 291)
+Image: images (10).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/9c43f248-4193-4d25-869e-a9d0b4d911ce_images (10).jpeg
+
+Product: Sony  Ultra94 (ID: 308)
+Image: 6772504622661.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/146a4d12-e515-4a6a-8bfb-abfbff2790e9_6772504622661.jpg
+
+Product: Sony Console 25 (ID: 315)
+Image: images.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/679a708f-9d6f-4161-ad9a-12bf23ee393b_images.jpeg
+
+Product: DJI Laptop Plus97 (ID: 323)
+Image: hs071-1.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/341e7fe6-1f02-49a9-b058-5ae1ba083d92_hs071-1.jpg
+
+Product:  Tablet 44 (ID: 326)
+Image: el45ccm.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/015dae04-2be4-4009-a9e3-018edebb4c9d_el45ccm.jpg
+
+Product: Samsung Tablet Pro46 (ID: 345)
+Image: 6610-q2vgh3fiwazulwhlwkaypec9g3q8y6o7vciipspvxs.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/4dc73700-65f6-44c5-bafb-80e214a8dc8b_6610-q2vgh3fiwazulwhlwkaypec9g3q8y6o7vciipspvxs.jp
+
+Product:  Monitor 37 (ID: 362)
+Image: images (3).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/0098b6a5-e9e3-43ca-9a71-45c54794bece_images (3).jpeg
+
+
+== Category: Drones ==
+Product: Nvidia RTX 4080 (ID: 144)
+Image: original.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/7435619a-24d4-427b-a46f-78e0681c3e0f_original.jpg
+
+Product: Nvidia RTX 4060 Ti (ID: 145)
+Image: Image18_Quadcopter-drone_Caban_022819-Hero-1000x715.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/7dd53748-8875-4ec1-9f36-149c57b23187_Image18_Quadcopter-drone_Caban_022819-Hero-1000x71
+
+Product: AMD Ryzen 9 7950X3D (ID: 146)
+Image: 793559138b8e998160cdf4422f9d7f8d.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/c8dca3ba-2f02-483d-8769-db7db67420a0_793559138b8e998160cdf4422f9d7f8d.jpg
+
+Product: AMD Radeon RX 7900 XTX (ID: 147)
+Image: 6ea28614-ce5e-11ee-82a5-00163e02c055.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/3a6a3e29-8889-4e66-9e92-2c7442abdc55_6ea28614-ce5e-11ee-82a5-00163e02c055.jpeg
+
+Product: Corsair Vengeance 32GB DDR5 (ID: 148)
+Image: 070931-M-5827M-013.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/55a8fa44-56fd-4f7e-b1bb-9315e2d0379e_070931-M-5827M-013.jpeg
+
+Product: Corsair RM850x PSU (ID: 149)
+Image: Non-military-drones.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/35d38cf3-bea1-48f6-a875-74b4ea9ef401_Non-military-drones.jpg
+
+Product: Samsung 990 Pro 2TB NVMe (ID: 150)
+Image: IMG_0598-thumb.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/623cbecc-3b5c-4bc9-b253-7844edb4e425_IMG_0598-thumb.jpg
+
+Product: Logitech MX Master 3S (ID: 227)
+Image: VCOP-20250320-0024-ACP_DRONE_TRAINING-0360-scaled.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/76fe868b-42f4-434f-a96a-d258da5b3bfe_VCOP-20250320-0024-ACP_DRONE_TRAINING-0360-scaled.
+
+Product: Nvidia GeForce RTX 4070 (ID: 242)
+Image: 0_Drohne_Pexels_815292859f.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/09816d4c-e74c-4846-9476-baf7357de155_0_Drohne_Pexels_815292859f.jpg
+
+Product: Sony  80 (ID: 265)
+Image: 030813-F-8888W-006.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/c3478792-d224-4499-b87b-4910f53554be_030813-F-8888W-006.jpeg
+
+Product: Samsung Tablet 95 (ID: 266)
+Image: img01@2x.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/e749b7c8-8c1d-40e4-8a11-a772777f8427_img01@2x.png
+
+Product: Sony Tablet 8 (ID: 284)
+Image: lrc-2023-h1-p-high-densityvertiplex-00451.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/9733aa89-3971-4aad-9501-9976ad13dc9c_lrc-2023-h1-p-high-densityvertiplex-00451.jpg
+
+Product: Samsung Keyboard Max77 (ID: 309)
+Image: drones-2048px-9561.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/ac68fb7b-da4c-4dff-895a-4cf684a0bee1_drones-2048px-9561.jpg
+
+Product: DJI Charger 58 (ID: 331)
+Image: download.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/b6467de0-503c-4125-878b-0fd2dc7c8d6c_download.jpeg
+
+Product:  Console 46 (ID: 336)
+Image: 817EFbc8DzL.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/65943a84-a5a3-4238-aad5-52b7d4121e54_817EFbc8DzL.jpg
+
+Product:  Charger 3 (ID: 378)
+Image: 210930_ACSL-002_4-min-scaled.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/26ca83f9-8b6b-4794-ac2c-885a192deb6f_210930_ACSL-002_4-min-scaled.jpg
+
+Product:  Tablet Max8 (ID: 382)
+Image: Drones-with-Camera-for-Adults-4k-Aoujea-2-4G-WIFI-FPV-With-4K-HD-Camera-18mins-Flight-Time-Brushless-Foldable-RC-Drone-Quadcopter-RTF_a253cf91-dd1f-43ea-8c42-7b3f1587e562.b28580ff99a0c97016e231f553efb8e2.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/6d376775-ead4-4523-9bac-135c81615f27_Drones-with-Camera-for-Adults-4k-Aoujea-2-4G-WIFI-
+
+Product: Bose Monitor 23 (ID: 386)
+Image: ATOM_DRONE_WITH_4K_HD_3-AXIS_GIMBAL_CAMERA.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/5fc9adc5-8667-478d-a9ed-839398b2e4de_ATOM_DRONE_WITH_4K_HD_3-AXIS_GIMBAL_CAMERA.jpg
+
+Product: Samsung TV S81 (ID: 392)
+Image: drones-2048px-0698.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/6f5d2c78-199f-415c-b1ed-d1735c6b7b99_drones-2048px-0698.jpg
+
+
+== Category: PC Components ==
+Product: Dyson V15 Detect (ID: 151)
+Image: images_CategoryPages_CategoryPromos_PCParts_2022_May_PCPartsCombo2.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/51d4e2da-6618-429d-9dcd-c7e71c059676_images_CategoryPages_CategoryPromos_PCParts_2022_M
+
+Product: Dyson Airwrap Complete (ID: 152)
+Image: PC_components_BG_feature-1.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/8ad62681-8dd4-4d26-b621-95593985c316_PC_components_BG_feature-1.jpeg
+
+Product: Ring Video Doorbell 4 (ID: 153)
+Image: cRY3TDLZ4Dabv5gPecMmLh.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/ecfbe6f4-7641-49d8-9ec7-8b70dc7e928c_cRY3TDLZ4Dabv5gPecMmLh.jpg
+
+Product: Ring Home Security Kit (ID: 154)
+Image: 1659687885-all-white-components-primary.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/0150b0e1-3068-42a4-85c7-fd6a3254899d_1659687885-all-white-components-primary.png
+
+Product: Ecovacs Deebot X2 Omni (ID: 155)
+Image: images (4).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/d184da82-6021-4b8d-a2b1-df1f99e53fdd_images (4).jpeg
+
+Product: Ecovacs Deebot N10 Plus (ID: 156)
+Image: images (1).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/b26269e2-46f0-4d36-934a-279a199eac78_images (1).jpeg
+
+Product: Philips Hue White Ambiance Bulb (ID: 157)
+Image: Frame-5-6-2.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/17a97868-4a20-4ef1-b97f-45faea691ed4_Frame-5-6-2.png
+
+Product: Philips Air Fryer XXL (ID: 158)
+Image: 2023-01-16-image.webp
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/1caa17d2-7188-40d4-90f0-89d22b72292e_2023-01-16-image.webp
+
+Product: Dell UltraSharp 27 4K (ID: 228)
+Image: EPmmwWCW7pUuXhgLQ6KEch.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/62273b6f-34eb-4b88-bc68-3f068440a442_EPmmwWCW7pUuXhgLQ6KEch.jpg
+
+Product: Dyson Purifier Cool (ID: 243)
+Image: images (2).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/22b2e342-03b3-4835-9074-c9b17a4ec94d_images (2).jpeg
+
+Product:  Camera Pro45 (ID: 276)
+Image: cpu-processor.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/03627445-098e-4cf8-b34c-baf1fd279dac_cpu-processor.jpg
+
+Product: Anker  66 (ID: 283)
+Image: 52651356404_59ac689c4b_o.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/2392b266-ec4a-45e2-aba8-0d7a29bfd946_52651356404_59ac689c4b_o.jpg
+
+Product:   Pro19 (ID: 313)
+Image: cat-motherboard.png
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/35287a1f-cb71-4ee5-98d4-dfb6fc41d849_cat-motherboard.png
+
+Product:  Monitor Elite3 (ID: 343)
+Image: images.jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/77a1b611-1a2d-4e90-8ed5-52db3924df83_images.jpeg
+
+Product:   Ultra17 (ID: 355)
+Image: images (3).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/a9e991ab-09ca-46f8-ab82-96e30b31df85_images (3).jpeg
+
+Product: Logitech Laptop 17 (ID: 367)
+Image: 45122.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/dfb9f792-b8a5-44d1-a1f4-d2c5aa34a149_45122.jpg
+
+Product: Dell Laptop 62 (ID: 370)
+Image: images (6).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/6ef17d5d-3f13-4926-ab5d-1349b459e1a4_images (6).jpeg
+
+Product: HP Smartphone X96 (ID: 374)
+Image: starker_air_btf_k_hp_480x650.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/c18293d3-6139-433b-8974-773706384ed7_starker_air_btf_k_hp_480x650.jpg
+
+Product:   Ultra31 (ID: 381)
+Image: 7dd014963a9dfc26f229f20727ba7802ed11dd10_68956_1.jpg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/da9bcd8e-a201-4c20-abb5-9391785992f2_7dd014963a9dfc26f229f20727ba7802ed11dd10_68956_1.j
+
+Product:  Keyboard Plus88 (ID: 385)
+Image: images (5).jpeg
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/a7006705-f8c8-46ab-a0af-3d7d6318a1f7_images (5).jpeg
+
+Product:  Headphones X1 (ID: 402)
+Image: components-pc-case.a02cd7ce.png.webp
+URL: https://usmilhsblkigypmfbmtr.supabase.co/storage/v1/object/public/techxpress/public/c800893b-562d-42cc-80a9-52315b63395e_components-pc-case.a02cd7ce.png.webp
+

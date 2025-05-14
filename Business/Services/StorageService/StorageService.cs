@@ -16,7 +16,12 @@ namespace Business.Services.StorageService
         public async Task<(bool success, string message, string fileUrl)> UploadPhotoAsync(
             Stream fileStream, string fileName, string contentType)
         {
+            if(fileName.Length > 50)
+            {
+                fileName = fileName.Substring(0, 50);
+            }
             var uniqueName = $"{Guid.NewGuid()}_{fileName}";
+
             var storagePath = $"public/{uniqueName}";
             using (var client = new HttpClient())
             {

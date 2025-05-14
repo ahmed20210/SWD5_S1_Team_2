@@ -38,7 +38,18 @@ namespace Web.Controllers
             var result = await _favouriteListService.AddToFavouritesAsync(userId, productId);
             if (!result)
             {
+                // If this is an AJAX request, return JSON
+                if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+                {
+                    return Json(new { success = false, message = "Failed to add to favorites" });
+                }
                 return NotFound();
+            }
+
+            // If this is an AJAX request, return JSON
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            {
+                return Json(new { success = true, message = "Added to favorites" });
             }
 
             if (!string.IsNullOrEmpty(returnUrl))
@@ -48,7 +59,6 @@ namespace Web.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -59,7 +69,18 @@ namespace Web.Controllers
             var result = await _favouriteListService.RemoveFromFavouritesAsync(userId, productId);
             if (!result)
             {
+                // If this is an AJAX request, return JSON
+                if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+                {
+                    return Json(new { success = false, message = "Failed to remove from favorites" });
+                }
                 return NotFound();
+            }
+
+            // If this is an AJAX request, return JSON
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            {
+                return Json(new { success = true, message = "Removed from favorites" });
             }
 
             if (!string.IsNullOrEmpty(returnUrl))
@@ -69,7 +90,6 @@ namespace Web.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-
 
         public async Task<IActionResult> Index()
         {

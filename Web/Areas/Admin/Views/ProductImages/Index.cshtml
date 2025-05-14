@@ -1,0 +1,118 @@
+@using Business.ViewModels.CategoryViewModels
+@model IEnumerable<CategoryViewModel>
+
+@{
+    ViewData["Title"] = "Update Product Images";
+    Layout = "_AdminLayout";
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">Update Product Images</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/Admin/Dashboard">Dashboard</a></li>
+        <li class="breadcrumb-item active">Update Product Images</li>
+    </ol>
+    
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+    
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+    
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-images mr-1"></i>
+            Update All Product Images
+        </div>
+        <div class="card-body">
+            <p>This will update all product images based on the folder structure in the Ecommerce directory. Images will be assigned to products in order.</p>
+            <form asp-action="UpdateAllCategories" method="post" class="mb-3">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn-primary">Update All Product Images</button>
+            </form>
+            
+            @if (ViewBag.UrlFileExists == true || TempData["UrlFileGenerated"] != null)
+            {
+                <a asp-action="DownloadUrlFile" class="btn btn-success">
+                    <i class="fas fa-download"></i> Download Image URLs File
+                </a>
+                <p class="mt-2 text-muted">
+                    <small>Download the text file containing all product image URLs and mappings.</small>
+                </p>
+            }
+        </div>
+    </div>
+    
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-folder-open mr-1"></i>
+            Update Product Images by Category
+        </div>
+        <div class="card-body">
+            <p>Select a category to update product images only for that category.</p>
+            <form asp-action="UpdateCategory" method="post">
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <label for="categoryName">Select Category</label>
+                    <select id="categoryName" name="categoryName" class="form-control">
+                        <option value="">-- Select Category --</option>
+                        <option value="Accessories">Accessories</option>
+                        <option value="Audio Devices">Audio Devices</option>
+                        <option value="Cameras">Cameras</option>
+                        <option value="Drones">Drones</option>
+                        <option value="Gaming Consoles">Gaming Consoles</option>
+                        <option value="Home Appliances">Home Appliances</option>
+                        <option value="Laptops">Laptops</option>
+                        <option value="PC Components">PC Components</option>
+                        <option value="Smart Watches">Smart Watches</option>
+                        <option value="Smartphones">Smartphones</option>
+                        <option value="Tablets">Tablets</option>
+                        <option value="Televisions">Televisions</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Update Selected Category</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-info-circle mr-1"></i>
+            Instructions
+        </div>
+        <div class="card-body">
+            <h5>How It Works</h5>
+            <p>The product image updater works by scanning through the Ecommerce folders and uploading your product images to Supabase storage.</p>
+            
+            <h5>Folder Structure</h5>
+            <p>Make sure your Ecommerce folder has the following structure:</p>
+            <pre>
+Business/
+  Ecommerce/
+    Accessories/
+      [image files]
+    Audio Devices/
+      [image files]
+    Cameras/
+      [image files]
+    ...and so on
+            </pre>
+            
+            <h5>Image Assignment</h5>
+            <p>Images are assigned to products in order - the first image in the folder is assigned to the first product in the category, and so on.</p>
+            <p>If there are more products than images, some products will not be updated.</p>
+            <p>If there are more images than products, extra images will be ignored.</p>
+            
+            <h5>URL Tracking</h5>
+            <p>A text file containing all image URLs will be generated and can be downloaded using the "Download Image URLs File" button after running the update.</p>
+        </div>
+    </div>
+</div>

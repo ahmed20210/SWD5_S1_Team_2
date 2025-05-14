@@ -119,7 +119,7 @@
         
         <div class="d-flex justify-content-between mt-4">
             <button type="button" onclick="applyAllFilters()" class="btn btn-primary">Apply All Filters</button>
-            <a href="@Url.Action(ViewContext.RouteData.Values["action"].ToString())" class="btn btn-secondary">Reset</a>
+            <button type="button" onclick="resetAllFilters()" class="btn btn-secondary">Reset</button>
         </div>
     </div>
 </div>
@@ -186,8 +186,18 @@
         });
     }
     
-    // Combined filter application function
+    // Function to reset all filters and redirect to base URL
+    function resetAllFilters() {
+        // Get the current URL without query parameters
+        const baseUrl = window.location.pathname;
+        window.location.href = baseUrl;
+    }
+    
+    // Combined filter application function with AJAX
     function applyAllFilters() {
+        // Show loading indicator if desired
+        // document.getElementById('loading-indicator').style.display = 'block';
+        
         // Get the current URL and parse its parameters
         let url = new URL(window.location.href);
         let params = new URLSearchParams(url.search);
