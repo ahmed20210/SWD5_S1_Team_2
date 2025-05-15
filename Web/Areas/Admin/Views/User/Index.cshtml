@@ -1,32 +1,105 @@
 ﻿@model List<Domain.Entities.User>
 
 @{
-    ViewData["Title"] = "User List";
+    ViewData["Title"] = "Client Users";
+    Layout = "_AdminLayout";
+}  
+
+<div class="container-fluid mt-4">
+    <div class="card">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h2 class="mb-0">Client Users</h2>
+        </div>
+        <div class="card-body">
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    @TempData["SuccessMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @TempData["ErrorMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model)
+                        {
+                            <tr>
+                                <td>@user.FullName</td>
+                                <td>@user.Email</td>
+                                <td>
+                                    <span class="badge bg-info">@user.Role</span>
+                                </td>
+                                <td>
+                                    @if (user.IsVerified)
+                                    {
+                                        <span class="badge bg-success">Verified</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-warning text-dark">Suspended</span>
+                                    }
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a href="@Url.Action("Edit", "User", new { id = user.Id })" class="btn btn-sm btn-primary">
+                                            <i class="bi bi-pencil-square"></i> Edit
+                                        </a>
+                                        <a href="@Url.Action("ChangeRole", "User", new { id = user.Id })" class="btn btn-sm btn-info">
+                                            <i class="bi bi-person-gear"></i> Change Role
+                                        </a>
+                                        @if (user.IsVerified)
+                                        {
+                                            <a href="@Url.Action("Suspend", "User", new { id = user.Id })" class="btn btn-sm btn-warning">
+                                                <i class="bi bi-lock"></i> Suspend
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.Action("Activate", "User", new { id = user.Id })" class="btn btn-sm btn-success">
+                                                <i class="bi bi-unlock"></i> Activate
+                                            </a>
+                                        }
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            @if (!Model.Any())
+            {
+                <div class="alert alert-info text-center">
+                    No client users found.
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Auto-hide alerts after 5 seconds
+        setTimeout(function() {
+            $('.alert').alert('close');
+        }, 5000);
+    </script>
 }
-
-<h1>User List</h1>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Verified</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var user in Model)
-        {
-            <tr>
-                <td>@user.FullName</td>
-                <td>@user.Email</td>
-                <td>@(user.IsVerified ? "Verified" : "Not Verified")</td>
-                <td>
-                    <a href="@Url.Action("Edit", "User", new { id = user.Id })" class="btn btn-primary">Edit</a>
-                    <a href="@Url.Action("Suspend", "User", new { id = user.Id })" class="btn btn-warning">Suspend</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>

@@ -1,3 +1,5 @@
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Http
 <!-- Topbar Start -->
     <div class="container-fluid">
         <div class="row bg-secondary py-1 px-xl-5">
@@ -12,14 +14,29 @@
             <div class="col-lg-6 text-center text-lg-right">
                 <div class="d-inline-flex align-items-center">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My
-                            Account</button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <button onclick="location.href='/Account/Login'"
-                               class="dropdown-item" type="button">Sign in</button>
-                            <button onclick="location.href='/Account/SignUp'"
-                        class="dropdown-item" type="button">Sign up</button>
-                        </div>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">
+                                <i class="fas fa-user"></i> My Account
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <button onclick="location.href='/Account/Settings'"
+                                   class="dropdown-item" type="button">Account Settings</button>
+                                <form asp-controller="Account" asp-action="LogOut" method="post" id="logoutForm">
+                                    <button type="submit" class="dropdown-item">Logout</button>
+                                </form>
+                            </div>
+                        }
+                        else
+                        {
+                            <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My Account</button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <button onclick="location.href='/Account/Login'"
+                                   class="dropdown-item" type="button">Sign in</button>
+                                <button onclick="location.href='/Account/SignUp'"
+                                   class="dropdown-item" type="button">Sign up</button>
+                            </div>
+                        }
                     </div>
                 </div>
                 <div class="d-inline-flex align-items-center d-block d-lg-none">

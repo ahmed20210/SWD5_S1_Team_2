@@ -10,6 +10,7 @@ using Business.Services.ProductService;
 using Business.Services.OrderItemService;
 using Business.Services.PaymentService;
 using Business.Services.FavouriteListService;
+using Business.Services.OrderService;
 
 public static class ServicesDI
 {
@@ -27,5 +28,7 @@ public static class ServicesDI
         services.AddScoped<IPaymentService, PaymentService>();
         services.AddScoped<IPaymentGatewayService, StripePaymentGatewayService>();
         services.AddScoped<IFavouriteListService, FavouriteListService>();
+        services.AddScoped<IOrderService, OrderService>();
+        services.AddScoped<IUserService, UserService>();
     }
 }

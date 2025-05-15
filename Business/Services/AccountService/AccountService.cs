@@ -129,5 +129,79 @@ namespace Business.Services.AccountService
             await _signInManager.SignOutAsync();
             return BaseResponse.SuccessResponse("Logout successful");
         }
+
+        public async Task<User> GetUserByIdAsync(string userId)
+        {
+            return await _userManager.FindByIdAsync(userId);
+        }
+
+        public async Task<BaseResponse> UpdateUserProfileAsync(UserProfileViewModel model)
+        {
+            var user = await _userManager.FindByIdAsync(model.Id);
+
+            if (user == null)
+            {
+                return BaseResponse.FailureResponse("User not found");
+            }
+
+            // Check if email is being changed and if it's already taken
+            if (user.Email != model.Email)
+            {
+                var existingUser = await _userManager.FindByEmailAsync(model.Email);
+                if (existingUser != null && existingUser.Id != user.Id)
+                {
+                    return BaseResponse.FailureResponse("Email is already in use by another account");
+                }
+
+                user.Email = model.Email;
+                user.UserName = model.Email; // Username is the same as email in our system
+            }
+
+            // Check if phone number is being changed and if it's already taken
+            if (user.PhoneNumber != model.PhoneNumber)
+            {
+                var existingUser = await _userManager.Users.FirstOrDefaultAsync(u => u.PhoneNumber == model.PhoneNumber && u.Id != user.Id);
+                if (existingUser != null)
+                {
+                    return BaseResponse.FailureResponse("Phone number is already in use by another account");
+                }
+
+                user.PhoneNumber = model.PhoneNumber;
+            }
+
+            // Update other properties
+            user.FName = model.FName;
+            user.LName = model.LName;
+
+            var result = await _userManager.UpdateAsync(user);
+
+            if (result.Succeeded)
+            {
+                return BaseResponse.SuccessResponse("Profile updated successfully");
+            }
+
+            return BaseResponse.FailureResponse("Failed to update profile", result.Errors);
+        }
+
+        public async Task<BaseResponse> ChangePasswordAsync(string userId, string currentPassword, string newPassword)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if (user == null)
+            {
+                return BaseResponse.FailureResponse("User not found");
+            }
+
+            var result = await _userManager.ChangePasswordAsync(user, currentPassword, newPassword);
+
+            if (result.Succeeded)
+            {
+                // Sign the user in again with the new password
+                await _signInManager.SignInAsync(user, isPersistent: false);
+                return BaseResponse.SuccessResponse("Password changed successfully");
+            }
+
+            return BaseResponse.FailureResponse("Failed to change password", result.Errors);
+        }
     }
 }

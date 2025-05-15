@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace Business.Services.UserService
         Task<User?> GetUserByIdAsync(string id);
         Task<bool> UpdateUserAsync(User user);
         Task<bool> SuspendUserAsync(string id);
+        Task<bool> ActivateUserAsync(string id);
+        Task<bool> ChangeUserRoleAsync(string id, UserRole newRole);
     }
-
 }

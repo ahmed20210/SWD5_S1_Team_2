@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domain;
 
 namespace Business.ViewModels.EditUserViewModel
 {
@@ -13,6 +14,6 @@ namespace Business.ViewModels.EditUserViewModel
         public string LName { get; set; }
         public string Email { get; set; }
         public bool IsVerified { get; set; }
+        public UserRole Role { get; set; }
     }
-
 }

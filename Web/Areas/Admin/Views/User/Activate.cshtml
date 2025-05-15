@@ -1,21 +1,22 @@
-﻿@model Domain.Entities.User
+@model Domain.Entities.User
 
 @{
-    ViewData["Title"] = "Suspend User";
+    ViewData["Title"] = "Activate User";
     Layout = "_AdminLayout";
+
 }
 
 <div class="container mt-4">
     <div class="row">
         <div class="col-md-8 offset-md-2">
-            <div class="card border-warning">
-                <div class="card-header bg-warning text-dark">
-                    <h2 class="mb-0"><i class="bi bi-exclamation-triangle"></i> Suspend User</h2>
+            <div class="card border-success">
+                <div class="card-header bg-success text-white">
+                    <h2 class="mb-0"><i class="bi bi-check-circle"></i> Activate User</h2>
                 </div>
                 <div class="card-body">
-                    <div class="alert alert-warning">
-                        <h5>Are you sure you want to suspend this user?</h5>
-                        <p>Suspending will prevent the user from logging in and accessing their account.</p>
+                    <div class="alert alert-success">
+                        <h5>Are you sure you want to activate this user?</h5>
+                        <p>Activating will allow the user to log in and access their account.</p>
                     </div>
                     
                     <div class="card mb-4">
@@ -29,22 +30,22 @@
                                     <p><strong>Email:</strong> @Model.Email</p>
                                 </div>
                                 <div class="col-md-6">
-                                    <p><strong>Status:</strong> @(Model.IsVerified ? "Verified" : "Not Verified")</p>
-                                    <p><strong>Role:</strong> Client</p>
+                                    <p><strong>Status:</strong> <span class="badge bg-warning text-dark">Not Verified</span></p>
+                                    <p><strong>Role:</strong> @Model.Role</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <form asp-action="Suspend" method="post">
+                    <form asp-action="Activate" method="post">
                         <input type="hidden" name="id" value="@Model.Id" />
                         <input type="hidden" name="confirm" value="true" />
                         <div class="d-flex justify-content-between">
                             <a href="@Url.Action("Index", "User")" class="btn btn-secondary">
                                 <i class="bi bi-x-circle"></i> Cancel
                             </a>
-                            <button type="submit" class="btn btn-danger">
-                                <i class="bi bi-lock"></i> Yes, Suspend User
+                            <button type="submit" class="btn btn-success">
+                                <i class="bi bi-check2-circle"></i> Yes, Activate User
                             </button>
                         </div>
                     </form>
