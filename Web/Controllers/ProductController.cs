@@ -90,11 +90,15 @@ public class ProductController : Controller
         decimal? maxPrice = null,
         int pageNumber = 1,
         int pageSize = DefaultPageSize,
-        string status = null)
+        string status = null
+        )
     {
         var result = await _productService.GetProductsAsync(
             searchTerm, categoryId, orderBy, minPrice, maxPrice, pageNumber, pageSize, status,
             filterBy: FilterBy.Discounted);
+            // look for discounted products
+
+            Console.WriteLine(result.Data.Count());
 
         if (!result.Success)
         {

@@ -44,6 +44,26 @@ public class DiscountController : ControllerBase
         return result.Success ? Ok(result) : BadRequest(result);
     }
 
+    [HttpPost("bulk-random")]
+    public async Task<IActionResult> CreateBulkRandomDiscounts([FromQuery] int count = 100, 
+        [FromQuery] decimal minAmount = 5, [FromQuery] decimal maxAmount = 30,
+        [FromQuery] DateTime? startDate = null, [FromQuery] DateTime? endDate = null)
+    {
+        // Set default dates if not provided
+        var start = startDate ?? DateTime.UtcNow;
+        var end = endDate ?? DateTime.UtcNow.AddMonths(1);
+        
+        var result = await _discountService.CreateBulkRandomDiscountsAsync(count, minAmount, maxAmount, start, end);
+        return result.Success ? Ok(result) : BadRequest(result);
+    }
+
+    [HttpPost("synchronize")]
+    public async Task<IActionResult> SynchronizeDiscounts()
+    {
+        var result = await _discountService.SynchronizeDiscountsAsync();
+        return result.Success ? Ok(result) : BadRequest(result);
+    }
+
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteDiscount(int id)
     {

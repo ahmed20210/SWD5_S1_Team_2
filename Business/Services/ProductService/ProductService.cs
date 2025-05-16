@@ -261,8 +261,11 @@ public class ProductService : IProductService
 
     private  IQueryable<Product> FilterByDiscountedProducts(IQueryable<Product> query)
     {
-        query = query.Where(p => p.Discount != null && p.Discount.StartDate <= DateTime.UtcNow && p.Discount.EndDate >= DateTime.UtcNow)
-            .OrderByDescending(p =>  p.Discount.Amount);
+        DateTime currentDate = DateTime.UtcNow;
+        query = query.Where(p => p.Discount != null 
+                            && p.Discount.StartDate <= currentDate 
+                            && p.Discount.EndDate >= currentDate)
+            .OrderByDescending(p => p.Discount.Amount);
         return query;
     }
 

@@ -13,9 +13,17 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="/" class="nav-item nav-link active">Home</a>
-                            <a href="/Product" class="nav-item nav-link">Shop Products</a>
-                            <a href="/Product/HotDeals" class="nav-item nav-link">Hot Deals</a>
+                            @{
+                                var currentController = ViewContext.RouteData.Values["Controller"]?.ToString();
+                                var currentAction = ViewContext.RouteData.Values["Action"]?.ToString();
+                                var isHome = currentController == "Home" || string.IsNullOrEmpty(currentController);
+                                var isProducts = currentController == "Product" && currentAction != "HotDeals";
+                                var isHotDeals = currentController == "Product" && currentAction == "HotDeals";
+                                var isContact = currentController == "Contact";
+                            }
+                            <a href="/" class="nav-item nav-link @(isHome ? "active" : "")">Home</a>
+                            <a href="/Product" class="nav-item nav-link @(isProducts ? "active" : "")">Shop Products</a>
+                            <a href="/Product/HotDeals" class="nav-item nav-link @(isHotDeals ? "active" : "")">Hot Deals</a>
                             @* <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i
                                         class="fa fa-angle-down mt-1"></i></a>
@@ -24,7 +32,7 @@
                                     <a href="checkout.html" class="dropdown-item">Checkout</a>
                                 </div>
                             </div> *@
-                            <a href="/Contact" class="nav-item nav-link">Contact</a>
+                            <a href="/Contact" class="nav-item nav-link @(isContact ? "active" : "")">Contact</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
                             <a href="/FavouriteList"

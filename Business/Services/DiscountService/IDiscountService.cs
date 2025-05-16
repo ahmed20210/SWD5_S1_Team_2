@@ -24,5 +24,10 @@ public interface IDiscountService
 
     Task<BaseResponse> DeleteDiscountAsync(int id);
 
-    
+    // Add method for bulk creating discounts for random products
+    Task<BaseResponse> CreateBulkRandomDiscountsAsync(int count, decimal minAmount, decimal maxAmount, 
+        DateTime startDate, DateTime endDate);
+        
+    // Add method for synchronizing all discounts with products
+    Task<BaseResponse> SynchronizeDiscountsAsync();
 }

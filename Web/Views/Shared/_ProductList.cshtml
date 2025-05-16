@@ -16,10 +16,12 @@
                     src="@product.ImageUrl"
                     alt="@product.Name"
                     class="d-block w-100" style="height: auto; object-fit:contain; object-position:center;">
-@* <img class="img-fluid w-100" 
-                   
-                    src="@product.ImageUrl ?? $"https://placeholder.pics/svg/300x300/DEDEDE/555555/{product.Name}"" 
-                    alt="@product.Name"> *@
+                    @if (product.Discount != null && product.Discount.Amount > 0)
+                    {
+                        <div class="position-absolute" style="top: 10px; right: 10px;">
+                            <span class="badge badge-danger" style="font-size: 0.8rem; padding: 6px;">-@product.Discount.Amount%</span>
+                        </div>
+                    }
                     <div class="product-action">
                         <a class="btn btn-outline-dark btn-square" href="javascript:void(0);" 
                            onclick="addToCart('@product.Id', '@product.Name', @product.Price, '@product.ImageUrl')">

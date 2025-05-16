@@ -202,13 +202,13 @@ public class DiscountService: IDiscountService
                     StartDate = d.StartDate,
                     EndDate = d.EndDate,
                     ProductId = d.ProductId,
-                    Product = new ProductBaseDto
+                    Product = d.Product != null ? new ProductBaseDto
                     {
                         Id = d.Product.Id,
                         Name = d.Product.Name,
                         Price = d.Product.Price,
                         Description = d.Product.Description
-                    }
+                    } : null
                 })
                 .ToListAsync();
               
@@ -267,4 +267,176 @@ public class DiscountService: IDiscountService
         }
     }
 
+    public async Task<BaseResponse> CreateBulkRandomDiscountsAsync(int count, decimal minAmount, decimal maxAmount, 
+        DateTime startDate, DateTime endDate)
+    {
+        try
+        {
+            // Validate parameters
+            if (count <= 0)
+            {
+                return new BaseResponse
+                {
+                    Success = false,
+                    Message = "Count must be greater than zero."
+                };
+            }
+            
+            if (minAmount < 0 || maxAmount > 100)
+            {
+                return new BaseResponse
+                {
+                    Success = false,
+                    Message = "Discount amounts must be between 0 and 100 percent."
+                };
+            }
+            
+            if (minAmount > maxAmount)
+            {
+                return new BaseResponse
+                {
+                    Success = false,
+                    Message = "Minimum amount must be less than or equal to maximum amount."
+                };
+            }
+            
+            if (startDate >= endDate)
+            {
+                return new BaseResponse
+                {
+                    Success = false,
+                    Message = "Start date must be earlier than end date."
+                };
+            }
+
+            // Get products that don't have active discounts
+            var productsWithoutDiscounts = await _context.Products
+                .Where(p => p.Discount == null || 
+                           (p.Discount != null && p.Discount.EndDate < DateTime.UtcNow))
+                .Take(count)
+                .ToListAsync();
+
+            var availableProductCount = productsWithoutDiscounts.Count;
+            
+            if (availableProductCount == 0)
+            {
+                return new BaseResponse
+                {
+                    Success = false,
+                    Message = "No products available for discounts."
+                };
+            }
+            
+            if (availableProductCount < count)
+            {
+                count = availableProductCount;
+            }
+
+            // Create a random number generator
+            var random = new Random();
+            var discounts = new List<Discount>();
+
+            // Create discounts for each product
+            foreach (var product in productsWithoutDiscounts.Take(count))
+            {
+                // Generate random discount amount between minAmount and maxAmount
+                var randomAmount = (decimal)(random.NextDouble() * (double)(maxAmount - minAmount) + (double)minAmount);
+                randomAmount = Math.Round(randomAmount, 2); // Round to 2 decimal places
+                
+                var discount = new Discount
+                {
+                    Amount = randomAmount,
+                    StartDate = startDate,
+                    EndDate = endDate,
+                    ProductId = product.Id
+                };
+                
+                discounts.Add(discount);
+            }
+
+            // Add all discounts in one batch and save changes
+            await _context.Discounts.AddRangeAsync(discounts);
+            await _context.SaveChangesAsync();
+
+            return new BaseResponse
+            {
+                Success = true,
+                Message = $"Successfully created {discounts.Count} discounts for random products."
+            };
+        }
+        catch (Exception ex)
+        {
+            return new BaseResponse
+            {
+                Success = false,
+                Message = $"An error occurred while creating bulk discounts: {ex.Message}"
+            };
+        }
+    }
+
+    public async Task<BaseResponse> SynchronizeDiscountsAsync()
+    {
+        try
+        {
+            var currentDate = DateTime.UtcNow;
+            
+            // Get all active discounts
+            var activeDiscounts = await _context.Discounts
+                .Where(d => d.StartDate <= currentDate && d.EndDate >= currentDate)
+                .ToListAsync();
+            
+            // Get all products with the active discounts
+            var productsWithActiveDiscountIds = activeDiscounts.Select(d => d.ProductId).ToList();
+            var productsWithActiveDiscounts = await _context.Products
+                .Where(p => productsWithActiveDiscountIds.Contains(p.Id))
+                .ToListAsync();
+            
+            // Update each product to point to its active discount
+            foreach (var discount in activeDiscounts)
+            {
+                var product = productsWithActiveDiscounts.FirstOrDefault(p => p.Id == discount.ProductId);
+                if (product != null)
+                {
+                    product.DiscountId = discount.Id;
+                }
+            }
+            
+            // Find products with expired discounts (DiscountId is set but not in active discounts)
+            var productsWithExpiredDiscounts = await _context.Products
+                .Where(p => p.DiscountId != null && !productsWithActiveDiscountIds.Contains(p.Id))
+                .ToListAsync();
+            
+            // Remove the DiscountId reference for products with expired discounts
+            foreach (var product in productsWithExpiredDiscounts)
+            {
+                // Optional: Add the current discount to PastDiscountList before nullifying it
+                // if (product.DiscountId.HasValue)
+                // {
+                //     var expiredDiscount = await _context.Discounts.FindAsync(product.DiscountId.Value);
+                //     if (expiredDiscount != null && product.PastDiscountList == null)
+                //         product.PastDiscountList = new List<Discount>();
+                //     product.PastDiscountList?.Add(expiredDiscount);
+                // }
+                
+                product.DiscountId = null;
+            }
+            
+            // Save all changes
+            await _context.SaveChangesAsync();
+            
+            return new BaseResponse
+            {
+                Success = true,
+                Message = $"Successfully synchronized {activeDiscounts.Count} active discounts and cleared {productsWithExpiredDiscounts.Count} expired discounts."
+            };
+        }
+        catch (Exception ex)
+        {
+            return new BaseResponse
+            {
+                Success = false,
+                Message = $"An error occurred while synchronizing discounts: {ex.Message}"
+            };
+        }
+    }
 }

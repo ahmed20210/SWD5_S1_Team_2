@@ -1,0 +1,103 @@
+@model List<Web.Models.StoreLocationViewModel>
+@{
+    ViewData["Title"] = "Our Store Locations";
+}
+
+<!-- Store Locations Header -->
+<div class="container-fluid bg-secondary mb-5">
+    <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+        <h1 class="font-weight-semi-bold text-uppercase mb-3">Our Store Locations</h1>
+        <div class="d-inline-flex">
+            <p class="m-0"><a href="/">Home</a></p>
+            <p class="m-0 px-2">-</p>
+            <p class="m-0">Store Locations</p>
+        </div>
+    </div>
+</div>
+
+<!-- Store Locations Content -->
+<div class="container-fluid pt-5">
+    <div class="row px-xl-5">
+        <div class="col-lg-12 mb-5">
+            <h2 class="section-title position-relative text-uppercase mb-4"><span class="bg-white pr-3">Visit Our 3 Locations</span></h2>
+            <p class="mb-5">Visit one of our physical stores for personalized service and hands-on product demonstrations. Our knowledgeable staff is ready to help you find the perfect tech solutions for your needs.</p>
+            
+            <!-- Map -->
+            <div class="mb-5">
+                <div id="storeMap" style="width: 100%; height: 450px;"></div>
+            </div>
+            
+            <!-- Store Location Cards -->
+            <div class="row">
+                @foreach (var store in Model)
+                {
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h4 class="card-title text-primary">@store.Name</h4>
+                                <p class="card-text">
+                                    <i class="fa fa-map-marker-alt text-primary mr-2"></i>@store.Address<br>
+                                    <i class="fa fa-phone-alt text-primary mr-2"></i>@store.PhoneNumber<br>
+                                    <i class="fa fa-clock text-primary mr-2"></i>@store.OpeningHours
+                                </p>
+                                <p>@store.Description</p>
+                                <a href="https://www.openstreetmap.org/?mlat=@store.Latitude&mlon=@store.Longitude#map=15/@store.Latitude/@store.Longitude" target="_blank" class="btn btn-outline-primary btn-sm">
+                                    <i class="fa fa-directions mr-1"></i> Get Directions
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    
+    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize the map
+            const map = L.map('storeMap').setView([40.7184, -73.9732], 11);
+            
+            // Add the OpenStreetMap tiles
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+            
+            // Get store locations from the model
+            const stores = @Html.Raw(Json.Serialize(Model));
+            
+            // Create markers for each store
+            stores.forEach(store => {
+                // Create marker at store location
+                const marker = L.marker([store.latitude, store.longitude])
+                    .addTo(map)
+                    .bindPopup(`
+                        <div>
+                            <h5>${store.name}</h5>
+                            <p>${store.address}<br>
+                            ${store.phoneNumber}<br>
+                            ${store.openingHours}</p>
+                        </div>
+                    `);
+                
+                // Create store marker on map with popup
+                marker.on('click', function() {
+                    marker.openPopup();
+                });
+            });
+            
+            // Make sure the map resizes correctly when its container changes size
+            setTimeout(function() {
+                map.invalidateSize();
+            }, 100);
+        });
+    </script>
+}
