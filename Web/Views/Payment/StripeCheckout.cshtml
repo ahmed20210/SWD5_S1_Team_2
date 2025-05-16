@@ -1,0 +1,353 @@
+@model dynamic
+@{
+    ViewData["Title"] = "Secure Payment";
+    var amount = ViewBag.Amount ?? 160.00M;
+    var amountInCents = (int)(amount * 100);
+}
+
+<!-- Breadcrumb Start -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30">
+                <a class="breadcrumb-item text-dark" href="/">Home</a>
+                <a class="breadcrumb-item text-dark" href="/cart">Cart</a>
+                <a class="breadcrumb-item text-dark" href="/cart/checkout">Checkout</a>
+                <span class="breadcrumb-item active">Payment</span>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+
+<!-- Stripe Payment Form Start -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-lg-8 mx-auto">
+            <div class="card border-0 shadow-sm mb-5">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Secure Payment</h4>
+                </div>
+                <div class="card-body p-4">
+                    <!-- Order Summary -->
+                    <div class="mb-4">
+                        <h5 class="border-bottom pb-2">Order Summary</h5>
+                        <div class="bg-light p-3 rounded">
+                            <div class="d-flex justify-content-between mb-2">
+                                <h6 class="mb-0">Total Amount:</h6>
+                                <h6 class="mb-0" id="payment-total">$@amount.ToString("0.00")</h6>
+                            </div>
+                            <p class="small text-muted mb-0">Your card will be charged this amount.</p>
+                        </div>
+                    </div>
+
+                    <!-- Payment Form -->
+                    <div class="mb-4">
+                        <h5 class="border-bottom pb-2">Payment Details</h5>
+                        <form id="payment-form" class="mt-3">
+                            <div id="payment-element-container">
+                                <!-- Card Information -->
+                                <div class="mb-3">
+                                    <label class="form-label">Card Information</label>
+                                    <div id="card-element" class="form-control p-3 bg-white">
+                                        <!-- Stripe Elements will create input elements here -->
+                                    </div>
+                                    <div id="card-errors" class="text-danger mt-2 small" role="alert"></div>
+                                </div>
+
+                                <!-- Email (optional) -->
+                                <div class="mb-3">
+                                    <label for="customer-email" class="form-label">Email for Receipt (Optional)</label>
+                                    <input type="email" class="form-control" id="customer-email" placeholder="you@example.com">
+                                </div>
+
+                                <!-- Save Card Checkbox -->
+                                <div class="mb-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="save-card">
+                                        <label class="form-check-label" for="save-card">
+                                            Save this card for future purchases
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <!-- Submit Button -->
+                                <button type="submit" id="submit-button" class="btn btn-primary btn-lg w-100">
+                                    <span id="button-text">Pay $@amount.ToString("0.00")</span>
+                                    <span id="spinner" class="spinner-border spinner-border-sm ms-2 d-none" role="status" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                            
+                            <!-- Payment Status Messages -->
+                            <div id="payment-message" class="d-none mt-4 text-center">
+                                <!-- Success or error message will appear here -->
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Security Info -->
+                    <div class="mt-4">
+                        <div class="d-flex align-items-center justify-content-center mb-2">
+                            <i class="fa fa-lock text-success me-2"></i>
+                            <span class="small fw-bold">Payments are secure and encrypted</span>
+                        </div>
+                        <div class="text-center">
+                            <img src="https://stripe.com/img/v3/home/twitter-card.png" alt="Stripe" style="height: 25px; margin-right: 15px;">
+                            <img src="https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg" alt="Payment Methods" height="24">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Stripe Payment Form End -->
+
+@section Scripts {
+    <!-- Include Stripe.js -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        // DOM elements
+        const paymentForm = document.getElementById('payment-form');
+        const submitButton = document.getElementById('submit-button');
+        const buttonText = document.getElementById('button-text');
+        const spinner = document.getElementById('spinner');
+        const paymentMessage = document.getElementById('payment-message');
+        const cardErrors = document.getElementById('card-errors');
+        const customerEmail = document.getElementById('customer-email');
+        
+        let stripe;
+        let elements;
+        let cardElement;
+
+        // Order amount - coming from the server
+        const amount = @amountInCents; // Amount in cents
+        
+        // Show the spinner and disable the submit button
+        function setLoading(isLoading) {
+            if (isLoading) {
+                submitButton.disabled = true;
+                spinner.classList.remove('d-none');
+                buttonText.textContent = 'Processing...';
+            } else {
+                submitButton.disabled = false;
+                spinner.classList.add('d-none');
+                buttonText.textContent = 'Pay $@amount.ToString("0.00")';
+            }
+        }
+        
+        // Show a message to the customer
+        function showMessage(messageText, isError = false) {
+            paymentMessage.classList.remove('d-none', 'alert-success', 'alert-danger');
+            paymentMessage.classList.add(isError ? 'alert-danger' : 'alert-success');
+            paymentMessage.classList.add('alert', 'my-3', 'py-3');
+            paymentMessage.textContent = messageText;
+            
+            if (!isError) {
+                // Hide the form for success messages
+                document.getElementById('payment-element-container').classList.add('d-none');
+            }
+            
+            window.scrollTo({ top: paymentMessage.offsetTop, behavior: 'smooth' });
+        }
+
+        // Initialize Stripe
+        fetch('/api/StripeApi/GetPublicKey')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to load payment configuration');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (!data.publicKey) {
+                    throw new Error('No public key received from server');
+                }
+                
+                stripe = Stripe(data.publicKey);
+                elements = stripe.elements();
+
+                // Create and mount the card Element with improved styling
+                cardElement = elements.create('card', {
+                    style: {
+                        base: {
+                            iconColor: '#666EE8',
+                            color: '#31325F',
+                            fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, "Helvetica Neue", sans-serif',
+                            fontSmoothing: 'antialiased',
+                            fontSize: '16px',
+                            '::placeholder': {
+                                color: '#aab7c4'
+                            },
+                            ':-webkit-autofill': {
+                                color: '#31325F',
+                            },
+                        },
+                        invalid: {
+                            color: '#fa755a',
+                            iconColor: '#fa755a'
+                        }
+                    }
+                });
+                cardElement.mount('#card-element');
+
+                // Handle validation errors on the card Element
+                cardElement.on('change', function(event) {
+                    if (event.error) {
+                        cardErrors.textContent = event.error.message;
+                    } else {
+                        cardErrors.textContent = '';
+                    }
+                });
+                
+                // Handle form submission
+                paymentForm.addEventListener('submit', handleSubmit);
+            })
+            .catch(error => {
+                console.error('Error initializing Stripe:', error);
+                showMessage('Could not load the payment processor. Please refresh the page or try again later.', true);
+            });
+
+        // Handle form submission
+        async function handleSubmit(event) {
+            event.preventDefault();
+            
+            // Validate form
+            if (!cardElement) {
+                showMessage('The payment form is still loading. Please wait a moment.', true);
+                return;
+            }
+            
+            setLoading(true);
+            
+            try {
+                // Create payment method
+                const result = await stripe.createPaymentMethod({
+                    type: 'card',
+                    card: cardElement,
+                    billing_details: {
+                        email: customerEmail.value || undefined
+                    }
+                });
+                
+                if (result.error) {
+                    // Show error in the form
+                    cardErrors.textContent = result.error.message;
+                    setLoading(false);
+                } else {
+                    // Send payment method ID to server
+                    processPayment(result.paymentMethod.id);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showMessage('An unexpected error occurred. Please try again.', true);
+                setLoading(false);
+            }
+        }
+        
+        // Process payment with the server
+        async function processPayment(paymentMethodId) {
+            try {
+                const response = await fetch('/api/StripeApi/CreatePaymentIntent', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        paymentMethodId: paymentMethodId,
+                        amount: amount,
+                        currency: 'usd',
+                        customerEmail: customerEmail.value || undefined
+                    }),
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Server error. Please try again.');
+                }
+                
+                const paymentIntentResult = await response.json();
+                
+                if (paymentIntentResult.success) {
+                    // Payment succeeded
+                    showMessage('Payment successful! Redirecting to order confirmation...');
+                    
+                    // Redirect after a short delay
+                    setTimeout(() => {
+                        window.location.href = `/payment/success?orderId=${paymentIntentResult.orderId}`;
+                    }, 1500);
+                    
+                } else if (paymentIntentResult.requiresAction) {
+                    // Handle 3D Secure authentication
+                    await handleCardAction(paymentIntentResult.clientSecret, paymentIntentResult.paymentIntentId);
+                } else {
+                    // Payment failed
+                    showMessage(paymentIntentResult.error || 'Payment failed. Please try again.', true);
+                    setLoading(false);
+                }
+            } catch (error) {
+                console.error('Error processing payment:', error);
+                showMessage('There was a problem processing your payment. Please try again.', true);
+                setLoading(false);
+            }
+        }
+        
+        // Handle 3D Secure authentication
+        async function handleCardAction(clientSecret, paymentIntentId) {
+            try {
+                const result = await stripe.handleCardAction(clientSecret);
+                
+                if (result.error) {
+                    // Show error in payment form
+                    showMessage(result.error.message, true);
+                    setLoading(false);
+                } else {
+                    // Card action completed, confirm payment on the server
+                    await confirmPayment(paymentIntentId);
+                }
+            } catch (error) {
+                console.error('Error during card action:', error);
+                showMessage('Authentication failed. Please try another payment method.', true);
+                setLoading(false);
+            }
+        }
+        
+        // Confirm payment after 3D Secure authentication
+        async function confirmPayment(paymentIntentId) {
+            try {
+                const response = await fetch('/api/StripeApi/ConfirmPayment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        paymentIntentId: paymentIntentId
+                    }),
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Server error during payment confirmation');
+                }
+                
+                const confirmResult = await response.json();
+                
+                if (confirmResult.success) {
+                    // Payment confirmed successfully
+                    showMessage('Payment confirmed successfully! Redirecting to order confirmation...');
+                    
+                    // Redirect after a short delay
+                    setTimeout(() => {
+                        window.location.href = `/payment/success?orderId=${confirmResult.orderId}`;
+                    }, 1500);
+                } else {
+                    // Payment confirmation failed
+                    showMessage(confirmResult.error || 'Payment confirmation failed.', true);
+                    setLoading(false);
+                }
+            } catch (error) {
+                console.error('Error confirming payment:', error);
+                showMessage('There was a problem confirming your payment.', true);
+                setLoading(false);
+            }
+        }
+    </script>
+}

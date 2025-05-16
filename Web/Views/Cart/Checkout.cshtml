@@ -1,4 +1,4 @@
-    <!-- Breadcrumb Start -->
+<!-- Breadcrumb Start -->
     <div class="container-fluid">
         <div class="row px-xl-5">
             <div class="col-12">
@@ -170,28 +170,191 @@
                 <div class="mb-5">
                     <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Payment</span></h5>
                     <div class="bg-light p-30">
-                        <div class="form-group">
-                            <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="paypal">
-                                <label class="custom-control-label" for="paypal">Paypal</label>
+                        <div class="payment-option mb-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="payment-icon me-3">
+                                    <img src="https://stripe.com/img/v3/home/twitter-card.png" alt="Stripe" style="max-height: 30px;" />
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Secure Credit Card Payment</h6>
+                                    <p class="text-muted small mb-0">Powered by Stripe</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="directcheck">
-                                <label class="custom-control-label" for="directcheck">Direct Check</label>
+                            <p class="text-muted mb-3">Your payment information is processed securely. We do not store credit card details.</p>
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="fa fa-check-circle text-primary me-2"></i>
+                                <span class="small">Credit & Debit Cards</span>
                             </div>
-                        </div>
-                        <div class="form-group mb-4">
-                            <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="banktransfer">
-                                <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="fa fa-lock text-primary me-2"></i>
+                                <span class="small">Secure SSL Encryption</span>
                             </div>
+                            <img src="https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg" alt="Payment Methods" style="max-height: 24px;" class="mb-4" />
                         </div>
-                        <button class="btn btn-block btn-primary font-weight-bold py-3">Place Order</button>
+                        <button id="proceed-to-payment" class="btn btn-block btn-primary font-weight-bold py-3">Continue to Payment</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- Checkout End -->
+
+@section Scripts {
+    <!-- Include Stripe.js -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        let stripe;
+        let elements;
+        let cardElement;
+
+        // Fetch the Stripe publishable key from the server
+        fetch('/api/Payment/GetPublicKey')
+            .then(response => response.json())
+            .then(data => {
+                stripe = Stripe(data.publicKey);
+                elements = stripe.elements();
+
+                // Create and mount the card Element
+                cardElement = elements.create('card', {
+                    style: {
+                        base: {
+                            fontSize: '16px',
+                            color: '#32325d',
+                            '::placeholder': {
+                                color: '#aab7c4',
+                            },
+                        },
+                        invalid: {
+                            color: '#fa755a',
+                            iconColor: '#fa755a',
+                        },
+                    },
+                });
+                cardElement.mount('#card-element');
+
+                // Handle validation errors on the card Element
+                cardElement.addEventListener('change', function (event) {
+                    const displayError = document.getElementById('card-errors');
+                    if (event.error) {
+                        displayError.textContent = event.error.message;
+                    } else {
+                        displayError.textContent = '';
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Error loading Stripe:', error);
+            });
+
+        // Handle form submission
+        const form = document.getElementById('checkout-button');
+        form.addEventListener('click', function (event) {
+            event.preventDefault();
+            
+            // Disable the submit button to prevent repeated clicks
+            form.disabled = true;
+            
+            // Collect billing and shipping details from form
+            const billingDetails = {
+                name: document.querySelector('input[placeholder="John"]').value + ' ' + document.querySelector('input[placeholder="Doe"]').value,
+                email: document.querySelector('input[placeholder="example@email.com"]').value,
+                phone: document.querySelector('input[placeholder="+123 456 789"]').value,
+                address: {
+                    line1: document.querySelector('input[placeholder="123 Street"]').value,
+                    city: document.querySelector('input[placeholder="New York"]').value,
+                    state: document.querySelector('input[placeholder="New York"]').value,
+                    postal_code: document.querySelector('input[placeholder="123"]').value,
+                    country: document.querySelector('.custom-select').value,
+                }
+            };
+
+            // Create payment method and confirm card payment
+            stripe.createPaymentMethod({
+                type: 'card',
+                card: cardElement,
+                billing_details: billingDetails,
+            }).then(function (result) {
+                if (result.error) {
+                    // Show error in payment form
+                    const errorElement = document.getElementById('card-errors');
+                    errorElement.textContent = result.error.message;
+                    form.disabled = false;
+                } else {
+                    // Send paymentMethod.id to your server
+                    fetch('/api/Payment/CreatePaymentIntent', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            paymentMethodId: result.paymentMethod.id,
+                            amount: 160 * 100, // Amount in cents
+                            currency: 'usd'
+                        }),
+                    }).then(function (response) {
+                        return response.json();
+                    }).then(function (paymentIntentResponse) {
+                        if (paymentIntentResponse.success) {
+                            // Payment successful - redirect to confirmation page
+                            window.location.href = '/order/confirmation?orderId=' + paymentIntentResponse.orderId;
+                        } else if (paymentIntentResponse.requiresAction) {
+                            // Use the client secret to handle 3D Secure authentication
+                            handleCardAction(paymentIntentResponse.clientSecret);
+                        } else {
+                            // Payment failed
+                            const errorElement = document.getElementById('card-errors');
+                            errorElement.textContent = paymentIntentResponse.error;
+                            form.disabled = false;
+                        }
+                    }).catch(function (error) {
+                        console.error('Error:', error);
+                        form.disabled = false;
+                    });
+                }
+            });
+        });
+
+        // Handle 3D Secure authentication
+        function handleCardAction(clientSecret) {
+            stripe.handleCardAction(
+                clientSecret
+            ).then(function(result) {
+                if (result.error) {
+                    // Show error in payment form
+                    const errorElement = document.getElementById('card-errors');
+                    errorElement.textContent = result.error.message;
+                    form.disabled = false;
+                } else {
+                    // The card action has been completed successfully
+                    // You may need to send the payment intent ID to your server again
+                    // to complete the payment process
+                    window.location.href = '/order/processing';
+                }
+            });
+        }
+    </script>
+    <script>
+        // Handle the "Continue to Payment" button
+        document.getElementById('proceed-to-payment').addEventListener('click', function(event) {
+            event.preventDefault();
+            
+            // Get total amount from the page
+            const totalAmountText = document.querySelector('.d-flex.justify-content-between.mt-2 h5:last-child').textContent;
+            const amount = parseFloat(totalAmountText.replace('$', ''));
+            
+            // Validate form fields
+            const firstName = document.querySelector('input[placeholder="John"]').value;
+            const lastName = document.querySelector('input[placeholder="Doe"]').value;
+            const email = document.querySelector('input[placeholder="example@email.com"]').value;
+            
+            // Simple validation
+            if (!firstName || !lastName || !email) {
+                alert('Please fill in all required fields before proceeding to payment');
+                return;
+            }
+            
+            // Redirect to Stripe checkout with the amount
+            window.location.href = `/payment/StripeCheckout?amount=${amount}`;
+        });
+    </script>
+}
