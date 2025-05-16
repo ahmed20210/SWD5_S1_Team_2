@@ -291,21 +291,56 @@ public class ProductService : IProductService
             OrderByDescending(p => p.AverageReviewScore);
         return query;
     }
-
-    //     public async Task<BaseResponse<List<Category>>> GetCategoriesAsync()
-    //     {
-    //         try
-    //         {
-    //             var categories = await _db.Categories
-    //                 .OrderBy(c => c.Name)
-    //                 .ToListAsync();
-
-    //             return BaseResponse<List<Category>>.SuccessResponse("Categories retrieved successfully", categories);
-    //         }
-    //         catch (Exception ex)
-    //         {
-    //             return BaseResponse<List<Category>>.FailureResponse($"Error retrieving categories: {ex.Message}");
-    //         }
-    //     }
-    // }
+    
+    public async Task<GenericResponse<bool>> UpdateProductReviewMetricsAsync(int productId, double newReviewScore, bool isNewReview)
+    {
+        var product = await _db.Products.FindAsync(productId);
+        
+        if (product == null)
+        {
+            return GenericResponse<bool>.FailureResponse($"Product with ID {productId} not found");
+        }
+        
+        try
+        {
+            if (isNewReview)
+            {
+                // Adding a new review
+                var currentTotalScore = product.AverageReviewScore * product.NoOfReviews;
+                product.NoOfReviews++;
+                product.AverageReviewScore = (currentTotalScore + newReviewScore) / product.NoOfReviews;
+            }
+            else 
+            {
+                // Updating existing review metrics when a review is removed/deleted
+                if (product.NoOfReviews > 0)
+                {
+                    product.NoOfReviews--;
+                    
+                    if (product.NoOfReviews > 0)
+                    {
+                        // Recalculate average without the removed review
+                        var currentTotalScore = product.AverageReviewScore * (product.NoOfReviews + 1);
+                        product.AverageReviewScore = (currentTotalScore - newReviewScore) / product.NoOfReviews;
+                    }
+                    else
+                    {
+                        // If no reviews left, reset the average score
+                        product.AverageReviewScore = 0;
+                    }
+                }
+            }
+            
+            _db.Products.Update(product);
+            await _db.SaveChangesAsync();
+            
+            return GenericResponse<bool>.SuccessResponse(
+                data: true,
+                message: "Product review metrics updated successfully");
+        }
+        catch (Exception ex)
+        {
+            return GenericResponse<bool>.FailureResponse($"Failed to update product review metrics: {ex.Message}");
+        }
+    }
 }

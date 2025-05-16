@@ -1,0 +1,133 @@
+@model IEnumerable<Business.ViewModels.ReviewsViewModels.ReviewViewModel>
+
+@{
+    ViewData["Title"] = "My Reviews";
+}
+
+<div class="container-fluid py-5">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <h2 class="mb-4">My Reviews</h2>
+            
+            @if (!Model.Any())
+            {
+                <div class="alert alert-info">
+                    <p>You haven't written any reviews yet.</p>
+                    <a asp-controller="Product" asp-action="Index" class="btn btn-primary mt-2">Browse Products to Review</a>
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Rating</th>
+                                <th>Comment</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var review in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <a asp-controller="Product" asp-action="Detail" asp-route-id="@review.ProductId">
+                                            @review.ProductName
+                                        </a>
+                                    </td>
+                                    <td>
+                                        @for (int i = 1; i <= 5; i++)
+                                        {
+                                            if (i <= review.Rating)
+                                            {
+                                                <i class="fa fa-star text-primary"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="far fa-star text-primary"></i>
+                                            }
+                                        }
+                                    </td>
+                                    <td>@(review.Comment.Length > 50 ? $"{review.Comment.Substring(0, 50)}..." : review.Comment)</td>
+                                    <td>@review.ReviewDate.ToString("MMM dd, yyyy")</td>
+                                    <td>
+                                        @if (review.IsVerified)
+                                        {
+                                            <span class="badge bg-success">Verified</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-warning text-dark">Pending</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@review.Id" class="btn btn-sm btn-primary">
+                                            <i class="bi bi-pencil"></i> Edit
+                                        </a>
+                                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-@review.Id">
+                                            <i class="bi bi-trash"></i> Delete
+                                        </button>
+                                        
+                                        <!-- Delete Modal -->
+                                        <div class="modal fade" id="deleteModal-@review.Id" tabindex="-1" aria-labelledby="deleteModalLabel-@review.Id" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="deleteModalLabel-@review.Id">Confirm Delete</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Are you sure you want to delete your review for <strong>@review.ProductName</strong>?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                        <form asp-action="Delete" asp-route-id="@review.Id" method="post">
+                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Pagination -->
+                @if (ViewBag.TotalPages > 1)
+                {
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center mt-4">
+                            @if (ViewBag.CurrentPage > 1)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" asp-action="MyReviews" asp-route-pageNumber="@(ViewBag.CurrentPage - 1)">Previous</a>
+                                </li>
+                            }
+                            
+                            @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                            {
+                                <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                                    <a class="page-link" asp-action="MyReviews" asp-route-pageNumber="@i">@i</a>
+                                </li>
+                            }
+                            
+                            @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" asp-action="MyReviews" asp-route-pageNumber="@(ViewBag.CurrentPage + 1)">Next</a>
+                                </li>
+                            }
+                        </ul>
+                    </nav>
+                }
+            }
+        </div>
+    </div>
+</div>

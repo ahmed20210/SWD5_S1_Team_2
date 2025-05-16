@@ -1,6 +1,7 @@
 using Business.Services.CategoryService;
 using Business.Services.ProductService;
 using Business.ViewModels.ProductViewModels;
+using Business.Services.ReviewsService;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -17,15 +18,22 @@ public class ProductController : Controller
     private readonly IProductService _productService;
     private readonly ICategoryService _categoryService;
     private readonly IFavouriteListService _favouriteListService;
+    private readonly IReviewService _reviewService;
     private const int DefaultPageSize = 10;
     private const int MaxPageSize = 50;
 
-    public ProductController(ApplicationDbContext db, IProductService productService, ICategoryService categoryService, IFavouriteListService favouriteListService)
+    public ProductController(
+        ApplicationDbContext db, 
+        IProductService productService, 
+        ICategoryService categoryService, 
+        IFavouriteListService favouriteListService,
+        IReviewService reviewService)
     {
         _db = db ?? throw new ArgumentNullException(nameof(db));
         _productService = productService ?? throw new ArgumentNullException(nameof(productService));
         _categoryService = categoryService ?? throw new ArgumentNullException(nameof(categoryService));
         _favouriteListService = favouriteListService ?? throw new ArgumentNullException(nameof(favouriteListService));
+        _reviewService = reviewService ?? throw new ArgumentNullException(nameof(reviewService));
     }
 
     public async Task<IActionResult> Index(
@@ -222,6 +230,13 @@ public class ProductController : Controller
         }
 
         var product = result.Data;
+        
+        // Increment the view count for this product (handled in a separate task to avoid delaying the response)
+        _ = Task.Run(async () => {
+            try {
+                await _db.Database.ExecuteSqlRawAsync($"UPDATE Products SET NoOfViews = NoOfViews + 1 WHERE Id = {id}");
+            } catch {}
+        });
 
         // Check if this product is in the user's favorites
         if (User.Identity.IsAuthenticated)
@@ -229,6 +244,22 @@ public class ProductController : Controller
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var favorites = await _favouriteListService.GetUserFavouritesAsync(userId);
             ViewBag.IsFavorite = favorites?.Any(p => p.Id == id) ?? false;
+            
+            // Check if user has already reviewed this product
+            var reviewsResult = await _reviewService.GetReviewsAsync(productId: id, userId: userId);
+            ViewBag.UserHasReviewed = reviewsResult.Success && reviewsResult.Data.Any();
+        }
+        
+        // Get top 3 reviews for preview
+        var topReviewsResult = await _reviewService.GetReviewsAsync(
+            productId: id, 
+            isVerified: true,
+            pageNumber: 1, 
+            pageSize: 3);
+            
+        if (topReviewsResult.Success)
+        {
+            ViewBag.TopReviews = topReviewsResult.Data;
         }
 
         return View(product);

@@ -1,7 +1,9 @@
 ﻿using Business.Services.AccountService;
+using Business.Services.AddressService;
 using Domain;
 using Domain.Entities;
 using Business.ViewModels.UserViewModel;
+using Business.ViewModels.AddressViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Web.Models;
@@ -13,10 +15,12 @@ namespace Web.Controllers
     public class AccountController : Controller
     {
         private readonly IAccountService _accountService;
+        private readonly IAddressService _addressService;
 
-        public AccountController(IAccountService accountService)
+        public AccountController(IAccountService accountService, IAddressService addressService)
         {
             _accountService = accountService;
+            _addressService = addressService;
         }
 
         [AllowAnonymous]
@@ -54,58 +58,15 @@ namespace Web.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet]
-        public IActionResult Verify(string email)
+        public IActionResult LogIn(string returnUrl = null)
         {
-            var model = new VerifyOtpViewModel
-            {
-                Email = email
-            };
-            return View(model);
-        }
-
-        [AllowAnonymous]
-        [HttpPost]
-        public async Task<IActionResult> Verify(string email, int OtpCode)
-        {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    var result = await _accountService.VerifyUserAsync(email, OtpCode);
-
-                    if (result.Success)
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
-
-                    ModelState.AddModelError(string.Empty, result.Message);
-                }
-                catch (Exception ex)
-                {
-                    // Log the exception
-                    Console.WriteLine($"Error during Verify: {ex.Message}");
-                    ModelState.AddModelError(string.Empty, "An unexpected error occurred. Please try again later.");
-                }
-            }
-
-            var model = new VerifyOtpViewModel
-            {
-                Email = email,
-                OtpCode = OtpCode
-            };
-            return View(model);
-        }
-
-        [AllowAnonymous]
-        public IActionResult LogIn()
-        {
+            ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
 
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> LogIn(LogInViewModel model)
+        public async Task<IActionResult> LogIn(LogInViewModel model, string returnUrl = null)
         {
             if (ModelState.IsValid)
             {
@@ -115,7 +76,9 @@ namespace Web.Controllers
 
                     if (result.Success)
                     {
-                        return RedirectToAction("Index", "Home");
+                        return !string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl)
+                            ? Redirect(returnUrl)
+                            : RedirectToAction("Index", "Home");
                     }
 
                     ModelState.AddModelError(string.Empty, result.Message);
@@ -128,27 +91,52 @@ namespace Web.Controllers
                 }
             }
 
+            ViewData["ReturnUrl"] = returnUrl;
             return View(model);
         }
 
         [HttpPost]
         public async Task<IActionResult> LogOut()
         {
-            try
+            await _accountService.LogOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
+
+        [AllowAnonymous]
+        public IActionResult Verify(string email)
+        {
+            var model = new VerifyOtpViewModel
             {
-                var result = await _accountService.LogOutAsync();
-                if (result.Success)
+                Email = email
+            };
+            return View(model);
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> Verify(VerifyOtpViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
                 {
-                    return RedirectToAction("Index", "Home");
+                    var result = await _accountService.VerifyUserAsync(model.Email, model.OtpCode);
+                    if (result.Success)
+                    {
+                        return RedirectToAction(nameof(LogIn));
+                    }
+
+                    ModelState.AddModelError(string.Empty, result.Message);
                 }
-                ModelState.AddModelError(string.Empty, result.Message);
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError(string.Empty, "An unexpected error occurred. Please try again later.");
+                catch (Exception ex)
+                {
+                    // Log the exception
+                    Console.WriteLine($"Error during Verify: {ex.Message}");
+                    ModelState.AddModelError(string.Empty, "An unexpected error occurred. Please try again later.");
+                }
             }
 
-            return RedirectToAction("Index", "Home");
+            return View(model);
         }
 
         public async Task<IActionResult> Settings()
@@ -176,9 +164,16 @@ namespace Web.Controllers
 
             ViewBag.ChangePasswordModel = new ChangePasswordViewModel();
             
+            // Get addresses for the user
+            var addressesResponse = await _addressService.GetAllUserAddressesAsync(userId);
+            if (addressesResponse.Success)
+            {
+                ViewBag.Addresses = addressesResponse.Data;
+            }
+            
             return View(viewModel);
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateProfile(UserProfileViewModel model)
@@ -203,36 +198,25 @@ namespace Web.Controllers
 
             return RedirectToAction("Settings");
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
         {
-            string userId = string.Empty;
             if (!ModelState.IsValid)
             {
-                 userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var user = await _accountService.GetUserByIdAsync(userId);
-                
-                var profileModel = new UserProfileViewModel
-                {
-                    Id = user.Id,
-                    FName = user.FName,
-                    LName = user.LName,
-                    Email = user.Email,
-                    PhoneNumber = user.PhoneNumber ?? string.Empty
-                };
-                
-                ViewBag.ChangePasswordModel = model;
                 ViewBag.SecurityTab = true;
-                return View("Settings", profileModel);
+                return View("Settings", new UserProfileViewModel());
             }
 
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userId))
+            {
+                return RedirectToAction("LogIn");
+            }
 
-    
-             userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var result = await _accountService.ChangePasswordAsync(userId, model.CurrentPassword, model.NewPassword);
-            
+
             if (result.Success)
             {
                 TempData["SuccessMessage"] = "Password changed successfully.";
@@ -240,8 +224,117 @@ namespace Web.Controllers
             else
             {
                 TempData["ErrorMessage"] = result.Message;
+                ViewBag.SecurityTab = true;
             }
 
+            return RedirectToAction("Settings");
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddAddress(CreateAddressViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                TempData["ErrorMessage"] = "Please check your input and try again";
+                return RedirectToAction("Settings");
+            }
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userId))
+            {
+                return RedirectToAction("LogIn");
+            }
+
+            var result = await _addressService.CreateAddressAsync(model, userId);
+            
+            if (result.Success)
+            {
+                TempData["SuccessMessage"] = "Address added successfully";
+            }
+            else
+            {
+                TempData["ErrorMessage"] = result.Message;
+            }
+            
+            return RedirectToAction("Settings");
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditAddress(int id, UpdateAddressViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                TempData["ErrorMessage"] = "Please check your input and try again";
+                return RedirectToAction("Settings");
+            }
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userId))
+            {
+                return RedirectToAction("LogIn");
+            }
+
+            var result = await _addressService.UpdateAddressAsync(model, id, userId);
+            
+            if (result.Success)
+            {
+                TempData["SuccessMessage"] = "Address updated successfully";
+            }
+            else
+            {
+                TempData["ErrorMessage"] = result.Message;
+            }
+            
+            return RedirectToAction("Settings");
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteAddress(int id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userId))
+            {
+                return RedirectToAction("LogIn");
+            }
+
+            var result = await _addressService.DeleteAddressAsync(id, userId);
+            
+            if (result.Success)
+            {
+                TempData["SuccessMessage"] = "Address deleted successfully";
+            }
+            else
+            {
+                TempData["ErrorMessage"] = result.Message;
+            }
+            
+            return RedirectToAction("Settings");
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SetMainAddress(int id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userId))
+            {
+                return RedirectToAction("LogIn");
+            }
+
+            var result = await _addressService.SetAsMainAddressAsync(id, userId);
+            
+            if (result.Success)
+            {
+                TempData["SuccessMessage"] = "Main address updated successfully";
+            }
+            else
+            {
+                TempData["ErrorMessage"] = result.Message;
+            }
+            
             return RedirectToAction("Settings");
         }
     }

@@ -1,0 +1,90 @@
+@model Business.ViewModels.ReviewsViewModels.UpdateReviewViewModel
+
+@{
+    ViewData["Title"] = "Edit Review";
+    Layout = "_AdminLayout";
+}
+
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Edit Review</h1>
+        <div>
+            <a asp-action="Index" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back to List
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-8 col-lg-7 mx-auto">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Review Information</h6>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Edit" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Id" />
+                        
+                        <div class="form-group mb-3">
+                            <label asp-for="Rating" class="control-label">Rating (1-5)</label>
+                            <div class="rating-input">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" asp-for="Rating" id="rating1" value="1">
+                                    <label class="form-check-label" for="rating1">1 <i class="fa fa-star text-warning"></i></label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" asp-for="Rating" id="rating2" value="2">
+                                    <label class="form-check-label" for="rating2">2 <i class="fa fa-star text-warning"></i></label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" asp-for="Rating" id="rating3" value="3">
+                                    <label class="form-check-label" for="rating3">3 <i class="fa fa-star text-warning"></i></label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" asp-for="Rating" id="rating4" value="4">
+                                    <label class="form-check-label" for="rating4">4 <i class="fa fa-star text-warning"></i></label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" asp-for="Rating" id="rating5" value="5">
+                                    <label class="form-check-label" for="rating5">5 <i class="fa fa-star text-warning"></i></label>
+                                </div>
+                            </div>
+                            <span asp-validation-for="Rating" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            <label asp-for="Comment" class="control-label">Review Comment</label>
+                            <textarea asp-for="Comment" class="form-control" rows="5"></textarea>
+                            <span asp-validation-for="Comment" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" asp-for="IsVerified" />
+                                <label class="form-check-label" asp-for="IsVerified">Verify this review</label>
+                            </div>
+                            <small class="form-text text-muted">
+                                Verified reviews are visible to all users. Unverified reviews are hidden from public view.
+                            </small>
+                            <span asp-validation-for="IsVerified" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="form-group mt-4">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Save Changes
+                            </button>
+                            <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-secondary">
+                                Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

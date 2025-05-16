@@ -55,7 +55,7 @@
                                 }
                             }
                         </div>
-                        <small class="pt-1">(@Model.NoOfViews views)</small>
+                        <small class="pt-1">(@Model.NoOfReviews reviews, @Model.NoOfViews views)</small>
                     </div>
                     <div class="d-flex mb-3 align-items-center">
                         @if (Model.Discount != null && Model.Discount.Amount > 0)
@@ -70,34 +70,10 @@
                         }
                     </div>
                     <p class="mb-4">@Model.Description</p>
-                    <div class="d-flex mb-3">
-                        <strong class="text-dark mr-3">Sizes:</strong>
-                        <form>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="size-1" name="size">
-                                <label class="custom-control-label" for="size-1">S</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="size-2" name="size">
-                                <label class="custom-control-label" for="size-2">M</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="size-3" name="size">
-                                <label class="custom-control-label" for="size-3">L</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="size-4" name="size">
-                                <label class="custom-control-label" for="size-4">XL</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="size-5" name="size">
-                                <label class="custom-control-label" for="size-5">XXL</label>
-                            </div>
-                        </form>
-                    </div>
+                  
                     <div class="d-flex mb-4">
                         <strong class="text-dark mr-3">Category:</strong>
-                        <a href="/Product?categoryId=@Model.Category?.Id">@Model.Name</a>
+                        <a href="/Product?categoryId=@Model.Category?.Id">@Model.Category?.Name</a>
                     </div>
                     <div class="d-flex align-items-center mb-4 pt-2">
                         <div class="input-group quantity mr-3" style="width: 130px;">
@@ -174,7 +150,7 @@
                     <div class="nav nav-tabs mb-4">
                         <a class="nav-item nav-link text-dark active" data-toggle="tab" href="#tab-pane-1">Description</a>
                         <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-2">Information</a>
-                        @* <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">Reviews (@Model.Reviews?.Count)</a> *@
+                        <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">Reviews (@Model.NoOfReviews)</a>
                     </div>
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="tab-pane-1">
@@ -220,7 +196,129 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="tab-pane-3">
-                            @* @await Html.PartialAsync("_Reviews", Model.Reviews) *@
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h4 class="mb-4">@Model.NoOfReviews Reviews for "@Model.Name"</h4>
+                                    
+                                    <div class="d-flex justify-content-between mb-4">
+                                        <a asp-controller="Reviews" asp-action="ProductReviews" asp-route-productId="@Model.Id" class="btn btn-sm btn-outline-primary">
+                                            <i class="fa fa-list mr-1"></i> View All Reviews
+                                        </a>
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            @if (ViewBag.UserHasReviewed == true)
+                                            {
+                                                <a asp-controller="Reviews" asp-action="MyReviews" class="btn btn-sm btn-secondary">
+                                                    <i class="fa fa-edit mr-1"></i> Manage Your Review
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a asp-controller="Reviews" asp-action="Create" asp-route-productId="@Model.Id" class="btn btn-sm btn-primary">
+                                                    <i class="fa fa-plus mr-1"></i> Write a Review
+                                                </a>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <a asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Context.Request.Path" class="btn btn-sm btn-primary">
+                                                <i class="fa fa-sign-in-alt mr-1"></i> Log in to Write a Review
+                                            </a>
+                                        }
+                                    </div>
+                                    
+                                    @if (Model.NoOfReviews > 0)
+                                    {
+                                        <div class="product-rating-summary mb-4">
+                                            <div class="d-flex align-items-center mb-2">
+                                                <h1 class="text-primary mb-0">@Model.AverageReviewScore?.ToString("F1")</h1>
+                                                <span class="text-muted ml-2">out of 5.0</span>
+                                            </div>
+                                            <div class="product-rating-stars">
+                                                @if (Model.AverageReviewScore.HasValue)
+                                                {
+                                                    @for (int i = 1; i <= 5; i++)
+                                                    {
+                                                        @if (i <= Math.Floor(Model.AverageReviewScore.Value))
+                                                        {
+                                                            <i class="fa fa-star text-primary"></i>
+                                                        }
+                                                        else if (i <= Math.Ceiling(Model.AverageReviewScore.Value))
+                                                        {
+                                                            <i class="fa fa-star-half-alt text-primary"></i>
+                                                        }
+                                                        else
+                                                        {
+                                                            <i class="far fa-star text-primary"></i>
+                                                        }
+                                                    }
+                                                }
+                                                <span class="ml-2 text-muted">@Model.NoOfReviews Reviews</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Recent Reviews -->
+                                        @if (ViewBag.TopReviews != null)
+                                        {
+                                            <h5 class="mb-3">Recent Reviews</h5>
+                                            @foreach (var review in ViewBag.TopReviews)
+                                            {
+                                                <div class="media mb-4">
+                                                    <div class="media-body">
+                                                        <h6 class="mb-1">@review.UserName <small class="text-muted">- @review.ReviewDate.ToString("MMM dd, yyyy")</small></h6>
+                                                        <div class="mb-2">
+                                                            @for (int i = 1; i <= 5; i++)
+                                                            {
+                                                                if (i <= review.Rating)
+                                                                {
+                                                                    <small class="fa fa-star text-primary mr-1"></small>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <small class="far fa-star text-primary mr-1"></small>
+                                                                }
+                                                            }
+                                                            @if (review.IsVerified)
+                                                            {
+                                                                <span class="ms-2 badge badge-success">
+                                                                    <i class="fa fa-check-circle"></i> Verified
+                                                                </span>
+                                                            }
+                                                        </div>
+                                                        <p>@review.Comment</p>
+                                                    </div>
+                                                </div>
+                                            }
+                                            
+                                            @if (Model.NoOfReviews > 3)
+                                            {
+                                                <div class="text-center mt-4">
+                                                    <a asp-controller="Reviews" asp-action="ProductReviews" asp-route-productId="@Model.Id" class="btn btn-outline-primary">
+                                                        See All @Model.NoOfReviews Reviews
+                                                    </a>
+                                                </div>
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <div class="alert alert-info">
+                                            <p>No reviews yet. Be the first to review this product!</p>
+                                        </div>
+                                    }
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    <div class="rating-breakdown">
+                                        <h5 class="mb-3">Why review this product?</h5>
+                                        <ul class="list-unstyled">
+                                            <li><i class="fa fa-check-circle text-success mr-2"></i> Help other customers</li>
+                                            <li><i class="fa fa-check-circle text-success mr-2"></i> Share your experience</li>
+                                            <li><i class="fa fa-check-circle text-success mr-2"></i> Improve our product selection</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

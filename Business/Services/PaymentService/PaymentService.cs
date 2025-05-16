@@ -1,10 +1,5 @@
 ﻿using AutoMapper;
 using Business.ViewModels.PaymentViewModels;
-using Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
-using System;
-using AutoMapper;
-using Business.ViewModels.PaymentViewModels;
 using Domain.Entities;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -28,11 +23,11 @@ namespace Business.Services.PaymentService
         private readonly IPaymentGatewayService _gateway;
         private readonly ILogger<PaymentService> _logger;
         private readonly IOrderService _orderService;
-        public PaymentService(ApplicationDbContext context, IMapper mapper ,  IOrderService orderService, ILogger<PaymentService>  logger , IPaymentGatewayService  gatway)
+        public PaymentService(ApplicationDbContext context, IMapper mapper, IOrderService orderService, ILogger<PaymentService> logger, IPaymentGatewayService gateway)
         {
             _context = context;
             _mapper = mapper;
-            _gateway = gatway;
+            _gateway = gateway;
             _logger = logger;   
             _orderService = orderService;
         }
@@ -92,7 +87,7 @@ namespace Business.Services.PaymentService
             _context.Payments.Add(payment);
             await _context.SaveChangesAsync();
         }
-        public async Task<UpdateViewModel> GetByIdForUpdateAsync(int id)
+        public async Task<UpdateViewModel?> GetByIdForUpdateAsync(int id)
         {
             var payment = await _context.Payments.FindAsync(id);
             if (payment == null) return null;
@@ -108,7 +103,7 @@ namespace Business.Services.PaymentService
             };
         }
 
-        public async Task<PaymentViewModel> GetByIdAsync(int id)
+        public async Task<PaymentViewModel?> GetByIdAsync(int id)
         {
             var payment = await _context.Payments.FindAsync(id);
             if (payment == null) return null;
@@ -179,7 +174,7 @@ namespace Business.Services.PaymentService
 
 
 
-        public async Task<PaymentViewModel> EditAsync(int id, UpdateViewModel model)
+        public async Task<PaymentViewModel?> EditAsync(int id, UpdateViewModel model)
         {
             var payment = await _context.Payments.FindAsync(id);
             if (payment == null)

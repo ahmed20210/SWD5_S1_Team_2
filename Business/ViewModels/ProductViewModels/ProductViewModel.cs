@@ -25,9 +25,10 @@ public class ProductViewModel
     public string? ImageUrl { get; set; }
 
     public DateTime? CreatedAt { get; set; } 
-    // public int? Rating { get; set; }
-    // public int? ReviewCount { get; set; }
-    // public int? NoOfReviews { get; set; }
+    public int? Rating { get; set; }
+    public int? ReviewCount { get; set; }
+    public int? NoOfReviews { get; set; }
+    
 
 
 

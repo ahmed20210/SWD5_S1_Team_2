@@ -21,12 +21,13 @@ public class Product
     
     public int Stock { get; set; }
   
-    public double AverageReviewScore { get; set; }
     
     public ProductStatus Status { get; set; }
     public int NoOfViews { get; set; } = 0;
     public int NoOfPurchase { get; set; } = 0;
     public int NoOfReviews { get; set; } = 0;
+    public double AverageReviewScore { get; set; }
+
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
     [MaxLength(500)]

@@ -27,5 +27,6 @@ namespace Business.Services.ProductService
 
         Task<bool> DeleteProductAsync(int id);
 
+        Task<GenericResponse<bool>> UpdateProductReviewMetricsAsync(int productId, double newReviewScore, bool isNewReview);
     }
 }

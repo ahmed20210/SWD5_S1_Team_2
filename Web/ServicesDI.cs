@@ -11,6 +11,8 @@ using Business.Services.OrderItemService;
 using Business.Services.PaymentService;
 using Business.Services.FavouriteListService;
 using Business.Services.OrderService;
+using Business.Services.AddressService;
+using Business.Services.ReviewsService;
 
 public static class ServicesDI
 {
@@ -30,5 +32,7 @@ public static class ServicesDI
         services.AddScoped<IFavouriteListService, FavouriteListService>();
         services.AddScoped<IOrderService, OrderService>();
         services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IAddressService, AddressService>();
+        services.AddScoped<IReviewService, ReviewService>();
     }
 }
