@@ -7,9 +7,9 @@ namespace Web.Controllers
   
     public class OrderController : Controller
     {
-        private readonly IOrderService _orderService;
+        private readonly IOrderServiceUsingUnitOfWork _orderService;
 
-        public OrderController(IOrderService orderService)
+        public OrderController(IOrderServiceUsingUnitOfWork orderService)
         {
             _orderService = orderService;
         }
@@ -25,7 +25,7 @@ namespace Web.Controllers
             if (!ModelState.IsValid) return View(model);
 
             var result = await _orderService.CreateOrderAsync(model);
-            if (!result)
+            if (result > 0)
                 return BadRequest("Not Valid");
 
             return RedirectToAction("Index");

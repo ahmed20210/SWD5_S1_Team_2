@@ -24,6 +24,8 @@ namespace Business.ViewModels.CreateOrderViewModels
 
         [Required]
         public PaymentMethods PaymentMethod { get; set; }
+
+        public int? AddressId { get; set; }
         
     }
 }

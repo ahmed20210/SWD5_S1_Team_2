@@ -6,9 +6,9 @@ namespace Web.Areas.Admin.Controllers
     [Area("Admin")]
     public class PaymentController : Controller
     {
-        private readonly IPaymentService _paymentService;
+        private readonly IPaymentServiceUsingUnitOfWork _paymentService;
 
-        public PaymentController(IPaymentService paymentService)
+        public PaymentController(IPaymentServiceUsingUnitOfWork paymentService)
         {
             _paymentService = paymentService;
         }

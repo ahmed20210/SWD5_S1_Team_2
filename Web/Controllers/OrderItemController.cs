@@ -8,9 +8,9 @@ namespace Web.Controllers
     
     public class OrderItemController : Controller
     {
-        private readonly IOrderItemService _orderItemService;
+        private readonly IOrderItemServiceWithUnitOfWork _orderItemService;
 
-        public OrderItemController(IOrderItemService orderItemService)
+        public OrderItemController(IOrderItemServiceWithUnitOfWork orderItemService)
         {
             _orderItemService = orderItemService;
         }
@@ -18,8 +18,8 @@ namespace Web.Controllers
         
         public async Task<IActionResult> Index()
         {
-            var orderItems = await _orderItemService.GetOrderItemsViewModelAsync();
-            return View(orderItems);
+            // var orderItems = await _orderItemService.GetOrderItemsByOrderIdAsync();
+            return View();
         }
 
         

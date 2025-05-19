@@ -1,3 +1,4 @@
+using Business.ViewModels.PaymentViewModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Stripe;
@@ -62,40 +63,102 @@ public class StripePaymentGatewayService : IPaymentGatewayService
         catch (StripeException ex)
         {
             _logger.LogError(ex, $"Stripe verification failed for {transactionId}");
-            return new GatewayVerificationResponse(false, 0, null, "failed", DateTime.MinValue);
+            return new GatewayVerificationResponse(false, 0, string.Empty, "failed", DateTime.MinValue);
         }
     }
     
+    public async Task<PaymentIntentResult> CreatePaymentIntentAsync(string paymentMethodId, long amount, string currency = "usd")
+    {
+        try
+        {
+            var options = new PaymentIntentCreateOptions
+            {
+                Amount = amount,
+                Currency = currency,
+                PaymentMethod = paymentMethodId,
+                Confirm = true,
+                ConfirmationMethod = "manual",
+                UseStripeSdk = true
+            };
+
+            var service = new PaymentIntentService(_client);
+            var intent = await service.CreateAsync(options);
+            
+            if (intent.Status == "requires_action" || intent.Status == "requires_source_action")
+            {
+                // Card requires authentication
+                return new PaymentIntentResult
+                {
+                    Success = false,
+                    RequiresAction = true,
+                    ClientSecret = intent.ClientSecret,
+                    PaymentIntentId = intent.Id
+                };
+            }
+            else if (intent.Status == "succeeded")
+            {
+                // Payment succeeded
+                return new PaymentIntentResult
+                {
+                    Success = true,
+                    RequiresAction = false,
+                    ClientSecret = intent.ClientSecret,
+                    PaymentIntentId = intent.Id
+                };
+            }
+            else
+            {
+                // Invalid status
+                _logger.LogWarning($"Unexpected payment intent status: {intent.Status}");
+                return new PaymentIntentResult
+                {
+                    Success = false,
+                    RequiresAction = false,
+                    ErrorMessage = $"Payment failed with status: {intent.Status}"
+                };
+            }
+        }
+        catch (StripeException ex)
+        {
+            _logger.LogError(ex, "Failed to create payment intent");
+            return new PaymentIntentResult
+            {
+                Success = false,
+                RequiresAction = false,
+                ErrorMessage = ex.StripeError?.Message ?? ex.Message
+            };
+        }
+    }
+
     public async Task<GatewayRefundResponse> RefundPaymentAsync(string transactionId, decimal amount)
     {
         try
         {
+            var service = new RefundService(_client);
             var options = new RefundCreateOptions
             {
                 PaymentIntent = transactionId,
-                Amount = (long)(amount * 100), // Convert to cents
-                Reason = RefundReasons.RequestedByCustomer
+                Amount = (long)(amount * 100) // Convert to cents
             };
-
-            var service = new RefundService(_client);
+            
             var refund = await service.CreateAsync(options);
-
+            
             return new GatewayRefundResponse(
-                Success: true,
-                RefundId: refund.Id,
-                Status: refund.Status,
-                AmountRefunded: refund.Amount / 100m
-            );
+                refund.Status == "succeeded",
+                refund.Id,
+                refund.Status,
+                amount,
+                null);
         }
         catch (StripeException ex)
         {
             _logger.LogError(ex, $"Stripe refund failed for {transactionId}");
             return new GatewayRefundResponse(
-                RefundId: null,
-                Status: null,
-                Success: false,
-                ErrorMessage: ex.StripeError?.Message ?? ex.Message 
-            );
+                false, 
+                null, 
+                "failed", 
+                0, 
+                ex.Message);
         }
     }
 }

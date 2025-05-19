@@ -7,7 +7,7 @@
 let productCache = {};
 
 // Function to add an item to the cart
-function addToCart(productId, productName, price, imageUrl) {
+function addToCart(productId) {
     // Get the cart from local storage or create a new one
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -21,9 +21,6 @@ function addToCart(productId, productName, price, imageUrl) {
         // If the product is not in the cart, add it with a quantity of 1
         const newProduct = { 
             id: productId, 
-            name: productName, 
-            price: price, 
-            imageUrl: imageUrl,
             quantity: 1 
         };
         cart.push(newProduct);
@@ -41,11 +38,11 @@ function addToCart(productId, productName, price, imageUrl) {
 
 // Function to update the cart count in the navbar
 function updateCartCount() {
-    // Get the cart from local storage
+   
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
     // Calculate the total quantity of items in the cart
-    const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
+    const totalQuantity = cart.length;
 
     // Update the cart count in the UI (all elements with the class 'cart-count')
     const cartCountElements = document.querySelectorAll('.cart-count');
@@ -119,13 +116,14 @@ function updateCartItemQuantity(productId, quantity) {
 }
 
 // Function to load and display cart items on the cart page
-function loadCartItems() {
+async function loadCartItems() {
     const cartItemsContainer = document.getElementById('cart-items-container');
+
     if (!cartItemsContainer) return;
     
     // Get the cart from local storage
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    
+   
     // Clear the existing items
     cartItemsContainer.innerHTML = '';
     
@@ -136,49 +134,89 @@ function loadCartItems() {
         return;
     }
     
-    // Variables for calculating total
-    let subtotal = 0;
-    
-    // Loop through each item in the cart and add it to the table
-    cart.forEach(item => {
-        const total = item.price * item.quantity;
-        subtotal += total;
+    try {
+        // Extract all product IDs
+        const productIds = cart.map(item => item.id);
         
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td class="align-middle">
-                <img src="${item.imageUrl || '/img/product-placeholder.jpg'}" alt="${item.name}" style="width: 50px;">
-                <span class="ml-2">${item.name}</span>
-            </td>
-            <td class="align-middle">$${item.price.toFixed(2)}</td>
-            <td class="align-middle">
-                <div class="input-group quantity mx-auto" style="width: 100px;">
-                    <div class="input-group-btn">
-                        <button class="btn btn-sm btn-primary btn-minus" onclick="decrementQuantity('${item.id}')">
-                            <i class="fa fa-minus"></i>
-                        </button>
-                    </div>
-                    <input type="text" class="form-control form-control-sm bg-secondary border-0 text-center" value="${item.quantity}" id="quantity-${item.id}" onchange="updateItemQuantity('${item.id}')">
-                    <div class="input-group-btn">
-                        <button class="btn btn-sm btn-primary btn-plus" onclick="incrementQuantity('${item.id}')">
-                            <i class="fa fa-plus"></i>
-                        </button>
-                    </div>
-                </div>
-            </td>
-            <td class="align-middle">$${total.toFixed(2)}</td>
-            <td class="align-middle">
-                <button class="btn btn-sm btn-danger" onclick="removeFromCart('${item.id}')">
-                    <i class="fa fa-times"></i>
-                </button>
-            </td>
-        `;
+        // Fetch product details from the server
+        const response = await fetch(`/api/api/products/byIds?${productIds.map(id => `ids=${id}`).join('&')}`);
         
-        cartItemsContainer.appendChild(row);
-    });
-    
-    // Update the cart summary
-    updateCartSummary(subtotal);
+        if (!response.ok) {
+            throw new Error('Failed to fetch product details');
+        }
+        
+        const products = await response.json();
+        console.log('Fetched products:', products); 
+        // Create a lookup map of products by ID
+        const productsById = {};
+        products.forEach(product => {
+            productsById[product.id] = product;
+            // Also update the product cache
+            productCache[product.id] = product;
+        });
+        
+        // Variables for calculating total
+        let subtotal = 0;
+        
+        // Loop through each item in the cart and add it to the table
+        for (const item of cart) {
+            const product = productsById[item.id];
+            
+            if (!product) {
+                console.error(`Product with ID ${item.id} not found`);
+                continue;
+            }
+            
+            const total = product.price * item.quantity;
+            subtotal += total;
+            
+            const row = document.createElement('tr');
+            
+            // Check if there's a discount
+            const discountDisplay = product.discountPercentage > 0 
+                ? `<span class="text-danger">(${product.discountPercentage}% off)</span>` 
+                : '';
+                
+            row.innerHTML = `
+                <td class="align-middle">
+                    <img src="${product.imageUrl || '/img/product-placeholder.jpg'}" alt="${product.name}" style="width: 50px;">
+                    <span class="ml-2">${product.name}</span>
+                </td>
+                <td class="align-middle">
+                    $${product.price.toFixed(2)} ${discountDisplay}
+                </td>
+                <td class="align-middle">
+                    <div class="input-group quantity mx-auto" style="width: 100px;">
+                        <div class="input-group-btn">
+                            <button class="btn btn-sm btn-primary btn-minus" onclick="decrementQuantity('${item.id}')">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                        <input type="text" class="form-control form-control-sm bg-secondary border-0 text-center" value="${item.quantity}" id="quantity-${item.id}" onchange="updateItemQuantity('${item.id}')">
+                        <div class="input-group-btn">
+                            <button class="btn btn-sm btn-primary btn-plus" onclick="incrementQuantity('${item.id}')">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </td>
+                <td class="align-middle">$${total.toFixed(2)}</td>
+                <td class="align-middle">
+                    <button class="btn btn-sm btn-danger" onclick="removeFromCart('${item.id}')">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </td>
+            `;
+            
+            cartItemsContainer.appendChild(row);
+        }
+        
+        // Update the cart summary
+        updateCartSummary(subtotal);
+    } catch (error) {
+        console.error('Error loading cart items:', error);
+        cartItemsContainer.innerHTML = '<tr><td colspan="5" class="text-center py-5">Failed to load cart items. Please try again.</td></tr>';
+    }
 }
 
 // Function to increment quantity
@@ -245,50 +283,117 @@ function proceedToCheckout() {
 }
 
 // Function to load cart data on checkout page
-function loadCheckoutSummary() {
+async function loadCheckoutSummary() {
     // Get the cart from local storage
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     
-    // Get the product container element
-    const productsContainer = document.querySelector('.border-bottom:has(h6.mb-3)');
-    if (!productsContainer) return;
+    // If cart is empty, show message
+    if (cart.length === 0) {
+        const checkoutContainer = document.querySelector('.container-fluid');
+        if (checkoutContainer) {
+            checkoutContainer.innerHTML = `
+                <div class="row px-xl-5">
+                    <div class="col-12 text-center p-5">
+                        <h3>Your cart is empty</h3>
+                        <p>Add some products to your cart before checking out.</p>
+                        <a href="/Product" class="btn btn-primary">Continue Shopping</a>
+                    </div>
+                </div>
+            `;
+        }
+        return;
+    }
     
-    // Clear existing product entries, keeping the header
-    const productsHeader = productsContainer.querySelector('h6.mb-3');
-    productsContainer.innerHTML = '';
-    productsContainer.appendChild(productsHeader);
-    
-    // Variables for calculating total
-    let subtotal = 0;
-    
-    // Loop through each item in the cart and add it to the summary
-    cart.forEach(item => {
-        const total = item.price * item.quantity;
-        subtotal += total;
+    try {
+        // Extract all product IDs
+        const productIds = cart.map(item => item.id);
         
-        const productDiv = document.createElement('div');
-        productDiv.className = 'd-flex justify-content-between';
-        productDiv.innerHTML = `
-            <p>${item.name} (x${item.quantity})</p>
-            <p>$${total.toFixed(2)}</p>
-        `;
+        // Fetch product details from the server
+        const response = await fetch(`/api/api/products/byIds?${productIds.map(id => `ids=${id}`).join('&')}`);
         
-        productsContainer.appendChild(productDiv);
-    });
-    
-    // Update the subtotal, shipping, and total
-    const subtotalElement = document.querySelector('.d-flex.justify-content-between.mb-3 h6:last-child');
-    const shippingElement = document.querySelector('.d-flex.justify-content-between:not(.mb-3) h6:last-child');
-    const totalElement = document.querySelector('.d-flex.justify-content-between.mt-2 h5:last-child');
-    
-    if (subtotalElement && shippingElement && totalElement) {
-        // Calculate shipping (free if subtotal is over $100, otherwise $10)
-        const shipping = subtotal > 100 ? 0 : 10;
+        if (!response.ok) {
+            throw new Error('Failed to fetch product details');
+        }
         
-        // Update the elements
-        subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
-        shippingElement.textContent = shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`;
-        totalElement.textContent = `$${(subtotal + shipping).toFixed(2)}`;
+        const products = await response.json();
+        
+        // Create a lookup map of products by ID
+        const productsById = {};
+        products.forEach(product => {
+            productsById[product.id] = product;
+            // Also update the product cache
+            productCache[product.id] = product;
+        });
+        
+        // Get the product container element
+        const productsContainer = document.querySelector('.border-bottom:has(h6.mb-3)');
+        if (!productsContainer) return;
+        
+        // Clear existing product entries, keeping the header
+        const productsHeader = productsContainer.querySelector('h6.mb-3');
+        productsContainer.innerHTML = '';
+        productsContainer.appendChild(productsHeader);
+        
+        // Variables for calculating total
+        let subtotal = 0;
+        
+        // Loop through each item in the cart and add it to the summary
+        for (const item of cart) {
+            const product = productsById[item.id];
+            
+            if (!product) {
+                console.error(`Product with ID ${item.id} not found`);
+                continue;
+            }
+            
+            const total = product.price * item.quantity;
+            subtotal += total;
+            
+            const productDiv = document.createElement('div');
+            productDiv.className = 'd-flex justify-content-between';
+            
+            // Check if there's a discount
+            const discountDisplay = product.discountPercentage > 0 
+                ? `<span class="text-danger">(${product.discountPercentage}% off)</span>` 
+                : '';
+                
+            productDiv.innerHTML = `
+                <p>${product.name} (x${item.quantity}) ${discountDisplay}</p>
+                <p>$${total.toFixed(2)}</p>
+            `;
+            
+            productsContainer.appendChild(productDiv);
+        }
+        
+        // Update the subtotal, shipping, and total
+        const subtotalElement = document.querySelector('.d-flex.justify-content-between.mb-3 h6:last-child');
+        const shippingElement = document.querySelector('.d-flex.justify-content-between:not(.mb-3) h6:last-child');
+        const totalElement = document.querySelector('.d-flex.justify-content-between.mt-2 h5:last-child');
+        
+        if (subtotalElement && shippingElement && totalElement) {
+            // Calculate shipping (free if subtotal is over $100, otherwise $10)
+            const shipping = subtotal > 100 ? 0 : 10;
+            
+            // Update the elements
+            subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
+            shippingElement.textContent = shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`;
+            totalElement.textContent = `$${(subtotal + shipping).toFixed(2)}`;
+        }
+    } catch (error) {
+        console.error('Error loading checkout summary:', error);
+        const productsContainer = document.querySelector('.border-bottom:has(h6.mb-3)');
+        if (productsContainer) {
+            // Keep the header
+            const productsHeader = productsContainer.querySelector('h6.mb-3');
+            productsContainer.innerHTML = '';
+            productsContainer.appendChild(productsHeader);
+            
+            // Add error message
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'd-flex justify-content-between';
+            errorDiv.innerHTML = '<p class="text-danger">Failed to load product details. Please try again.</p>';
+            productsContainer.appendChild(errorDiv);
+        }
     }
 }
 
@@ -300,6 +405,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // If we're on the cart page, load the cart items
     if (window.location.pathname.includes('/Cart')) {
         loadCartItems();
+        
     }
     
     // If we're on the checkout page, load the checkout summary

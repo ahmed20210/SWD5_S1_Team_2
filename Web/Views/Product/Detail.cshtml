@@ -96,7 +96,7 @@
                             </div>
                         </div>
                         <button class="btn btn-primary px-3 mr-2" id="add-to-cart-btn" 
-                                onclick="addToCartFromDetail('@Model.Id', '@Model.Name', @Model.Price, '@Model.ImageUrl')">
+                                onclick="addToCartFromDetail('@Model.Id')">
                             <i class="fa fa-shopping-cart mr-1"></i> Add To Cart
                         </button>
                         
@@ -341,7 +341,7 @@
         });
         
         // Function to add the product to cart from detail page (with quantity)
-        function addToCartFromDetail(productId, productName, price, imageUrl) {
+        function addToCartFromDetail(productId) {
             // Get the selected quantity
             const quantity = parseInt(document.getElementById('product-quantity').value);
             
@@ -357,10 +357,7 @@
             } else {
                 // If the product is not in the cart, add it with the selected quantity
                 const newProduct = { 
-                    id: productId, 
-                    name: productName, 
-                    price: price, 
-                    imageUrl: imageUrl,
+                    id: productId,
                     quantity: quantity 
                 };
                 cart.push(newProduct);
