@@ -13,7 +13,7 @@ namespace Business.Services.AccountService
     public class AccountService : IAccountService
     {
         private readonly UserManager<User> _userManager;
-        private readonly IMapper _mapper;
+        private readonly IMapper? _mapper;
         private readonly SignInManager<User> _signInManager;
         private readonly IMailingService _mailingService;
         private readonly RoleManager<IdentityRole> _roleManager;
@@ -24,6 +24,7 @@ namespace Business.Services.AccountService
             _signInManager = signInManager;
             _mailingService = mailingService;
             _roleManager = roleManager;
+            _mapper = null; // We're not using mapper in this service currently
         }
 
         public async Task<BaseResponse> SignUpAsync(SignUpViewModel userModel, UserRole role)
@@ -130,7 +131,7 @@ namespace Business.Services.AccountService
             return BaseResponse.SuccessResponse("Logout successful");
         }
 
-        public async Task<User> GetUserByIdAsync(string userId)
+        public async Task<User?> GetUserByIdAsync(string userId)
         {
             return await _userManager.FindByIdAsync(userId);
         }
@@ -202,6 +203,35 @@ namespace Business.Services.AccountService
             }
 
             return BaseResponse.FailureResponse("Failed to change password", result.Errors);
+        }
+
+        public async Task<BaseResponse> ResendOtpAsync(string email)
+        {
+            try
+            {
+                var user = await _userManager.FindByEmailAsync(email);
+
+                if (user == null)
+                {
+                    return BaseResponse.FailureResponse("User not found");
+                }
+
+                int newVerificationCode = new Random().Next(100000, 999999);
+                user.VerificationCode = newVerificationCode;
+                await _userManager.UpdateAsync(user);
+
+                await _mailingService.SendMailAsync(
+                    to: email,
+                    subject: "Verification Code",
+                    body: $"Your new verification code is {newVerificationCode}"
+                );
+
+                return BaseResponse.SuccessResponse("Verification code resent successfully");
+            }
+            catch (Exception ex)
+            {
+                return BaseResponse.FailureResponse($"An error occurred: {ex.Message}");
+            }
         }
     }
 }

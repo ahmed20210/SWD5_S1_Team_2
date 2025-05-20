@@ -1,0 +1,168 @@
+@model Domain.Entities.Order
+@using Domain
+@{
+    ViewData["Title"] = $"Order #{Model.Id} Details";
+}
+
+<div class="container-fluid py-5">
+    <div class="text-center mb-4">
+        <h2 class="section-title px-5"><span class="px-2">Order Details</span></h2>
+    </div>
+    <div class="row px-xl-5">
+        <div class="col-lg-10 mx-auto">
+            <div class="card border-0 mb-4">
+                <div class="card-header bg-light">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Order #@Model.Id</h5>
+                            <p class="text-muted mb-0">Placed on: @Model.Date.ToString("MMMM dd, yyyy")</p>
+                        </div>
+                        <div class="col-md-6 text-md-right">
+                            <h5>Status: <span class="badge badge-@GetStatusBadgeColor(Model.Status)">@Model.Status</span></h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h5 class="mb-3">Items</h5>
+                    <div class="table-responsive">
+                        <table class="table table-borderless">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th class="text-center">Quantity</th>
+                                    <th class="text-right">Price</th>
+                                    <th class="text-right">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.OrderItems != null && Model.OrderItems.Any())
+                                {
+                                    foreach (var item in Model.OrderItems)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    @if (item.Product?.ImageUrl != null)
+                                                    {
+                                                        <img src="@item.Product.ImageUrl" alt="@item.Product.Name" style="width: 50px; margin-right: 15px;">
+                                                    }
+                                                    <div>
+                                                        <h6 class="mb-0">@item.Product?.Name</h6>
+                                                        @* <small class="text-muted">SKU: @item.Product?.SKU</small> *@
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">@item.Quantity</td>
+                                            <td class="text-right">$@item.UnitPrice.ToString("F2")</td>
+                                            <td class="text-right">$@((item.UnitPrice * item.Quantity).ToString("F2"))</td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="4" class="text-center">No items found for this order.</td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3" class="text-right">Subtotal:</td>
+                                    <td class="text-right">$@Model.TotalAmount.ToString("F2")</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="text-right">Shipping:</td>
+                                    <td class="text-right">$0.00</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="text-right"><strong>Total:</strong></td>
+                                    <td class="text-right"><strong>$@Model.TotalAmount.ToString("F2")</strong></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card border-0 mb-4">
+                        <div class="card-header bg-light">
+                            <h5 class="mb-0">Shipping Information</h5>
+                        </div>
+                        <div class="card-body">
+                            @if (Model.Address != null)
+                            {
+                                <address>
+                                    <strong>@Model.Customer?.FName @Model.Customer?.FName</strong><br>
+                                    @(Model.Address.Street ?? "")<br>
+                                    @Model.Address.City, @Model.Address.State @Model.Address.ZipCode<br>
+                                    @Model.Address.Country<br>
+                                    <abbr title="Phone">P:</abbr> @(Model.Customer?.PhoneNumber ?? "N/A")
+                                </address>
+                            }
+                            else
+                            {
+                                <p>No shipping information available.</p>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card border-0 mb-4">
+                        <div class="card-header bg-light">
+                            <h5 class="mb-0">Payment Information</h5>
+                        </div>
+                        @* <div class="card-body">
+                            @if (Model.Payments != null && Model.Payments.Any())
+                            {
+                                var payment = Model.Payments.FirstOrDefault();
+                                <p><strong>Payment Method:</strong> @payment.Method</p>
+                                <p><strong>Transaction ID:</strong> @payment.TransactionId</p>
+                                <p><strong>Status:</strong> <span class="badge badge-@GetPaymentStatusBadgeColor(payment.Status)">@payment.Status</span></p>
+                                <p><strong>Amount:</strong> $@payment.Amount.ToString("F2")</p>
+                                <p><strong>Date:</strong> @payment.CreatedAt.ToString("MMMM dd, yyyy")</p>
+                            }
+                            else
+                            {
+                                <p>No payment information available.</p>
+                            }
+                        </div> *@
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4 mb-5">
+                <a href="/" class="btn btn-primary">Continue Shopping</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@functions {
+    string GetStatusBadgeColor(OrderStatus status)
+    {
+        return status switch
+        {
+            OrderStatus.Pending => "warning",
+            OrderStatus.Processing => "info",
+            OrderStatus.Shipped => "primary",
+            OrderStatus.Delivered => "success",
+            OrderStatus.Cancelled => "danger",
+            _ => "secondary"
+        };
+    }
+    
+    string GetPaymentStatusBadgeColor(PaymentStatus status)
+    {
+        return status switch
+        {
+            PaymentStatus.Pending => "warning",
+            PaymentStatus.Success => "success",
+            PaymentStatus.Failed => "danger",
+            PaymentStatus.Refunded => "info",
+            PaymentStatus.Canceled => "secondary",
+            _ => "secondary"
+        };
+    }
+}

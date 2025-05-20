@@ -1,0 +1,139 @@
+<!-- Verification Modal -->
+<div class="modal fade" id="verificationModal" tabindex="-1" aria-labelledby="verificationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="verificationModalLabel">Verify Your Email</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-center mb-4">We've sent a verification code to your email address. Please enter it below to verify your account.</p>
+                
+                <form id="verificationForm">
+                    <input type="hidden" id="verificationEmail" name="email">
+                    
+                    <div class="mb-3">
+                        <label for="otpCode" class="form-label">Verification Code</label>
+                        <input type="text" class="form-control form-control-lg text-center" id="otpCode" name="otpCode" placeholder="Enter code" maxlength="6">
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Verify Account</button>
+                        <button type="button" class="btn btn-outline-secondary" id="resendOtp">Resend Code</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div id="verificationMessage" class="w-100 text-center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add JavaScript for the verification modal -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get elements
+        const verificationForm = document.getElementById('verificationForm');
+        const verificationEmail = document.getElementById('verificationEmail');
+        const resendOtpBtn = document.getElementById('resendOtp');
+        
+        // Handle verification form submission
+        if (verificationForm) {
+            verificationForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                const email = verificationEmail.value;
+                const otpCode = document.getElementById('otpCode').value;
+                
+                if (!email || !otpCode) {
+                    showVerificationMessage('Please enter the verification code.', true);
+                    return;
+                }
+                
+                // Disable the submit button
+                const submitBtn = this.querySelector('button[type="submit"]');
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Verifying...';
+                
+                // Call the API to verify the code
+                fetch(`/api/Account/VerifyOtp?email=${encodeURIComponent(email)}&otpCode=${otpCode}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            showVerificationMessage('Verification successful! Proceeding to checkout...', false);                                // Close the modal and proceed with checkout after a delay
+                                setTimeout(() => {
+                                    try {
+                                        // Hide verification modal manually
+                                        document.getElementById('verificationModal').style.display = 'none';
+                                        document.getElementById('verificationModal').classList.remove('show');
+                                        document.body.classList.remove('modal-open');
+                                        const backdrops = document.getElementsByClassName('modal-backdrop');
+                                        while(backdrops.length > 0) {
+                                            backdrops[0].parentNode.removeChild(backdrops[0]);
+                                        }
+                                        
+                                        // Set user as logged in and proceed with checkout
+                                        window.isUserLoggedIn = true;
+                                        window.processCheckout();
+                                    } catch (error) {
+                                        console.error('Error during modal transition:', error);
+                                    }
+                                }, 1500);
+                        } else {
+                            showVerificationMessage(data.message || 'Invalid verification code. Please try again.', true);
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = 'Verify Account';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error during verification:', error);
+                        showVerificationMessage('An error occurred. Please try again.', true);
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Verify Account';
+                    });
+            });
+        }
+        
+        // Handle resend OTP button click
+        if (resendOtpBtn) {
+            resendOtpBtn.addEventListener('click', function() {
+                const email = verificationEmail.value;
+                
+                if (!email) {
+                    showVerificationMessage('Email address is missing.', true);
+                    return;
+                }
+                
+                this.disabled = true;
+                this.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending...';
+                
+                // Call API to resend OTP
+                fetch(`/api/Account/ResendOtp?email=${encodeURIComponent(email)}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            showVerificationMessage('Verification code has been resent to your email.', false);
+                        } else {
+                            showVerificationMessage(data.message || 'Failed to resend verification code.', true);
+                        }
+                        this.disabled = false;
+                        this.textContent = 'Resend Code';
+                    })
+                    .catch(error => {
+                        console.error('Error resending OTP:', error);
+                        showVerificationMessage('An error occurred. Please try again.', true);
+                        this.disabled = false;
+                        this.textContent = 'Resend Code';
+                    });
+            });
+        }
+    });
+    
+    // Helper function to show messages in the verification modal
+    function showVerificationMessage(message, isError) {
+        const messageElement = document.getElementById('verificationMessage');
+        messageElement.textContent = message;
+        messageElement.className = `alert ${isError ? 'alert-danger' : 'alert-success'} w-100`;
+    }
+</script>

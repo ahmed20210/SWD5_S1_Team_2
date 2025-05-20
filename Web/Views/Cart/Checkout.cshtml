@@ -20,33 +20,36 @@
                 <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Billing Address</span></h5>
                 <div class="bg-light p-30 mb-5">
                     <div class="row">
+                        @if (User.Identity != null && User.Identity.IsAuthenticated == false)
+                        {
+                            
                         <div class="col-md-6 form-group">
                             <label>First Name</label>
-                            <input class="form-control" type="text" placeholder="John">
+                            <input class="form-control" type="text" id="billingFirstName" placeholder="John">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Last Name</label>
-                            <input class="form-control" type="text" placeholder="Doe">
+                            <input class="form-control" type="text" id="billingLastName" placeholder="Doe">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>E-mail</label>
-                            <input class="form-control" type="text" placeholder="example@email.com">
+                            <input class="form-control" type="email" id="billingEmail" placeholder="example@email.com">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Mobile No</label>
-                            <input class="form-control" type="text" placeholder="+123 456 789">
+                            <input class="form-control" type="text" id="billingPhone" placeholder="+123 456 789">
                         </div>
                         <div class="col-md-6 form-group">
-                            <label>Address Line 1</label>
-                            <input class="form-control" type="text" placeholder="123 Street">
+                            <label>Street</label>
+                            <input class="form-control" type="text" id="billingStreet" placeholder="123 Street">
                         </div>
                         <div class="col-md-6 form-group">
-                            <label>Address Line 2</label>
-                            <input class="form-control" type="text" placeholder="123 Street">
+                            <label>City</label>
+                            <input class="form-control" type="text" id="billingCity" placeholder="New York">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Country</label>
-                            <select class="custom-select">
+                            <select class="custom-select" id="billingCountry">
                                 <option selected>United States</option>
                                 <option>Afghanistan</option>
                                 <option>Albania</option>
@@ -54,62 +57,58 @@
                             </select>
                         </div>
                         <div class="col-md-6 form-group">
-                            <label>City</label>
-                            <input class="form-control" type="text" placeholder="New York">
-                        </div>
-                        <div class="col-md-6 form-group">
                             <label>State</label>
-                            <input class="form-control" type="text" placeholder="New York">
+                            <input class="form-control" type="text" id="billingState" placeholder="New York">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>ZIP Code</label>
-                            <input class="form-control" type="text" placeholder="123">
+                            <input class="form-control" type="text" id="billingZipCode" placeholder="123">
                         </div>
-                        <div class="col-md-12 form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="newaccount">
-                                <label class="custom-control-label" for="newaccount">Create an account</label>
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <div class="col-md-12 form-group">
+                                <div class="custom-control custom-checkbox">
+                                    <input 
+                                    disabled
+                                    checked
+                                    type="checkbox" class="custom-control-input" id="newaccount">
+                                    <label class="custom-control-label" for="newaccount">Create an account</label>
+                                </div>
                             </div>
-                        </div>
+                        }
+                        }
                         <div class="col-md-12">
+                            @if (User.Identity != null && User.Identity.IsAuthenticated)
+                            {
+                                <div class="alert alert-info mb-3">
+                                    <i class="fa fa-info-circle mr-2"></i> Your order will be shipped to your main address. If you want to ship to a different address, check the option below.
+                                </div>
+                            }
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="shipto">
-                                <label class="custom-control-label" for="shipto"  data-toggle="collapse" data-target="#shipping-address">Ship to different address</label>
+                                <input type="checkbox" class="custom-control-input" id="shipto" checked required>
+                                <label class="custom-control-label" for="shipto" data-toggle="collapse" data-target="#shipping-address">Ship to different address</label>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="collapse mb-5" id="shipping-address">
+                 @if(User.Identity != null && User.Identity.IsAuthenticated == true){
+
+                <div class="collapse show" id="shipping-address">
                     <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Shipping Address</span></h5>
                     <div class="bg-light p-30">
                         <div class="row">
+                           
                             <div class="col-md-6 form-group">
-                                <label>First Name</label>
-                                <input class="form-control" type="text" placeholder="John">
+                                <label>Street</label>
+                                <input class="form-control" type="text" id="shippingStreet" placeholder="123 Street">
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>Last Name</label>
-                                <input class="form-control" type="text" placeholder="Doe">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>E-mail</label>
-                                <input class="form-control" type="text" placeholder="example@email.com">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>Mobile No</label>
-                                <input class="form-control" type="text" placeholder="+123 456 789">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>Address Line 1</label>
-                                <input class="form-control" type="text" placeholder="123 Street">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>Address Line 2</label>
-                                <input class="form-control" type="text" placeholder="123 Street">
+                                <label>City</label>
+                                <input class="form-control" type="text" id="shippingCity" placeholder="New York">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Country</label>
-                                <select class="custom-select">
+                                <select class="custom-select" id="shippingCountry">
                                     <option selected>United States</option>
                                     <option>Afghanistan</option>
                                     <option>Albania</option>
@@ -117,36 +116,29 @@
                                 </select>
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>City</label>
-                                <input class="form-control" type="text" placeholder="New York">
-                            </div>
-                            <div class="col-md-6 form-group">
                                 <label>State</label>
-                                <input class="form-control" type="text" placeholder="New York">
+                                <input class="form-control" type="text" id="shippingState" placeholder="New York">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>ZIP Code</label>
-                                <input class="form-control" type="text" placeholder="123">
+                                <input class="form-control" type="text" id="shippingZipCode" placeholder="123">
                             </div>
                         </div>
                     </div>
                 </div>
+                }
             </div>
+            
             <div class="col-lg-4">
+               
+               
                 <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Order Total</span></h5>
                 <div class="bg-light p-30 mb-5">
                     <div class="border-bottom">
                         <h6 class="mb-3">Products</h6>
+                        <!-- Default product item -->
                         <div class="d-flex justify-content-between">
-                            <p>Product Name 1</p>
-                            <p>$150</p>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <p>Product Name 2</p>
-                            <p>$150</p>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <p>Product Name 3</p>
+                            <p>Sample Product</p>
                             <p>$150</p>
                         </div>
                     </div>
@@ -163,7 +155,7 @@
                     <div class="pt-2">
                         <div class="d-flex justify-content-between mt-2">
                             <h5>Total</h5>
-                            <h5>$160</h5>
+                            <h5 id="orderTotal">$160</h5>
                         </div>
                     </div>
                 </div>
@@ -199,13 +191,57 @@
     </div>
     <!-- Checkout End -->
 
+@if (User.Identity != null && !User.Identity.IsAuthenticated)
+{
+    <!-- Include the Login/Registration Modal -->
+    @await Html.PartialAsync("_LoginRegistrationModal")
+
+    <!-- Include the Verification Modal -->
+    @await Html.PartialAsync("_VerificationModal")
+}
+
 @section Scripts {
+    <!-- Make sure Bootstrap 5 Modal is available -->
+    <script>
+        // Check if Bootstrap 5 Modal is loaded, if not, load it
+        if (typeof bootstrap === 'undefined' || !bootstrap.Modal) {
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js';
+            script.integrity = 'sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p';
+            script.crossOrigin = 'anonymous';
+            document.head.appendChild(script);
+        } else {
+            console.log('Bootstrap 5 Modal is available');
+        }
+    </script>
     <!-- Include Stripe.js -->
     <script src="https://js.stripe.com/v3/"></script>
     <script>
         let stripe;
         let elements;
         let cardElement;
+        let isUserLoggedIn = @((User.Identity != null && User.Identity.IsAuthenticated) ? "true" : "false");
+
+        // Initialize page based on login status
+        document.addEventListener('DOMContentLoaded', function() {
+            if (isUserLoggedIn) {
+                console.log('User is logged in, configuring checkout for logged-in user');
+                
+                // If the create account checkbox exists, make it checked and non-editable
+                const newAccountCheckbox = document.getElementById('newaccount');
+                if (newAccountCheckbox) {
+                    newAccountCheckbox.checked = true;
+                    newAccountCheckbox.disabled = true;
+                }
+                
+                // Make sure the "Ship to different address" is properly set up
+                const shipToCheckbox = document.getElementById('shipto');
+                if (shipToCheckbox) {
+                    // We keep it checked by default but user can change it
+                    shipToCheckbox.checked = true;
+                }
+            }
+        });
 
         // Fetch the Stripe publishable key from the server
         fetch('/api/Payment/GetPublicKey')
@@ -225,7 +261,6 @@
                             },
                         },
                         invalid: {
-                            color: '#fa755a',
                             iconColor: '#fa755a',
                         },
                     },
@@ -248,88 +283,14 @@
 
         // Handle form submission
         const form = document.getElementById('checkout-button');
-        form.addEventListener('click', function (event) {
-            event.preventDefault();
-            
-            // Disable the submit button to prevent repeated clicks
-            form.disabled = true;
-            
-            // Collect billing and shipping details from form
-            const billingDetails = {
-                name: document.querySelector('input[placeholder="John"]').value + ' ' + document.querySelector('input[placeholder="Doe"]').value,
-                email: document.querySelector('input[placeholder="example@email.com"]').value,
-                phone: document.querySelector('input[placeholder="+123 456 789"]').value,
-                address: {
-                    line1: document.querySelector('input[placeholder="123 Street"]').value,
-                    city: document.querySelector('input[placeholder="New York"]').value,
-                    state: document.querySelector('input[placeholder="New York"]').value,
-                    postal_code: document.querySelector('input[placeholder="123"]').value,
-                    country: document.querySelector('.custom-select').value,
-                }
-            };
-
-            // Create payment method and confirm card payment
-            stripe.createPaymentMethod({
-                type: 'card',
-                card: cardElement,
-                billing_details: billingDetails,
-            }).then(function (result) {
-                if (result.error) {
-                    // Show error in payment form
-                    const errorElement = document.getElementById('card-errors');
-                    errorElement.textContent = result.error.message;
-                    form.disabled = false;
-                } else {
-                    // Send paymentMethod.id to your server
-                    fetch('/api/Payment/CreatePaymentIntent', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            paymentMethodId: result.paymentMethod.id,
-                            amount: 160 * 100, // Amount in cents
-                            currency: 'usd'
-                        }),
-                    }).then(function (response) {
-                        return response.json();
-                    }).then(function (paymentIntentResponse) {
-                        if (paymentIntentResponse.success) {
-                            // Payment successful - redirect to confirmation page
-                            window.location.href = '/order/confirmation?orderId=' + paymentIntentResponse.orderId;
-                        } else if (paymentIntentResponse.requiresAction) {
-                            // Use the client secret to handle 3D Secure authentication
-                            handleCardAction(paymentIntentResponse.clientSecret);
-                        } else {
-                            // Payment failed
-                            const errorElement = document.getElementById('card-errors');
-                            errorElement.textContent = paymentIntentResponse.error;
-                            form.disabled = false;
-                        }
-                    }).catch(function (error) {
-                        console.error('Error:', error);
-                        form.disabled = false;
-                    });
-                }
-            });
-        });
-
-        // Handle 3D Secure authentication
-        function handleCardAction(clientSecret) {
-            stripe.handleCardAction(
-                clientSecret
-            ).then(function(result) {
-                if (result.error) {
-                    // Show error in payment form
-                    const errorElement = document.getElementById('card-errors');
-                    errorElement.textContent = result.error.message;
-                    form.disabled = false;
-                } else {
-                    // The card action has been completed successfully
-                    // You may need to send the payment intent ID to your server again
-                    // to complete the payment process
-                    window.location.href = '/order/processing';
-                }
+        if (form) {
+            form.addEventListener('click', function (event) {
+                event.preventDefault();
+                
+                // Disable the submit button to prevent repeated clicks
+                form.disabled = true;
+                
+                // Form submission logic here
             });
         }
     </script>
@@ -338,23 +299,243 @@
         document.getElementById('proceed-to-payment').addEventListener('click', function(event) {
             event.preventDefault();
             
-            // Get total amount from the page
-            const totalAmountText = document.querySelector('.d-flex.justify-content-between.mt-2 h5:last-child').textContent;
-            const amount = parseFloat(totalAmountText.replace('$', ''));
+            // Collect all form data - only if user is not logged in
+            if (!isUserLoggedIn) {
+                const billingData = {
+                    firstName: document.getElementById('billingFirstName')?.value || '',
+                    lastName: document.getElementById('billingLastName')?.value || '',
+                    email: document.getElementById('billingEmail')?.value || '',
+                    phone: document.getElementById('billingPhone')?.value || '',
+                    street: document.getElementById('billingStreet')?.value || '',
+                    city: document.getElementById('billingCity')?.value || '',
+                    state: document.getElementById('billingState')?.value || '',
+                    zipCode: document.getElementById('billingZipCode')?.value || '',
+                    country: document.getElementById('billingCountry')?.value || ''
+                };
+                
+                // Always use ship to different address
+                const shipToDifferentAddress = true;
+                
+                try {
+                    // Show the authentication modal
+                    const authModal = new bootstrap.Modal(document.getElementById('authModal'));
+                    
+                    // Pre-fill the registration form with the information from the checkout form
+                    document.getElementById('firstName').value = billingData.firstName;
+                    document.getElementById('lastName').value = billingData.lastName;
+                    document.getElementById('email').value = billingData.email;
+                    document.getElementById('phone').value = billingData.phone;
+                    
+                    // Set ship to different address checkbox to checked and disabled
+                    const shipToDifferentAddressCheckbox = document.getElementById('shipToDifferentAddress');
+                    if (shipToDifferentAddressCheckbox) {
+                        shipToDifferentAddressCheckbox.checked = true;
+                        shipToDifferentAddressCheckbox.disabled = true;
+                    }
+                    
+                    // Show the modal
+                    authModal.show();
+                } catch (error) {
+                    console.error('Error showing authentication modal:', error);
+                    // Fallback in case of modal error - go directly to checkout
+                    processCheckout();
+                }
+            } else {
+                // User is logged in, proceed directly to payment
+                processCheckout();
+            }
+        });
+        
+        // Handle quick registration form submission
+        document.getElementById('quickSignupForm').addEventListener('submit', function(event) {
+            event.preventDefault();
             
-            // Validate form fields
-            const firstName = document.querySelector('input[placeholder="John"]').value;
-            const lastName = document.querySelector('input[placeholder="Doe"]').value;
-            const email = document.querySelector('input[placeholder="example@email.com"]').value;
+            const formData = new FormData(this);
+            const userData = Object.fromEntries(formData.entries());
             
-            // Simple validation
-            if (!firstName || !lastName || !email) {
-                alert('Please fill in all required fields before proceeding to payment');
+            // Always set IsAgree to true for simplicity
+            userData.IsAgree = true;
+            
+            // Simple password validation - just make sure they match
+            if (userData.Password !== userData.ConfirmPassword) {
+                showAuthMessage('Passwords do not match!', true);
                 return;
             }
             
+            // Disable submit button to prevent multiple submissions
+            const submitButton = this.querySelector('button[type="submit"]');
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Processing...';
+            
+            // Send registration request
+            fetch('/api/Account/QuickSignup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showAuthMessage('Account created! Redirecting to verification...', false);
+                    
+                    // Set up verification modal
+                    document.getElementById('verificationEmail').value = userData.Email;
+                    
+                    // Close the auth modal and show verification modal
+                    setTimeout(() => {
+                        try {
+                            console.log('Attempting to close auth modal and open verification modal');
+                            
+                            // Hide auth modal manually
+                            document.getElementById('authModal').style.display = 'none';
+                            document.getElementById('authModal').classList.remove('show');
+                            document.body.classList.remove('modal-open');
+                            const backdrops = document.getElementsByClassName('modal-backdrop');
+                            while(backdrops.length > 0) {
+                                backdrops[0].parentNode.removeChild(backdrops[0]);
+                            }
+                            
+                            // Show verification modal manually
+                            const verificationModal = document.getElementById('verificationModal');
+                            verificationModal.style.display = 'block';
+                            verificationModal.classList.add('show');
+                            document.body.classList.add('modal-open');
+                            const backdrop = document.createElement('div');
+                            backdrop.className = 'modal-backdrop fade show';
+                            document.body.appendChild(backdrop);
+                            
+                            console.log('Manual modal transition completed');
+                        } catch (error) {
+                            console.error('Error during modal transition:', error);
+                            showAuthMessage('Error during transition to verification. Please try again.', true);
+                        }
+                    }, 1500);
+                } else {
+                    showAuthMessage(data.message || 'Registration failed. Please try again.', true);
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Create Account and Continue';
+                }
+            })
+            .catch(error => {
+                console.error('Error during registration:', error);
+                showAuthMessage('An error occurred. Please try again.', true);
+                submitButton.disabled = false;
+                submitButton.textContent = 'Create Account and Continue';
+            });
+        });
+        
+        // Handle quick login form submission
+        document.getElementById('quickLoginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(this);
+            const loginData = Object.fromEntries(formData.entries());
+            
+            // Always set RememberMe to true for simplicity
+            loginData.RememberMe = true;
+            
+            // Disable submit button to prevent multiple submissions
+            const submitButton = this.querySelector('button[type="submit"]');
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Processing...';
+            
+            // Send login request
+            fetch('/api/Account/QuickLogin', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(loginData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showAuthMessage('Login successful! Proceeding to checkout...', false);
+                    isUserLoggedIn = true;
+                    
+                    // Close the modal and proceed to checkout
+                    setTimeout(() => {
+                        try {
+                            // Hide auth modal manually
+                            document.getElementById('authModal').style.display = 'none';
+                            document.getElementById('authModal').classList.remove('show');
+                            document.body.classList.remove('modal-open');
+                            const backdrops = document.getElementsByClassName('modal-backdrop');
+                            while(backdrops.length > 0) {
+                                backdrops[0].parentNode.removeChild(backdrops[0]);
+                            }
+                            
+                            // Proceed with checkout
+                            processCheckout();
+                        } catch (error) {
+                            console.error('Error during modal transition:', error);
+                            showAuthMessage('Error during transition. Please try again.', true);
+                        }
+                    }, 1500);
+                } else {
+                    showAuthMessage(data.message || 'Login failed. Please check your credentials.', true);
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Log in and Continue';
+                }
+            })
+            .catch(error => {
+                console.error('Error during login:', error);
+                showAuthMessage('An error occurred. Please try again.', true);
+                submitButton.disabled = false;
+                submitButton.textContent = 'Log in and Continue';
+            });
+        });
+        
+        // Helper function to show messages in the auth modal
+        function showAuthMessage(message, isError) {
+            const messageElement = document.getElementById('authModalMessage');
+            messageElement.textContent = message;
+            messageElement.className = `alert ${isError ? 'alert-danger' : 'alert-success'} w-100`;
+        }
+        
+        // Helper function to validate form data
+        function validateFormData(data) {
+            // Check if all required fields are filled
+            for (const key in data) {
+                if (!data[key] && key !== 'street') { // Street may be optional
+                    return false;
+                }
+            }
+            return true;
+        }
+        
+        // Function to copy billing details to shipping form
+        function copyBillingToShipping() {
+            document.getElementById('shippingFirstName').value = document.getElementById('billingFirstName').value;
+            document.getElementById('shippingLastName').value = document.getElementById('billingLastName').value;
+            document.getElementById('shippingEmail').value = document.getElementById('billingEmail').value;
+            document.getElementById('shippingPhone').value = document.getElementById('billingPhone').value;
+            document.getElementById('shippingStreet').value = document.getElementById('billingStreet').value;
+            document.getElementById('shippingCity').value = document.getElementById('billingCity').value;
+            document.getElementById('shippingState').value = document.getElementById('billingState').value;
+            document.getElementById('shippingZipCode').value = document.getElementById('billingZipCode').value;
+            document.getElementById('shippingCountry').value = document.getElementById('billingCountry').value;
+        }
+        
+        // Process checkout after authentication
+        function processCheckout() {
+            // Get total amount from the page
+            const orderTotalElement = document.getElementById('orderTotal');
+            console.log('Total element found:', orderTotalElement);
+            
+            // If total amount element is not found, use a default value
+            let amount = 160;
+            if (orderTotalElement) {
+                const totalText = orderTotalElement.textContent;
+                console.log('Total amount text found:', totalText);
+                amount = parseFloat(totalText.replace('$', '').trim()) || 160;
+            }
+            console.log('Final amount to be charged:', amount);
+            
             // Redirect to Stripe checkout with the amount
             window.location.href = `/payment/StripeCheckout?amount=${amount}`;
-        });
+        }
     </script>
 }
