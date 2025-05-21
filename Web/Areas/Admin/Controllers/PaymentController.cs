@@ -1,6 +1,8 @@
 ﻿using Business.Services.PaymentService;
 using Microsoft.AspNetCore.Mvc;
 using Business.ViewModels.PaymentViewModels;
+using Microsoft.AspNetCore.Authorization;
+
 namespace Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
@@ -27,6 +29,7 @@ namespace Web.Areas.Admin.Controllers
         }
 
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Create(CreatePaymentViewModel model)
         {
@@ -56,6 +59,7 @@ namespace Web.Areas.Admin.Controllers
 
 
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Edit(int id, UpdateViewModel model)
         {
@@ -81,7 +85,15 @@ namespace Web.Areas.Admin.Controllers
             return View(payment);
         }
 
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var payment = await _paymentService.GetByIdAsync(id);
+            if (payment == null) return NotFound();
 
-
+            await _paymentService.DeleteAsync(id);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

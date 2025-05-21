@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Infrastructure.Data; 
 using AutoMapper; 
 using Business.Services.CategoryService;
@@ -41,6 +42,7 @@ namespace Web.Areas.Admin.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateCategoryViewModel createCategoryForm)
@@ -85,6 +87,7 @@ namespace Web.Areas.Admin.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(UpdateCategoryViewModel updateCategoryViewModel)
@@ -133,6 +136,7 @@ namespace Web.Areas.Admin.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

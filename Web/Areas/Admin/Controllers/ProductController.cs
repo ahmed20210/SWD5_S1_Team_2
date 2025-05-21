@@ -9,6 +9,7 @@ using Infrastructure.Data;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Web.Areas.Admin.Controllers;
 
@@ -70,6 +71,7 @@ public class ProductController : Controller
             return View(new List<ProductViewModel>());
         }
     }
+    [Authorize(Roles = "Admin")]
 
     [HttpGet]
     public async Task<IActionResult> Create()
@@ -118,6 +120,7 @@ public class ProductController : Controller
             return RedirectToAction(nameof(Index));
         }
     }
+    [Authorize(Roles = "Admin")]
 
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -176,6 +179,7 @@ public class ProductController : Controller
 
         return View(result.Data);
     }
+    [Authorize(Roles = "Admin")]
 
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]

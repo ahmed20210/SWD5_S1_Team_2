@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace Web.Areas.Admin.Controllers;
 
 [Area("Admin")]
-[Authorize(Roles = "Admin")]
 public class ReviewsController : Controller
 {
     private readonly IReviewService _reviewService;
@@ -75,7 +74,7 @@ public class ReviewsController : Controller
         return View(model);
     }
 
-    // Submit edited review as admin
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(UpdateReviewViewModel model)
@@ -97,8 +96,8 @@ public class ReviewsController : Controller
         TempData["Success"] = "Review updated successfully!";
         return RedirectToAction("Index");
     }
-    
-    // Verify a review
+
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Verify(int id)
@@ -117,7 +116,7 @@ public class ReviewsController : Controller
         return RedirectToAction("Index");
     }
 
-    // Delete review as admin
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Delete(int id)

@@ -7,7 +7,6 @@ using Domain;
 namespace Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    // [Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
         private readonly IUserService _userService;
@@ -43,7 +42,7 @@ namespace Web.Areas.Admin.Controllers
             return View(viewModel);
         }
 
-        // Handle Edit form submission
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Edit(EditUserViewModel viewModel)
         {
@@ -78,8 +77,8 @@ namespace Web.Areas.Admin.Controllers
             
             return View(user);
         }
-        
-        // Process user suspension after confirmation
+
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Suspend(string id, bool confirm)
         {
@@ -107,8 +106,8 @@ namespace Web.Areas.Admin.Controllers
             
             return View(user);
         }
-        
-        // Process user activation after confirmation
+
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Activate(string id, bool confirm)
         {
@@ -145,8 +144,8 @@ namespace Web.Areas.Admin.Controllers
             
             return View(viewModel);
         }
-        
-        // Process role change
+
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> ChangeRole(ChangeRoleViewModel viewModel)
         {
