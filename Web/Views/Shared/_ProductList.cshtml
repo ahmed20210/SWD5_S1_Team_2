@@ -212,51 +212,6 @@
         });
         
         // Function to toggle favorites using JavaScript/AJAX
-        function toggleFavoriteJS(productId, isCurrentlyFavorite) {
-            // Get the csrf token from any form on the page
-            const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
-            const url = isCurrentlyFavorite ? '/FavouriteList/RemoveFromFavorites' : '/FavouriteList/AddToFavorites';
-            
-            // Create form data with the necessary information
-            const formData = new FormData();
-            formData.append('productId', productId);
-            formData.append('returnUrl', window.location.pathname + window.location.search);
-            formData.append('__RequestVerificationToken', token);
-            
-            // Submit form using fetch API
-            fetch(url, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest'
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Update the favorites count if function exists
-                    if (typeof updateFavoritesCount === 'function') {
-                        updateFavoritesCount();
-                    }
-                    
-                    // Update UI for this specific button
-                    const favControl = document.getElementById('favControl-' + productId);
-                    const button = favControl.querySelector('button');
-                    
-                    if (button) {
-                        if (isCurrentlyFavorite) {
-                            // Change to non-favorite state
-                            button.innerHTML = '<i class="far fa-heart"></i>';
-                            button.onclick = function() { toggleFavoriteJS(productId, false); return false; };
-                        } else {
-                            // Change to favorite state
-                            button.innerHTML = '<i class="fas fa-heart text-danger"></i>';
-                            button.onclick = function() { toggleFavoriteJS(productId, true); return false; };
-                        }
-                    }
-                }
-            })
-            .catch(error => console.error('Error toggling favorite:', error));
-        }
+     
     </script>
 }

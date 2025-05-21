@@ -14,14 +14,40 @@
             }
 
             <div class="product-action">
-                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                <a class="btn btn-outline-dark btn-square" onclick="addToCart(@Model.Id)" href="javascript:void(0);"><i class="fa fa-shopping-cart"></i></a>
+                
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="fav btn" id="favControl-@Model.Id" style="display:inline;">
+                        @Html.AntiForgeryToken()
+                        @if (ViewBag.UserFavorites != null && ViewBag.UserFavorites.Contains(Model.Id))
+                        {
+                            <button type="button" onclick="toggleFavoriteJS('@Model.Id', true)" 
+                                    class="btn btn-outline-dark btn-square favorite-btn">
+                                <i class="fas fa-heart text-danger"></i>
+                            </button>
+                        }
+                        else
+                        {
+                            <button type="button" onclick="toggleFavoriteJS('@Model.Id', false)" 
+                                    class="btn btn-outline-dark btn-square favorite-btn">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <a class="btn btn-outline-dark btn-square" href="/Account/Login?returnUrl=@Context.Request.Path">
+                        <i class="far fa-heart"></i>
+                    </a>
+                }
+                
+                <a class="btn btn-outline-dark btn-square" asp-controller="Product" asp-action="Detail" asp-route-id="@Model.Id"><i class="fa fa-search"></i></a>
             </div>
         </div>
         <div class="text-center py-4">
-            <a class="h6 text-decoration-none text-truncate" href="">@Model.Name</a>
+            <a class="h6 text-decoration-none text-truncate" asp-controller="Product" asp-action="Detail" asp-route-id="@Model.Id">@Model.Name</a>
             <div class="d-flex align-items-center justify-content-center mt-2">
                 <h5>$@Model.Price</h5>
                 @if (Model.Price.HasValue )
