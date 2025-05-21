@@ -48,7 +48,7 @@ public class CheckoutService : ICheckoutService
 
     public async Task<CheckoutResult> ProcessCheckoutAsync(CheckoutViewModel model)
     {
-        // Validate checkout data
+
         var validationResult = ValidateCheckoutModel(model);
         if (!validationResult.IsSuccess)
             return validationResult;
@@ -56,6 +56,7 @@ public class CheckoutService : ICheckoutService
 
         // Use a transaction for the entire checkout process to ensure data consistency
         using var transaction = await _dbContext.Database.BeginTransactionAsync();
+
         try
         {
             if (model.ShippingAddress == null)
@@ -68,19 +69,20 @@ public class CheckoutService : ICheckoutService
                     await transaction.RollbackAsync();
                     return CheckoutResult.Failed("User does not have a main address add your main address or select another address");
                 }
+                model.Order.AddressId = user.MainAddressId;
+                Console.WriteLine("User main address id: {0}", user.MainAddressId);
 
-               
             }
-
-            // create a new address
-            var address = await _addressService.CreateAddressAsync(model.ShippingAddress, model.Order.CustomerId);
-
-
-            model.Order.AddressId = address.Data.Id;
+            else
+            {
+                var address = await _addressService.CreateAddressAsync(model.ShippingAddress, model.Order.CustomerId);
+                model.Order.AddressId = address.Data.Id;
+            }
 
 
             // 1. Create order
             int orderId = await _orderService.CreateOrderAsync(model.Order);
+
             if (orderId <= 0)
             {
                 _logger.LogError("Failed to create order during checkout");
@@ -149,7 +151,7 @@ public class CheckoutService : ICheckoutService
                 "Payment processed successfully");
 
             // 6. Complete the order
-            var completionResult = await _orderService.CompleteOrderAsync(orderId);
+            var completionResult = await _orderService.CompleteOrderAsync(orderId, paymentResult.PaymentId);
             if (!completionResult.Success)
             {
                 _logger.LogError("Order completion failed for order {OrderId}: {Message}", orderId, completionResult.Message);
@@ -172,7 +174,7 @@ public class CheckoutService : ICheckoutService
             // 8. Commit the transaction
             await transaction.CommitAsync();
 
-            _logger.LogInformation("Checkout completed successfully for order {OrderId}", orderId);
+          
             return CheckoutResult.Success(orderId);
         }
         catch (Exception ex)
@@ -220,6 +222,7 @@ public class CheckoutService : ICheckoutService
             return CheckoutResult.Failed("Payment amount must be greater than zero");
 
         if (model.Payment.Amount != model.Order.TotalAmount)
+        
             return CheckoutResult.Failed($"Payment amount ({model.Payment.Amount}) doesn't match order total ({model.Order.TotalAmount})");
 
         if (string.IsNullOrWhiteSpace(model.Payment.TransactionId))
@@ -234,15 +237,10 @@ public class CheckoutService : ICheckoutService
             if (item.Quantity <= 0)
                 return CheckoutResult.Failed($"Invalid quantity for product {item.ProductId}: {item.Quantity}");
 
-            if (item.UnitPrice <= 0)
-                return CheckoutResult.Failed($"Invalid unit price for product {item.ProductId}: {item.UnitPrice}");
-        }
+                }
 
         // Verify total amount matches sum of items
-        decimal calculatedTotal = model.Order.Items.Sum(item => item.UnitPrice * item.Quantity);
-        if (Math.Abs(calculatedTotal - model.Order.TotalAmount) > 0.01m)
-            return CheckoutResult.Failed($"Order total amount ({model.Order.TotalAmount}) doesn't match calculated sum of items ({calculatedTotal})");
-
+       
         return CheckoutResult.Success(0); // Temporary ID, will be replaced by actual order ID
     }
 }

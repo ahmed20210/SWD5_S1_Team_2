@@ -270,16 +270,50 @@ function updateCartSummary(subtotal) {
 }
 
 // Function to handle checkout process
-function proceedToCheckout() {
+async function proceedToCheckout() {
     // Check if the cart is empty
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     if (cart.length === 0) {
         alert('Your cart is empty. Add some products before checking out.');
         return;
     }
-    
-    // Redirect to the checkout page
-    window.location.href = '/Cart/Checkout';
+
+    try {
+        // Get shipping address if it exists
+        const shippingAddress = localStorage.getItem('shippingAddress');
+        
+        // Prepare the data to send to the server
+        const checkoutData = {
+            cart: cart,
+            shippingAddress: shippingAddress ? JSON.parse(shippingAddress) : null
+        };
+
+        // Send the data to the server
+        const response = await fetch('/api/StripeApi/PrepareCheckout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(checkoutData)
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to prepare checkout');
+        }
+
+        const result = await response.json();
+        
+        // Redirect to the Stripe checkout page with the order data
+        window.location.href = `/Payment/StripeCheckout?orderId=${result.orderId}&amount=${result.amount}`;
+    } catch (error) {
+        console.error('Error during checkout:', error);
+        alert('An error occurred during checkout. Please try again.');
+    }
+}
+
+// Function to save shipping address
+function saveShippingAddress(address) {
+    localStorage.setItem('shippingAddress', JSON.stringify(address));
 }
 
 // Function to load cart data on checkout page

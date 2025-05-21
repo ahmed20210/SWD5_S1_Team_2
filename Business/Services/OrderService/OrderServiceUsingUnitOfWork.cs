@@ -39,6 +39,7 @@ namespace Business.Services.OrderService
                     Date = DateTime.UtcNow,
                     TotalAmount = model.TotalAmount,
                     Status = OrderStatus.Pending,
+                    AddressId = model.AddressId,
                 };
 
 
@@ -54,8 +55,15 @@ namespace Business.Services.OrderService
             }
         }
 
-        public async Task<OrderCompletionResult> CompleteOrderAsync(int orderId)
+        public async Task<OrderCompletionResult> CompleteOrderAsync(int orderId, int? paymentId)
         {
+            // Validate orderId and paymentId
+            if (orderId <= 0)
+                return OrderCompletionResult.Failed("Invalid order ID");
+
+            if (paymentId <= 0)
+                return OrderCompletionResult.Failed("Invalid payment ID");
+        
             try
             {
                 var order = await _unitOfWork.Orders.GetOrderWithDetailsAsync(orderId);
@@ -67,7 +75,7 @@ namespace Business.Services.OrderService
                     return OrderCompletionResult.Failed("Order already completed");
 
                 order.Status = OrderStatus.Shipped;
-
+                order.PaymentId = paymentId;
                 await _unitOfWork.CompleteAsync();
 
                 return OrderCompletionResult.SuccessResult();

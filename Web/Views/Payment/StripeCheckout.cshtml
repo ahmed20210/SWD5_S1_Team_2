@@ -1,4 +1,5 @@
 @model dynamic
+@using Domain
 @{
     ViewData["Title"] = "Secure Payment";
     var amount = ViewBag.Amount ?? 160.00M;
@@ -24,8 +25,9 @@
 <div class="container-fluid">
     <div class="row px-xl-5">
         <div class="col-lg-8 mx-auto">
-            <div class="card border-0 shadow-sm mb-5">
-                <div class="card-header bg-primary text-white">
+    using Stripe;
+#line default
+            <div class="card-header bg-primary text-white">
                     <h4 class="mb-0">Secure Payment</h4>
                 </div>
                 <div class="card-body p-4">
@@ -267,17 +269,19 @@
                 
                 const paymentIntentResult = await response.json();
                 
-                if (paymentIntentResult.success) {
+                if (paymentIntentResult.success && !paymentIntentResult.requiresAction) {
+                     const  orderResult =  await handleCardAction(paymentIntentResult.clientSecret, paymentIntentResult.paymentIntentId);
                     // Payment succeeded
-                    showMessage('Payment successful! Redirecting to order confirmation...');
+                  
                     
                     // Redirect after a short delay
                     setTimeout(() => {
-                        window.location.href = `/payment/success?orderId=${paymentIntentResult.orderId}`;
-                    }, 1500);
+                        window.location.href = `/payment/success?orderId=${orderResult.orderId}`;
+                    }, 15000);
                     
                 } else if (paymentIntentResult.requiresAction) {
                     // Handle 3D Secure authentication
+                   
                     await handleCardAction(paymentIntentResult.clientSecret, paymentIntentResult.paymentIntentId);
                 } else {
                     // Payment failed
@@ -294,16 +298,13 @@
         // Handle 3D Secure authentication
         async function handleCardAction(clientSecret, paymentIntentId) {
             try {
-                const result = await stripe.handleCardAction(clientSecret);
-                
-                if (result.error) {
-                    // Show error in payment form
-                    showMessage(result.error.message, true);
-                    setLoading(false);
-                } else {
+                let res;
+               
                     // Card action completed, confirm payment on the server
-                    await confirmPayment(paymentIntentId);
-                }
+                   res =  await confirmPayment(paymentIntentId);
+                  
+                  return res;
+                
             } catch (error) {
                 console.error('Error during card action:', error);
                 showMessage('Authentication failed. Please try another payment method.', true);
@@ -314,13 +315,25 @@
         // Confirm payment after 3D Secure authentication
         async function confirmPayment(paymentIntentId) {
             try {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const order = {
+                    // current microsoft identity
+                    CustomerId: "Empty",
+                    TotalAmount: amount/100,
+                    PaymentMethod: @PaymentMethods.Stripe,
+                    Items: cart.map(item => ({
+                        ProductId: item.id,
+                        Quantity: item.quantity
+                    })),
+                }
                 const response = await fetch('/api/StripeApi/ConfirmPayment', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        paymentIntentId: paymentIntentId
+                        paymentIntentId: paymentIntentId,
+                        Order: order,
                     }),
                 });
                 

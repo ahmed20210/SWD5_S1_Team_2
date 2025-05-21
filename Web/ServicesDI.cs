@@ -14,6 +14,7 @@ using Business.Services.AddressService;
 using Business.Services.ReviewsService;
 using Business.Services.OrderItemService;
 using Business.Services.OrderTimeLineService;
+using Business.Services.ChechoutService;
 
 public static class ServicesDI
 {
@@ -41,5 +42,6 @@ public static class ServicesDI
         services.AddScoped<IOrderItemServiceWithUnitOfWork, OrderItemServiceWithUnitOfWork>();
         services.AddScoped<IOrderTimeLineService, OrderTimeLineService>();
         services.AddScoped<IPaymentServiceUsingUnitOfWork, PaymentServiceUsingUnitOfWork>();
+        services.AddScoped<ICheckoutService, CheckoutService>();
     }
 }

@@ -80,10 +80,10 @@ namespace Business.Services.OrderItemService
                     // Get applicable discount if any
                     var currentDate = DateTime.UtcNow;
                     var discount = product.Discount != null && 
-                                  product.Discount.StartDate <= currentDate && 
-                                  product.Discount.EndDate >= currentDate 
-                                  ? product.Discount 
-                                  : null;
+                                product.Discount.StartDate <= currentDate && 
+                                product.Discount.EndDate >= currentDate 
+                                ? product.Discount 
+                                : null;
                     
                     // Calculate discounted price if discount applies
                     if (discount != null)
@@ -101,7 +101,8 @@ namespace Business.Services.OrderItemService
                         DiscountId = discount?.Id
                     };
                     totalAmount += orderItem.TotalAmount;
-                    
+                    _logger.LogInformation("Creating order item for OrderId: {OrderId}, ProductId: {ProductId}, Quantity: {Quantity}, UnitPrice: {UnitPrice}, TotalAmount: {TotalAmount}",
+                        orderItem.OrderId, orderItem.ProductId, orderItem.Quantity, unitPrice, orderItem.TotalAmount);
                     orderItems.Add(orderItem);
                 }
                 // to int

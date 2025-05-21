@@ -12,7 +12,7 @@ namespace Business.ViewModels.CreateOrderViewModels
     public class CreateOrderViewModel
     {
         [Required]
-        public string CustomerId { get; set; }
+        public string CustomerId { get; set; } 
 
         [Required]
         [MinLength(1)]

@@ -7,7 +7,7 @@ namespace Business.Services.OrderService
     public interface IOrderServiceUsingUnitOfWork
     {
         Task<int> CreateOrderAsync(CreateOrderViewModel model);
-        Task<OrderCompletionResult> CompleteOrderAsync(int orderId);
+        Task<OrderCompletionResult> CompleteOrderAsync(int orderId, int? paymentId);
         Task<IEnumerable<Order>> GetOrdersByCustomerIdAsync(string customerId);
         Task<Order> GetOrderWithDetailsAsync(int orderId);
     }
