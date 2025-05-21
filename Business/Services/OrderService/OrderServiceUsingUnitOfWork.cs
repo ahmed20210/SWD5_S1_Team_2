@@ -1,16 +1,16 @@
 using Business.ViewModels.CreateOrderViewModels;
-using Business.ViewModels.PaymentViewModels;
-using Business.Services.PaymentService;
+
 using Domain.Entities;
 using Domain;
 using Infrastructure.Data;
 using Infrastructure.Data.Repositories;
 using Microsoft.Extensions.Logging;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace Business.Services.OrderService
 {
+
     public class OrderServiceUsingUnitOfWork : IOrderServiceUsingUnitOfWork
     {
         private readonly ApplicationDbContext _context;
@@ -63,7 +63,7 @@ namespace Business.Services.OrderService
 
             if (paymentId <= 0)
                 return OrderCompletionResult.Failed("Invalid payment ID");
-        
+
             try
             {
                 var order = await _unitOfWork.Orders.GetOrderWithDetailsAsync(orderId);

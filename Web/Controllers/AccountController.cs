@@ -23,6 +23,12 @@ namespace Web.Controllers
             _addressService = addressService;
         }
 
+        // Add the Orders action to redirect to OrderController's UserOrders action
+        public IActionResult Orders()
+        {
+            return RedirectToAction("UserOrders", "Order");
+        }
+
         [AllowAnonymous]
         public IActionResult SignUp()
         {
@@ -139,6 +145,7 @@ namespace Web.Controllers
             return View(model);
         }
 
+[Authorize(Roles = "Client,Admin")]
         public async Task<IActionResult> Settings()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -174,6 +181,8 @@ namespace Web.Controllers
             return View(viewModel);
         }
 
+
+        [Authorize(Roles = "Client,Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateProfile(UserProfileViewModel model)
@@ -199,6 +208,7 @@ namespace Web.Controllers
             return RedirectToAction("Settings");
         }
 
+        [Authorize(Roles = "Client,Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
@@ -229,7 +239,7 @@ namespace Web.Controllers
 
             return RedirectToAction("Settings");
         }
-        
+        [Authorize(Roles = "Client,Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddAddress(CreateAddressViewModel model)
@@ -259,7 +269,8 @@ namespace Web.Controllers
             
             return RedirectToAction("Settings");
         }
-        
+
+        [Authorize(Roles = "Client,Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditAddress(int id, UpdateAddressViewModel model)
@@ -289,7 +300,8 @@ namespace Web.Controllers
             
             return RedirectToAction("Settings");
         }
-        
+
+        [Authorize(Roles = "Client,Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteAddress(int id)
@@ -313,7 +325,7 @@ namespace Web.Controllers
             
             return RedirectToAction("Settings");
         }
-        
+        [Authorize(Roles = "Client,Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SetMainAddress(int id)

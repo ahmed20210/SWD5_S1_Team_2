@@ -22,6 +22,8 @@
                             <div class="dropdown-menu dropdown-menu-right">
                                 <button onclick="location.href='/Account/Settings'"
                                    class="dropdown-item" type="button">Account Settings</button>
+                                <button onclick="location.href='/Account/Orders'"
+                                   class="dropdown-item" type="button">My Orders</button>
                                 <form asp-controller="Account" asp-action="LogOut" method="post" id="logoutForm">
                                     <button type="submit" class="dropdown-item">Logout</button>
                                 </form>
@@ -40,14 +42,14 @@
                     </div>
                 </div>
                 <div class="d-inline-flex align-items-center d-block d-lg-none">
-                    <a href="" class="btn px-0 ml-2">
+                    <a href="/FavouriteList" class="btn px-0 ml-2">
                         <i class="fas fa-heart text-dark"></i>
-                        <span class="badge text-dark border border-dark rounded-circle"
+                        <span class="badge text-dark border border-dark rounded-circle fav-count"
                             style="padding-bottom: 2px;">0</span>
                     </a>
-                    <a href="" class="btn px-0 ml-2">
+                    <a href="/Cart" class="btn px-0 ml-2">
                         <i class="fas fa-shopping-cart text-dark"></i>
-                        <span class="badge text-dark border border-dark rounded-circle"
+                        <span class="badge text-dark border border-dark rounded-circle cart-count"
                             style="padding-bottom: 2px;">0</span>
                     </a>
                 </div>

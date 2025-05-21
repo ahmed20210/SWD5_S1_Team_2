@@ -68,6 +68,20 @@
 </div>
 <!-- Success End -->
 
+    <script>
+        // Function to clear the cart
+        function clearCart() {
+            // Clear the cart in local storage
+            localStorage.removeItem('cart');
+            // Update the cart count in the UI
+            document.querySelector('.cart-count').textContent = '0';
+            // Optionally, redirect to the cart page or refresh the page
+            @* window.location.href = '/cart'; *@
+        }
+
+        // Call the function to clear the cart after a successful payment
+    clearCart();
+</script>
 <style>
     /* Success Animation Styles */
     .success-animation {
